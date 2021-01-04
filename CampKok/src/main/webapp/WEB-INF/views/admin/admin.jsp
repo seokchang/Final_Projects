@@ -3,11 +3,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Admin Page</title>
 </head>
 <body>
-	<h1>CampKok Main</h1>
+	<jsp:include page="/WEB-INF/views/admin/adminHeader.jsp" />
+	<h1>Admin Page</h1>
 	<hr>
-	<a href="/adminPage.do">Admin Page</a>
 </body>
 </html>
