@@ -11,6 +11,7 @@ tmp/
 *.swp
 *~.nib
 local.properties
+.settings/
 .loadpath
 .recommenders
 
@@ -165,7 +166,6 @@ $RECYCLE.BIN/
 
 # End of https://www.toptal.com/developers/gitignore/api/windows,macos,eclipse,java,java-web,maven
 Servers/.project
-Servers/.settings/org.eclipse.wst.server.core.prefs
 Servers/Tomcat v8.5 Server at localhost-config/catalina.policy
 Servers/Tomcat v8.5 Server at localhost-config/catalina.properties
 Servers/Tomcat v8.5 Server at localhost-config/context.xml
