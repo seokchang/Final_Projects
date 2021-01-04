@@ -1,6 +1,6 @@
 
-# Created by https://www.toptal.com/developers/gitignore/api/windows,macos,eclipse,java,java-web,maven
-# Edit at https://www.toptal.com/developers/gitignore?templates=windows,macos,eclipse,java,java-web,maven
+# Created by https://www.toptal.com/developers/gitignore/api/windows,macos,eclipse,java,java-web
+# Edit at https://www.toptal.com/developers/gitignore?templates=windows,macos,eclipse,java,java-web
 
 ### Eclipse ###
 .metadata
@@ -126,18 +126,6 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
-### Maven ###
-pom.xml.tag
-pom.xml.releaseBackup
-pom.xml.versionsBackup
-pom.xml.next
-release.properties
-dependency-reduced-pom.xml
-buildNumber.properties
-.mvn/timing.properties
-# https://github.com/takari/maven-wrapper#usage-without-binary-jar
-.mvn/wrapper/maven-wrapper.jar
-
 ### Windows ###
 # Windows thumbnail cache files
 Thumbs.db
@@ -164,7 +152,7 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-# End of https://www.toptal.com/developers/gitignore/api/windows,macos,eclipse,java,java-web,maven
+# End of https://www.toptal.com/developers/gitignore/api/windows,macos,eclipse,java,java-web
 Servers/.project
 Servers/Tomcat v8.5 Server at localhost-config/catalina.policy
 Servers/Tomcat v8.5 Server at localhost-config/catalina.properties
