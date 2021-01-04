@@ -7,6 +7,7 @@
 </head>
 <body>
 	<h1>CampKok Main</h1>
+	<p>이게 될까??</p>
 	<hr>
 </body>
 </html>
