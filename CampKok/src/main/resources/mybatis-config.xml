@@ -6,6 +6,6 @@
 	</settings>
 
 	<typeAliases>
-
+		<typeAlias type="com.campkok.camp.model.vo.CampVO" alias="c" />
 	</typeAliases>
 </configuration>
