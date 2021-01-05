@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 .menu-wrap {
-	margin-left: 40px;
+	margin: 0 auto;
 	padding: 0;
 	width: 170px;
 	list-style: none;
