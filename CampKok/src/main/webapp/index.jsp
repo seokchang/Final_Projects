@@ -8,7 +8,9 @@
 <body>
 	<h1>CampKok Main</h1>
 	<hr>
-	<a href="/adminPage.do">Admin Page</a>
+	<h3>
+		<a href="/adminPage.do">Admin Page</a>
+	</h3>
 	<hr>
 	<h3>고객</h3>
 	<a href="/mypage.do">마이페이지</a>
