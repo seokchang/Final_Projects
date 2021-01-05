@@ -60,5 +60,6 @@
 	<context:component-scan base-package="com.campkok.hik" />
 	<context:component-scan base-package="com.campkok.admin" />
 	<context:component-scan base-package="com.campkok.customer" />
+	<context:component-scan base-package="com.campkok.camp"/>
 
 </beans:beans>
