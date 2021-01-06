@@ -4,10 +4,12 @@ import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.campkok.admin.model.dao.AdminDao;
 import com.campkok.admin.model.vo.CeoNotice;
 import com.campkok.admin.model.vo.CeoNoticePageData;
+import com.campkok.admin.model.vo.Notice;
 
 @Service
 public class AdminService {
@@ -59,5 +61,19 @@ public class AdminService {
 		CeoNoticePageData cnpd = new CeoNoticePageData(list, pageNavi);
 
 		return cnpd;
+	}
+
+	@Transactional
+	public int insertNotice(Notice notice) {
+		int result = dao.insertNotice(notice);
+		
+		return result;
+	}
+
+	@Transactional
+	public int deleteCeoNotice(int ceoNoticeNo) {
+		int result = dao.deleteCeoNotice(ceoNoticeNo);
+
+		return result;
 	}
 }

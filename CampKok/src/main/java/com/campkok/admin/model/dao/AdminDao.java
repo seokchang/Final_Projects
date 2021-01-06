@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.campkok.admin.model.vo.CeoNotice;
+import com.campkok.admin.model.vo.Notice;
 
 @Repository
 public class AdminDao {
@@ -32,6 +33,14 @@ public class AdminDao {
 		List<CeoNotice> list = session.selectList("admin.selectCeoNoticeList", map);
 
 		return (ArrayList<CeoNotice>) list;
+	}
+
+	public int insertNotice(Notice notice) {
+		return session.insert("admin.insertNotice", notice);
+	}
+
+	public int deleteCeoNotice(int ceoNoticeNo) {
+		return session.delete("admin.deleteCeoNotice", ceoNoticeNo);
 	}
 
 }

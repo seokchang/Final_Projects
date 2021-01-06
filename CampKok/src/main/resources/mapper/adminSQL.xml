@@ -9,12 +9,14 @@
 		SELECT
 		ceo_notice_no AS ceoNoticeNo,
 		user_id AS userId,
-		ceo_notice_title AS ceoNoticeTitle,
+		ceo_notice_title AS
+		ceoNoticeTitle,
 		ceo_notice_contents AS ceoNoticeContents,
+		ceo_notice_date AS ceoNoticeDate,
 		ceo_notice_filename AS ceoNoticeFileName,
 		ceo_notice_filepath AS ceoNoticeFilePath
 		FROM ceo_notice WHERE
-		ceo_notice_title = #{parameter}
+		ceo_notice_title = #{_parameter}
 	</select>
 
 	<select id="selectCeoNoticeList" parameterType="HashMap" resultType="ceoNotice">
@@ -30,6 +32,36 @@
 		AS ceoNoticeFileName,
 		ceo_notice_filepath AS ceoNoticeFilePath
 		FROM ceo_notice
-		ORDER BY 1 DESC)n) WHERE rNum BETWEEN #{start} AND #{end}
+		ORDER BY 1 DESC)n) WHERE rNum BETWEEN #{start} AND
+		#{end}
 	</select>
+
+	<insert id="insertNotice" parameterType="notice">
+		<if test="userCategory.equals('ceo')">
+			INSERT INTO ceo_notice VALUES (
+			ceo_notice_seq.NEXTVAL,
+			#{noticeTitle},
+			#{userId},
+			TO_CHAR(sysdate, 'yyyy-mm-dd'),
+			#{noticeContents},
+			#{noticeFileName},
+			#{noticeFilePath}
+			)
+		</if>
+		<if test="userCategory.equals('client')">
+			INSERT INTO client_notice VALUES (
+			client_notice_seq.NEXTVAL,
+			#{noticeTitle},
+			#{userId},
+			TO_CHAR(sysdate, 'yyyy-mm-dd'),
+			#{noticeContents},
+			#{noticeFileName},
+			#{noticeFilePath}
+			)
+		</if>
+	</insert>
+
+	<delete id="deleteCeoNotice" parameterType="_int">
+		DELETE FROM ceo_notice WHERE ceo_notice_no = #{_parameter}
+	</delete>
 </mapper>

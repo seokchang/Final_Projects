@@ -32,7 +32,7 @@
 					<button class="btnSearch" onclick="">
 						<img alt="Not Found Search" src="/resources/img/admin/baseline_search_black_18dp.png">
 					</button>
-					<button class="btnWriteNotice" onclick="">글쓰기</button>
+					<button class="btnWriteNotice" onclick="location.href='/pageNoticeForm.do'">공지사항 작성</button>
 				</div>
 
 				<div class="table-wrap">
@@ -49,7 +49,9 @@
 							<c:forEach items="${list }" var="ceoNotice" varStatus="index">
 								<tr>
 									<td>${ceoNotice.rNum }</td>
-									<td>${ceoNotice.ceoNoticeTitle }</td>
+									<td>
+										<a href="/selectCeoNotice.do?ceoNoticeTitle=${ceoNotice.ceoNoticeTitle }">${ceoNotice.ceoNoticeTitle }</a>
+									</td>
 									<td>${ceoNotice.ceoNoticeFileName }</td>
 									<td>${ceoNotice.userId }</td>
 									<td>${ceoNotice.ceoNoticeDate }</td>

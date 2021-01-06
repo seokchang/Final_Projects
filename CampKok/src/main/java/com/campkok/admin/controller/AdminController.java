@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.campkok.admin.model.service.AdminService;
 import com.campkok.admin.model.vo.CeoNotice;
 import com.campkok.admin.model.vo.CeoNoticePageData;
+import com.campkok.admin.model.vo.Notice;
 
 @Controller
 public class AdminController {
@@ -23,11 +24,17 @@ public class AdminController {
 		return "/admin/admin";
 	}
 
+	@RequestMapping("/pageNoticeForm.do")
+	public String pageNoticeForm() {
+
+		return "/admin/noticeForm";
+	}
+
 	@RequestMapping("/selectCeoNotice.do")
 	public String selectCeoNotice(String ceoNoticeTitle, Model model) {
-		CeoNotice notice = service.selectCeoNotice(ceoNoticeTitle);
+		CeoNotice ceoNotice = service.selectCeoNotice(ceoNoticeTitle);
 
-		model.addAttribute("ceoNotice", notice);
+		model.addAttribute("ceoNotice", ceoNotice);
 
 		return "/admin/ceoNoticeView";
 	}
@@ -40,5 +47,33 @@ public class AdminController {
 		model.addAttribute("pageNavi", cnpd.getpageNavi());
 
 		return "/admin/ceoNoticeList";
+	}
+
+	@RequestMapping("/insertNotice.do")
+	public String insertNotice(Notice notice, Model model) {
+		int result = service.insertNotice(notice);
+
+		if (result > 0) {
+			model.addAttribute("msg", "공지사항 등록 성공");
+		} else {
+			model.addAttribute("msg", "공지사항 등록 실패");
+		}
+		model.addAttribute("loc", "/adminPage.do?reqPage=1");
+
+		return "/commons/msg";
+	}
+
+	@RequestMapping("/deleteCeoNotice.do")
+	public String deleteCeoNotice(int ceoNoticeNo, Model model) {
+		int result = service.deleteCeoNotice(ceoNoticeNo);
+
+		if (result > 0) {
+			model.addAttribute("msg", "공지사항 삭제 성공");
+		} else {
+			model.addAttribute("msg", "공지사항 삭제 실패");
+		}
+		model.addAttribute("loc", "/selectCeoNoticeList.do?reqPage=1");
+
+		return "/commons/msg";
 	}
 }

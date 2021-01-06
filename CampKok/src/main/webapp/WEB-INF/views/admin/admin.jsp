@@ -59,16 +59,14 @@
 								<tr>
 									<th>번호</th>
 									<th>제목</th>
-									<th>작성자</th>
 									<th>등록일</th>
 								</tr>
 								<c:forEach items="${ceoNoticeList }" var="ceoNotice" begin="0" end="4" step="1">
 									<tr>
 										<td>${ceoNotice.rNum }</td>
 										<td>
-											<a href="/selectCeoNotice.do?ceoNoticeTitle=${ceoNoticeTitle }">${ceoNotice.ceoNoticeTitle }</a>
+											<a href="/selectCeoNotice.do?ceoNoticeTitle=${ceoNotice.ceoNoticeTitle }">${ceoNotice.ceoNoticeTitle }</a>
 										</td>
-										<td>${ceoNotice.userId }</td>
 										<td>${ceoNotice.ceoNoticeDate }</td>
 									</tr>
 								</c:forEach>
