@@ -32,7 +32,7 @@ public class AdminController {
 		return "/admin/ceoNoticeView";
 	}
 
-	@RequestMapping("/selectCeoNoticeList")
+	@RequestMapping("/selectCeoNoticeList.do")
 	public String selectCeoNoticeList(int reqPage, Model model) {
 		CeoNoticePageData cnpd = service.selectCeoNoticeList(reqPage);
 
@@ -41,5 +41,4 @@ public class AdminController {
 
 		return "/admin/ceoNoticeList";
 	}
-
 }

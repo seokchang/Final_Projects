@@ -58,21 +58,6 @@ input:focus {
 	outline: none;
 }
 
-.wrap {
-	margin-left: 40px;
-	width: 1200px;
-}
-
-.content-wrap>div {
-	margin-top: 10px;
-	float: left;
-}
-
-.content-navi {
-	width: 170px;
-	box-sizing: border-box;
-}
-
 .content-main {
 	width: 780px;
 }

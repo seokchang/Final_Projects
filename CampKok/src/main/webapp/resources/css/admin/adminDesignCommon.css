@@ -1,5 +1,32 @@
 @charset "UTF-8";
 
+h1 {
+	margin-left: 20px;
+}
+
+hr {
+	margin-left: 20px;
+}
+
+.wrap {
+	margin-left: 40px;
+	width: 1200px;
+}
+
+.content-wrap>div {
+	margin-top: 10px;
+	float: left;
+}
+
+.content-navi {
+	width: 170px;
+	box-sizing: border-box;
+}
+
+.content-main {
+	width: 1030px;
+}
+
 .table-wrap {
 	margin: 10px 0 0 20px;
 }
@@ -10,7 +37,7 @@
 	text-align: center;
 }
 
-#btnNoticeView {
+.btn-warning {
 	outline: none;
 }
 

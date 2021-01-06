@@ -54,7 +54,7 @@
 									<td>${ceoNotice.userId }</td>
 									<td>${ceoNotice.ceoNoticeDate }</td>
 									<td>
-										<button class="btn btn-warning btn-sm" id="btnNoticeView">상세보기</button>
+										<button class="btn btn-warning btn-sm" onclick="location.href='/selectCeoNotice.do?ceoNoticeTitle=${ceoNotice.ceoNoticeTitle}'">상세보기</button>
 									</td>
 								</tr>
 							</c:forEach>

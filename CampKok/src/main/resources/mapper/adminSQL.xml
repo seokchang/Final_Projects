@@ -5,7 +5,7 @@
 		SELECT count(*) FROM ceo_notice
 	</select>
 
-	<select id="selectCeoNotice" parameterType="string">
+	<select id="selectCeoNotice" parameterType="string" resultType="ceoNotice">
 		SELECT
 		ceo_notice_no AS ceoNoticeNo,
 		user_id AS userId,
