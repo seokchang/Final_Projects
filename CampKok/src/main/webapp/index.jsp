@@ -11,6 +11,6 @@
 	<a href="/adminPage.do">Admin Page</a>
 	<hr>
 	<h3>고객</h3>
-	<a href="/mypage.do">마이페이지</a>
+	<a href="/mypage.do?userNo=2">마이페이지</a>
 </body>
 </html>

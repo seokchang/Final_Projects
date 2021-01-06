@@ -6,6 +6,6 @@
 	</settings>
 
 	<typeAliases>
-
+		<typeAlias type="com.campkok.customer.model.vo.UserVO" alias="u"/>
 	</typeAliases>
 </configuration>
