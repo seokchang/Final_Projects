@@ -13,6 +13,9 @@
 		<!-- Camp -->
 		<typeAlias type="com.campkok.camp.model.vo.CampVO" alias="c" />
 		<typeAlias type="com.campkok.customer.model.vo.UserVO" alias="u"/>
+<<<<<<< HEAD
 
+=======
+>>>>>>> f28e820d5348e942f7713ca81b6eb33322a00446
 	</typeAliases>
 </configuration>

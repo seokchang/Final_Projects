@@ -65,7 +65,9 @@
 								<c:forEach items="${ceoNoticeList }" var="ceoNotice" begin="0" end="4" step="1">
 									<tr>
 										<td>${ceoNotice.rNum }</td>
-										<td>${ceoNotice.ceoNoticeTitle }</td>
+										<td>
+											<a href="#">${ceoNotice.ceoNoticeTitle }</a>
+										</td>
 										<td>${ceoNotice.userId }</td>
 										<td>${ceoNotice.ceoNoticeDate }</td>
 									</tr>
