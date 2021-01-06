@@ -22,6 +22,11 @@ public class AdminController {
 		return "/admin/admin";
 	}
 
+	//	@RequestMapping("/selectCeoNotice.do")
+	//	public String selectCeoNotice(Model model) {
+	//		
+	//	}
+
 	@RequestMapping("/selectCeoNoticeList")
 	public String selectCeoNoticeList(int reqPage, Model model) {
 		CeoNoticePageData cnpd = service.selectCeoNoticeList(reqPage);
