@@ -17,9 +17,5 @@
 	<h3>사업자_기현</h3>
 	<a href="/camp/kihyun.do">사업자_기현페이지</a>
 	<a href="/mypage.do?userNo=2">마이페이지</a>
-<<<<<<< HEAD
-
-=======
->>>>>>> f28e820d5348e942f7713ca81b6eb33322a00446
 </body>
 </html>

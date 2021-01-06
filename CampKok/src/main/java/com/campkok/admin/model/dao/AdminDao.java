@@ -19,6 +19,10 @@ public class AdminDao {
 		return session.selectOne("admin.getCeoNoticeCount");
 	}
 
+	public CeoNotice selectCeoNotice(String ceoNoticeTitle) {
+		return session.selectOne("admin.selectCeoNotice", ceoNoticeTitle);
+	}
+
 	public ArrayList<CeoNotice> selectCeoNoticeList(int start, int end) {
 		HashMap<String, Integer> map = new HashMap<String, Integer>();
 

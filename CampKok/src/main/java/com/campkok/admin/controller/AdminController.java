@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.campkok.admin.model.service.AdminService;
+import com.campkok.admin.model.vo.CeoNotice;
 import com.campkok.admin.model.vo.CeoNoticePageData;
 
 @Controller
@@ -22,10 +23,14 @@ public class AdminController {
 		return "/admin/admin";
 	}
 
-	//	@RequestMapping("/selectCeoNotice.do")
-	//	public String selectCeoNotice(Model model) {
-	//		
-	//	}
+	@RequestMapping("/selectCeoNotice.do")
+	public String selectCeoNotice(String ceoNoticeTitle, Model model) {
+		CeoNotice notice = service.selectCeoNotice(ceoNoticeTitle);
+
+		model.addAttribute("ceoNotice", notice);
+
+		return "/admin/ceoNoticeView";
+	}
 
 	@RequestMapping("/selectCeoNoticeList")
 	public String selectCeoNoticeList(int reqPage, Model model) {

@@ -66,7 +66,7 @@
 									<tr>
 										<td>${ceoNotice.rNum }</td>
 										<td>
-											<a href="#">${ceoNotice.ceoNoticeTitle }</a>
+											<a href="/selectCeoNotice.do?ceoNoticeTitle=${ceoNoticeTitle }">${ceoNotice.ceoNoticeTitle }</a>
 										</td>
 										<td>${ceoNotice.userId }</td>
 										<td>${ceoNotice.ceoNoticeDate }</td>

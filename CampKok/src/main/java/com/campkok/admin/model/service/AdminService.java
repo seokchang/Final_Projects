@@ -14,6 +14,12 @@ public class AdminService {
 	@Autowired
 	private AdminDao dao;
 
+	public CeoNotice selectCeoNotice(String ceoNoticeTitle) {
+		CeoNotice notice = dao.selectCeoNotice(ceoNoticeTitle);
+
+		return notice;
+	}
+
 	public CeoNoticePageData selectCeoNoticeList(int reqPage) {
 		int totalCeoNotice = dao.getTotalCeoNotice();
 		int numPerPage = 10;
@@ -23,7 +29,7 @@ public class AdminService {
 		int end = reqPage * numPerPage;
 
 		ArrayList<CeoNotice> list = dao.selectCeoNoticeList(start, end);
-		
+
 		// 페이징 처리
 		int pageNaviSize = 5;
 		String pageNavi = "";
@@ -54,5 +60,4 @@ public class AdminService {
 
 		return cnpd;
 	}
-
 }

@@ -5,6 +5,18 @@
 		SELECT count(*) FROM ceo_notice
 	</select>
 
+	<select id="selectCeoNotice" parameterType="string">
+		SELECT
+		ceo_notice_no AS ceoNoticeNo,
+		user_id AS userId,
+		ceo_notice_title AS ceoNoticeTitle,
+		ceo_notice_contents AS ceoNoticeContents,
+		ceo_notice_filename AS ceoNoticeFileName,
+		ceo_notice_filepath AS ceoNoticeFilePath
+		FROM ceo_notice WHERE
+		ceo_notice_title = #{parameter}
+	</select>
+
 	<select id="selectCeoNoticeList" parameterType="HashMap" resultType="ceoNotice">
 		SELECT * FROM (SELECT ROWNUM AS rNum, n.* FROM(
 		SELECT
