@@ -6,6 +6,11 @@
 	</settings>
 
 	<typeAliases>
+		<!-- Admin -->
+		<typeAlias type="com.campkok.admin.model.vo.CeoNotice" alias="ceoNotice" />
+		<typeAlias type="com.campkok.admin.model.vo.ClientNotice" alias="clientNotice" />
+
+		<!-- Camp -->
 		<typeAlias type="com.campkok.camp.model.vo.CampVO" alias="c" />
 	</typeAliases>
 </configuration>

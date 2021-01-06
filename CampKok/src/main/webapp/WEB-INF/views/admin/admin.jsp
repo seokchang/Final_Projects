@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Admin Page</title>
-<link rel="stylesheet" href="/resources/css/admin/admin.css">
 </head>
 
 <body>
@@ -30,40 +30,72 @@
 				<div class="content-list">
 					<!-- Statistics -->
 					<div id="statistics">
-						<h3>통계</h3>
-					</div>
-
-					<!-- Notice -->
-					<div id="notice">
-						<h3>공지사항 리스트</h3>
-					</div>
-
-					<!-- User Info -->
-					<div id="userInfo">
-						<h3>회원정보 리스트</h3>
-					</div>
-
-					<!-- Camp Info -->
-					<div id="campInfo">
-						<h3>캠핑장정보 리스트</h3>
+						<h3>
+							<a href="#">통계</a>
+						</h3>
 					</div>
 
 					<!-- Board -->
 					<div id="board">
-						<h3>자유게시판 리스트</h3>
+						<h3>
+							<a href="#">자유게시판</a>
+						</h3>
 					</div>
 
-					<!-- FAQ -->
-					<div>
-						<h3>FAQ 게시판</h3>
+					<!-- Client Notice -->
+					<div id="client-notice">
+						<h3>
+							<a href="#">고객 공지사항</a>
+						</h3>
 					</div>
+
+					<!-- CEO Notice -->
+					<div id="ceo-notice">
+						<h3>
+							<a href="/selectCeoNoticeList.do?reqPage=1">사업자 공지사항</a>
+						</h3>
+						<table class="table table-striped">
+							<tbody>
+								<tr>
+									<th>번호</th>
+									<th>제목</th>
+									<th>작성자</th>
+									<th>등록일</th>
+								</tr>
+								<c:forEach items="${ceoNoticeList }" var="ceoNotice" begin="0" end="4" step="1">
+									<tr>
+										<td>${ceoNotice.rNum }</td>
+										<td>${ceoNotice.ceoNoticeTitle }</td>
+										<td>${ceoNotice.userId }</td>
+										<td>${ceoNotice.ceoNoticeDate }</td>
+									</tr>
+								</c:forEach>
+							</tbody>
+						</table>
+						<button class="btn btn-warning btn-md" onclick="location.href='/selectCeoNoticeList.do?reqPage=1'">리스트보기</button>
+					</div>
+
+					<!-- User Info -->
+					<div id="userInfo">
+						<h3>
+							<a href="#">회원정보</a>
+						</h3>
+					</div>
+
+					<!-- Camp Info -->
+					<div id="campInfo">
+						<h3>
+							<a href="#">캠핑장정보</a>
+						</h3>
+					</div>
+
 				</div>
 			</div>
 
 			<!-- Profile -->
 			<div class="content-profile">
 				<ul class="profile-wrap">
-					<li><img alt="Admin Photo" src=""></li>
+					<li><img alt="Admin Photo" src="/resources/img/admin/main_img4.jpg"></li>
 					<li class="profile">
 						<table id="profile">
 							<tr>
@@ -90,5 +122,8 @@
 			</div>
 		</div>
 	</div>
+
+	<link rel="stylesheet" href="/resources/css/admin/adminDesignCommon.css">
+	<link rel="stylesheet" href="/resources/css/admin/admin.css">
 </body>
 </html>
