@@ -18,11 +18,11 @@ public class AdminDao {
 	private SqlSessionTemplate session;
 
 	public int getTotalCeoNotice() {
-		return session.selectOne("admin.getCeoNoticeCount");
+		return session.selectOne("adminNotice.getCeoNoticeCount");
 	}
 
 	public CeoNotice selectCeoNotice(int ceoNoticeNo) {
-		return session.selectOne("admin.selectCeoNotice", ceoNoticeNo);
+		return session.selectOne("adminNotice.selectCeoNotice", ceoNoticeNo);
 	}
 
 	public ArrayList<CeoNotice> selectCeoNoticeList(int start, int end) {
@@ -31,27 +31,27 @@ public class AdminDao {
 		map.put("start", start);
 		map.put("end", end);
 
-		List<CeoNotice> list = session.selectList("admin.selectCeoNoticeList", map);
+		List<CeoNotice> list = session.selectList("adminNotice.selectCeoNoticeList", map);
 
 		return (ArrayList<CeoNotice>) list;
 	}
 
 	public int insertNotice(Notice notice) {
-		return session.insert("admin.insertNotice", notice);
+		return session.insert("adminNotice.insertNotice", notice);
 	}
 
 	public int updateCeoNotice(CeoNotice ceoNotice) {
-		return session.update("admin.updateCeoNotice", ceoNotice);
+		return session.update("adminNotice.updateCeoNotice", ceoNotice);
 	}
 
 	public int deleteCeoNotice(int ceoNoticeNo) {
-		return session.delete("admin.deleteCeoNotice", ceoNoticeNo);
+		return session.delete("adminNotice.deleteCeoNotice", ceoNoticeNo);
 	}
 
 	// *************************************************************************************
 
 	public int getTotalClientNotice() {
-		return session.selectOne("admin.getClientNoticeCount");
+		return session.selectOne("adminNotice.getClientNoticeCount");
 	}
 
 	public ArrayList<ClientNotice> selectClientNoticeList(int start, int end) {
@@ -60,21 +60,21 @@ public class AdminDao {
 		map.put("start", start);
 		map.put("end", end);
 
-		List<ClientNotice> list = session.selectList("admin.selectClientNoticeList", map);
+		List<ClientNotice> list = session.selectList("adminNotice.selectClientNoticeList", map);
 
 		return (ArrayList<ClientNotice>) list;
 	}
 
 	public ClientNotice selectClientNotice(int clientNoticeNo) {
-		return session.selectOne("admin.selectClientNotice", clientNoticeNo);
+		return session.selectOne("adminNotice.selectClientNotice", clientNoticeNo);
 	}
 
 	public int updateClientNotice(ClientNotice clientNotice) {
-		return session.update("admin.updateClientNotice", clientNotice);
+		return session.update("adminNotice.updateClientNotice", clientNotice);
 	}
 
 	public int deleteClientNotice(int clientNoticeNo) {
-		return session.delete("admin.deleteClientNotice", clientNoticeNo);
+		return session.delete("adminNotice.deleteClientNotice", clientNoticeNo);
 	}
 
 }
