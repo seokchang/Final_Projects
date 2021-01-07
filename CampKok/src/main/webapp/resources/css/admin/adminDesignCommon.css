@@ -46,15 +46,33 @@ textarea {
 	margin: 10px 0 0 20px;
 }
 
+.table {
+	table-layout: fixed;
+}
+
 .table>tbody>tr>th, .table>tbody>tr>td {
 	height: 50px;
 	line-height: 50px;
 	text-align: center;
 	vertical-align: middle;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.read-only {
+	border: none;
+	outline: none;
+	background-color: transparent;
 }
 
 .btn-list {
 	float: right;
+}
+
+#fileInfo {
+	margin-right: 25px;
+	float: left;
 }
 
 #pageNavi {

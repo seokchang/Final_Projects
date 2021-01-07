@@ -20,7 +20,7 @@
 
 			<!-- Main -->
 			<div class="content-main">
-				<h1>공지사항 작성</h1>
+				<h1>공지사항 등록</h1>
 				<hr>
 				<div class="table-wrap">
 					<form action="/insertNotice.do" method="POST" enctype="multipart/form-data">
@@ -48,7 +48,7 @@
 							<tr>
 								<th>첨부파일</th>
 								<td colspan="3">
-									<input type="file" name="noticeFileName">
+									<input type="file" name="noticeFile">
 								</td>
 							</tr>
 							<tr>

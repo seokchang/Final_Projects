@@ -62,6 +62,15 @@
 		</if>
 	</insert>
 
+	<update id="updateCeoNotice" parameterType="ceoNotice">
+		UPDATE ceo_notice SET
+		ceo_notice_title = #{ceoNoticeTitle},
+		ceo_notice_contents = #{ceoNoticeContents},
+		ceo_notice_filename = #{ceoNoticeFileName},
+		ceo_notice_filepath = #{ceoNoticeFilePath}
+		WHERE ceo_notice_no = #{ceoNoticeNo}
+	</update>
+
 	<delete id="deleteCeoNotice" parameterType="_int">
 		DELETE FROM ceo_notice WHERE ceo_notice_no = #{_parameter}
 	</delete>
@@ -80,7 +89,8 @@
 		client_notice_date AS clientNoticeDate,
 		client_notice_filename AS clientNoticeFileName,
 		client_notice_filepath AS clientNoticeFilePath
-		FROM client_notice WHERE client_notice_no = #{_parameter}
+		FROM client_notice WHERE client_notice_no =
+		#{_parameter}
 	</select>
 
 	<select id="selectClientNoticeList" parameterType="HashMap" resultType="clientNotice">

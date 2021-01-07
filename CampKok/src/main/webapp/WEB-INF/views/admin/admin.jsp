@@ -58,7 +58,7 @@
 									<tr>
 										<td>${clientNotice.rNum }</td>
 										<td>
-											<a href="#">${clientNotice.clientNoticeTitle }</a>
+											<a href="/selectClientNotice.do?clientNoticeNo=${clientNotice.clientNoticeNo }">${clientNotice.clientNoticeTitle }</a>
 										</td>
 										<td>${clientNotice.clientNoticeDate }</td>
 									</tr>
@@ -84,7 +84,7 @@
 									<tr>
 										<td>${ceoNotice.rNum }</td>
 										<td>
-											<a href="/selectCeoNotice.do?ceoNoticeTitle=${ceoNotice.ceoNoticeTitle }">${ceoNotice.ceoNoticeTitle }</a>
+											<a href="/selectCeoNotice.do?ceoNoticeNo=${ceoNotice.ceoNoticeNo }">${ceoNotice.ceoNoticeTitle }</a>
 										</td>
 										<td>${ceoNotice.ceoNoticeDate }</td>
 									</tr>

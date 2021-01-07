@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>
 <html>
@@ -22,22 +23,34 @@
 			<div class="content-main">
 				<h1>공지사항</h1>
 				<hr>
-				<h3 style="margin-top: 30px;">
-					<strong> ${ceoNotice.ceoNoticeTitle }</strong>
-				</h3>
 				<div class="table-wrap" style="margin-top: 30px;">
 					<form action="/updateCeoNotice.do" method="POST" enctype="multipart/form-data">
 						<table class="table table-striped">
+							<input type="hidden" name="ceoNoticeNo" value="${ceoNotice.ceoNoticeNo }">
+							<input type="hidden" name="oldFile" value="${ceoNotice.ceoNoticeFilePath }">
 							<tr>
 								<th>작성자</th>
-								<td>${ceoNotice.userId }</td>
+								<td>
+									<input class="read-only" type="text" name="userId" value="${ceoNotice.userId }" readonly="readonly">
+								</td>
 								<th>등록일</th>
-								<td>${ceoNotice.ceoNoticeDate }</td>
+								<td>
+									<input class="read-only" type="text" name="ceoNoticeDate" value="${ceoNotice.ceoNoticeDate }" readonly="readonly">
+								</td>
+							</tr>
+							<tr>
+								<th>제목</th>
+								<td colspan="3">
+									<input class="form-control" type="text" name="ceoNoticeTitle" value=" ${ceoNotice.ceoNoticeTitle }">
+								</td>
 							</tr>
 							<tr>
 								<th>첨부파일</th>
 								<td colspan="3">
-									<input type="file" name="ceoNoticeFileName" value="${ceoNotice.ceoNoticeFileName }">
+									<c:if test="${not empty ceoNotice.ceoNoticeFilePath}">
+										<span id="fileInfo">${ceoNotice.ceoNoticeFilePath }</span>
+									</c:if>
+									<input type="file" name="ceoNoticeFile">
 								</td>
 							</tr>
 							<tr>
@@ -49,7 +62,8 @@
 							<tr>
 								<td colspan="4">
 									<input class="btn btn-warning btn-lg" type="submit" value="수정하기">
-									<button class="btn btn-warning btn-lg" type="button" onclick="location.href='/deleteCeoNotice.do?ceoNoticeNo=${ceoNotice.ceoNoticeNo}'">삭제하기</button>
+									<button class="btn btn-warning btn-lg" type="button"
+										onclick="location.href='/deleteCeoNotice.do?ceoNoticeNo=${ceoNotice.ceoNoticeNo}&ceoNoticeFilePath=${ceoNotice.ceoNoticeFilePath }'">삭제하기</button>
 								</td>
 							</tr>
 						</table>

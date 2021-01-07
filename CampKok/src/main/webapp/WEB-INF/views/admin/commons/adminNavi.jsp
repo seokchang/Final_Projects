@@ -13,7 +13,7 @@
 		<li><a href="/pageAdmin.do?reqPage=1">DashBoard</a></li>
 		<li><a href="javascript:void(0)" id="notice">공지사항 관리</a>
 			<ul class="submenu">
-				<li><a href="/pageNoticeForm.do">공지사항 작성</a></li>
+				<li><a href="/pageNoticeForm.do">공지사항 등록</a></li>
 				<li><a href="/selectClientNoticeList.do?reqPage=1">고객 공지사항</a></li>
 				<li><a href="/selectCeoNoticeList.do?reqPage=1">사업자 공지사항</a></li>
 			</ul>

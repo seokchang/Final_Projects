@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>
 <html>
@@ -22,9 +23,6 @@
 			<div class="content-main">
 				<h1>공지사항</h1>
 				<hr>
-				<h3 style="margin-top: 30px;">
-					<strong> ${clientNotice.clientNoticeTitle }</strong>
-				</h3>
 				<div class="table-wrap" style="margin-top: 30px;">
 					<form action="/updateClientNotice.do" method="POST" enctype="multipart/form-data">
 						<table class="table table-striped">
@@ -35,9 +33,18 @@
 								<td>${clientNotice.clientNoticeDate }</td>
 							</tr>
 							<tr>
+								<th>제목</th>
+								<td colspan="3">
+									<input class="form-control" type="text" value="${clientNotice.clientNoticeTitle }">
+								</td>
+							</tr>
+							<tr>
 								<th>첨부파일</th>
 								<td colspan="3">
-									<input type="file" name="clientNoticeFileName" value="${clientNotice.clientNoticeFileName }">
+									<c:if test="${not empty clientNotice.clientNoticeFilePath }">
+										<span id="fileInfo">${clientNotice.clientNoticeFilePath }</span>
+									</c:if>
+									<input type="file" name="clientNoticeFileName" value="${clientNotice.clientNoticeFilePath }">
 								</td>
 							</tr>
 							<tr>
@@ -49,7 +56,8 @@
 							<tr>
 								<td colspan="4">
 									<input class="btn btn-warning btn-lg" type="submit" value="수정하기">
-									<button class="btn btn-warning btn-lg" type="button" onclick="location.href='/deleteClientNotice.do?clientNoticeNo=${clientNotice.clientNoticeNo}'">삭제하기</button>
+									<button class="btn btn-warning btn-lg" type="button"
+										onclick="location.href='/deleteClientNotice.do?clientNoticeNo=${clientNotice.clientNoticeNo}'">삭제하기</button>
 								</td>
 							</tr>
 						</table>

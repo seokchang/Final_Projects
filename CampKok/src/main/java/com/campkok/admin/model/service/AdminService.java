@@ -127,6 +127,11 @@ public class AdminService {
 	}
 
 	@Transactional
+	public int updateCeoNotice(CeoNotice ceoNoticeNo) {
+		return dao.updateCeoNotice(ceoNoticeNo);
+	}
+
+	@Transactional
 	public int deleteClientNotice(int clientNoticeNo) {
 		return dao.deleteClientNotice(clientNoticeNo);
 	}
