@@ -113,6 +113,15 @@
 		#{start} AND #{end}
 	</select>
 
+	<update id="updateClientNotice" parameterType="clientNotice">
+		UPDATE client_notice SET
+		client_notice_title = #{clientNoticeTitle},
+		client_notice_contents = #{clientNoticeContents},
+		client_notice_filename = #{clientNoticeFileName},
+		client_notice_filepath = #{clientNoticeFilePath}
+		WHERE client_notice_no = #{clientNoticeNo}
+	</update>
+
 	<delete id="deleteClientNotice" parameterType="_int">
 		DELETE FROM client_notice WHERE client_notice_no = #{_parameter}
 	</delete>

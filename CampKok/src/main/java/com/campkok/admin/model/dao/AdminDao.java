@@ -40,8 +40,8 @@ public class AdminDao {
 		return session.insert("admin.insertNotice", notice);
 	}
 
-	public int updateCeoNotice(CeoNotice ceoNoticeNo) {
-		return session.update("admin.updateCeoNotice", ceoNoticeNo);
+	public int updateCeoNotice(CeoNotice ceoNotice) {
+		return session.update("admin.updateCeoNotice", ceoNotice);
 	}
 
 	public int deleteCeoNotice(int ceoNoticeNo) {
@@ -67,6 +67,10 @@ public class AdminDao {
 
 	public ClientNotice selectClientNotice(int clientNoticeNo) {
 		return session.selectOne("admin.selectClientNotice", clientNoticeNo);
+	}
+
+	public int updateClientNotice(ClientNotice clientNotice) {
+		return session.update("admin.updateClientNotice", clientNotice);
 	}
 
 	public int deleteClientNotice(int clientNoticeNo) {

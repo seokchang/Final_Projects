@@ -26,16 +26,24 @@
 				<div class="table-wrap" style="margin-top: 30px;">
 					<form action="/updateClientNotice.do" method="POST" enctype="multipart/form-data">
 						<table class="table table-striped">
+							<input type="hidden" name="clientNoticeNo" value="${clientNotice.clientNoticeNo }">
+							<c:if test="${not empty clientNotice.clientNoticeFilePath }">
+								<input type="hidden" name="oldFile" value="${clientNotice.clientNoticeFilePath }">
+							</c:if>
 							<tr>
 								<th>작성자</th>
-								<td>${clientNotice.userId }</td>
+								<td>
+									<input class="read-only" type="text" name="userId" value="${clientNotice.userId }" readonly="readonly">
+								</td>
 								<th>등록일</th>
-								<td>${clientNotice.clientNoticeDate }</td>
+								<td>
+									<input class="read-only" type="text" name="clientNoticeDate" value="${clientNotice.clientNoticeDate }" readonly="readonly">
+								</td>
 							</tr>
 							<tr>
 								<th>제목</th>
 								<td colspan="3">
-									<input class="form-control" type="text" value="${clientNotice.clientNoticeTitle }">
+									<input class="form-control" type="text" name="clientNoticeTitle" value="${clientNotice.clientNoticeTitle }">
 								</td>
 							</tr>
 							<tr>
@@ -44,7 +52,7 @@
 									<c:if test="${not empty clientNotice.clientNoticeFilePath }">
 										<span id="fileInfo">${clientNotice.clientNoticeFilePath }</span>
 									</c:if>
-									<input type="file" name="clientNoticeFileName" value="${clientNotice.clientNoticeFilePath }">
+									<input type="file" name="clientNoticeFile" value="${clientNotice.clientNoticeFilePath }">
 								</td>
 							</tr>
 							<tr>
@@ -57,7 +65,7 @@
 								<td colspan="4">
 									<input class="btn btn-warning btn-lg" type="submit" value="수정하기">
 									<button class="btn btn-warning btn-lg" type="button"
-										onclick="location.href='/deleteClientNotice.do?clientNoticeNo=${clientNotice.clientNoticeNo}'">삭제하기</button>
+										onclick="location.href='/deleteClientNotice.do?clientNoticeNo=${clientNotice.clientNoticeNo}&clientNoticeFilePath=${clientNotice.clientNoticeFilePath }'">삭제하기</button>
 								</td>
 							</tr>
 						</table>

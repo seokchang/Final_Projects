@@ -104,16 +104,6 @@ public class AdminController {
 			String fileName = ceoNoticeFile.getOriginalFilename();
 			String filePath = new FileNameOverlap().reName(path, fileName);
 
-			if (oldFile != null) {
-				File deleteFile = new File(path + oldFile);
-
-				System.out.println(deleteFile);
-
-				if (deleteFile.exists()) {
-					deleteFile.delete();
-				}
-			}
-
 			try {
 				byte[] bytes = ceoNoticeFile.getBytes();
 				File newFile = new File(path + filePath);
@@ -128,6 +118,16 @@ public class AdminController {
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+			}
+
+			if (oldFile != null) {
+				File deleteFile = new File(path + oldFile);
+
+				System.out.println(deleteFile);
+
+				if (deleteFile.exists()) {
+					deleteFile.delete();
+				}
 			}
 		}
 
@@ -152,7 +152,6 @@ public class AdminController {
 
 			if (deleteFile.exists()) {
 				deleteFile.delete();
-				System.out.println(deleteFile + "파일 삭제 성공");
 			}
 		}
 
@@ -187,8 +186,61 @@ public class AdminController {
 		return "/admin/clientNoticeList";
 	}
 
+	@RequestMapping(value = "/updateClientNotice.do", method = RequestMethod.POST)
+	public String updateClientNotice(ClientNotice clientNotice, MultipartFile clientNoticeFile, String oldFile,
+			Model model) {
+		if (clientNoticeFile != null) {
+			String path = "/Users/seohong/Desktop/HSC/Projects/02_Final_Project/02_uploadFiles/";
+			String fileName = clientNoticeFile.getOriginalFilename();
+			String filePath = new FileNameOverlap().reName(path, fileName);
+
+			try {
+				byte[] bytes = clientNoticeFile.getBytes();
+				File newFile = new File(path + filePath);
+				BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(newFile));
+
+				bos.write(bytes);
+				bos.close();
+
+				clientNotice.setClientNoticeFileName(fileName);
+				clientNotice.setClientNoticeFilePath(filePath);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			if (oldFile != null) {
+				File deleteFile = new File(path + oldFile);
+
+				if (deleteFile.exists())
+					deleteFile.delete();
+			}
+		}
+
+		int result = service.updateClientNotice(clientNotice);
+
+		if (result > 0) {
+			model.addAttribute("msg", "고객 공지사항 수정 성공");
+		} else {
+			model.addAttribute("msg", "고객 공지사항 수정 실패");
+		}
+		model.addAttribute("loc", "/selectClientNoticeList.do?reqPage=1");
+
+		return "/common/msg";
+	}
+
 	@RequestMapping("/deleteClientNotice.do")
-	public String deleteClientNotice(int clientNoticeNo, Model model) {
+	public String deleteClientNotice(int clientNoticeNo, String clientNoticeFilePath, Model model) {
+		if (clientNoticeFilePath != null) {
+			String path = "/Users/seohong/Desktop/HSC/Projects/02_Final_Project/02_uploadFiles/";
+			String fileName = clientNoticeFilePath;
+			File deleteFile = new File(path + fileName);
+
+			if (deleteFile.exists()) {
+				deleteFile.delete();
+			}
+		}
+
 		int result = service.deleteClientNotice(clientNoticeNo);
 
 		if (result > 0) {
