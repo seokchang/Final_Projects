@@ -45,8 +45,27 @@
 					<!-- Client Notice -->
 					<div id="client-notice">
 						<h3>
-							<a href="#">고객 공지사항</a>
+							<a href="/selectClientNoticeList.do?reqPage=1">고객 공지사항</a>
 						</h3>
+						<table class='table table-striped'>
+							<tbody>
+								<tr>
+									<th>번호</th>
+									<th>제목</th>
+									<th>등록일</th>
+								</tr>
+								<c:forEach items="${clientNoticeList }" var="clientNotice" begin="0" end="4" step="1">
+									<tr>
+										<td>${clientNotice.rNum }</td>
+										<td>
+											<a href="#">${clientNotice.clientNoticeTitle }</a>
+										</td>
+										<td>${clientNotice.clientNoticeDate }</td>
+									</tr>
+								</c:forEach>
+							</tbody>
+						</table>
+						<button class='btn btn-warning btn-md' onclick="location.href='/selectClientNoticeList.do?reqPage=1'">리스트 보기</button>
 					</div>
 
 					<!-- CEO Notice -->

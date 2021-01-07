@@ -9,7 +9,7 @@
 	<h1>CampKok Main</h1>
 	<hr>
 	<h3>
-		<a href="/adminPage.do?reqPage=1">Admin Page</a>
+		<a href="/pageAdmin.do?reqPage=1">Admin Page</a>
 	</h3>
 	<hr>
 	<h3>고객</h3>

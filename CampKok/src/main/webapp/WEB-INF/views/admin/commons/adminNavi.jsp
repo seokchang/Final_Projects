@@ -10,7 +10,7 @@
 
 <body>
 	<ul class="menu-wrap">
-		<li><a href="/adminPage.do?reqPage=1">DashBoard</a></li>
+		<li><a href="/pageAdmin.do?reqPage=1">DashBoard</a></li>
 		<li><a href="javascript:void(0)" id="notice">공지사항 관리</a>
 			<ul class="submenu">
 				<li><a href="/pageNoticeForm.do">공지사항 작성</a></li>

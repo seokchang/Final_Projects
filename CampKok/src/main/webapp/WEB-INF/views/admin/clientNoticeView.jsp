@@ -23,33 +23,33 @@
 				<h1>공지사항</h1>
 				<hr>
 				<h3 style="margin-top: 30px;">
-					<strong> ${ceoNotice.ceoNoticeTitle }</strong>
+					<strong> ${clientNotice.clientNoticeTitle }</strong>
 				</h3>
 				<div class="table-wrap" style="margin-top: 30px;">
-					<form action="/updateCeoNotice.do" method="POST" enctype="multipart/form-data">
+					<form action="/updateClientNotice.do" method="POST" enctype="multipart/form-data">
 						<table class="table table-striped">
 							<tr>
 								<th>작성자</th>
-								<td>${ceoNotice.userId }</td>
+								<td>${clientNotice.userId }</td>
 								<th>등록일</th>
-								<td>${ceoNotice.ceoNoticeDate }</td>
+								<td>${clientNotice.clientNoticeDate }</td>
 							</tr>
 							<tr>
 								<th>첨부파일</th>
 								<td colspan="3">
-									<input type="file" name="ceoNoticeFileName" value="${ceoNotice.ceoNoticeFileName }">
+									<input type="file" name="clientNoticeFileName" value="${clientNotice.clientNoticeFileName }">
 								</td>
 							</tr>
 							<tr>
 								<th>내용</th>
 								<td colspan="3">
-									<textarea class="form-control" name="ceoNoticeContents">${ceoNotice.ceoNoticeContents }</textarea>
+									<textarea class="form-control" name="clientNoticeContents">${clientNotice.clientNoticeContents }</textarea>
 								</td>
 							</tr>
 							<tr>
 								<td colspan="4">
 									<input class="btn btn-warning btn-lg" type="submit" value="수정하기">
-									<button class="btn btn-warning btn-lg" type="button" onclick="location.href='/deleteCeoNotice.do?ceoNoticeNo=${ceoNotice.ceoNoticeNo}'">삭제하기</button>
+									<button class="btn btn-warning btn-lg" type="button" onclick="location.href='/deleteClientNotice.do?clientNoticeNo=${clientNotice.clientNoticeNo}'">삭제하기</button>
 								</td>
 							</tr>
 						</table>
@@ -57,7 +57,7 @@
 				</div>
 				<hr>
 				<div>
-					<button class="btn btn-warning btn-md btn-list" onclick="location.href='/selectCeoNoticeList.do?reqPage=1'">목록</button>
+					<button class="btn btn-warning btn-md btn-list" onclick="location.href='/selectClientNoticeList.do?reqPage=1'">목록</button>
 				</div>
 			</div>
 		</div>

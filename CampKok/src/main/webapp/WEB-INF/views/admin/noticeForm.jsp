@@ -67,7 +67,7 @@
 				</div>
 				<hr>
 				<div>
-					<button class="btn btn-warning btn-md btn-list" onclick="location.href='/selectCeoNoticeList.do?reqPage=1'">목록</button>
+					<button class="btn btn-warning btn-md btn-list" onclick="location.href='/pageAdmin.do?reqPage=1'">Main</button>
 				</div>
 			</div>
 		</div>

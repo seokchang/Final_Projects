@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.campkok.admin.model.vo.CeoNotice;
+import com.campkok.admin.model.vo.ClientNotice;
 import com.campkok.admin.model.vo.Notice;
 
 @Repository
@@ -20,8 +21,8 @@ public class AdminDao {
 		return session.selectOne("admin.getCeoNoticeCount");
 	}
 
-	public CeoNotice selectCeoNotice(String ceoNoticeTitle) {
-		return session.selectOne("admin.selectCeoNotice", ceoNoticeTitle);
+	public CeoNotice selectCeoNotice(int ceoNoticeNo) {
+		return session.selectOne("admin.selectCeoNotice", ceoNoticeNo);
 	}
 
 	public ArrayList<CeoNotice> selectCeoNoticeList(int start, int end) {
@@ -41,6 +42,31 @@ public class AdminDao {
 
 	public int deleteCeoNotice(int ceoNoticeNo) {
 		return session.delete("admin.deleteCeoNotice", ceoNoticeNo);
+	}
+
+	// *************************************************************************************
+
+	public int getTotalClientNotice() {
+		return session.selectOne("admin.getClientNoticeCount");
+	}
+
+	public ArrayList<ClientNotice> selectClientNoticeList(int start, int end) {
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+
+		map.put("start", start);
+		map.put("end", end);
+
+		List<ClientNotice> list = session.selectList("admin.selectClientNoticeList", map);
+
+		return (ArrayList<ClientNotice>) list;
+	}
+
+	public ClientNotice selectClientNotice(int clientNoticeNo) {
+		return session.selectOne("admin.selectClientNotice", clientNoticeNo);
+	}
+
+	public int deleteClientNotice(int clientNoticeNo) {
+		return session.delete("admin.deleteClientNotice", clientNoticeNo);
 	}
 
 }

@@ -4,16 +4,16 @@ import java.util.ArrayList;
 
 public class ClientNoticePageData {
 	private ArrayList<ClientNotice> list;
-	private String pageData;
+	private String pageNavi;
 
 	public ClientNoticePageData() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public ClientNoticePageData(ArrayList<ClientNotice> list, String pageData) {
+	public ClientNoticePageData(ArrayList<ClientNotice> list, String pageNavi) {
 		super();
 		this.list = list;
-		this.pageData = pageData;
+		this.pageNavi = pageNavi;
 	}
 
 	public ArrayList<ClientNotice> getList() {
@@ -24,11 +24,12 @@ public class ClientNoticePageData {
 		this.list = list;
 	}
 
-	public String getPageData() {
-		return pageData;
+	public String getPageNavi() {
+		return pageNavi;
 	}
 
-	public void setPageData(String pageData) {
-		this.pageData = pageData;
+	public void setPageNavi(String pageNavi) {
+		this.pageNavi = pageNavi;
 	}
+
 }

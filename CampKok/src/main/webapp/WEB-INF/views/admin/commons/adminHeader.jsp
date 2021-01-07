@@ -14,7 +14,7 @@
 
 <body>
 	<ul class="header-wrap">
-		<li><a href="/adminPage.do?reqPage=1"><img alt="Not Found Logo.png" src="/resources/img/admin/Logo.png"></a></li>
+		<li><a href="/pageAdmin.do?reqPage=1"><img alt="Not Found Logo.png" src="/resources/img/admin/Logo.png"></a></li>
 		<li>
 			<div class="header-menu">
 				<a href="#">신규등록 신청 <span class="count">1</span></a> <a href="#">FAQ</a>

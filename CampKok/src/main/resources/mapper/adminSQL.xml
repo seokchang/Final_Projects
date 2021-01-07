@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="admin">
+	<!-- ********** CEO Notice SQL ********** -->
 	<select id="getCeoNoticeCount" resultType="_int">
 		SELECT count(*) FROM ceo_notice
 	</select>
 
-	<select id="selectCeoNotice" parameterType="string" resultType="ceoNotice">
+	<select id="selectCeoNotice" parameterType="_int" resultType="ceoNotice">
 		SELECT
 		ceo_notice_no AS ceoNoticeNo,
 		user_id AS userId,
@@ -16,7 +17,7 @@
 		ceo_notice_filename AS ceoNoticeFileName,
 		ceo_notice_filepath AS ceoNoticeFilePath
 		FROM ceo_notice WHERE
-		ceo_notice_title = #{_parameter}
+		ceo_notice_no = #{_parameter}
 	</select>
 
 	<select id="selectCeoNoticeList" parameterType="HashMap" resultType="ceoNotice">
@@ -63,5 +64,46 @@
 
 	<delete id="deleteCeoNotice" parameterType="_int">
 		DELETE FROM ceo_notice WHERE ceo_notice_no = #{_parameter}
+	</delete>
+
+	<!-- ********** Client Notice SQL ********** -->
+	<select id="getClientNoticeCount" resultType="_int">
+		SELECT count(*) FROM client_notice
+	</select>
+
+	<select id="selectClientNotice" parameterType="_int" resultType="clientNotice">
+		SELECT
+		client_notice_no AS clientNoticeNo,
+		user_id AS userId,
+		client_notice_title AS clientNoticeTitle,
+		client_notice_contents AS clientNoticeContents,
+		client_notice_date AS clientNoticeDate,
+		client_notice_filename AS clientNoticeFileName,
+		client_notice_filepath AS clientNoticeFilePath
+		FROM client_notice WHERE client_notice_no = #{_parameter}
+	</select>
+
+	<select id="selectClientNoticeList" parameterType="HashMap" resultType="clientNotice">
+		SELECT * FROM (SELECT ROWNUM as rNum, n.* FROM (
+		SELECT
+		client_notice_no
+		AS clientNoticeNo,
+		user_id AS userId,
+		client_notice_title AS
+		clientNoticeTitle,
+		client_notice_contents AS clientNoticeContents,
+		client_notice_date AS
+		clientNoticeDate,
+		client_notice_filename AS
+		clientNoticeFileName,
+		client_notice_filepath AS clientNoticeFilePath
+		FROM client_notice ORDER BY 1 DESC
+		)n)
+		WHERE rNum BETWEEN
+		#{start} AND #{end}
+	</select>
+
+	<delete id="deleteClientNotice" parameterType="_int">
+		DELETE FROM client_notice WHERE client_notice_no = #{_parameter}
 	</delete>
 </mapper>

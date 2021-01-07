@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>CEO Notice List</title>
+<title>Client Notice List</title>
 </head>
 
 <body>
@@ -21,7 +21,7 @@
 
 			<!-- Main -->
 			<div class="content-main">
-				<h1>사업자 공지사항</h1>
+				<h1>고객 공지사항</h1>
 				<hr>
 				<div class="search-wrap">
 					<select class="form-control" name="userCategory" id="select-userCategory">
@@ -46,17 +46,17 @@
 								<th>등록일</th>
 								<th></th>
 							</tr>
-							<c:forEach items="${list }" var="ceoNotice" varStatus="index">
+							<c:forEach items="${list }" var="clientNotice" varStatus="index">
 								<tr>
-									<td>${ceoNotice.rNum }</td>
+									<td>${clientNotice.rNum }</td>
 									<td>
-										<a href="/selectCeoNotice.do?ceoNoticeNo=${ceoNotice.ceoNoticeNo }">${ceoNotice.ceoNoticeTitle }</a>
+										<a href="/selectClientNotice.do?clientNoticeNo=${clientNotice.clientNoticeNo }">${clientNotice.clientNoticeTitle }</a>
 									</td>
-									<td>${ceoNotice.ceoNoticeFileName }</td>
-									<td>${ceoNotice.userId }</td>
-									<td>${ceoNotice.ceoNoticeDate }</td>
+									<td>${clientNotice.clientNoticeFileName }</td>
+									<td>${clientNotice.userId }</td>
+									<td>${clientNotice.clientNoticeDate }</td>
 									<td>
-										<button class="btn btn-warning btn-sm" onclick="location.href='/selectCeoNotice.do?ceoNoticeNo=${ceoNotice.ceoNoticeNo}'">상세보기</button>
+										<button class="btn btn-warning btn-sm" onclick="location.href='/selectClientNotice.do?clientNoticeNo=${clientNotice.clientNoticeNo}'">상세보기</button>
 									</td>
 								</tr>
 							</c:forEach>
