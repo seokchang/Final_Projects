@@ -12,7 +12,9 @@
 
 		<!-- Camp -->
 		<typeAlias type="com.campkok.camp.model.vo.CampVO" alias="c" />
+		
+		<!-- Customer -->
 		<typeAlias type="com.campkok.customer.model.vo.UserVO" alias="u"/>
-
+		<typeAlias type="com.campkok.customer.model.vo.ReservationVO" alias="r"/>
 	</typeAliases>
 </configuration>
