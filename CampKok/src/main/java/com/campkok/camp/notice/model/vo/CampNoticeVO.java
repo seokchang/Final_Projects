@@ -1,9 +1,9 @@
-package com.campkok.camp.model.vo;
+package com.campkok.camp.notice.model.vo;
 
 import lombok.Data;
 
 @Data
-public class CampBoardVO {
+public class CampNoticeVO {
 	private int ceoNoticeNo;
 	private String userId;
 	private String ceoNoticeTitle;

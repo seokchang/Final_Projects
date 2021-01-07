@@ -18,8 +18,5 @@ public class CampController {
 		return "camp/kh";
 	}
 	
-	@RequestMapping("/campBoard.do")
-	public String campBoard(Model model) {
-		return null;
-	}
+	
 }

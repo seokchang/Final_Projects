@@ -16,4 +16,77 @@
 			user_point as userPoint
 		from user_tbl where user_no=#{parameter}
 	</select>
+	<update id="updateCustomer" parameterType="u">
+		update user_tbl set
+			user_pw=#{userPw},
+			user_phone=#{userPhone},
+			user_addr=#{userAddr}
+		where user_no=#{userNo}	
+	</update>
+	<select id="reserveInfo" parameterType="_int" resultType="r">
+		select 
+			R.res_no as resNo,
+			R.user_no as userNo,
+			R.camp_no as campNo,
+			C.camp_name as campName,
+			R.camp_room as campRoomNo,
+			CR.room_name as campRoomName,
+			C.camp_addr as campAddr,
+			R.res_in_time as resInTime,
+			R.res_out_time as resOutTime,
+			R.res_in_date as resInDate,
+			R.res_out_date as resOutDate,
+			R.res_member as resMember,
+			R.res_price as resPrice,
+			R.res_memo as resMemo,
+			R.res_count as resCount
+		from reservation R inner join camp C on R.camp_no=C.camp_no
+				inner join camproom CR on R.camp_room=CR.room_no
+		 where user_no=#{parameter} and res_out_date >= to_char(sysdate,'yyyy-mm-dd')
+	</select>
+	<select id="useInfo" parameterType="map" resultType="r">
+		select * from 
+		(select rownum as rnum, n. * from 
+			(select 
+				R.res_no as resNo,
+				R.user_no as userNo,
+				R.camp_no as campNo,
+				C.camp_name as campName,
+				R.camp_room as campRoomNo,
+				CR.room_name as campRoomName,
+				C.camp_addr as campAddr,
+				R.res_in_time as resInTime,
+				R.res_out_time as resOutTime,
+				R.res_in_date as resInDate,
+				R.res_out_date as resOutDate,
+				R.res_member as resMember,
+				R.res_price as resPrice,
+				R.res_memo as resMemo,
+				R.res_count as resCount
+			from reservation R inner join camp C on R.camp_no=C.camp_no
+					inner join camproom CR on R.camp_room=CR.room_no 
+			order by 1 desc)
+		n)
+		where rnum between #{start} and #{end}
+	</select>
+	<select id="totalUse" resultType="r">
+		select 
+				R.res_no as resNo,
+				R.user_no as userNo,
+				R.camp_no as campNo,
+				C.camp_name as campName,
+				R.camp_room as campRoomNo,
+				CR.room_name as campRoomName,
+				C.camp_addr as campAddr,
+				R.res_in_time as resInTime,
+				R.res_out_time as resOutTime,
+				R.res_in_date as resInDate,
+				R.res_out_date as resOutDate,
+				R.res_member as resMember,
+				R.res_price as resPrice,
+				R.res_memo as resMemo,
+				R.res_count as resCount
+			from reservation R inner join camp C on R.camp_no=C.camp_no
+					inner join camproom CR on R.camp_room=CR.room_no
+	</select>
 </mapper>
