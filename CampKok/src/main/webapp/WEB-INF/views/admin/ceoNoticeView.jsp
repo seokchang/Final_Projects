@@ -27,7 +27,9 @@
 					<form action="/updateCeoNotice.do" method="POST" enctype="multipart/form-data">
 						<table class="table table-striped">
 							<input type="hidden" name="ceoNoticeNo" value="${ceoNotice.ceoNoticeNo }">
-							<input type="hidden" name="oldFile" value="${ceoNotice.ceoNoticeFilePath }">
+							<c:if test="${not empty ceoNotice.ceoNoticeFilePath}">
+								<input type="hidden" name="oldFile" value="${ceoNotice.ceoNoticeFilePath }">
+							</c:if>
 							<tr>
 								<th>작성자</th>
 								<td>
@@ -41,7 +43,7 @@
 							<tr>
 								<th>제목</th>
 								<td colspan="3">
-									<input class="form-control" type="text" name="ceoNoticeTitle" value=" ${ceoNotice.ceoNoticeTitle }">
+									<input class="form-control" type="text" name="ceoNoticeTitle" value="${ceoNotice.ceoNoticeTitle }">
 								</td>
 							</tr>
 							<tr>

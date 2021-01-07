@@ -24,7 +24,7 @@ import com.campkok.hik.common.FileNameOverlap;
 public class AdminController {
 	@Autowired
 	private AdminService service;
-	private String path = "/Users/seohong/Desktop/HSC/Projects/02_Final_Project/02_uploadFiles/";
+	//	private String path = "/Users/seohong/Desktop/HSC/Projects/02_Final_Project/02_uploadFiles/";
 
 	@RequestMapping("/pageAdmin.do")
 	public String pageAdmin(int reqPage, Model model) {
@@ -45,6 +45,7 @@ public class AdminController {
 
 	@RequestMapping(value = "/insertNotice.do", method = RequestMethod.POST)
 	public String insertNotice(Notice notice, MultipartFile noticeFile, Model model) {
+		String path = "/Users/seohong/Desktop/HSC/Projects/02_Final_Project/02_uploadFiles/";
 		// 파일 업로드
 		if (noticeFile != null) {
 			String fileName = noticeFile.getOriginalFilename();
@@ -74,7 +75,7 @@ public class AdminController {
 		}
 		model.addAttribute("loc", "/pageAdmin.do?reqPage=1");
 
-		return "/commons/msg";
+		return "/common/msg";
 	}
 
 	@RequestMapping("/selectCeoNotice.do")
@@ -99,6 +100,7 @@ public class AdminController {
 	@RequestMapping(value = "/updateCeoNotice.do", method = RequestMethod.POST)
 	public String updateCeoNotice(CeoNotice ceoNotice, MultipartFile ceoNoticeFile, String oldFile, Model model) {
 		if (ceoNoticeFile != null) {
+			String path = "/Users/seohong/Desktop/HSC/Projects/02_Final_Project/02_uploadFiles/";
 			String fileName = ceoNoticeFile.getOriginalFilename();
 			String filePath = new FileNameOverlap().reName(path, fileName);
 
@@ -109,7 +111,6 @@ public class AdminController {
 
 				if (deleteFile.exists()) {
 					deleteFile.delete();
-					System.out.println(oldFile + "삭제 완료");
 				}
 			}
 
@@ -139,12 +140,13 @@ public class AdminController {
 		}
 		model.addAttribute("loc", "/selectCeoNoticeList.do?reqPage=1");
 
-		return "/commons/msg";
+		return "/common/msg";
 	}
 
 	@RequestMapping("/deleteCeoNotice.do")
 	public String deleteCeoNotice(int ceoNoticeNo, String ceoNoticeFilePath, Model model) {
 		if (ceoNoticeFilePath != null) {
+			String path = "/Users/seohong/Desktop/HSC/Projects/02_Final_Project/02_uploadFiles/";
 			String filePath = ceoNoticeFilePath;
 			File deleteFile = new File(path + filePath);
 
@@ -163,7 +165,7 @@ public class AdminController {
 		}
 		model.addAttribute("loc", "/selectCeoNoticeList.do?reqPage=1");
 
-		return "/commons/msg";
+		return "/common/msg";
 	}
 
 	@RequestMapping("/selectClientNotice.do")
@@ -196,7 +198,7 @@ public class AdminController {
 		}
 		model.addAttribute("loc", "/selectClientNoticeList.do?reqPage=1");
 
-		return "/commons/msg";
+		return "/common/msg";
 	}
 
 }
