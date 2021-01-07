@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-        <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -105,25 +106,24 @@
 
         .info th {
             background-color: #f3d479;
+            width:30%;
         }
 
         .info td {
             background-color: white;
             text-align: left;
         }
-
-        .info input[type="submit"] {
-            width: 90px;
-            height: 45px;
-            border-radius: 5px;
-            font-size: 17px;
-            font-weight: bold;
-            background-color: #f3d479;
-            border: none;
+        span{
+        	font-size:13px;
+        	color:#f2542f;
         }
+
     </style>
 </head>
-
+<c:set var="today" value="<%=new java.util.Date()%>" />
+<c:set var="date"><fmt:formatDate value="${today}" pattern="yyyy-MM-dd" /></c:set>
+<%-- <c:set var="outDate"><fmt:parseDate value="${r.resOutDate}" pattern="yyyy-MM-dd"/></c:set>
+<c:set var="date2"><fmt:formatDate value="${outDate }" pattern="yyyy-MM-dd" /></c:set> --%>
 <body>
     <div class="content">
         <!--왼쪽-->
@@ -131,10 +131,10 @@
             <img src="/resources/img/customer/tent.png" width="60%">
             <h1>MY PAGE</h1>
             <ul class="menu">
-                <li><a href="/mypage.do?userNo=2"><b>회원 정보</b></a></li>
-                <li><a href="/reserve.do?userNo=2">예약 확인</a></li>
-                <li><a href="/reserveAll.do?reqPage=1">이용 내역</a></li>
-                <li><a href="#">리뷰 내역</a></li>
+                <li><a href="/mypage.do?userNo=2">회원 정보</a></li>
+                <li><a href="/reserve.do?userNo=2"><b>예약 확인</b></a></li>
+                <li><a href="#">이용 내역</a></li>
+                <li><a href="#">리뷰 내역</a>
                 <li><a href="#">포인트 내역</a></li>
             </ul>
         </div>
@@ -143,46 +143,39 @@
             <div class="mypage-content">
                 <br><br>
                 <div class="info">
-                    <h2>회원 정보 수정</h2>
-                    <form action="/update.do" method="post">
-                    	<input type="hidden" name="userNo" value="${u.userNo }">
-                        <table border="1">
+                    <h2>예약 내역 조회</h2>
+                     <c:if test="${r==null }">
+                     	<p>최근 예약하신 내역이 없습니다.</p>
+                     </c:if>
+                     <c:if test="${r!=null }">
+                    <span>* 예약에 변동사항이 있을 시에는 따로 문의 부탁드려요~ *</span>
+                    <table border="1">
                             <tr>
-                                <th>아이디</th>
-                                <td style="padding-left: 5px;">${u.userId}</td>
+                                <th>캠피장명</th>
+                                <td style="padding-left: 5px;">${r.campName }</td>
                             </tr>
                             <tr>
-                                <th>비밀번호</th>
-                                <td><input type="password" placeholder="비밀번호를 입력해주세요" name="userPw" value="${u.userPw }"></td>
+                                <th>캠피장 데스크명</th>
+                                <td style="padding-left: 5px;">${r.campRoomName }</td>
                             </tr>
                             <tr>
-                                <th>이름</th>
-                                <td style="padding-left: 5px;">${u.userName}</td>
+                                <th>위치</th>
+                                <td style="padding-left: 5px;">${r.campAddr }</td>
                             </tr>
                             <tr>
-                                <th>생년월일</th>
-                                <td style="padding-left: 5px;">${u.userBirth }</td>
+                                <th>날짜</th>
+                                <td style="padding-left: 5px;">${r.resInDate } ${r.resInTime } ~ ${r.resOutDate } ${r.resOutTime }</td>
                             </tr>
                             <tr>
-                                <th>전화번호</th>
-                                <td><input type="text" placeholder="010-0000-0000" name="userPhone" value="${u.userPhone }"></td>
+                                <th>예약인원</th>
+                                <td style="padding-left: 5px;">${r.resMember } 명</td>
                             </tr>
                             <tr>
-                                <th>주소</th>
-                                <td><input type="text" name="userAddr" value="${u.userAddr}"></td>
-                            </tr>
-                            <tr>
-                                <th>포인트</th>
-                                <td style="padding-left: 5px;">${u.userPoint}</td>
-                            </tr>
-                            <tr>
-                                <th>가입일</th>
-                                <td style="padding-left: 5px;">${u.userDate}</td>
+                                <th>메모</th>
+                                <td style="padding-left: 5px;">${r.resMemo }</td>
                             </tr>
                         </table>
-                        <br>
-                        <input type="submit" value="수정">
-                    </form>
+                       </c:if>
                 </div>
             </div>
         </div>
