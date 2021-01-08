@@ -103,7 +103,7 @@
 										</td>
 										<td>
 											<c:if test="${not empty clientNotice.clientNoticeFilePath }">
-												<img src="/resources/img/admin/free-icon-attached-file-1209914.png" id="file">
+												<img class="img-file" src="/resources/img/admin/free-icon-attached-file-1209914.png">
 											</c:if>
 										</td>
 										<td>${clientNotice.clientNoticeDate }</td>
@@ -135,7 +135,7 @@
 										</td>
 										<td>
 											<c:if test="${not empty ceoNotice.ceoNoticeFilePath }">
-												<img src="/resources/img/admin/free-icon-attached-file-1209914.png" id="file">
+												<img class="img-file" src="/resources/img/admin/free-icon-attached-file-1209914.png">
 											</c:if>
 										</td>
 										<td>${ceoNotice.ceoNoticeDate }</td>

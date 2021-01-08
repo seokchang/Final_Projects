@@ -70,6 +70,11 @@ textarea {
 	float: right;
 }
 
+.img-file {
+	width: 20px;
+	height: 20px;
+}
+
 #fileInfo {
 	margin-right: 25px;
 	float: left;

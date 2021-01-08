@@ -12,6 +12,13 @@ import com.campkok.admin.user.model.vo.AdminUserInfoPageData;
 public class AdminUserController {
 	@Autowired
 	private AdminUserService service;
+	
+	@RequestMapping("selectClientInfo.do")
+	public String selectClientInfo(int userNo, Model model) {
+		
+		
+		return "/admin/clientInfo";
+	}
 
 	// ********** Client Info **********
 	@RequestMapping("/selectClientInfoList.do")

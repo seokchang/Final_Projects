@@ -54,7 +54,7 @@
 									</td>
 									<td>
 										<c:if test="${not empty ceoNotice.ceoNoticeFileName }">
-											<img alt="Not Found File img" src="/resources/img/admin/free-icon-attached-file-1209914.png" style="width: 32px;">
+											<img class="img-file" src="/resources/img/admin/free-icon-attached-file-1209914.png">
 										</c:if>
 									</td>
 									<td>${ceoNotice.userId }</td>
