@@ -38,10 +38,12 @@ public class AdminNoticeController {
 		CeoNoticePageData ceoNPD = nService.selectCeoNoticeList(reqPage);
 		ClientNoticePageData clientNPD = nService.selectClientNoticeList(reqPage);
 		AdminUserInfoPageData clientInfoList = uService.selectClientInfoList(reqPage);
+		AdminUserInfoPageData ceoInfoList = uService.selectCeoInfoList(reqPage);
 
 		model.addAttribute("ceoNoticeList", ceoNPD.getList());
 		model.addAttribute("clientNoticeList", clientNPD.getList());
 		model.addAttribute("clientInfoList", clientInfoList.getList());
+		model.addAttribute("ceoInfoList", ceoInfoList.getList());
 
 		return "/admin/admin";
 	}

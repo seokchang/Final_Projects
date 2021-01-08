@@ -45,7 +45,7 @@
 									<tr>
 										<td>${clientInfo.rNum }</td>
 										<td>
-											<a href="">${clientInfo.userId }</a>
+											<a href="#">${clientInfo.userId }</a>
 										</td>
 										<td>${clientInfo.userName }</td>
 										<td>${clientInfo.userDate }</td>
@@ -53,14 +53,33 @@
 								</c:forEach>
 							</tbody>
 						</table>
-						<button class="btn btn-warning btn-md" onclick="">리스트 보기</button>
+						<button class="btn btn-warning btn-md" onclick="location.href='/selectClientInfoList.do?reqPage=1'">리스트 보기</button>
 					</div>
 
 					<!-- CEO Info -->
 					<div id="ceo-info">
 						<h3>
-							<a href="#">사업자정보 관리</a>
+							<a href="/selectCeoInfoList.do?reqPage=1">사업자정보 관리</a>
 						</h3>
+						<table class="table table-striped">
+							<tr>
+								<th>번호</th>
+								<th>아이디</th>
+								<th>이름</th>
+								<th>가입일</th>
+							</tr>
+							<c:forEach items="${ceoInfoList }" var="ceoInfo" begin="0" end="4" step="1">
+								<tr>
+									<td>${ceoInfo.rNum }</td>
+									<td>
+										<a href="">${ceoInfo.userId }</a>
+									</td>
+									<td>${ceoInfo.userName }</td>
+									<td>${ceoInfo.userDate }</td>
+								</tr>
+							</c:forEach>
+						</table>
+						<button class='btn btn-warning btn-md' onclick="location.href='/selectCeoInfoList.do?reqPage=1'">리스트 보기</button>
 					</div>
 
 					<!-- Client Notice -->
@@ -73,6 +92,7 @@
 								<tr>
 									<th>번호</th>
 									<th>제목</th>
+									<th>첨부파일</th>
 									<th>등록일</th>
 								</tr>
 								<c:forEach items="${clientNoticeList }" var="clientNotice" begin="0" end="4" step="1">
@@ -80,6 +100,11 @@
 										<td>${clientNotice.rNum }</td>
 										<td>
 											<a href="/selectClientNotice.do?clientNoticeNo=${clientNotice.clientNoticeNo }">${clientNotice.clientNoticeTitle }</a>
+										</td>
+										<td>
+											<c:if test="${not empty clientNotice.clientNoticeFilePath }">
+												<img src="/resources/img/admin/free-icon-attached-file-1209914.png" id="file">
+											</c:if>
 										</td>
 										<td>${clientNotice.clientNoticeDate }</td>
 									</tr>
@@ -99,6 +124,7 @@
 								<tr>
 									<th>번호</th>
 									<th>제목</th>
+									<th>첨부파일</th>
 									<th>등록일</th>
 								</tr>
 								<c:forEach items="${ceoNoticeList }" var="ceoNotice" begin="0" end="4" step="1">
@@ -106,6 +132,11 @@
 										<td>${ceoNotice.rNum }</td>
 										<td>
 											<a href="/selectCeoNotice.do?ceoNoticeNo=${ceoNotice.ceoNoticeNo }">${ceoNotice.ceoNoticeTitle }</a>
+										</td>
+										<td>
+											<c:if test="${not empty ceoNotice.ceoNoticeFilePath }">
+												<img src="/resources/img/admin/free-icon-attached-file-1209914.png" id="file">
+											</c:if>
 										</td>
 										<td>${ceoNotice.ceoNoticeDate }</td>
 									</tr>

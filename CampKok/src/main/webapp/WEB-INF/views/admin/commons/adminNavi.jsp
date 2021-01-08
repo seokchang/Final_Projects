@@ -23,7 +23,7 @@
 			<a href="javascript:void(0)" id="user">회원정보 관리</a>
 			<ul class="submenu">
 				<li><a href="/selectClientInfoList.do?reqPage=1">고객정보 관리</a></li>
-				<li><a href="#">사업자정보 관리</a></li>
+				<li><a href="/selectCeoInfoList.do?reqPage=1">사업자정보 관리</a></li>
 			</ul>
 		</li>
 		<li>

@@ -25,4 +25,28 @@
 		)u)
 		WHERE rNum BETWEEN #{start} AND #{end}
 	</select>
+	
+	<!-- ********** CEO Info ********** -->
+	<select id="getCeoInfoCount" resultType="_int">
+		SELECT count(*) FROM user_tbl WHERE user_level = 2
+	</select>
+	
+	<select id="selectCeoInfoList" parameterType="HashMap" resultType="user">
+		SELECT * FROM (SELECT ROWNUM AS rNUM, u.* FROM (
+		SELECT
+		user_no AS userNo,
+		user_id AS userId,
+		user_pw AS userPw,
+		user_name AS userName,
+		user_phone AS userPhone,
+		user_level AS userLevel,
+		user_birth AS userBirth,
+		user_date AS userDate,
+		user_gender AS userGender,
+		user_addr AS userAddr,
+		user_point AS userPoint
+		FROM user_tbl WHERE user_level = 2
+		)u)
+		WHERE rNum BETWEEN #{start} AND #{end}
+	</select>
 </mapper>

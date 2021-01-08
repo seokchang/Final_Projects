@@ -15,6 +15,7 @@ public class AdminUserDao {
 	@Autowired
 	private SqlSessionTemplate session;
 
+	// ********** Client Info **********
 	public int getTotalClientInfo() {
 		return session.selectOne("adminUserInfo.getClientInfoCount");
 	}
@@ -26,6 +27,22 @@ public class AdminUserDao {
 		map.put("end", end);
 
 		List<User> list = session.selectList("adminUserInfo.selectClientInfoList", map);
+
+		return (ArrayList<User>) list;
+	}
+
+	// ********** CEO Info **********
+	public int getTotalCeoInfo() {
+		return session.selectOne("adminUserInfo.getCeoInfoCount");
+	}
+
+	public ArrayList<User> selectCeoInfoList(int start, int end) {
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+
+		map.put("start", start);
+		map.put("end", end);
+
+		List<User> list = session.selectList("adminUserInfo.selectCeoInfoList", map);
 
 		return (ArrayList<User>) list;
 	}
