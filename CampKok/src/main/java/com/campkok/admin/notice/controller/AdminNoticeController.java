@@ -1,4 +1,4 @@
-package com.campkok.admin.controller;
+package com.campkok.admin.notice.controller;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -12,31 +12,44 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.campkok.admin.model.service.AdminService;
-import com.campkok.admin.model.vo.CeoNotice;
-import com.campkok.admin.model.vo.CeoNoticePageData;
-import com.campkok.admin.model.vo.ClientNotice;
-import com.campkok.admin.model.vo.ClientNoticePageData;
-import com.campkok.admin.model.vo.Notice;
+import com.campkok.admin.notice.model.service.AdminNoticeService;
+import com.campkok.admin.notice.model.vo.CeoNotice;
+import com.campkok.admin.notice.model.vo.CeoNoticePageData;
+import com.campkok.admin.notice.model.vo.ClientNotice;
+import com.campkok.admin.notice.model.vo.ClientNoticePageData;
+import com.campkok.admin.notice.model.vo.Notice;
+import com.campkok.admin.user.model.service.AdminUserService;
+import com.campkok.admin.user.model.vo.AdminUserInfoPageData;
 import com.campkok.hik.common.FileNameOverlap;
 
 @Controller
-public class AdminController {
+public class AdminNoticeController {
 	@Autowired
-	private AdminService service;
-	//	private String path = "/Users/seohong/Desktop/HSC/Projects/02_Final_Project/02_uploadFiles/";
+	private AdminNoticeService nService;
+	@Autowired
+	private AdminUserService uService;
 
+	/* **************************************************
+	 * Admin Page
+	 * **************************************************
+	*/
 	@RequestMapping("/pageAdmin.do")
 	public String pageAdmin(int reqPage, Model model) {
-		CeoNoticePageData ceoNPD = service.selectCeoNoticeList(reqPage);
-		ClientNoticePageData clientNPD = service.selectClientNoticeList(reqPage);
+		CeoNoticePageData ceoNPD = nService.selectCeoNoticeList(reqPage);
+		ClientNoticePageData clientNPD = nService.selectClientNoticeList(reqPage);
+		AdminUserInfoPageData clientInfoList = uService.selectClientInfoList(reqPage);
 
 		model.addAttribute("ceoNoticeList", ceoNPD.getList());
 		model.addAttribute("clientNoticeList", clientNPD.getList());
+		model.addAttribute("clientInfoList", clientInfoList.getList());
 
 		return "/admin/admin";
 	}
 
+	/* **************************************************
+	 * Notice
+	 * **************************************************
+	*/
 	@RequestMapping("/pageNoticeForm.do")
 	public String pageNoticeForm() {
 
@@ -66,7 +79,7 @@ public class AdminController {
 			}
 		}
 
-		int result = service.insertNotice(notice);
+		int result = nService.insertNotice(notice);
 
 		if (result > 0) {
 			model.addAttribute("msg", notice.getUserCategory() + "공지사항 등록 성공");
@@ -80,7 +93,7 @@ public class AdminController {
 
 	@RequestMapping("/selectCeoNotice.do")
 	public String selectCeoNotice(int ceoNoticeNo, Model model) {
-		CeoNotice ceoNotice = service.selectCeoNotice(ceoNoticeNo);
+		CeoNotice ceoNotice = nService.selectCeoNotice(ceoNoticeNo);
 
 		model.addAttribute("ceoNotice", ceoNotice);
 
@@ -89,7 +102,7 @@ public class AdminController {
 
 	@RequestMapping("/selectCeoNoticeList.do")
 	public String selectCeoNoticeList(int reqPage, Model model) {
-		CeoNoticePageData cnpd = service.selectCeoNoticeList(reqPage);
+		CeoNoticePageData cnpd = nService.selectCeoNoticeList(reqPage);
 
 		model.addAttribute("list", cnpd.getList());
 		model.addAttribute("pageNavi", cnpd.getpageNavi());
@@ -131,7 +144,7 @@ public class AdminController {
 			}
 		}
 
-		int result = service.updateCeoNotice(ceoNotice);
+		int result = nService.updateCeoNotice(ceoNotice);
 
 		if (result > 0) {
 			model.addAttribute("msg", "사업자 공지사항 수정 성공");
@@ -155,7 +168,7 @@ public class AdminController {
 			}
 		}
 
-		int result = service.deleteCeoNotice(ceoNoticeNo);
+		int result = nService.deleteCeoNotice(ceoNoticeNo);
 
 		if (result > 0) {
 			model.addAttribute("msg", "사업자 공지사항 삭제 성공");
@@ -169,7 +182,7 @@ public class AdminController {
 
 	@RequestMapping("/selectClientNotice.do")
 	public String selectClientNotice(int clientNoticeNo, Model model) {
-		ClientNotice clientNotice = service.selectClientNotice(clientNoticeNo);
+		ClientNotice clientNotice = nService.selectClientNotice(clientNoticeNo);
 
 		model.addAttribute("clientNotice", clientNotice);
 
@@ -178,7 +191,7 @@ public class AdminController {
 
 	@RequestMapping("/selectClientNoticeList.do")
 	public String selectClientNoticeList(int reqPage, Model model) {
-		ClientNoticePageData cnpd = service.selectClientNoticeList(reqPage);
+		ClientNoticePageData cnpd = nService.selectClientNoticeList(reqPage);
 
 		model.addAttribute("list", cnpd.getList());
 		model.addAttribute("pageNavi", cnpd.getPageNavi());
@@ -217,7 +230,7 @@ public class AdminController {
 			}
 		}
 
-		int result = service.updateClientNotice(clientNotice);
+		int result = nService.updateClientNotice(clientNotice);
 
 		if (result > 0) {
 			model.addAttribute("msg", "고객 공지사항 수정 성공");
@@ -241,7 +254,7 @@ public class AdminController {
 			}
 		}
 
-		int result = service.deleteClientNotice(clientNoticeNo);
+		int result = nService.deleteClientNotice(clientNoticeNo);
 
 		if (result > 0) {
 			model.addAttribute("msg", "고객 공지사항 삭제 성공");
@@ -252,5 +265,4 @@ public class AdminController {
 
 		return "/common/msg";
 	}
-
 }

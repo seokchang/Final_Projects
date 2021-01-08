@@ -1,4 +1,4 @@
-package com.campkok.admin.model.vo;
+package com.campkok.admin.notice.model.vo;
 
 import java.util.ArrayList;
 

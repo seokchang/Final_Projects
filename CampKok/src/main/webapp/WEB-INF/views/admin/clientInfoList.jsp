@@ -5,9 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Client Notice List</title>
+<title>Client Info List</title>
 </head>
-
 <body>
 	<div class="wrap">
 		<div class="header-wrap">
@@ -21,18 +20,17 @@
 
 			<!-- Main -->
 			<div class="content-main">
-				<h1>고객 공지사항</h1>
+				<h1>고객정보 관리</h1>
 				<hr>
 				<div class="search-wrap">
 					<select class="form-control" name="userCategory" id="select-userCategory">
-						<option value="client">제목</option>
-						<option value="ceo">작성자</option>
+						<option value="client">아이디</option>
+						<option value="ceo">이름</option>
 					</select>
 					<input class="form-control" type="text" name="search">
 					<button class="btnSearch" onclick="">
 						<img alt="Not Found Search" src="/resources/img/admin/baseline_search_black_18dp.png">
 					</button>
-					<button class="btnWriteNotice" onclick="location.href='/pageNoticeForm.do'">공지사항 작성</button>
 				</div>
 
 				<div class="table-wrap">
@@ -40,27 +38,27 @@
 						<tbody>
 							<tr>
 								<th>번호</th>
-								<th>제목</th>
-								<th>첨부파일</th>
-								<th>작성자</th>
-								<th>등록일</th>
+								<th>아이디</th>
+								<th>이름</th>
+								<th>전화번호</th>
+								<th>주소</th>
+								<th>포인트</th>
+								<th>가입일</th>
 								<th></th>
 							</tr>
-							<c:forEach items="${list }" var="clientNotice" varStatus="index">
+							<c:forEach items="${list }" var="clientInfo">
 								<tr>
-									<td>${clientNotice.rNum }</td>
+									<td>${clientInfo.rNum }</td>
 									<td>
-										<a href="/selectClientNotice.do?clientNoticeNo=${clientNotice.clientNoticeNo }" style="overflow: hidden;">${clientNotice.clientNoticeTitle }</a>
+										<a href="#">${clientInfo.userId }</a>
 									</td>
+									<td>${clientInfo.userName }</td>
+									<td>${clientInfo.userPhone }</td>
+									<td>${clientInfo.userAddr }</td>
+									<td>${clientInfo.userPoint }</td>
+									<td>${clientInfo.userDate }</td>
 									<td>
-										<c:if test="${not empty clientNotice.clientNoticeFilePath}">
-											<img alt="Not Found File img" src="/resources/img/admin/free-icon-attached-file-1209914.png" style="width: 32px;">
-										</c:if>
-									</td>
-									<td>${clientNotice.userId }</td>
-									<td>${clientNotice.clientNoticeDate }</td>
-									<td>
-										<button class="btn btn-warning btn-sm" onclick="location.href='/selectClientNotice.do?clientNoticeNo=${clientNotice.clientNoticeNo}'">상세보기</button>
+										<button class="btn btn-warning btn-md">상세보기</button>
 									</td>
 								</tr>
 							</c:forEach>

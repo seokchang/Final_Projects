@@ -28,17 +28,38 @@
 
 				</ul>
 				<div class="content-list">
-					<!-- Statistics -->
-					<div id="statistics">
+					<!-- Client Info -->
+					<div id="client-info">
 						<h3>
-							<a href="#">통계</a>
+							<a href="/selectClientInfoList.do?reqPage=1">고객정보 관리</a>
 						</h3>
+						<table class="table table-striped">
+							<tbody>
+								<tr>
+									<th>번호</th>
+									<th>아이디</th>
+									<th>이름</th>
+									<th>가입일</th>
+								</tr>
+								<c:forEach items="${clientInfoList }" var="clientInfo" begin="0" end="4" step="1">
+									<tr>
+										<td>${clientInfo.rNum }</td>
+										<td>
+											<a href="">${clientInfo.userId }</a>
+										</td>
+										<td>${clientInfo.userName }</td>
+										<td>${clientInfo.userDate }</td>
+									</tr>
+								</c:forEach>
+							</tbody>
+						</table>
+						<button class="btn btn-warning btn-md" onclick="">리스트 보기</button>
 					</div>
 
-					<!-- Board -->
-					<div id="board">
+					<!-- CEO Info -->
+					<div id="ceo-info">
 						<h3>
-							<a href="#">자유게시판</a>
+							<a href="#">사업자정보 관리</a>
 						</h3>
 					</div>
 
@@ -94,17 +115,17 @@
 						<button class="btn btn-warning btn-md" onclick="location.href='/selectCeoNoticeList.do?reqPage=1'">리스트보기</button>
 					</div>
 
-					<!-- User Info -->
-					<div id="userInfo">
+					<!-- Camp Info -->
+					<div id="camp-info">
 						<h3>
-							<a href="#">회원정보</a>
+							<a href="#">캠핑장 관리</a>
 						</h3>
 					</div>
 
-					<!-- Camp Info -->
-					<div id="campInfo">
+					<!-- Board Info -->
+					<div id="board">
 						<h3>
-							<a href="#">캠핑장정보</a>
+							<a href="#">자유게시판 관리</a>
 						</h3>
 					</div>
 

@@ -73,6 +73,6 @@
 	</div>
 
 	<link rel="stylesheet" href="/resources/css/admin/adminDesignCommon.css">
-	<link rel="stylesheet" href="/resources/css/admin/adminNoticeList.css">
+	<link rel="stylesheet" href="/resources/css/admin/adminDesignList.css">
 </body>
 </html>

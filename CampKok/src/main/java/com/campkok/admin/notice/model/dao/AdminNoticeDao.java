@@ -1,4 +1,4 @@
-package com.campkok.admin.model.dao;
+package com.campkok.admin.notice.model.dao;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -8,12 +8,12 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.campkok.admin.model.vo.CeoNotice;
-import com.campkok.admin.model.vo.ClientNotice;
-import com.campkok.admin.model.vo.Notice;
+import com.campkok.admin.notice.model.vo.CeoNotice;
+import com.campkok.admin.notice.model.vo.ClientNotice;
+import com.campkok.admin.notice.model.vo.Notice;
 
 @Repository
-public class AdminDao {
+public class AdminNoticeDao {
 	@Autowired
 	private SqlSessionTemplate session;
 

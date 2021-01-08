@@ -1,4 +1,4 @@
-package com.campkok.admin.model.vo;
+package com.campkok.admin.notice.model.vo;
 
 public class CeoNotice {
 	private int rNum;

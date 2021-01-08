@@ -1,4 +1,4 @@
-package com.campkok.admin.model.service;
+package com.campkok.admin.notice.model.service;
 
 import java.util.ArrayList;
 
@@ -6,17 +6,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.campkok.admin.model.dao.AdminDao;
-import com.campkok.admin.model.vo.CeoNotice;
-import com.campkok.admin.model.vo.CeoNoticePageData;
-import com.campkok.admin.model.vo.ClientNotice;
-import com.campkok.admin.model.vo.ClientNoticePageData;
-import com.campkok.admin.model.vo.Notice;
+import com.campkok.admin.notice.model.dao.AdminNoticeDao;
+import com.campkok.admin.notice.model.vo.CeoNotice;
+import com.campkok.admin.notice.model.vo.CeoNoticePageData;
+import com.campkok.admin.notice.model.vo.ClientNotice;
+import com.campkok.admin.notice.model.vo.ClientNoticePageData;
+import com.campkok.admin.notice.model.vo.Notice;
 
 @Service
-public class AdminService {
+public class AdminNoticeService {
 	@Autowired
-	private AdminDao dao;
+	private AdminNoticeDao dao;
 
 	public CeoNotice selectCeoNotice(int ceoNoticeNo) {
 		CeoNotice notice = dao.selectCeoNotice(ceoNoticeNo);
@@ -130,7 +130,7 @@ public class AdminService {
 	public int updateCeoNotice(CeoNotice ceoNotice) {
 		return dao.updateCeoNotice(ceoNotice);
 	}
-	
+
 	@Transactional
 	public int updateClientNotice(ClientNotice clientNotice) {
 		return dao.updateClientNotice(clientNotice);
