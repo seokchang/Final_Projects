@@ -7,6 +7,24 @@
 		SELECT count(*) FROM user_tbl WHERE user_level = 1
 	</select>
 
+	<select id="selectClientInfo" parameterType="_int" resultType="user">
+		SELECT
+		user_no AS userNo,
+		user_id AS userId,
+		user_pw AS userPw,
+		user_name AS
+		userName,
+		user_phone AS
+		userPhone,
+		user_birth AS userBirth,
+		user_date AS userDate,
+		user_gender AS userGender,
+		user_addr AS userAddr,
+		user_point AS
+		userPoint
+		FROM user_tbl WHERE user_no=#{_parameter}
+	</select>
+
 	<select id="selectClientInfoList" parameterType="HashMap" resultType="user">
 		SELECT * FROM (SELECT ROWNUM AS rNum, u.* FROM (
 		SELECT
@@ -17,20 +35,34 @@
 		user_phone AS userPhone,
 		user_level AS userLevel,
 		user_birth AS userBirth,
-		user_date AS userDate,
+		user_date AS
+		userDate,
 		user_gender AS userGender,
 		user_addr AS userAddr,
 		user_point AS userPoint
 		FROM user_tbl WHERE user_level = 1
+		ORDER BY 1 DESC
 		)u)
-		WHERE rNum BETWEEN #{start} AND #{end}
+		WHERE rNum
+		BETWEEN #{start} AND #{end}
 	</select>
+
+	<update id="updateClientInfo" parameterType="user">
+		UPDATE user_tbl SET
+		user_level = #{userLevel},
+		user_point = #{userPoint}
+		WHERE user_no = #{userNo}
+	</update>
 	
+	<delete id="deleteClientInfo" parameterType="_int">
+		DELETE FROM user_tbl WHERE user_no = #{userNo}
+	</delete>
+
 	<!-- ********** CEO Info ********** -->
 	<select id="getCeoInfoCount" resultType="_int">
 		SELECT count(*) FROM user_tbl WHERE user_level = 2
 	</select>
-	
+
 	<select id="selectCeoInfoList" parameterType="HashMap" resultType="user">
 		SELECT * FROM (SELECT ROWNUM AS rNUM, u.* FROM (
 		SELECT
@@ -41,12 +73,15 @@
 		user_phone AS userPhone,
 		user_level AS userLevel,
 		user_birth AS userBirth,
-		user_date AS userDate,
+		user_date AS
+		userDate,
 		user_gender AS userGender,
 		user_addr AS userAddr,
 		user_point AS userPoint
 		FROM user_tbl WHERE user_level = 2
+		ORDER BY 1 DESC
 		)u)
-		WHERE rNum BETWEEN #{start} AND #{end}
+		WHERE rNum BETWEEN #{start} AND
+		#{end}
 	</select>
 </mapper>

@@ -33,7 +33,7 @@
 							<tr>
 								<th>작성자</th>
 								<td>
-									<input class="read-only" type="text" name="userId" value="${ceoNotice.userId }" readonly="readonly">
+									<input class="read-only" type="text" name="userId" value="${ceoNotice.userId }" readonly="readonly" style="float: left;">
 								</td>
 								<th>등록일</th>
 								<td>

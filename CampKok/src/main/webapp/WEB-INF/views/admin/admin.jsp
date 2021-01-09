@@ -45,7 +45,7 @@
 									<tr>
 										<td>${clientInfo.rNum }</td>
 										<td>
-											<a href="#">${clientInfo.userId }</a>
+											<a href="/selectClientInfo.do?userNo=${clientInfo.userNo }">${clientInfo.userId }</a>
 										</td>
 										<td>${clientInfo.userName }</td>
 										<td>${clientInfo.userDate }</td>
@@ -72,7 +72,7 @@
 								<tr>
 									<td>${ceoInfo.rNum }</td>
 									<td>
-										<a href="">${ceoInfo.userId }</a>
+										<a href="#">${ceoInfo.userId }</a>
 									</td>
 									<td>${ceoInfo.userName }</td>
 									<td>${ceoInfo.userDate }</td>

@@ -50,7 +50,7 @@
 								<tr>
 									<td>${clientInfo.rNum }</td>
 									<td>
-										<a href="#">${clientInfo.userId }</a>
+										<a href="/selectClientInfo.do?userNo=${clientInfo.userNo }">${clientInfo.userId }</a>
 									</td>
 									<td>${clientInfo.userName }</td>
 									<td>${clientInfo.userPhone }</td>
@@ -58,7 +58,7 @@
 									<td>${clientInfo.userPoint }</td>
 									<td>${clientInfo.userDate }</td>
 									<td>
-										<button class="btn btn-warning btn-md">상세보기</button>
+										<button class="btn btn-warning btn-md" onclick="location.href='/selectClientInfo.do?userNo=${clientInfo.userNo}'">상세보기</button>
 									</td>
 								</tr>
 							</c:forEach>

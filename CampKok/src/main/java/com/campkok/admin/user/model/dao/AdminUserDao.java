@@ -20,6 +20,10 @@ public class AdminUserDao {
 		return session.selectOne("adminUserInfo.getClientInfoCount");
 	}
 
+	public User selectClientInfo(int userNo) {
+		return session.selectOne("adminUserInfo.selectClientInfo", userNo);
+	}
+
 	public ArrayList<User> selectClientInfoList(int start, int end) {
 		HashMap<String, Integer> map = new HashMap<String, Integer>();
 
@@ -29,6 +33,14 @@ public class AdminUserDao {
 		List<User> list = session.selectList("adminUserInfo.selectClientInfoList", map);
 
 		return (ArrayList<User>) list;
+	}
+
+	public int updateClientInfo(User clientInfo) {
+		return session.update("adminUserInfo.updateClientInfo", clientInfo);
+	}
+
+	public int deleteClientInfo(int userNo) {
+		return session.delete("adminUserInfo.deleteClientInfo", userNo);
 	}
 
 	// ********** CEO Info **********
@@ -46,4 +58,5 @@ public class AdminUserDao {
 
 		return (ArrayList<User>) list;
 	}
+
 }

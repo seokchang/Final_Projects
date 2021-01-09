@@ -57,6 +57,10 @@ public class AdminNoticeController {
 
 		return "/admin/noticeForm";
 	}
+	
+//	public String selectSearch() {
+//		
+//	}
 
 	@RequestMapping(value = "/insertNotice.do", method = RequestMethod.POST)
 	public String insertNotice(Notice notice, MultipartFile noticeFile, Model model) {

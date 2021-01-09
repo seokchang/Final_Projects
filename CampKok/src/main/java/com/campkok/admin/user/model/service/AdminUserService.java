@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.campkok.admin.user.model.dao.AdminUserDao;
 import com.campkok.admin.user.model.vo.AdminUserInfoPageData;
@@ -15,6 +16,10 @@ public class AdminUserService {
 	private AdminUserDao dao;
 
 	// ********** Client Info **********
+	public User selectClientInfo(int userNo) {
+		return dao.selectClientInfo(userNo);
+	}
+
 	public AdminUserInfoPageData selectClientInfoList(int reqPage) {
 		int totalClientInfo = dao.getTotalClientInfo();
 		int numPerPage = 10;
@@ -54,6 +59,16 @@ public class AdminUserService {
 		AdminUserInfoPageData auipd = new AdminUserInfoPageData(list, pageNavi);
 
 		return auipd;
+	}
+
+	@Transactional
+	public int updateClientInfo(User clientInfo) {
+		return dao.updateClientInfo(clientInfo);
+	}
+
+	@Transactional
+	public int deleteClientInfo(int userNo) {
+		return dao.deleteClientInfo(userNo);
 	}
 
 	// ********** CEO Info **********
@@ -98,4 +113,5 @@ public class AdminUserService {
 
 		return auipd;
 	}
+
 }
