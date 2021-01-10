@@ -24,14 +24,27 @@
 				<h1>고객 공지사항</h1>
 				<hr>
 				<div class="search-wrap">
-					<select class="form-control" name="userCategory" id="select-userCategory">
-						<option value="client">제목</option>
-						<option value="ceo">작성자</option>
-					</select>
-					<input class="form-control" type="text" name="search">
-					<button class="btnSearch" onclick="">
-						<img alt="Not Found Search" src="/resources/img/admin/baseline_search_black_18dp.png">
-					</button>
+					<form action="/searchClientNotice.do?" method="GET">
+						<input type="hidden" name="reqPage" value="1">
+						<table>
+							<tbody>
+								<tr>
+									<td>
+										<select class="form-control" id="search-category" name="searchCategory">
+											<option value="noticeTitle">제목</option>
+											<option value="noticeWriter">작성자</option>
+										</select>
+									</td>
+									<td>
+										<input class="form-control" id="search" type="text" name="search">
+									</td>
+									<td>
+										<input class="form-control" id="btnSearch" type="submit" value="">
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</form>
 					<button class="btnWriteNotice" onclick="location.href='/pageNoticeForm.do'">공지사항 작성</button>
 				</div>
 
@@ -50,7 +63,7 @@
 								<tr>
 									<td>${clientNotice.rNum }</td>
 									<td>
-										<a href="/selectClientNotice.do?clientNoticeNo=${clientNotice.clientNoticeNo }" style="overflow: hidden;">${clientNotice.clientNoticeTitle }</a>
+										<a href="/selectClientNotice.do?clientNoticeNo=${clientNotice.clientNoticeNo }" style="overflow: hidden;"><strong>${clientNotice.clientNoticeTitle }</strong></a>
 									</td>
 									<td>
 										<c:if test="${not empty clientNotice.clientNoticeFilePath}">

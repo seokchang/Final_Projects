@@ -7,6 +7,18 @@
 		SELECT count(*) FROM ceo_notice
 	</select>
 
+	<select id="getSearchCeoNoticeCount" parameterType="HashMap" resultType="_int">
+		SELECT count(*) FROM ceo_notice WHERE
+		<choose>
+			<when test="searchCategory.equals('noticeTitle')">
+				ceo_notice_title LIKE '%'||#{search}||'%'
+			</when>
+			<when test="searchCategory.equals('noticeWriter')">
+				user_id LIKE '%'||#{search}||'%'
+			</when>
+		</choose>
+	</select>
+
 	<select id="selectCeoNotice" parameterType="_int" resultType="ceoNotice">
 		SELECT
 		ceo_notice_no AS ceoNoticeNo,
@@ -34,7 +46,8 @@
 		AS ceoNoticeFileName,
 		ceo_notice_filepath AS ceoNoticeFilePath
 		FROM ceo_notice
-		ORDER BY 1 DESC)n) WHERE rNum BETWEEN #{start} AND #{end}
+		ORDER BY 1 DESC)n) WHERE rNum BETWEEN #{start} AND
+		#{end}
 	</select>
 
 	<insert id="insertNotice" parameterType="notice">
@@ -65,7 +78,8 @@
 	<update id="updateCeoNotice" parameterType="ceoNotice">
 		UPDATE ceo_notice SET
 		ceo_notice_title = #{ceoNoticeTitle},
-		ceo_notice_contents = #{ceoNoticeContents},
+		ceo_notice_contents =
+		#{ceoNoticeContents},
 		ceo_notice_filename = #{ceoNoticeFileName},
 		ceo_notice_filepath = #{ceoNoticeFilePath}
 		WHERE ceo_notice_no = #{ceoNoticeNo}
@@ -89,7 +103,8 @@
 		client_notice_date AS clientNoticeDate,
 		client_notice_filename AS clientNoticeFileName,
 		client_notice_filepath AS clientNoticeFilePath
-		FROM client_notice WHERE client_notice_no = #{_parameter}
+		FROM client_notice WHERE client_notice_no =
+		#{_parameter}
 	</select>
 
 	<select id="selectClientNoticeList" parameterType="HashMap" resultType="clientNotice">
@@ -115,7 +130,8 @@
 	<update id="updateClientNotice" parameterType="clientNotice">
 		UPDATE client_notice SET
 		client_notice_title = #{clientNoticeTitle},
-		client_notice_contents = #{clientNoticeContents},
+		client_notice_contents =
+		#{clientNoticeContents},
 		client_notice_filename = #{clientNoticeFileName},
 		client_notice_filepath = #{clientNoticeFilePath}
 		WHERE client_notice_no =

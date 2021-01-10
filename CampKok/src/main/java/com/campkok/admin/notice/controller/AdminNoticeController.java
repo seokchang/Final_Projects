@@ -4,6 +4,7 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -57,10 +58,21 @@ public class AdminNoticeController {
 
 		return "/admin/noticeForm";
 	}
-	
-//	public String selectSearch() {
-//		
-//	}
+
+	@RequestMapping("/searchCeoNotice.do")
+	public String searchCeoNotice(int reqPage, String searchCategory, String search, Model model) {
+		HashMap<String, String> map = new HashMap<String, String>();
+
+		map.put("searchCategory", searchCategory);
+		map.put("search", search);
+
+		CeoNoticePageData cnpd = nService.selectCeoNoticeList(reqPage, map);
+
+		model.addAttribute("list", cnpd.getList());
+		model.addAttribute("pageNavi", cnpd.getpageNavi());
+
+		return "/admin/test";
+	}
 
 	@RequestMapping(value = "/insertNotice.do", method = RequestMethod.POST)
 	public String insertNotice(Notice notice, MultipartFile noticeFile, Model model) {

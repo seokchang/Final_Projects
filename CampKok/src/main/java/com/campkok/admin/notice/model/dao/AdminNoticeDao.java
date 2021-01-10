@@ -20,6 +20,10 @@ public class AdminNoticeDao {
 	public int getTotalCeoNotice() {
 		return session.selectOne("adminNotice.getCeoNoticeCount");
 	}
+	
+	public int getTotalSearchCeoNotice(HashMap<String, String> map) {
+		return session.selectOne("adminNotice.getSearchCeoNoticeCount", map);
+	}
 
 	public CeoNotice selectCeoNotice(int ceoNoticeNo) {
 		return session.selectOne("adminNotice.selectCeoNotice", ceoNoticeNo);

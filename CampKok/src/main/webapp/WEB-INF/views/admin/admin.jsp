@@ -45,7 +45,7 @@
 									<tr>
 										<td>${clientInfo.rNum }</td>
 										<td>
-											<a href="/selectClientInfo.do?userNo=${clientInfo.userNo }">${clientInfo.userId }</a>
+											<a href="/selectClientInfo.do?userNo=${clientInfo.userNo }"><strong>${clientInfo.userId }</strong></a>
 										</td>
 										<td>${clientInfo.userName }</td>
 										<td>${clientInfo.userDate }</td>
@@ -99,7 +99,7 @@
 									<tr>
 										<td>${clientNotice.rNum }</td>
 										<td>
-											<a href="/selectClientNotice.do?clientNoticeNo=${clientNotice.clientNoticeNo }">${clientNotice.clientNoticeTitle }</a>
+											<a href="/selectClientNotice.do?clientNoticeNo=${clientNotice.clientNoticeNo }"><strong>${clientNotice.clientNoticeTitle }</strong></a>
 										</td>
 										<td>
 											<c:if test="${not empty clientNotice.clientNoticeFilePath }">
@@ -131,7 +131,7 @@
 									<tr>
 										<td>${ceoNotice.rNum }</td>
 										<td>
-											<a href="/selectCeoNotice.do?ceoNoticeNo=${ceoNotice.ceoNoticeNo }">${ceoNotice.ceoNoticeTitle }</a>
+											<a href="/selectCeoNotice.do?ceoNoticeNo=${ceoNotice.ceoNoticeNo }"><strong>${ceoNotice.ceoNoticeTitle }</strong></a>
 										</td>
 										<td>
 											<c:if test="${not empty ceoNotice.ceoNoticeFilePath }">

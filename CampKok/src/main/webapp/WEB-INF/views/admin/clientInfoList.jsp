@@ -50,7 +50,7 @@
 								<tr>
 									<td>${clientInfo.rNum }</td>
 									<td>
-										<a href="/selectClientInfo.do?userNo=${clientInfo.userNo }">${clientInfo.userId }</a>
+										<a href="/selectClientInfo.do?userNo=${clientInfo.userNo }"><strong>${clientInfo.userId }</strong></a>
 									</td>
 									<td>${clientInfo.userName }</td>
 									<td>${clientInfo.userPhone }</td>
