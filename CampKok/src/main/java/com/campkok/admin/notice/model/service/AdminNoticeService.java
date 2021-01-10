@@ -1,7 +1,6 @@
 package com.campkok.admin.notice.model.service;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -66,29 +65,30 @@ public class AdminNoticeService {
 		return cnpd;
 	}
 
-	public CeoNoticePageData selectCeoNoticeList(int reqPage, HashMap<String, String> map) {
-		int totalSearchCeoNotice = dao.getTotalSearchCeoNotice(map);
+	public CeoNoticePageData searchCeoNoticeList(int reqPage, String searchCategory, String search) {
+		int totalSearchCeoNotice = dao.getTotalSearchCeoNotice(searchCategory, search);
 		int numPerPage = 10;
 		int totalPage = (totalSearchCeoNotice / numPerPage == 0) ? (totalSearchCeoNotice / numPerPage)
 				: (totalSearchCeoNotice / numPerPage) + 1;
 		int start = (reqPage - 1) * numPerPage + 1;
 		int end = reqPage * numPerPage;
 
-		ArrayList<CeoNotice> list = dao.selectCeoNoticeList(start, end);
-
+		ArrayList<CeoNotice> list = dao.searchCeoNoticeList(start, end, searchCategory, search);
 		int pageNaviSize = 5;
 		String pageNavi = "";
 		int pageNo = ((reqPage - 1) / pageNaviSize) * pageNaviSize + 1;
 
 		if (pageNo != 1) {
-			pageNavi += "<a class='btn' href='/searchCeoNotice.do?reqPage=" + (pageNo - 1) + "'>이전</a>";
+			pageNavi += "<a class='btn' href='/searchCeoNotice.do?reqPage=" + (pageNo - 1) + "&searchCategory="
+					+ searchCategory + "&search=" + search + "'>이전</a>";
 		}
 
 		for (int i = 0; i < pageNaviSize; i++) {
 			if (reqPage == pageNo) {
 				pageNavi += "<span class='selectPage'>" + pageNo + "</span>";
 			} else {
-				pageNavi += "<a class='btn' href='/searchCeoNotice.do?reqPage=" + pageNo + "'>" + pageNo + "</a>";
+				pageNavi += "<a class='btn' href='/searchCeoNotice.do?reqPage=" + pageNo + "&searchCategory="
+						+ searchCategory + "&search=" + search + "'>" + pageNo + "</a>";
 			}
 			pageNo++;
 			if (pageNo > totalPage)
@@ -96,7 +96,8 @@ public class AdminNoticeService {
 		}
 
 		if (pageNo <= totalPage) {
-			pageNavi += "<a class='btn' href='/searchCeoNotice.do?reqPage=" + pageNo + "'>다음</a>";
+			pageNavi += "<a class='btn' href='/searchCeoNotice.do?reqPage=" + pageNo + "&searchCategory="
+					+ searchCategory + "&search=" + search + "'>다음</a>";
 		}
 		CeoNoticePageData cnpd = new CeoNoticePageData(list, pageNavi);
 

@@ -20,8 +20,13 @@ public class AdminNoticeDao {
 	public int getTotalCeoNotice() {
 		return session.selectOne("adminNotice.getCeoNoticeCount");
 	}
-	
-	public int getTotalSearchCeoNotice(HashMap<String, String> map) {
+
+	public int getTotalSearchCeoNotice(String searchCategory, String search) {
+		HashMap<String, String> map = new HashMap<String, String>();
+
+		map.put("searchCategory", searchCategory);
+		map.put("search", search);
+
 		return session.selectOne("adminNotice.getSearchCeoNoticeCount", map);
 	}
 
@@ -36,6 +41,19 @@ public class AdminNoticeDao {
 		map.put("end", end);
 
 		List<CeoNotice> list = session.selectList("adminNotice.selectCeoNoticeList", map);
+
+		return (ArrayList<CeoNotice>) list;
+	}
+
+	public ArrayList<CeoNotice> searchCeoNoticeList(int start, int end, String searchCategory, String search) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+
+		map.put("start", start);
+		map.put("end", end);
+		map.put("searchCategory", searchCategory);
+		map.put("search", search);
+
+		List<CeoNotice> list = session.selectList("adminNotice.searchCeoNoticeList", map);
 
 		return (ArrayList<CeoNotice>) list;
 	}

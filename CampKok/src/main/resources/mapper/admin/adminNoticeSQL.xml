@@ -50,6 +50,32 @@
 		#{end}
 	</select>
 
+	<select id="searchCeoNoticeList" parameterType="HashMap" resultType="ceoNotice">
+		SELECT * FROM (SELECT ROWNUM AS rNum, n.* FROM(
+		SELECT
+		ceo_notice_no AS
+		ceoNoticeNo,
+		user_id AS userId,
+		ceo_notice_title AS ceoNoticeTitle,
+		ceo_notice_contents AS ceoNoticeContents,
+		ceo_notice_date AS ceoNoticeDate,
+		ceo_notice_filename
+		AS ceoNoticeFileName,
+		ceo_notice_filepath AS
+		ceoNoticeFilePath
+		FROM ceo_notice WHERE
+		<choose>
+			<when test="searchCategory.equals('noticeTitle')">
+				ceo_notice_title LIKE '%'||#{search}||'%'
+			</when>
+			<when test="searchCategory.equals('noticeWriter')">
+				user_id LIKE '%'||#{search}||'%'
+			</when>
+		</choose>
+		ORDER BY 1 DESC)n) WHERE rNum BETWEEN ${start} AND
+		${end}
+	</select>
+
 	<insert id="insertNotice" parameterType="notice">
 		<if test="userCategory.equals('ceo')">
 			INSERT INTO ceo_notice VALUES (
