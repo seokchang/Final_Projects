@@ -72,7 +72,7 @@
 								<tr>
 									<td>${ceoInfo.rNum }</td>
 									<td>
-										<a href="#">${ceoInfo.userId }</a>
+										<a href="/selectCeoInfo.do?userNo=${ceoInfo.userNo }"><strong>${ceoInfo.userId }</strong></a>
 									</td>
 									<td>${ceoInfo.userName }</td>
 									<td>${ceoInfo.userDate }</td>

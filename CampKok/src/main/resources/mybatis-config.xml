@@ -10,7 +10,9 @@
 		<typeAlias type="com.campkok.admin.notice.model.vo.Notice" alias="notice" />
 		<typeAlias type="com.campkok.admin.notice.model.vo.CeoNotice" alias="ceoNotice" />
 		<typeAlias type="com.campkok.admin.notice.model.vo.ClientNotice" alias="clientNotice" />
-		<typeAlias type="com.campkok.admin.user.model.vo.User" alias="user"/>
+		<typeAlias type="com.campkok.admin.user.model.vo.User" alias="user" />
+		<typeAlias type="com.campkok.admin.camp.model.vo.Camp" alias="camp" />
+		<typeAlias type="com.campkok.admin.camp.model.vo.CampEnv" alias="campEnv" />
 
 		<!-- Camp -->
 		<typeAlias type="com.campkok.camp.model.vo.CampVO" alias="c" />
@@ -18,7 +20,7 @@
 		<typeAlias type="com.campkok.customer.model.vo.UserVO" alias="u" />
 
 		<!-- Customer -->
-		<typeAlias type="com.campkok.customer.model.vo.UserVO" alias="u"/>
-		<typeAlias type="com.campkok.customer.model.vo.ReservationVO" alias="r"/>
+		<typeAlias type="com.campkok.customer.model.vo.UserVO" alias="u" />
+		<typeAlias type="com.campkok.customer.model.vo.ReservationVO" alias="r" />
 	</typeAliases>
 </configuration>

@@ -31,7 +31,7 @@
 								<tr>
 									<td>
 										<select class="form-control" id="search-category" name="searchCategory">
-											<option value="noticeTitle">제목</option>
+											<option value="noticeTitle" selected="selected">제목</option>
 											<option value="noticeWriter">작성자</option>
 										</select>
 									</td>

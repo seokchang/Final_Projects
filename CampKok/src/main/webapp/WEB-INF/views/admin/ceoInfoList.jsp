@@ -23,14 +23,27 @@
 				<h1>사업자정보 관리</h1>
 				<hr>
 				<div class="search-wrap">
-					<select class="form-control" name="userCategory" id="select-userCategory">
-						<option value="client">아이디</option>
-						<option value="ceo">이름</option>
-					</select>
-					<input class="form-control" type="text" name="search">
-					<button class="btnSearch" onclick="">
-						<img alt="Not Found Search" src="/resources/img/admin/baseline_search_black_18dp.png">
-					</button>
+					<form action="/searchCeoInfo.do" method="GET">
+						<input type="hidden" name="reqPage" value="1">
+						<table>
+							<tbody>
+								<tr>
+									<td>
+										<select class="form-control" id="search-category" name="searchCategory">
+											<option value="userId" selected="selected">아이디</option>
+											<option value="userName">이름</option>
+										</select>
+									</td>
+									<td>
+										<input class="form-control" id="search" type="text" name="search">
+									</td>
+									<td>
+										<input class="form-control" id="btnSearch" type="submit" value="">
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</form>
 				</div>
 
 				<div class="table-wrap">
@@ -40,9 +53,9 @@
 								<th>번호</th>
 								<th>아이디</th>
 								<th>이름</th>
+								<th>캠핑장명</th>
 								<th>전화번호</th>
 								<th>주소</th>
-								<th>포인트</th>
 								<th>가입일</th>
 								<th></th>
 							</tr>
@@ -50,12 +63,14 @@
 								<tr>
 									<td>${ceoInfo.rNum }</td>
 									<td>
-										<a href="#">${ceoInfo.userId }</a>
+										<a href="#"><strong>${ceoInfo.userId }</strong></a>
 									</td>
 									<td>${ceoInfo.userName }</td>
+									<td>
+										<a href=#><strong>${campInfo.campName }</strong></a>
+									</td>
 									<td>${ceoInfo.userPhone }</td>
 									<td>${ceoInfo.userAddr }</td>
-									<td>${ceoInfo.userPoint }</td>
 									<td>${ceoInfo.userDate }</td>
 									<td>
 										<button class="btn btn-warning btn-md" onclick="">상세보기</button>

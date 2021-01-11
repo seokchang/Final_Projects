@@ -61,6 +61,46 @@ public class AdminUserService {
 		return auipd;
 	}
 
+	public AdminUserInfoPageData searchClientInfoList(int reqPage, String searchCategory, String search) {
+		int totalSearchClientInfo = dao.getTotalSearchClientInfo(searchCategory, search);
+		int numPerPage = 10;
+		int totalPage = (totalSearchClientInfo / numPerPage == 0) ? (totalSearchClientInfo / numPerPage)
+				: (totalSearchClientInfo / numPerPage) + 1;
+		int start = (reqPage - 1) * numPerPage + 1;
+		int end = reqPage * numPerPage;
+
+		ArrayList<User> list = dao.getSearchClientInfoList(start, end, searchCategory, search);
+
+		int pageNaviSize = 5;
+		String pageNavi = "";
+		int pageNo = ((reqPage - 1) / pageNaviSize) * pageNaviSize + 1;
+
+		if (pageNo != 1) {
+			pageNavi += "<a class='btn' href='/searchClientInfo.do?reqPage=" + (pageNo - 1) + "&searchCategory="
+					+ searchCategory + "&search=" + search + "'>이전</a>";
+		}
+
+		for (int i = 0; i < pageNaviSize; i++) {
+			if (reqPage == pageNo) {
+				pageNavi += "<span class='selectPage'>" + pageNo + "</span>";
+			} else {
+				pageNavi += "<a class='btn' href='/searchClientInfo.do?reqPage=" + pageNo + "&searchCategory="
+						+ searchCategory + "&search=" + search + "'>" + pageNo + "</a>";
+			}
+			pageNo++;
+			if (pageNo > totalPage)
+				break;
+		}
+
+		if (pageNo <= totalPage) {
+			pageNavi += "<a class='btn' href='/searchClientInfo.do?reqPage=" + pageNo + "&searchCategory="
+					+ searchCategory + "&search=" + search + "'>다음</a>";
+		}
+		AdminUserInfoPageData auipd = new AdminUserInfoPageData(list, pageNavi);
+
+		return auipd;
+	}
+
 	@Transactional
 	public int updateClientInfo(User clientInfo) {
 		return dao.updateClientInfo(clientInfo);

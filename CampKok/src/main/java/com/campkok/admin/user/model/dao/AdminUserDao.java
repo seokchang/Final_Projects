@@ -20,6 +20,15 @@ public class AdminUserDao {
 		return session.selectOne("adminUserInfo.getClientInfoCount");
 	}
 
+	public int getTotalSearchClientInfo(String searchCategory, String search) {
+		HashMap<String, String> map = new HashMap<String, String>();
+
+		map.put("searchCategory", searchCategory);
+		map.put("search", search);
+
+		return session.selectOne("adminUserInfo.getSearchClientInfoCount", map);
+	}
+
 	public User selectClientInfo(int userNo) {
 		return session.selectOne("adminUserInfo.selectClientInfo", userNo);
 	}
@@ -31,6 +40,19 @@ public class AdminUserDao {
 		map.put("end", end);
 
 		List<User> list = session.selectList("adminUserInfo.selectClientInfoList", map);
+
+		return (ArrayList<User>) list;
+	}
+
+	public ArrayList<User> getSearchClientInfoList(int start, int end, String searchCategory, String search) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+
+		map.put("start", start);
+		map.put("end", end);
+		map.put("searchCategory", searchCategory);
+		map.put("search", search);
+
+		List<User> list = session.selectList("adminUserInfo.getSearchClientInfoList", map);
 
 		return (ArrayList<User>) list;
 	}
