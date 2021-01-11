@@ -29,7 +29,7 @@
 		<li>
 			<a href="javascript:void(0)" id="camp">캠핑장정보 관리</a>
 			<ul class="submenu">
-				<li><a href="#">캠핑장 리스트</a></li>
+				<li><a href="/selectCampInfoList.do?reqPage=1">캠핑장 리스트</a></li>
 				<li><a href="#">신규등록 관리</a></li>
 			</ul>
 		</li>

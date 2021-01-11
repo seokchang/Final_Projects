@@ -149,8 +149,29 @@
 					<!-- Camp Info -->
 					<div id="camp-info">
 						<h3>
-							<a href="#">캠핑장 관리</a>
+							<a href="/selectCampInfoList.do?reqPage=1">캠핑장 관리</a>
 						</h3>
+						<table class="table table-striped">
+							<tr>
+								<th>번호</th>
+								<th>사업자명</th>
+								<th>캠핑장명</th>
+								<th>주소</th>
+							</tr>
+							<c:forEach items="${campInfoList }" var="campInfo" begin="0" end="4" step="1">
+								<tr>
+									<td>${campInfo.rNum }</td>
+									<td>
+										<a href="#"><strong>${campInfo.ceoId }</strong></a>
+									</td>
+									<td>
+										<a href="#"><strong>${campInfo.campName }</strong></a>
+									</td>
+									<td>${campInfo.campAddr }</td>
+								</tr>
+							</c:forEach>
+						</table>
+						<button class="btn btn-warning btn-md" onclick="location.href='/selectCampInfoList.do?reqPage=1'">리스트보기</button>
 					</div>
 
 					<!-- Board Info -->

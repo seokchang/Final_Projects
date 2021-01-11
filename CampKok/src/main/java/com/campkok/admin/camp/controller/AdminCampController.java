@@ -6,19 +6,21 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.campkok.admin.camp.model.service.AdminCampService;
-import com.campkok.admin.camp.model.vo.Camp;
+import com.campkok.admin.camp.model.vo.AdminCampInfoPageData;
 
 @Controller
 public class AdminCampController {
 	@Autowired
 	private AdminCampService service;
 	
-	@RequestMapping("")
-	public String selectCampInfo(String ceoId, Model model) {
-		Camp campInfo = service.selectCampInfo(ceoId);
+	@RequestMapping("/selectCampInfoList.do")
+	public String selectCampInfoList(int reqPage, Model model) {
+		AdminCampInfoPageData acipd = service.selectCampInfoList(reqPage);
 		
-		model.addAttribute("campInfo", campInfo);
+		model.addAttribute("list", acipd.getList());
+		model.addAttribute("pageNavi", acipd.getPageNavi());
 		
-		return "/admin/campInfoView";
+		return "/admin/campInfoList";
 	}
+
 }

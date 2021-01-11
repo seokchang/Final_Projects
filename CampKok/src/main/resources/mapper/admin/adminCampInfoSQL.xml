@@ -1,17 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="adminCamp">
-	<select id="selectCampInfo" parameterType="string" resultType="camp">
+	<select id="getTotalCampCount" resultType="_int">
+		SELECT count(*) FROM camp
+	</select>
+
+	<select id="selectCampInfoList" parameterType="HashMap" resultType="camp">
+		SELECT * FROM (SELECT ROWNUM AS rNum, c.* FROM (
 		SELECT
 		camp_no AS campNo,
 		ceo_id AS ceoId,
-		camp_name AS campName,
 		camp_addr AS campAddr,
+		camp_name AS campName,
 		camp_site AS campSite,
 		camp_tel AS campTel,
 		camp_theme AS campTheme,
 		camp_fac AS campFac,
 		camp_ctg AS campCtg
-		FROM camp WHERE ceo_id = #{_parameter}
+		FROM camp
+		)c)
+		WHERE rNum BETWEEN #{start} AND #{end}
 	</select>
 </mapper>
