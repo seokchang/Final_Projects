@@ -120,6 +120,18 @@
 		SELECT count(*) FROM client_notice
 	</select>
 
+	<select id="getSearchClientNoticeCount" parameterType="HashMap" resultType="_int">
+		SELECT count(*) FROM client_notice WHERE
+		<choose>
+			<when test="searchCategory.equals('noticeTitle')">
+				client_notice_title LIKE '%'||#{search}||'%'
+			</when>
+			<when test="searchCategory.equals('noticeWriter')">
+				user_id LIKE '%'||#{search}||'%'
+			</when>
+		</choose>
+	</select>
+
 	<select id="selectClientNotice" parameterType="_int" resultType="clientNotice">
 		SELECT
 		client_notice_no AS clientNoticeNo,
@@ -151,6 +163,30 @@
 		)n)
 		WHERE rNum BETWEEN
 		#{start} AND #{end}
+	</select>
+
+	<select id="searchClientNoticeList" parameterType="HashMap" resultType="clientNotice">
+		SELECT * FROM (SELECT ROWNUM AS rNum, n.* FROM (
+		SELECT
+		client_notice_no AS clientNoticeNo,
+		user_id AS userId,
+		client_notice_title AS clientNoticeTitle,
+		client_notice_contents AS clientNoticeContents,
+		client_notice_date AS clientNoticeDate,
+		client_notice_fileName AS clientNoticeFileName,
+		client_notice_filePath AS clientNoticeFilePath
+		FROM
+		client_notice WHERE
+		<choose>
+			<when test="searchCategory.equals('noticeTitle')">
+				client_notice_title LIKE '%'||#{search}||'%'
+			</when>
+			<when test="searchCategory.equals('noticeWriter')">
+				user_id LIKE '%'||#{search}||'%'
+			</when>
+		</choose>
+		ORDER BY 1 DESC
+		)n) WHERE rNum BETWEEN ${start} AND ${end}
 	</select>
 
 	<update id="updateClientNotice" parameterType="clientNotice">

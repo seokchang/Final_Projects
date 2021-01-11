@@ -112,10 +112,61 @@ public class AdminNoticeService {
 	}
 
 	@Transactional
+	public int updateCeoNotice(CeoNotice ceoNotice) {
+		return dao.updateCeoNotice(ceoNotice);
+	}
+
+	@Transactional
 	public int deleteCeoNotice(int ceoNoticeNo) {
 		int result = dao.deleteCeoNotice(ceoNoticeNo);
 
 		return result;
+	}
+
+	// *********************************************************************************************************
+
+	public ClientNoticePageData searchClientNotice(int reqPage, String searchCategory, String search) {
+		int totalSearchClientNotice = dao.getTotalClientNoticeCount(searchCategory, search);
+		int numPerPage = 10;
+		int totalPage = (totalSearchClientNotice / numPerPage == 0) ? (totalSearchClientNotice / numPerPage)
+				: (totalSearchClientNotice / numPerPage) + 1;
+		int start = (reqPage - 1) * numPerPage + 1;
+		int end = reqPage * numPerPage;
+
+		ArrayList<ClientNotice> list = dao.searchClientNoticeList(start, end, searchCategory, search);
+
+		int pageNaviSize = 5;
+		String pageNavi = "";
+		int pageNo = ((reqPage - 1) / pageNaviSize) * pageNaviSize + 1;
+
+		if (pageNo != 1) {
+			pageNavi += "<a class='btn' href='/searchClientNotice.do?reqPage=" + (pageNo - 1) + "&searchCategory="
+					+ searchCategory + "&search=" + search + "'>이전</a>";
+		}
+
+		for (int i = 0; i < pageNaviSize; i++) {
+			if (reqPage == pageNo) {
+				pageNavi += "<span class='selectPage'>" + pageNo + "</span>";
+			} else {
+				pageNavi += "<a class='btn' href='/searchClientNotice.do?reqPage=" + pageNo + "&searchCategory="
+						+ searchCategory + "&search=" + search + "'>" + pageNo + "</a>";
+			}
+			pageNo++;
+			if (pageNo > totalPage)
+				break;
+		}
+
+		if (pageNo <= totalPage) {
+			pageNavi += "<a class='btn' href='/searchClientNotice.do?reqPage=" + pageNo + "&searchCategory="
+					+ searchCategory + "&search=" + search + "'>다음</a>";
+		}
+		ClientNoticePageData cnpd = new ClientNoticePageData(list, pageNavi);
+
+		return cnpd;
+	}
+
+	public ClientNotice selectClientNotice(int clientNoticeNo) {
+		return dao.selectClientNotice(clientNoticeNo);
 	}
 
 	public ClientNoticePageData selectClientNoticeList(int reqPage) {
@@ -159,15 +210,6 @@ public class AdminNoticeService {
 		ClientNoticePageData cnpd = new ClientNoticePageData(list, pageNavi);
 
 		return cnpd;
-	}
-
-	public ClientNotice selectClientNotice(int clientNoticeNo) {
-		return dao.selectClientNotice(clientNoticeNo);
-	}
-
-	@Transactional
-	public int updateCeoNotice(CeoNotice ceoNotice) {
-		return dao.updateCeoNotice(ceoNotice);
 	}
 
 	@Transactional

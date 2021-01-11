@@ -76,6 +76,19 @@ public class AdminNoticeDao {
 		return session.selectOne("adminNotice.getClientNoticeCount");
 	}
 
+	public int getTotalClientNoticeCount(String searchCategory, String search) {
+		HashMap<String, String> map = new HashMap<String, String>();
+
+		map.put("searchCategory", searchCategory);
+		map.put("search", search);
+
+		return session.selectOne("adminNotice.getSearchClientNoticeCount", map);
+	}
+
+	public ClientNotice selectClientNotice(int clientNoticeNo) {
+		return session.selectOne("adminNotice.selectClientNotice", clientNoticeNo);
+	}
+
 	public ArrayList<ClientNotice> selectClientNoticeList(int start, int end) {
 		HashMap<String, Integer> map = new HashMap<String, Integer>();
 
@@ -87,8 +100,17 @@ public class AdminNoticeDao {
 		return (ArrayList<ClientNotice>) list;
 	}
 
-	public ClientNotice selectClientNotice(int clientNoticeNo) {
-		return session.selectOne("adminNotice.selectClientNotice", clientNoticeNo);
+	public ArrayList<ClientNotice> searchClientNoticeList(int start, int end, String searchCategory, String search) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+
+		map.put("start", start);
+		map.put("end", end);
+		map.put("searchCategory", searchCategory);
+		map.put("search", search);
+
+		List<ClientNotice> list = session.selectList("adminNotice.searchClientNoticeList", map);
+
+		return (ArrayList<ClientNotice>) list;
 	}
 
 	public int updateClientNotice(ClientNotice clientNotice) {

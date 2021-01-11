@@ -192,6 +192,18 @@ public class AdminNoticeController {
 		return "/common/msg";
 	}
 
+	// ****************************************************************************************************
+
+	@RequestMapping("/searchClientNotice.do")
+	public String searchClientNotice(int reqPage, String searchCategory, String search, Model model) {
+		ClientNoticePageData cnpd = nService.searchClientNotice(reqPage, searchCategory, search);
+
+		model.addAttribute("list", cnpd.getList());
+		model.addAttribute("pageNavi", cnpd.getPageNavi());
+
+		return "/admin/clientNoticeList";
+	}
+
 	@RequestMapping("/selectClientNotice.do")
 	public String selectClientNotice(int clientNoticeNo, Model model) {
 		ClientNotice clientNotice = nService.selectClientNotice(clientNoticeNo);
