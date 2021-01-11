@@ -13,7 +13,11 @@ public class UserService {
 	private UserDao dao;
 
 	public int insertUser(UserVO u) {
-		//int result = dao.insertUser;
-		return 0;
+		int result = dao.insertUser(u);
+		return result;
+	}
+
+	public UserVO selectOneUser(UserVO u) {
+		return dao.selectOneUser(u);
 	}
 }
