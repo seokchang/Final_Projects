@@ -46,7 +46,7 @@
             </table>
             <table class="notice-tbl2">
                 <tr>
-                    <th style="width: 200px;">이전글</th>
+                    <th style="width: 200px;">다음글</th>
                     <td><a href="#">공지사항입니다</a></td>
                 </tr>
                 <tr>
