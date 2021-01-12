@@ -21,5 +21,7 @@
 	<a href="/mainCeoNoticeList.do?reqPage=1">공지사항</a>
 	<h3>사업자_기현</h3>
 	<a href="/camp/kihyun.do">사업자_기현페이지</a>
+	<a href="/mypage.do?userNo=2">마이페이지</a>
+	<a href="/camp/jinwoo.do">진우 작업페이지</a>
 </body>
 </html>
