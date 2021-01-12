@@ -21,18 +21,31 @@
 
 			<!-- Main -->
 			<div class="content-main">
-				<h1>CEO 공지사항 리스트</h1>
+				<h1>사업자 공지사항</h1>
 				<hr>
 				<div class="search-wrap">
-					<select class="form-control" name="userCategory" id="select-userCategory">
-						<option value="client">제목</option>
-						<option value="ceo">작성자</option>
-					</select>
-					<input class="form-control" type="text" name="search">
-					<button class="btnSearch" onclick="">
-						<img alt="Not Found Search" src="/resources/img/admin/baseline_search_black_18dp.png">
-					</button>
-					<button class="btnWriteNotice" onclick="">글쓰기</button>
+					<form action="/searchCeoNotice.do?" method="GET">
+						<input type="hidden" name="reqPage" value="1">
+						<table>
+							<tbody>
+								<tr>
+									<td>
+										<select class="form-control" id="search-category" name="searchCategory">
+											<option value="noticeTitle" selected="selected">제목</option>
+											<option value="noticeWriter">작성자</option>
+										</select>
+									</td>
+									<td>
+										<input class="form-control" id="search" type="text" name="search">
+									</td>
+									<td>
+										<input class="form-control" id="btnSearch" type="submit" value="">
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</form>
+					<button class="btnWriteNotice" onclick="location.href='/pageNoticeForm.do'">공지사항 작성</button>
 				</div>
 
 				<div class="table-wrap">
@@ -49,12 +62,18 @@
 							<c:forEach items="${list }" var="ceoNotice" varStatus="index">
 								<tr>
 									<td>${ceoNotice.rNum }</td>
-									<td>${ceoNotice.ceoNoticeTitle }</td>
-									<td>${ceoNotice.ceoNoticeFileName }</td>
+									<td>
+										<a href="/selectCeoNotice.do?ceoNoticeNo=${ceoNotice.ceoNoticeNo }"><strong>${ceoNotice.ceoNoticeTitle }</strong></a>
+									</td>
+									<td>
+										<c:if test="${not empty ceoNotice.ceoNoticeFileName }">
+											<img class="img-file" src="/resources/img/admin/free-icon-attached-file-1209914.png">
+										</c:if>
+									</td>
 									<td>${ceoNotice.userId }</td>
 									<td>${ceoNotice.ceoNoticeDate }</td>
 									<td>
-										<button class="btn btn-warning btn-sm" id="btnNoticeView">상세보기</button>
+										<button class="btn btn-warning btn-sm" onclick="location.href='/selectCeoNotice.do?ceoNoticeNo=${ceoNotice.ceoNoticeNo}'">상세보기</button>
 									</td>
 								</tr>
 							</c:forEach>
@@ -67,6 +86,6 @@
 	</div>
 
 	<link rel="stylesheet" href="/resources/css/admin/adminDesignCommon.css">
-	<link rel="stylesheet" href="/resources/css/admin/ceoNoticeList.css">
+	<link rel="stylesheet" href="/resources/css/admin/adminDesignList.css">
 </body>
 </html>

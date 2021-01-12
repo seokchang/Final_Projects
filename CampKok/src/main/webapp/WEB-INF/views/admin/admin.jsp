@@ -28,25 +28,90 @@
 
 				</ul>
 				<div class="content-list">
-					<!-- Statistics -->
-					<div id="statistics">
+					<!-- Client Info -->
+					<div id="client-info">
 						<h3>
-							<a href="#">통계</a>
+							<a href="/selectClientInfoList.do?reqPage=1">고객정보 관리</a>
 						</h3>
+						<table class="table table-striped">
+							<tbody>
+								<tr>
+									<th>번호</th>
+									<th>아이디</th>
+									<th>이름</th>
+									<th>가입일</th>
+								</tr>
+								<c:forEach items="${clientInfoList }" var="clientInfo" begin="0" end="4" step="1">
+									<tr>
+										<td>${clientInfo.rNum }</td>
+										<td>
+											<a href="/selectClientInfo.do?userNo=${clientInfo.userNo }"><strong>${clientInfo.userId }</strong></a>
+										</td>
+										<td>${clientInfo.userName }</td>
+										<td>${clientInfo.userDate }</td>
+									</tr>
+								</c:forEach>
+							</tbody>
+						</table>
+						<button class="btn btn-warning btn-md" onclick="location.href='/selectClientInfoList.do?reqPage=1'">리스트 보기</button>
 					</div>
 
-					<!-- Board -->
-					<div id="board">
+					<!-- CEO Info -->
+					<div id="ceo-info">
 						<h3>
-							<a href="#">자유게시판</a>
+							<a href="/selectCeoInfoList.do?reqPage=1">사업자정보 관리</a>
 						</h3>
+						<table class="table table-striped">
+							<tr>
+								<th>번호</th>
+								<th>아이디</th>
+								<th>이름</th>
+								<th>가입일</th>
+							</tr>
+							<c:forEach items="${ceoInfoList }" var="ceoInfo" begin="0" end="4" step="1">
+								<tr>
+									<td>${ceoInfo.rNum }</td>
+									<td>
+										<a href="/selectCeoInfo.do?userNo=${ceoInfo.userNo }"><strong>${ceoInfo.userId }</strong></a>
+									</td>
+									<td>${ceoInfo.userName }</td>
+									<td>${ceoInfo.userDate }</td>
+								</tr>
+							</c:forEach>
+						</table>
+						<button class='btn btn-warning btn-md' onclick="location.href='/selectCeoInfoList.do?reqPage=1'">리스트 보기</button>
 					</div>
 
 					<!-- Client Notice -->
 					<div id="client-notice">
 						<h3>
-							<a href="#">고객 공지사항</a>
+							<a href="/selectClientNoticeList.do?reqPage=1">고객 공지사항</a>
 						</h3>
+						<table class='table table-striped'>
+							<tbody>
+								<tr>
+									<th>번호</th>
+									<th>제목</th>
+									<th>첨부파일</th>
+									<th>등록일</th>
+								</tr>
+								<c:forEach items="${clientNoticeList }" var="clientNotice" begin="0" end="4" step="1">
+									<tr>
+										<td>${clientNotice.rNum }</td>
+										<td>
+											<a href="/selectClientNotice.do?clientNoticeNo=${clientNotice.clientNoticeNo }"><strong>${clientNotice.clientNoticeTitle }</strong></a>
+										</td>
+										<td>
+											<c:if test="${not empty clientNotice.clientNoticeFilePath }">
+												<img class="img-file" src="/resources/img/admin/free-icon-attached-file-1209914.png">
+											</c:if>
+										</td>
+										<td>${clientNotice.clientNoticeDate }</td>
+									</tr>
+								</c:forEach>
+							</tbody>
+						</table>
+						<button class='btn btn-warning btn-md' onclick="location.href='/selectClientNoticeList.do?reqPage=1'">리스트 보기</button>
 					</div>
 
 					<!-- CEO Notice -->
@@ -59,16 +124,20 @@
 								<tr>
 									<th>번호</th>
 									<th>제목</th>
-									<th>작성자</th>
+									<th>첨부파일</th>
 									<th>등록일</th>
 								</tr>
 								<c:forEach items="${ceoNoticeList }" var="ceoNotice" begin="0" end="4" step="1">
 									<tr>
 										<td>${ceoNotice.rNum }</td>
 										<td>
-											<a href="#">${ceoNotice.ceoNoticeTitle }</a>
+											<a href="/selectCeoNotice.do?ceoNoticeNo=${ceoNotice.ceoNoticeNo }"><strong>${ceoNotice.ceoNoticeTitle }</strong></a>
 										</td>
-										<td>${ceoNotice.userId }</td>
+										<td>
+											<c:if test="${not empty ceoNotice.ceoNoticeFilePath }">
+												<img class="img-file" src="/resources/img/admin/free-icon-attached-file-1209914.png">
+											</c:if>
+										</td>
 										<td>${ceoNotice.ceoNoticeDate }</td>
 									</tr>
 								</c:forEach>
@@ -77,17 +146,38 @@
 						<button class="btn btn-warning btn-md" onclick="location.href='/selectCeoNoticeList.do?reqPage=1'">리스트보기</button>
 					</div>
 
-					<!-- User Info -->
-					<div id="userInfo">
+					<!-- Camp Info -->
+					<div id="camp-info">
 						<h3>
-							<a href="#">회원정보</a>
+							<a href="/selectCampInfoList.do?reqPage=1">캠핑장 관리</a>
 						</h3>
+						<table class="table table-striped">
+							<tr>
+								<th>번호</th>
+								<th>사업자명</th>
+								<th>캠핑장명</th>
+								<th>주소</th>
+							</tr>
+							<c:forEach items="${campInfoList }" var="campInfo" begin="0" end="4" step="1">
+								<tr>
+									<td>${campInfo.rNum }</td>
+									<td>
+										<a href="#"><strong>${campInfo.ceoId }</strong></a>
+									</td>
+									<td>
+										<a href="#"><strong>${campInfo.campName }</strong></a>
+									</td>
+									<td>${campInfo.campAddr }</td>
+								</tr>
+							</c:forEach>
+						</table>
+						<button class="btn btn-warning btn-md" onclick="location.href='/selectCampInfoList.do?reqPage=1'">리스트보기</button>
 					</div>
 
-					<!-- Camp Info -->
-					<div id="campInfo">
+					<!-- Board Info -->
+					<div id="board">
 						<h3>
-							<a href="#">캠핑장정보</a>
+							<a href="#">자유게시판 관리</a>
 						</h3>
 					</div>
 

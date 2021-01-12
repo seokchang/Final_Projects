@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="user">
+	<!-- 회원가입 -->
+	<insert id="insertUser" parameterType="u">
+		insert into user_tbl values(
+			user_seq.nextval,
+			#{userId},
+			#{userPw},
+			#{userName},
+			#{userPhone},
+			#{userLevel},
+			#{userBirth},
+			#{userDate},
+			#{userGender},
+			#{userAddr},
+			#{userPoint}
+		)
+	</insert>
+	
+	<!-- 아이디 중복체크 -->
+	<select id="selectOneUser" parameterType="u" resultType="u">
+		select
+			user_no as userNo,
+			user_id as userId,
+			user_pw as userPw,
+			user_name as userName,
+			user_Phone as userPhone,
+			user_level as userLevel,
+			user_birth as userBirth,
+			user_date as userDate,
+			user_gender as userGender,
+			user_addr as userAddr,
+			user_point as userPoint
+		from user_tbl where
+		<trim prefixOverrides="and">
+			<choose>
+				<when test="userId != null">
+				user_id=#{userId} 
+				</when>
+				<when test="userPw != null">
+				and user_pw=#{userPw}
+				</when>
+				<when test="userNo != null">
+				user_no=#{userNo}
+				</when>
+			</choose>
+		</trim>
+	</select>
+</mapper>
