@@ -6,15 +6,12 @@
 	</settings>
 
 	<typeAliases>
-<<<<<<< .merge_file_a12184
 		<!-- Admin -->
 		<typeAlias type="com.campkok.admin.model.vo.CeoNotice" alias="ceoNotice" />
 		<typeAlias type="com.campkok.admin.model.vo.ClientNotice" alias="clientNotice" />
 
 		<!-- Camp -->
 		<typeAlias type="com.campkok.camp.model.vo.CampVO" alias="c" />
-=======
 		<typeAlias type="com.campkok.customer.model.vo.UserVO" alias="u"/>
->>>>>>> .merge_file_a16480
 	</typeAliases>
 </configuration>

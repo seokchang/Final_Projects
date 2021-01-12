@@ -19,6 +19,7 @@
 	<a href="/camp/kihyun.do">사업자_기현페이지</a>
 =======
 	<a href="/mypage.do?userNo=2">마이페이지</a>
->>>>>>> .merge_file_a04384
+>>>>>>> .merge_file_a04384<br>
+	<a href="/camp/jinwoo.do">진우 작업페이지</a>
 </body>
 </html>
