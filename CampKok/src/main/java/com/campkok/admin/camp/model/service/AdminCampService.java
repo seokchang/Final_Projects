@@ -29,7 +29,7 @@ public class AdminCampService {
 
 		for (Camp camp : list) {
 			User ceoInfo = userDao.selectCeoInfo(camp.getCeoId());
-			
+
 			camp.setCeoInfo(ceoInfo);
 		}
 
@@ -54,6 +54,52 @@ public class AdminCampService {
 
 		if (pageNo <= totalPage) {
 			pageNavi += "<a class='btn' href='/selectCampInfoList.do?reqPage=" + pageNo + "'>다음</a>";
+		}
+		AdminCampInfoPageData acipd = new AdminCampInfoPageData(list, pageNavi);
+
+		return acipd;
+	}
+
+	public AdminCampInfoPageData searchCampInfoList(int reqPage, String searchCategory, String search) {
+		int totalSearchCampInfo = dao.getTotalSearchCampCount(searchCategory, search);
+		int numPerPage = 10;
+		int totalPage = (totalSearchCampInfo / numPerPage == 0) ? (totalSearchCampInfo / numPerPage)
+				: (totalSearchCampInfo / numPerPage) + 1;
+		int start = (reqPage - 1) / numPerPage + 1;
+		int end = reqPage * numPerPage;
+
+		ArrayList<Camp> list = dao.searchCampInfoList(start, end, searchCategory, search);
+
+		for (Camp camp : list) {
+			User user = userDao.selectCeoInfo(camp.getCeoId());
+
+			camp.setCeoInfo(user);
+		}
+
+		int pageNaviSize = 5;
+		String pageNavi = "";
+		int pageNo = ((reqPage - 1) / pageNaviSize) * pageNaviSize + 1;
+
+		if (pageNo != 1) {
+			pageNavi += "<a class='btn' href='/searchCampInfoList.do?reqPage=" + (pageNo - 1) + "&searchCategory="
+					+ searchCategory + "&search=" + search + "'>이전</a>";
+		}
+
+		for (int i = 0; i < pageNaviSize; i++) {
+			if (reqPage == pageNo) {
+				pageNavi += "<span class='selectPage'>" + pageNo + "</span>";
+			} else {
+				pageNavi += "<a class='btn' href='/searchCampInfoList.do?reqPage=" + pageNo + "&searchCategory="
+						+ searchCategory + "&search=" + search + "'>" + pageNo + "</a>";
+			}
+			pageNo++;
+			if (pageNo > totalPage)
+				break;
+		}
+
+		if (pageNo <= totalPage) {
+			pageNavi += "<a class='btn' href='/searchCampInfoList.do?reqPage=" + pageNo + "&searchCategory="
+					+ searchCategory + "&search=" + search + "'>다음</a>";
 		}
 		AdminCampInfoPageData acipd = new AdminCampInfoPageData(list, pageNavi);
 

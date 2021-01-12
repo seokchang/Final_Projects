@@ -23,15 +23,16 @@
 				<h1>캠핑장정보 관리</h1>
 				<hr>
 				<div class="search-wrap">
-					<form action="/searchCampInfo.do" method="GET">
+					<form action="/searchCampInfoList.do" method="GET">
 						<input type="hidden" name="reqPage" value="1">
 						<table>
 							<tbody>
 								<tr>
 									<td>
 										<select class="form-control" id="search-category" name="searchCategory">
-											<option value="campName" selected="selected">캠핑장명</option>
+											<option value="ceoName" selected="selected">사업자명</option>
 											<option value="ceoId">아이디</option>
+											<option value="campName">캠핑장명</option>
 										</select>
 									</td>
 									<td>

@@ -5,18 +5,35 @@
 		SELECT count(*) FROM camp
 	</select>
 
+	<select id="getSearchCampInfoCount" parameterType="HashMap" resultType="_int">
+		SELECT count(*)
+		<choose>
+			<when test="searchCategory.equals('ceoName')">
+				FROM camp, user_tbl WHERE camp.ceo_id = user_tbl.user_id AND user_tbl.user_name LIKE '%'||#{search}||'%'
+			</when>
+			<when test="searchCategory.equals('ceoId')">
+				FROM camp WHERE ceo_id LIKE '%'||#{search}||'%'
+			</when>
+			<when test="searchCategory.equals('campName')">
+				FROM camp WHERE camp_name LIKE '%'||#{search}||'%'
+			</when>
+		</choose>
+	</select>
+
 	<select id="selectCampInfo" parameterType="string" resultType="camp">
 		SELECT
 		camp_no AS campNo,
 		ceo_id AS ceoId,
 		camp_addr AS campAddr,
-		camp_name AS campName,
+		camp_name AS
+		campName,
 		camp_site AS campSite,
 		camp_tel AS campTel,
 		camp_theme AS campTheme,
 		camp_fac AS campFac,
 		camp_Ctg AS campCtg
-		FROM camp WHERE ceo_id = #{_parameter}
+		FROM camp WHERE ceo_id =
+		#{_parameter}
 	</select>
 
 	<select id="selectCampInfoList" parameterType="HashMap" resultType="camp">
@@ -34,5 +51,34 @@
 		FROM camp
 		)c)
 		WHERE rNum BETWEEN #{start} AND #{end}
+	</select>
+
+	<select id="searchCampInfoList" parameterType="HashMap" resultType="camp">
+		SELECT * FROM (SELECT ROWNUM AS rNum, c.* FROM (
+		SELECT
+		camp_no AS campNo,
+		ceo_id AS ceoId,
+		camp_addr AS campAddr,
+		camp_name AS campName,
+		camp_site AS
+		campSite,
+		camp_tel AS campTel,
+		camp_theme AS campTheme,
+		camp_fac AS campFac,
+		camp_ctg AS campCtg
+		<choose>
+			<when test="searchCategory.equals('ceoName')">
+				FROM camp, user_tbl WHERE camp.ceo_id = user_tbl.user_id AND user_tbl.user_name LIKE '%'||#{search}||'%'
+			</when>
+			<when test="searchCategory.equals('ceoId')">
+				FROM camp WHERE ceo_id LIKE '%'||#{search}||'%'
+			</when>
+			<when test="searchCategory.equals('campName')">
+				FROM camp WHERE camp_name LIKE '%'||#{search}||'%'
+			</when>
+		</choose>
+
+		)c)
+		WHERE rNum BETWEEN ${start} AND ${end}
 	</select>
 </mapper>
