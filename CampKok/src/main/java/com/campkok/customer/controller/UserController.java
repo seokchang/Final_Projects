@@ -33,6 +33,7 @@ public class UserController {
 	@RequestMapping("/customerJoin.do")
 	public String customerJoin(UserVO u, Model model) {
 		int result = service.insertUser(u);
+		System.out.println(u);
 		if(result>0) {
 			model.addAttribute("msg","환영합니다.");
 		}else {
