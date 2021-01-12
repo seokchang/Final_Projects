@@ -20,6 +20,10 @@
 		<typeAlias type="com.campkok.customer.model.vo.UserVO" alias="u" />
 
 		<!-- Customer -->
+		<typeAlias type="com.campkok.customer.model.vo.UserVO" alias="u"/>
+		<typeAlias type="com.campkok.customer.model.vo.ReservationVO" alias="r"/>
+		<typeAlias type="com.campkok.customer.model.vo.ReviewVO" alias="rv"/>
+		<typeAlias type="com.campkok.customer.model.vo.PointVO" alias="p"/>
 		<typeAlias type="com.campkok.customer.model.vo.UserVO" alias="u" />
 		<typeAlias type="com.campkok.customer.model.vo.ReservationVO" alias="r" />
 	</typeAliases>
