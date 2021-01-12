@@ -79,6 +79,14 @@ public class AdminUserDao {
 		return session.selectOne("adminUserInfo.getSearchCeoInfoCount", map);
 	}
 
+	public User selectCeoInfo(int userNo) {
+		return session.selectOne("adminUserInfo.selectCeoInfo", userNo);
+	}
+	
+	public User selectCeoInfo(String ceoId) {
+		return session.selectOne("adminUserInfo.getCeoInfo", ceoId);
+	}
+	
 	public ArrayList<User> selectCeoInfoList(int start, int end) {
 		HashMap<String, Integer> map = new HashMap<String, Integer>();
 
@@ -102,4 +110,5 @@ public class AdminUserDao {
 
 		return (ArrayList<User>) list;
 	}
+	
 }

@@ -17,7 +17,7 @@ public class AdminUserService {
 	@Autowired
 	private AdminUserDao dao;
 	@Autowired
-	private AdminCampDao cDao;
+	private AdminCampDao campDao;
 
 	// ********** Client Info **********
 	public User selectClientInfo(int userNo) {
@@ -116,50 +116,13 @@ public class AdminUserService {
 	}
 
 	// ********** CEO Info **********
-	public AdminUserInfoPageData searchCeoInfoList(int reqPage, String searchCategory, String search) {
-		int totalSearchCeoInfo = dao.getSearchCeoInfoCount(searchCategory, search);
-		int numPerPage = 10;
-		int totalPage = (totalSearchCeoInfo / numPerPage == 0) ? (totalSearchCeoInfo / numPerPage)
-				: (totalSearchCeoInfo / numPerPage) + 1;
-		int start = (reqPage - 1) * numPerPage + 1;
-		int end = reqPage * numPerPage;
+	public User selectCeoInfo(int userNo) {
+		User ceoInfo = dao.selectCeoInfo(userNo);
+		Camp camp = campDao.selectCampInfo(ceoInfo.getUserId());
 
-		ArrayList<User> list = dao.getSearchCeoInfoList(start, end, searchCategory, search);
+		ceoInfo.setCamp(camp);
 
-		for (User user : list) {
-			Camp camp = cDao.selectCampInfo(user.getUserId());
-
-			user.setCamp(camp);
-		}
-
-		int pageNaviSize = 5;
-		String pageNavi = "";
-		int pageNo = ((reqPage - 1) / pageNaviSize) * pageNaviSize + 1;
-
-		if (pageNo != 1) {
-			pageNavi += "<a class='btn' href='/searchCeoInfo.do?reqPage=" + (pageNo - 1) + "&searchCategory="
-					+ searchCategory + "&search=" + search + "'>이전</a>'";
-		}
-
-		for (int i = 0; i < pageNaviSize; i++) {
-			if (reqPage == pageNo) {
-				pageNavi += "<span class='selectPage'>" + pageNo + "</span>";
-			} else {
-				pageNavi += "<a class='btn' href='/searchCeoInfo.do?reqPage=" + pageNo + "&searchCategory="
-						+ searchCategory + "&search=" + search + "'>" + pageNo + "</a>";
-			}
-			pageNo++;
-			if (pageNo > totalPage)
-				break;
-		}
-
-		if (pageNo <= totalPage) {
-			pageNavi += "<a class='btn' href='/searchCeoInfo.do?reqPage=" + pageNo + "&searchCategory=" + searchCategory
-					+ "&search=" + search + "'>다음</a>";
-		}
-		AdminUserInfoPageData auipd = new AdminUserInfoPageData(list, pageNavi);
-
-		return auipd;
+		return ceoInfo;
 	}
 
 	public AdminUserInfoPageData selectCeoInfoList(int reqPage) {
@@ -173,7 +136,7 @@ public class AdminUserService {
 		ArrayList<User> list = dao.selectCeoInfoList(start, end);
 
 		for (User user : list) {
-			Camp camp = cDao.selectCampInfo(user.getUserId());
+			Camp camp = campDao.selectCampInfo(user.getUserId());
 
 			user.setCamp(camp);
 		}
@@ -210,4 +173,49 @@ public class AdminUserService {
 		return auipd;
 	}
 
+	public AdminUserInfoPageData searchCeoInfoList(int reqPage, String searchCategory, String search) {
+		int totalSearchCeoInfo = dao.getSearchCeoInfoCount(searchCategory, search);
+		int numPerPage = 10;
+		int totalPage = (totalSearchCeoInfo / numPerPage == 0) ? (totalSearchCeoInfo / numPerPage)
+				: (totalSearchCeoInfo / numPerPage) + 1;
+		int start = (reqPage - 1) * numPerPage + 1;
+		int end = reqPage * numPerPage;
+
+		ArrayList<User> list = dao.getSearchCeoInfoList(start, end, searchCategory, search);
+
+		for (User user : list) {
+			Camp camp = campDao.selectCampInfo(user.getUserId());
+
+			user.setCamp(camp);
+		}
+
+		int pageNaviSize = 5;
+		String pageNavi = "";
+		int pageNo = ((reqPage - 1) / pageNaviSize) * pageNaviSize + 1;
+
+		if (pageNo != 1) {
+			pageNavi += "<a class='btn' href='/searchCeoInfo.do?reqPage=" + (pageNo - 1) + "&searchCategory="
+					+ searchCategory + "&search=" + search + "'>이전</a>'";
+		}
+
+		for (int i = 0; i < pageNaviSize; i++) {
+			if (reqPage == pageNo) {
+				pageNavi += "<span class='selectPage'>" + pageNo + "</span>";
+			} else {
+				pageNavi += "<a class='btn' href='/searchCeoInfo.do?reqPage=" + pageNo + "&searchCategory="
+						+ searchCategory + "&search=" + search + "'>" + pageNo + "</a>";
+			}
+			pageNo++;
+			if (pageNo > totalPage)
+				break;
+		}
+
+		if (pageNo <= totalPage) {
+			pageNavi += "<a class='btn' href='/searchCeoInfo.do?reqPage=" + pageNo + "&searchCategory=" + searchCategory
+					+ "&search=" + search + "'>다음</a>";
+		}
+		AdminUserInfoPageData auipd = new AdminUserInfoPageData(list, pageNavi);
+
+		return auipd;
+	}
 }

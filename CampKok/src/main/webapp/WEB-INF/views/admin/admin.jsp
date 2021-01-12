@@ -161,7 +161,7 @@
 								<tr>
 									<td>${campInfo.rNum }</td>
 									<td>
-										<a href="#"><strong>${campInfo.ceoId }</strong></a>
+										<a href="/selectCeoInfo.do?userNo=${campInfo.ceoInfo.userNo }"><strong>${campInfo.ceoId }</strong></a>
 									</td>
 									<td>
 										<a href="#"><strong>${campInfo.campName }</strong></a>

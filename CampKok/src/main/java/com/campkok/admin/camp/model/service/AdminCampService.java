@@ -8,11 +8,15 @@ import org.springframework.stereotype.Service;
 import com.campkok.admin.camp.model.dao.AdminCampDao;
 import com.campkok.admin.camp.model.vo.AdminCampInfoPageData;
 import com.campkok.admin.camp.model.vo.Camp;
+import com.campkok.admin.user.model.dao.AdminUserDao;
+import com.campkok.admin.user.model.vo.User;
 
 @Service
 public class AdminCampService {
 	@Autowired
 	private AdminCampDao dao;
+	@Autowired
+	private AdminUserDao userDao;
 
 	public AdminCampInfoPageData selectCampInfoList(int reqPage) {
 		int totalCamp = dao.getTotalCampCount();
@@ -22,6 +26,12 @@ public class AdminCampService {
 		int end = reqPage * numPerPage;
 
 		ArrayList<Camp> list = dao.selectCampInfoList(start, end);
+
+		for (Camp camp : list) {
+			User ceoInfo = userDao.selectCeoInfo(camp.getCeoId());
+			
+			camp.setCeoInfo(ceoInfo);
+		}
 
 		int pageNaviSize = 5;
 		String pageNavi = "";

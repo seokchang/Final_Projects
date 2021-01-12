@@ -1,5 +1,7 @@
 package com.campkok.admin.camp.model.vo;
 
+import com.campkok.admin.user.model.vo.User;
+
 public class Camp {
 	private int rNum;
 	private int campNo;
@@ -13,6 +15,7 @@ public class Camp {
 	private String campCtg;
 	private CampEnv campEnv;
 	private CampFile campFile;
+	private User ceoInfo;
 
 	public Camp() {
 		// TODO Auto-generated constructor stub
@@ -130,4 +133,13 @@ public class Camp {
 	public void setCampFile(CampFile campFile) {
 		this.campFile = campFile;
 	}
+
+	public User getCeoInfo() {
+		return ceoInfo;
+	}
+
+	public void setCeoInfo(User ceoInfo) {
+		this.ceoInfo = ceoInfo;
+	}
+
 }

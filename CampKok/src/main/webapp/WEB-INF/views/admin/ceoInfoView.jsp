@@ -21,7 +21,7 @@
 
 			<!-- Main -->
 			<div class="content-main">
-				<h1>고객정보 관리</h1>
+				<h1>사업자정보 관리</h1>
 				<hr>
 				<div class="table-wrap" style="margin-top: 30px;">
 					<form action="/updateCeoInfo.do" method="POST">
@@ -32,8 +32,8 @@
 									<th>분류</th>
 									<td colspan="3">
 										<select class="form-control" name="userLevel" style="width: 13%">
-											<option value="1" selected="selected">고객</option>
-											<option value="2">사업자</option>
+											<option value="1">고객</option>
+											<option value="2" selected="selected">사업자</option>
 										</select>
 									</td>
 								</tr>
@@ -94,7 +94,8 @@
 					</form>
 				</div>
 				<hr>
-				<div>
+				<div style="text-align: center;">
+					<button class="btn btn-warning btn-lg" onclick="">캠핑장 정보 보기</button>
 					<button class="btn btn-warning btn-md btn-list" onclick="location.href='/selectCeoInfoList.do?reqPage=1'">목록</button>
 				</div>
 			</div>

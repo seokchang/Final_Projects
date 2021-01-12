@@ -73,20 +73,28 @@ public class AdminUserController {
 	}
 
 	// ********** CEO Info **********
-	
-	@RequestMapping("/searchCeoInfo.do")
-	public String searchCeoInfo(int reqPage, String searchCategory, String search, Model model) {
-		AdminUserInfoPageData auipd = service.searchCeoInfoList(reqPage, searchCategory, search);
+	@RequestMapping("/selectCeoInfo.do")
+	public String selectCeoInfo(int userNo, Model model) {
+		User ceoInfo = service.selectCeoInfo(userNo);
 		
-		model.addAttribute("list", auipd.getList());
-		model.addAttribute("pageNavi", auipd.getPageNavi());
+		model.addAttribute("ceoInfo", ceoInfo);
 		
-		return "/admin/ceoInfoList";
+		return "/admin/ceoInfoView";
 	}
-	
+
 	@RequestMapping("/selectCeoInfoList.do")
 	public String selectCeoInfoList(int reqPage, Model model) {
 		AdminUserInfoPageData auipd = service.selectCeoInfoList(reqPage);
+
+		model.addAttribute("list", auipd.getList());
+		model.addAttribute("pageNavi", auipd.getPageNavi());
+
+		return "/admin/ceoInfoList";
+	}
+
+	@RequestMapping("/searchCeoInfo.do")
+	public String searchCeoInfo(int reqPage, String searchCategory, String search, Model model) {
+		AdminUserInfoPageData auipd = service.searchCeoInfoList(reqPage, searchCategory, search);
 
 		model.addAttribute("list", auipd.getList());
 		model.addAttribute("pageNavi", auipd.getPageNavi());
