@@ -7,7 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.campkok.customer.model.dao.CustomerDao;
+import com.campkok.customer.model.vo.PointVO;
 import com.campkok.customer.model.vo.ReservationVO;
+import com.campkok.customer.model.vo.ReviewInfoPageData;
+import com.campkok.customer.model.vo.ReviewVO;
 import com.campkok.customer.model.vo.UseInfoPageData;
 import com.campkok.customer.model.vo.UserVO;
 
@@ -32,24 +35,20 @@ public class CustomerService {
 		return dao.selectOneReserve(userNo);
 	}
 
-//	public ArrayList<ReservationVO> selectAllReserve(int userNo) {
-//		// TODO Auto-generated method stub
-//		return dao.selectAllReserve(userNo);
-//	}
-
-	public UseInfoPageData reserveList(int reqPage) {
+	public UseInfoPageData reserveList(int reqPage, int userNo) {
 		//게시물 구해올 것
-		int numPerPage = 10; 	//한 페이지당 게시물 수
+		int numPerPage = 8; 	//한 페이지당 게시물 수
 		//게시물 10개 가져오기
 		int end = reqPage * numPerPage;
 		int start = end - numPerPage +1;
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("start", start);
 		map.put("end",end);
-		ArrayList<ReservationVO> list = dao.selectList(map);
+		map.put("userNo",userNo);
+		ArrayList<ReservationVO> list = dao.useSelectList(map);
 		//pageNavi 제작
 		//총 게시물 수
-		int totalCount = dao.totalCount();
+		int totalCount = dao.useTotalCount(userNo);
 		//총 페이지 수
 		int totalPage = 0;
 		if(totalCount%numPerPage == 0) {
@@ -65,11 +64,11 @@ public class CustomerService {
 		String pageNavi = "";
 		//이전 버튼 생성
 		if(pageNo != 1) {
-	         pageNavi += "<a href='/reserveAll.do?reqPage="+(pageNo-1)+"'>[이전]</a>";
+	         pageNavi += "<a href='/reserveAll.do?reqPage="+(pageNo-1)+"&userNo="+userNo+"'>[이전]</a>";
 	      }
 		for(int i=0; i<pageNaviSize; i++) {
 			if(pageNo != reqPage) {
-				pageNavi += "<a href='/reserveAll.do?reqPage="+pageNo+"'>"+pageNo+"</a>";
+				pageNavi += "<a href='/reserveAll.do?reqPage="+pageNo+"&userNo="+userNo+"'>"+pageNo+"</a>";
 			}else {
 				pageNavi += "<span class='selectedPage'>"+pageNo+"</span>";
 			}
@@ -80,9 +79,64 @@ public class CustomerService {
 		}
 		//다음버튼
 		if(pageNo <= totalPage) {
-	         pageNavi += "<a href='/reserveAll.do?reqPage="+pageNo+"'>[다음]</a>";
+	         pageNavi += "<a href='/reserveAll.do?reqPage="+pageNo+"&userNo="+userNo+"'>[다음]</a>";
 	      }
 		UseInfoPageData uipf = new UseInfoPageData(list, pageNavi);
 		return uipf;
+	}
+
+	public ReviewInfoPageData reviewList(int reqPage, String userId) {
+		//게시물 구해올 것
+		int numPerPage = 8; 	//한 페이지당 게시물 수
+		//게시물 10개 가져오기
+		int end = reqPage * numPerPage;
+		int start = end - numPerPage +1;
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("start", start);
+		map.put("end",end);
+		map.put("userId",userId);
+		ArrayList<ReviewVO> list = dao.reviewSelectList(map);
+		//pageNavi 제작
+		//총 게시물 수
+		int totalCount = dao.reviewTotalCount(userId);
+		//총 페이지 수
+		int totalPage = 0;
+		if(totalCount%numPerPage == 0) {
+			totalPage = totalCount/numPerPage;
+		}else {
+			totalPage = totalCount/numPerPage+1;
+		}
+		//페이지네비의 길이
+		int pageNaviSize = 5;
+		//페이지 네비 시작번호
+		int pageNo = ((reqPage-1)/pageNaviSize)*pageNaviSize+1;
+		//페이지네비 작성
+		String pageNavi = "";
+		//이전 버튼 생성
+		if(pageNo != 1) {
+	         pageNavi += "<a href='/review.do?reqPage="+(pageNo-1)+"&userId="+userId+"'>[이전]</a>";
+	      }
+		for(int i=0; i<pageNaviSize; i++) {
+			if(pageNo != reqPage) {
+				pageNavi += "<a href='/review.do?reqPage="+pageNo+"&userId="+userId+"'>"+pageNo+"</a>";
+			}else {
+				pageNavi += "<span class='selectedPage'>"+pageNo+"</span>";
+			}
+			pageNo++;
+			if(pageNo>totalPage) {
+				break;
+			}
+		}
+		//다음버튼
+		if(pageNo <= totalPage) {
+	         pageNavi += "<a href='/review.do?reqPage="+pageNo+"&userNo="+userId+"'>[다음]</a>";
+	      }
+		ReviewInfoPageData ripf = new ReviewInfoPageData(list, pageNavi);
+		return ripf;
+	}
+
+	public ArrayList<PointVO> pointList(int userNo) {
+		// TODO Auto-generated method stub
+		return dao.pointList(userNo);
 	}
 }

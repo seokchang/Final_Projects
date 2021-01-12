@@ -8,7 +8,9 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.campkok.customer.model.vo.PointVO;
 import com.campkok.customer.model.vo.ReservationVO;
+import com.campkok.customer.model.vo.ReviewVO;
 import com.campkok.customer.model.vo.UserVO;
 
 @Repository
@@ -32,21 +34,33 @@ public class CustomerDao {
 		return sqlSession.selectOne("customer.reserveInfo", userNo);
 	}
 
-//	public ArrayList<ReservationVO> selectAllReserve(int userNo) {
-//		// TODO Auto-generated method stub
-//		List<ReservationVO> list = sqlSession.selectList("customer.useInfo", userNo);
-//		return (ArrayList<ReservationVO>) list;
-//	}
-
-	public ArrayList<ReservationVO> selectList(HashMap<String, Object> map) {
+	public ArrayList<ReservationVO> useSelectList(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
 		List<ReservationVO> list = sqlSession.selectList("customer.useInfo", map);
 		return (ArrayList<ReservationVO>) list;
 	}
 
-	public int totalCount() {
+	public int useTotalCount(int userNo) {
 		// TODO Auto-generated method stub
-		List<ReservationVO> list = sqlSession.selectList("customer.totalUse");
+		List<ReservationVO> list = sqlSession.selectList("customer.totalUse", userNo);
 		return list.size();
+	}
+
+	public ArrayList<ReviewVO> reviewSelectList(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		List<ReviewVO> list = sqlSession.selectList("customer.reviewInfo", map);
+		return (ArrayList<ReviewVO>) list;
+	}
+
+	public int reviewTotalCount(String userId) {
+		// TODO Auto-generated method stub
+		List<ReviewVO> list = sqlSession.selectList("customer.totalReview", userId);
+		return list.size();
+	}
+
+	public ArrayList<PointVO> pointList(int userNo) {
+		// TODO Auto-generated method stub
+		List<PointVO> list = sqlSession.selectList("customer.pointInfo", userNo);
+		return (ArrayList<PointVO>) list;
 	}
 }

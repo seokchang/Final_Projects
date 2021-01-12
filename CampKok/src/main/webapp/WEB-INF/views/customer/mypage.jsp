@@ -133,9 +133,9 @@
             <ul class="menu">
                 <li><a href="/mypage.do?userNo=2"><b>회원 정보</b></a></li>
                 <li><a href="/reserve.do?userNo=2">예약 확인</a></li>
-                <li><a href="/reserveAll.do?reqPage=1">이용 내역</a></li>
-                <li><a href="#">리뷰 내역</a></li>
-                <li><a href="#">포인트 내역</a></li>
+                <li><a href="/reserveAll.do?reqPage=1&userNo=2">이용 내역</a></li>
+                <li><a href="/review.do?reqPage=1&userId=user01">리뷰 내역</a></li>
+                <li><a href="/point.do?userNo=2">포인트 내역</a></li>
             </ul>
         </div>
         <!--오른쪽-->

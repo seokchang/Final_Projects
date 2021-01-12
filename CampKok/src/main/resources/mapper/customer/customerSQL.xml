@@ -65,11 +65,12 @@
 				R.res_count as resCount
 			from reservation R inner join camp C on R.camp_no=C.camp_no
 					inner join camproom CR on R.camp_room=CR.room_no 
+			where R.user_no=#{userNo}
 			order by 1 desc)
 		n)
 		where rnum between #{start} and #{end}
 	</select>
-	<select id="totalUse" resultType="r">
+	<select id="totalUse" parameterType="_int" resultType="r">
 		select 
 				R.res_no as resNo,
 				R.user_no as userNo,
@@ -88,5 +89,49 @@
 				R.res_count as resCount
 			from reservation R inner join camp C on R.camp_no=C.camp_no
 					inner join camproom CR on R.camp_room=CR.room_no
+		where user_no=#{parameter}
+	</select>
+	<select id="reviewInfo" parameterType="map" resultType="rv">
+		select * from 
+		(select rownum as rnum, n. * from(select
+					R.rev_no as revNo,
+					R.user_id as userId,
+					R.camp_no as campNo,
+					C.camp_name as campName,
+					R.rev_contents as revContents,
+					R.rev_star as revStar,
+					R.rev_date as revDate,
+					R.rev_image as revImage,
+					R.rev_heart as revHeard
+				from review R inner join camp C on R.camp_no=C.camp_no
+				where user_id=#{userId} order by 1 desc)n)
+		 where rnum between #{start} and #{end}
+	</select>
+	<select id="totalReview" parameterType="string" resultType="rv">
+		select
+			R.rev_no as revNo,
+			R.user_id as userId,
+			R.camp_no as campNo,
+			C.camp_name as campName,
+			R.rev_contents as revContents,
+			R.rev_star as revStar,
+			R.rev_date as revDate,
+			R.rev_image as revImage,
+			R.rev_heart as revHeard
+		from review R inner join camp C on R.camp_no=C.camp_no
+		where user_id=#{parameter}
+	</select>
+	<select id="pointInfo" parameterType="_int" resultType="p">
+		select 
+			point_no as pointNo,
+			user_no as userNo,
+			point_save_contents as pointSaveContents,
+			point_save_date as pointSaveDate,
+			point_save as pointSave,
+			point_total as pointTotal,
+			point_use as pointUse,
+			point_use_contents as pointUseContents,
+			point_use_date as pointUseDate
+		from point where user_no=#{parameter}
 	</select>
 </mapper>

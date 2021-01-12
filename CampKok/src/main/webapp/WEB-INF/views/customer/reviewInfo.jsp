@@ -138,6 +138,9 @@
         	background-color: white;
         	margin:5px;
         }
+        .star{
+        	display:inline-block;
+        }
 
     </style>
 </head>
@@ -151,8 +154,8 @@
             <ul class="menu">
                 <li><a href="/mypage.do?userNo=2">회원 정보</a></li>
                 <li><a href="/reserve.do?userNo=2">예약 확인</a></li>
-                <li><a href="/reserveAll.do?reqPage=1&userNo=2"><b>이용 내역</b></a></li>
-                <li><a href="/review.do?reqPage=1&userId=user01">리뷰 내역</a>
+                <li><a href="/reserveAll.do?reqPage=1&userNo=2">이용 내역</a></li>
+                <li><a href="/review.do?reqPage=1&userId=user01"><b>리뷰 내역</b></a>
                 <li><a href="/point.do?userNo=2">포인트 내역</a></li>
             </ul>
         </div>
@@ -161,21 +164,25 @@
             <div class="mypage-content">
                 <br><br>
                 <div class="info">
-                    <h2>이용 내역 조회</h2>
+                    <h2>리뷰 작성 내역 조회</h2>
                     
                     <table border="1">
                            <tr>
-                               <th width="20%">캠핑장 명</th>
-                               <th width="20%">데스크 명</th>
-                               <th width="50%">이용 날짜</th>
-                               <th width="10%">인원 수</th>
+                               <th width="15%">캠핑장 명</th>
+                               <th width="45%">리뷰 내용</th>
+                               <th width="13%">별점</th>
+                               <th width="7%">좋아요</th>
                            </tr>
-                           <c:forEach items="${list }" var="r">
+                           <c:forEach items="${list }" var="rv">
                            <tr>
-                           		<td width="20%">${r.campName }</td>
-                           		<td width="20%">${r.campRoomName }</td>
-                           		<td width="50%">${r.resInDate } ~ ${r.resOutDate }</td>
-                           		<td width="10%">${r.resMember } 명</td>
+                           		<td width="15%">${rv.campName }</td>
+                           		<td width="45%">${rv.revContents }</td>
+                           		<td width="13%">
+                           		<c:forEach begin="1" end="${rv.revStar }">
+                           		<img class="star" src="/resources/img/customer/star-on.png">
+                           		</c:forEach>
+                           		</td>
+                           		<td width="7%">${rv.revHeart }</td>
                            </tr>
                              </c:forEach>
                         </table>
