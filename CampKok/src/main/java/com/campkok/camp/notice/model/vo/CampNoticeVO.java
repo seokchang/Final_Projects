@@ -4,11 +4,11 @@ import lombok.Data;
 
 @Data
 public class CampNoticeVO {
-	private int ceoNoticeNo;
-	private String userId;
-	private String ceoNoticeTitle;
-	private String ceoNoticeDate;
-	private String ceoNoticeContents;
-	private String ceoNoticeFilename;
-	private String ceoNoticefilePath;
+	private int campNoticeNo;
+	private int campNo;
+	private String campNoticeTitle;
+	private String campNoticeDate;
+	private String campNoticeContents;
+	private String campNoticeFilename;
+	private String campNoticefilePath;
 }

@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="camp">
-  <select id="seletAllBoard" parameterType="map" resultType="cn">
-  		select * from (select rownum as rnum, n.*from(select * from ceo_notice order by 1 desc)n) where rnum between #{start} and #{end}"
+
+  <select id="selectAllNotice" parameterType="map" resultType="cn">
+  		select * from (select rownum as rnum, n.*from(select * from camp_notice order by 1 desc)n) where rnum between #{start} and #{end}
   </select>
-  <select id="selectCountNoitce">
-  		select count(*) cnt from ceo_notice
+  
+  <select id="selectCountNoitce" resultType="_int">
+  		select count(*) from camp_notice
   </select>
+
+  
 </mapper>
