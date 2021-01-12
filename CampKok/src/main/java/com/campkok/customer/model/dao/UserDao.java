@@ -15,7 +15,8 @@ public class UserDao {
 	public int insertUser(UserVO u) {
 		return sqlSession.insert("user.insertUser",u);
 	}
-
+	
+	// 로그인, 아이디중복
 	public UserVO selectOneUser(UserVO u) {
 		return sqlSession.selectOne("user.selectOneUser",u);
 	}
