@@ -11,7 +11,7 @@
 			#{userPhone},
 			#{userLevel},
 			#{userBirth},
-			#{userDate},
+			to_char(sysdate,'YYYY-MM-DD'),
 			#{userGender},
 			#{userAddr},
 			#{userPoint}
