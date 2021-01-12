@@ -18,7 +18,7 @@
 		)
 	</insert>
 	
-	<!-- 아이디 중복체크 -->
+	<!-- 로그인, 아이디 중복체크 -->
 	<select id="selectOneUser" parameterType="u" resultType="u">
 		select
 			user_no as userNo,
@@ -47,4 +47,6 @@
 			</choose>
 		</trim>
 	</select>
+	
+	
 </mapper>

@@ -13,6 +13,7 @@
 	</h3>
 	<hr>
 	<h3>고객</h3>
+	<a href="/loginFrm.do">로그인</a>
 	<a href="/joinPage.do">회원가입</a>
 	<a href="/mypage.do?userNo=2">마이페이지</a>
 	<a href="/chat.do?userNo=2">채팅</a>

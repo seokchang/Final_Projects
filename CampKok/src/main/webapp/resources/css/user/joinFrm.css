@@ -145,11 +145,11 @@ select {
 	appearance: none;
 }
 
-input[type=radio] {
+.gender-radio {
 	display: none;
 }
 
-input[name=gender]+label {
+.gender-radio+label {
 	display: inline-block;
 	height: 50px;
 	line-height: 50px;
@@ -160,7 +160,7 @@ input[name=gender]+label {
 	padding-right: 0px;
 }
 
-input[name=gender]:checked+label {
+.gender-radio:checked+label {
 	background-color: gray;
 	color: #fff;
 }

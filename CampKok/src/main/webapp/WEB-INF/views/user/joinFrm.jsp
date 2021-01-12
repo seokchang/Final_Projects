@@ -20,7 +20,7 @@
             | SIGN UP
         </div>
         <div class="join-naeyong">
-            <form action="/join.do" method="post">
+            <form action="/customerJoin.do" method="post">
                 <table class="jointbl">
                     <tr>
                         <td><label>아이디</label></td>
@@ -32,9 +32,21 @@
                     </tr>
                     <tr>
                         <td>비밀번호</td>
-                        <td><input type="password" name="userPw"><span>
+                        <td><input type="password" name="userPw" placeholder="8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요."></td>
+                    </tr>
+                    <tr style="display: none;" id="chkId">
+                        <td></td>
+                        <td style="padding: 0px; padding-left: 10px; padding-bottom: 5px;"><span id="chkIdMsg"></span></td>
+                    </tr>
+                    <tr>
+                        <td>비밀번호확인</td>
+                        <td><input type="password" name="userPwChk"><span>
                                 <!--8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요.-->
                             </span></td>
+                    </tr>
+                    <tr style="display: none;" id="chkId">
+                        <td></td>
+                        <td style="padding: 0px; padding-left: 10px; padding-bottom: 5px;"><span id="chkIdMsg"></span></td>
                     </tr>
                     <tr>
                         <td>이름</td>
@@ -42,11 +54,11 @@
                     </tr>
                     <tr>
                         <td>전화번호</td>
-                        <td><input type="text" name="phone" placeholder="ex) 010-0000-0000"></td>
+                        <td><input type="text" name="userPhone" placeholder="ex) 010-0000-0000"></td>
                     </tr>
                     <tr>
                         <td>생년월일</td>
-                        <td><input type="text" name="birth"></td>
+                        <td><input type="text" name="userBirth" placeholder="ex) 19941208"></td>
                         
                         <!-- 
                         <td>
@@ -195,13 +207,13 @@
                     <tr>
                         <td>성별</td>
                         <td>
-                            <input type="radio" name="gender" value="남" id="m"><label for="m">남자</label>
-                            <input type="radio" name="gender" value="여" id="f"><label for="f">여자</label>
+                            <input type="radio" class="gender-radio" name="userGender" value="남" id="m"><label for="m">남자</label>
+                            <input type="radio" class="gender-radio" name="userGender" value="여" id="f"><label for="f">여자</label>
                         </td>
                     </tr>
                     <tr>
                         <td>주소</td>
-                        <td><input type="text" name="addr"></td>
+                        <td><input type="text" name="userAddr"></td>
                     </tr>
                 </table>
 
@@ -217,23 +229,117 @@
     </div>
     
     <script>
-		$("[name=userId]").keyup(function(){
+    	/* 아이디 중복체크 */
+		$("[name=userId]").change(function(){
 			var userId = $(this).val();
 			$.ajax({
 				url : "/checkId.do",
 				data : {userId:userId},
 				success : function(data){
-					if(data == 0){
-						$("#chkId").css('display','block');
+					if($(this).val() != "" || data == 0){
+						$("#chkId").css('display','');
 						$("#chkIdMsg").html("멋진 아이디네요!");
-					}else{
-						$("#chkId").css('display','block');
+					}else if($(this).val() == ""){
+	                    $("#chkId").css('display','');
+						$("#chkIdMsg").html("아이디를 입력해주세요.");
+	                } else if($(this).val() != "" || data == 1){
+						$("#chkId").css('display','');
 						$("#chkIdMsg").html("이미 사용중인 아이디 입니다.");
-						// $("#chkIdMsg").html("5~20자의 영문 소문자, 숫자와 특수기호'_','-'만 사용 가능합니다.");
 					}
 				}
 			});
 		});
+    	
+    	/* 
+    	
+        $(document).ready(function() {
+            // 배열로 처리
+            var check = [false, false, false, false, false, false];
+            $('input').val(''); // 값 비워주는 코드
+            
+            // 정규표현식 
+            // 포커스인아웃을 사용하면 불필요할때도 값을 검사하지만 체인지는 값이 바뀔때만 검사함 
+            $('[name=userId]').keyup(function() {
+                $("#chkId").css('display','none');
+				$("#chkIdMsg").html("");
+                var reg = /^[a-z][a-z0-9_-]{4,19}$/;
+                if (reg.test($(this).val())) {
+                    check[0] = true;
+                } else {
+                    check[0] = false;
+                    $("#chkId").css('display','');
+					$("#chkIdMsg").html("5~20자의 영문 소문자, 숫자와 특수기호'_','-'만 사용 가능합니다.");
+                }
+            });
+            $('#name').keyup(function() {
+                $(this).prevAll().last().children().html("");
+                var reg = /^[가-힝]{2,4}$/;
+                if (reg.test($(this).val())) {
+                    check[1] = true;
+                } else {
+                    check[1] = false;
+                    $(this).prevAll().last().children().html("한글 2~4글자");
+                }
+            });
+            $('#pw').change(function() {
+                $(this).prevAll().last().children().html("");
+                var reg = /^[A-Za-z0-9_-]{6,18}$/;
+                if (reg.test($(this).val())) {
+                    check[2] = true;
+                } else {
+                    check[2] = false;
+                    $(this).prevAll().last().children().html("영문대소문자+숫자 6~18자리");
+                }
+            });
+            $('#pwRe').change(function() {
+                $(this).prevAll().last().children().html("");
+                console.log(pw);
+                if ($(this).val() == $("#pw").val()) {
+                    check[3] = true;
+                } else {
+                    check[3] = false;
+                    $(this).prevAll().last().children().html("비밀번호가 일치하지 않습니다.");
+                }
+            });
+            $('#email').change(function() {
+                $(this).prevAll().last().children().html("");
+                var reg = /^[a-z][a-z0-9_-]{3,11}@([a-z\d\.-]+)\.([a-z]{2,6})$/;
+                if (reg.test($(this).val())) {
+                    check[4] = true;
+                } else {
+                    check[4] = false;
+                    $(this).prevAll().last().children().html("Email형식에 맞지 않습니다.");
+                }
+            });
+            $('#phone').change(function() {
+                $(this).prevAll().last().children().html("");
+                var reg = /^\d{2,3}-\d{3,4}-\d{4}$/;
+                if (reg.test($(this).val())) {
+                    check[5] = true;
+                } else {
+                    check[5] = false;
+                    $(this).prevAll().last().children().html("전화번호 형식(000-0000-0000)");
+                }
+            });
+            
+            
+            $('form').submit(function() {
+                var count = 0;
+                for (var i = 0; i < check.length; i++) {
+                    if (check[i] == true) {
+                        count++;
+                    }
+                }
+                if (count < 6) {
+                    return false;
+                }
+            });
+            $('.btn-3').eq(1).click(function() {
+                $("span").text('');
+                $('.info').children().filter('input').val('');
+                $('.info').children().filter('input').focusout();
+            });
+        }); */
 	</script>
     
     <jsp:include page="/WEB-INF/views/common/footer.jsp" />
