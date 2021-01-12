@@ -20,6 +20,21 @@
 		</choose>
 	</select>
 
+	<select id="getCampInfo" parameterType="_int" resultType="camp">
+		SELECT
+		camp_no AS campNo,
+		ceo_id AS ceoId,
+		camp_addr AS campAddr,
+		camp_name AS
+		campName,
+		camp_site AS campSite,
+		camp_tel AS campTel,
+		camp_theme AS campTheme,
+		camp_fac AS campFac,
+		camp_Ctg AS campCtg
+		FROM camp WHERE camp_no = #{_parameter}
+	</select>
+
 	<select id="selectCampInfo" parameterType="string" resultType="camp">
 		SELECT
 		camp_no AS campNo,
@@ -32,8 +47,7 @@
 		camp_theme AS campTheme,
 		camp_fac AS campFac,
 		camp_Ctg AS campCtg
-		FROM camp WHERE ceo_id =
-		#{_parameter}
+		FROM camp WHERE ceo_id = #{_parameter}
 	</select>
 
 	<select id="selectCampInfoList" parameterType="HashMap" resultType="camp">

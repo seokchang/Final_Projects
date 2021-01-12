@@ -164,7 +164,7 @@
 										<a href="/selectCeoInfo.do?userNo=${campInfo.ceoInfo.userNo }"><strong>${campInfo.ceoId }</strong></a>
 									</td>
 									<td>
-										<a href="#"><strong>${campInfo.campName }</strong></a>
+										<a href="/selectCampInfo.do?campNo=${campInfo.campNo }"><strong>${campInfo.campName }</strong></a>
 									</td>
 									<td>${campInfo.campAddr }</td>
 								</tr>

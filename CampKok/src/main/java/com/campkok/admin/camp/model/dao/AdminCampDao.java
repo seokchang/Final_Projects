@@ -28,6 +28,10 @@ public class AdminCampDao {
 		return session.selectOne("adminCamp.getSearchCampInfoCount", map);
 	}
 
+	public Camp selectCampInfo(int campNo) {
+		return session.selectOne("adminCamp.getCampInfo", campNo);
+	}
+
 	public Camp selectCampInfo(String userId) {
 		return session.selectOne("adminCamp.selectCampInfo", userId);
 	}
@@ -55,4 +59,5 @@ public class AdminCampDao {
 
 		return (ArrayList<Camp>) list;
 	}
+
 }

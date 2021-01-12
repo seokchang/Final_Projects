@@ -18,6 +18,15 @@ public class AdminCampService {
 	@Autowired
 	private AdminUserDao userDao;
 
+	public Camp selectCampInfo(int campNo) {
+		Camp campInfo = dao.selectCampInfo(campNo);
+		User ceoInfo = userDao.selectCeoInfo(campInfo.getCeoId());
+
+		campInfo.setCeoInfo(ceoInfo);
+
+		return campInfo;
+	}
+
 	public AdminCampInfoPageData selectCampInfoList(int reqPage) {
 		int totalCamp = dao.getTotalCampCount();
 		int numPerPage = 10;

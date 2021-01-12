@@ -69,7 +69,7 @@
 									<td>${campInfo.ceoInfo.userName }</td>
 									<td>${campInfo.campCtg }</td>
 									<td>
-										<a href=#><strong>${campInfo.campName }</strong></a>
+										<a href="/selectCampInfo.do?campNo=${campInfo.campNo }"><strong>${campInfo.campName }</strong></a>
 									</td>
 									<td>${campInfo.campAddr }</td>
 									<td>${campInfo.campTel }</td>
