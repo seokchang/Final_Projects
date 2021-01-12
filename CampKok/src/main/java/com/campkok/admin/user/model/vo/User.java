@@ -1,5 +1,7 @@
 package com.campkok.admin.user.model.vo;
 
+import com.campkok.admin.camp.model.vo.Camp;
+
 public class User {
 	private int rNum;
 	private int userNo;
@@ -13,6 +15,7 @@ public class User {
 	private String userGender;
 	private String userAddr;
 	private String userPoint;
+	private Camp camp;
 
 	public User() {
 		// TODO Auto-generated constructor stub
@@ -128,5 +131,13 @@ public class User {
 
 	public void setUserPoint(String userPoint) {
 		this.userPoint = userPoint;
+	}
+
+	public Camp getCamp() {
+		return camp;
+	}
+
+	public void setCamp(Camp camp) {
+		this.camp = camp;
 	}
 }

@@ -67,7 +67,7 @@
 									</td>
 									<td>${ceoInfo.userName }</td>
 									<td>
-										<a href=#><strong>${campInfo.campName }</strong></a>
+										<a href=#><strong>${ceoInfo.camp.campName }</strong></a>
 									</td>
 									<td>${ceoInfo.userPhone }</td>
 									<td>${ceoInfo.userAddr }</td>

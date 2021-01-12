@@ -107,6 +107,18 @@
 		SELECT count(*) FROM user_tbl WHERE user_level = 2
 	</select>
 
+	<select id="getSearchCeoInfoCount" parameterType="HashMap" resultType="_int">
+		SELECT count(*) FROM user_tbl WHERE user_level = 2 AND
+		<choose>
+			<when test="searchCategory.equals('userId')">
+				user_id LIKE '%'||#{search}||'%'
+			</when>
+			<when test="searchCategory.equals('userName')">
+				user_name LIKE '%'||#{search}||'%'
+			</when>
+		</choose>
+	</select>
+
 	<select id="selectCeoInfoList" parameterType="HashMap" resultType="user">
 		SELECT * FROM (SELECT ROWNUM AS rNUM, u.* FROM (
 		SELECT
@@ -128,5 +140,36 @@
 		WHERE rNum
 		BETWEEN #{start} AND
 		#{end}
+	</select>
+
+	<select id="getSearchCeoInfoList" parameterType="HashMap" resultType="user">
+		SELECT * FROM (SELECT ROWNUM AS rNum, u.* FROM (
+		SELECT
+		user_no AS userNo,
+		user_id AS userId,
+		user_pw AS userPw,
+		user_name AS userName,
+		user_phone AS userPhone,
+		user_level AS userLevel,
+		user_birth AS userBirth,
+		user_date AS userDate,
+		user_gender AS userGender,
+		user_addr AS userAddr,
+		user_point AS userPoint
+		FROM
+		user_tbl
+		WHERE user_level = 2 AND
+		<choose>
+			<when test="searchCategory.equals('userId')">
+				user_id LIKE '%'||#{search}||'%'
+			</when>
+			<when test="searchCategory.equals('userName')">
+				user_name LIKE '%'||#{search}||'%'
+			</when>
+		</choose>
+		ORDER BY 1 DESC
+		)u)
+		WHERE rNum
+		BETWEEN ${start} AND ${end}
 	</select>
 </mapper>
