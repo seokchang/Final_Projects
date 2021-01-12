@@ -7,11 +7,28 @@
 
 	<typeAliases>
 		<!-- Admin -->
-		<typeAlias type="com.campkok.admin.model.vo.CeoNotice" alias="ceoNotice" />
-		<typeAlias type="com.campkok.admin.model.vo.ClientNotice" alias="clientNotice" />
+		<typeAlias type="com.campkok.admin.notice.model.vo.Notice" alias="notice" />
+		<typeAlias type="com.campkok.admin.notice.model.vo.CeoNotice" alias="ceoNotice" />
+		<typeAlias type="com.campkok.admin.notice.model.vo.ClientNotice" alias="clientNotice" />
+		<typeAlias type="com.campkok.admin.user.model.vo.User" alias="user" />
+		<typeAlias type="com.campkok.admin.camp.model.vo.Camp" alias="camp" />
+		<typeAlias type="com.campkok.admin.camp.model.vo.CampEnv" alias="campEnv" />
 
 		<!-- Camp -->
 		<typeAlias type="com.campkok.camp.model.vo.CampVO" alias="c" />
+<<<<<<< HEAD
 		<typeAlias type="com.campkok.customer.model.vo.UserVO" alias="u"/>
+=======
+		<typeAlias type="com.campkok.camp.notice.model.vo.CampNoticeVO" alias="cn" />
+		<typeAlias type="com.campkok.customer.model.vo.UserVO" alias="u" />
+
+		<!-- Customer -->
+		<typeAlias type="com.campkok.customer.model.vo.UserVO" alias="u"/>
+		<typeAlias type="com.campkok.customer.model.vo.ReservationVO" alias="r"/>
+		<typeAlias type="com.campkok.customer.model.vo.ReviewVO" alias="rv"/>
+		<typeAlias type="com.campkok.customer.model.vo.PointVO" alias="p"/>
+		<typeAlias type="com.campkok.customer.model.vo.UserVO" alias="u" />
+		<typeAlias type="com.campkok.customer.model.vo.ReservationVO" alias="r" />
+>>>>>>> main
 	</typeAliases>
 </configuration>

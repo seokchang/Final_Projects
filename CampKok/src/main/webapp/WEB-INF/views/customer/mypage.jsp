@@ -1,9 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+        <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
@@ -84,7 +85,7 @@
             width: 80%;
             border-color: darkgray;
             margin: auto;
-            border: 1px solid darkgray;
+            border: none;
         }
 
         .info table input {
@@ -103,7 +104,7 @@
         }
 
         .info th {
-            background-color: gainsboro;
+            background-color: #f3d479;
         }
 
         .info td {
@@ -125,53 +126,62 @@
 
 <body>
     <div class="content">
-        <!--¿ŞÂÊ-->
+        <!--ì™¼ìª½-->
         <div class="mypage-menu">
             <img src="/resources/img/customer/tent.png" width="60%">
             <h1>MY PAGE</h1>
             <ul class="menu">
-                <li><a href="#">È¸¿ø Á¤º¸</a></li>
-                <li><a href="#">¿¹¾à È®ÀÎ</a></li>
-                <li><a href="#">ÀÌ¿ë ³»¿ª</a></li>
-                <li><a href="#">¸®ºä ³»¿ª</a></li>
-                <li><a href="#">Æ÷ÀÎÆ® ³»¿ª</a></li>
+                <li><a href="/mypage.do?userNo=2"><b>íšŒì› ì •ë³´</b></a></li>
+                <li><a href="/reserve.do?userNo=2">ì˜ˆì•½ í™•ì¸</a></li>
+                <li><a href="/reserveAll.do?reqPage=1&userNo=2">ì´ìš© ë‚´ì—­</a></li>
+                <li><a href="/review.do?reqPage=1&userId=user01">ë¦¬ë·° ë‚´ì—­</a></li>
+                <li><a href="/point.do?userNo=2">í¬ì¸íŠ¸ ë‚´ì—­</a></li>
             </ul>
         </div>
-        <!--¿À¸¥ÂÊ-->
+        <!--ì˜¤ë¥¸ìª½-->
         <div class="mypage-main">
             <div class="mypage-content">
                 <br><br>
                 <div class="info">
-                    <h2>È¸¿ø Á¤º¸ ¼öÁ¤</h2>
+                    <h2>íšŒì› ì •ë³´ ìˆ˜ì •</h2>
                     <form action="/update.do" method="post">
+                    	<input type="hidden" name="userNo" value="${u.userNo }">
                         <table border="1">
                             <tr>
-                                <th>¾ÆÀÌµğ</th>
+                                <th>ì•„ì´ë””</th>
                                 <td style="padding-left: 5px;">${u.userId}</td>
                             </tr>
                             <tr>
-                                <th>ºñ¹Ğ¹øÈ£</th>
-                                <td><input type="password" placeholder="ºñ¹Ğ¹øÈ£¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä"></td>
+                                <th>ë¹„ë°€ë²ˆí˜¸</th>
+                                <td><input type="password" placeholder="ë¹„ë°€ë²ˆí˜¸ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”" name="userPw" value="${u.userPw }"></td>
                             </tr>
                             <tr>
-                                <th>ÀÌ¸§</th>
+                                <th>ì´ë¦„</th>
                                 <td style="padding-left: 5px;">${u.userName}</td>
                             </tr>
                             <tr>
-                                <th>»ı³â¿ùÀÏ</th>
+                                <th>ìƒë…„ì›”ì¼</th>
                                 <td style="padding-left: 5px;">${u.userBirth }</td>
                             </tr>
                             <tr>
-                                <th>ÀüÈ­¹øÈ£</th>
-                                <td><input type="text" name="userPhone" value="${u.userPhone }"></td>
+                                <th>ì „í™”ë²ˆí˜¸</th>
+                                <td><input type="text" placeholder="010-0000-0000" name="userPhone" value="${u.userPhone }"></td>
                             </tr>
                             <tr>
-                                <th>ÁÖ¼Ò</th>
+                                <th>ì£¼ì†Œ</th>
                                 <td><input type="text" name="userAddr" value="${u.userAddr}"></td>
+                            </tr>
+                            <tr>
+                                <th>í¬ì¸íŠ¸</th>
+                                <td style="padding-left: 5px;">${u.userPoint}</td>
+                            </tr>
+                            <tr>
+                                <th>ê°€ì…ì¼</th>
+                                <td style="padding-left: 5px;">${u.userDate}</td>
                             </tr>
                         </table>
                         <br>
-                        <input type="submit" value="¼öÁ¤">
+                        <input type="submit" value="ìˆ˜ì •">
                     </form>
                 </div>
             </div>

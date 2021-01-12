@@ -22,6 +22,7 @@ public class CampController {
 		return "camp/start";
 	}
 	
+<<<<<<< HEAD
 	@RequestMapping("/campBoard.do")
 	public String campBoard(Model model) {
 		return null;
@@ -42,4 +43,7 @@ public class CampController {
 	public String campjoin3() {
 		return "camp/campjoin4";
 	}
+=======
+	
+>>>>>>> main
 }
