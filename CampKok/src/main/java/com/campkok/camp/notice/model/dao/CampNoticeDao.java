@@ -15,12 +15,21 @@ public class CampNoticeDao {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 
-	public ArrayList<CampNoticeVO> selectList(HashMap<String, Object> map) {
-		List<CampNoticeVO> list = sqlSession.selectList("camp.selectAllNotice",map);
-		return (ArrayList<CampNoticeVO>)list;
-	}
+	/*
+	 * public ArrayList<CampNoticeVO> selectList(HashMap<String, Object> map) {
+	 * List<CampNoticeVO> list = sqlSession.selectList("camp.selectAllNotice",map);
+	 * return (ArrayList<CampNoticeVO>)list; }
+	 */
 
 	public int totalCount() {
 		return sqlSession.selectOne("camp.selectCountNoitce");
+	}
+
+	public ArrayList<CampNoticeVO> selectList(int start, int end) {
+		HashMap<String,Integer> map = new HashMap<String,Integer>();
+		map.put("start", start);
+		map.put("end", end);
+		List<CampNoticeVO> list = sqlSession.selectList("camp.selectAllNotice",map);
+		return (ArrayList<CampNoticeVO>)list;
 	}
 }

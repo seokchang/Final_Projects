@@ -19,7 +19,9 @@
 	<a href="/chat.do?userNo=2">채팅</a>
 	<a href="/customerNoticeList.do?reqPage=1">공지사항</a>
 	<a href="/mainCeoNoticeList.do?reqPage=1">공지사항</a>
+	<hr>
 	<h3>사업자_기현</h3>
 	<a href="/camp/kihyun.do">사업자_기현페이지</a>
+	
 </body>
 </html>
