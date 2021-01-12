@@ -27,6 +27,8 @@
 	<a href="/camp/kihyun.do">사업자_기현페이지</a>
 	<a href="/mypage.do?userNo=2">마이페이지</a>
 	<a href="/camp/jinwoo.do">진우 작업페이지</a>
-
+	
+	<hr>
+	<a href="/main.do">메인페이지</a>
 </body>
 </html>
