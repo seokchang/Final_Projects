@@ -12,12 +12,12 @@ import com.campkok.admin.user.model.vo.User;
 @Controller
 public class AdminUserController {
 	@Autowired
-	private AdminUserService uService;
+	private AdminUserService service;
 
 	// ********** Client Info **********
 	@RequestMapping("selectClientInfo.do")
 	public String selectClientInfo(int userNo, Model model) {
-		User clientInfo = uService.selectClientInfo(userNo);
+		User clientInfo = service.selectClientInfo(userNo);
 
 		model.addAttribute("clientInfo", clientInfo);
 
@@ -26,7 +26,7 @@ public class AdminUserController {
 
 	@RequestMapping("/selectClientInfoList.do")
 	public String selectClientInfoList(int reqPage, Model model) {
-		AdminUserInfoPageData auipd = uService.selectClientInfoList(reqPage);
+		AdminUserInfoPageData auipd = service.selectClientInfoList(reqPage);
 
 		model.addAttribute("list", auipd.getList());
 		model.addAttribute("pageNavi", auipd.getPageNavi());
@@ -36,7 +36,7 @@ public class AdminUserController {
 
 	@RequestMapping("/searchClientInfo.do")
 	public String searchClientInfoList(int reqPage, String searchCategory, String search, Model model) {
-		AdminUserInfoPageData auipd = uService.searchClientInfoList(reqPage, searchCategory, search);
+		AdminUserInfoPageData auipd = service.searchClientInfoList(reqPage, searchCategory, search);
 
 		model.addAttribute("list", auipd.getList());
 		model.addAttribute("pageNavi", auipd.getPageNavi());
@@ -46,7 +46,7 @@ public class AdminUserController {
 
 	@RequestMapping("/updateClientInfo.do")
 	public String updateClientInfo(User clientInfo, Model model) {
-		int result = uService.updateClientInfo(clientInfo);
+		int result = service.updateClientInfo(clientInfo);
 
 		if (result > 0) {
 			model.addAttribute("msg", "고객정보 수정 성공");
@@ -60,7 +60,7 @@ public class AdminUserController {
 
 	@RequestMapping("/deleteClientInfo.do")
 	public String deleteClientInfo(int userNo, Model model) {
-		int result = uService.deleteClientInfo(userNo);
+		int result = service.deleteClientInfo(userNo);
 
 		if (result > 0) {
 			model.addAttribute("msg", "고객정보 삭제 성공");
@@ -73,9 +73,20 @@ public class AdminUserController {
 	}
 
 	// ********** CEO Info **********
+	
+	@RequestMapping("/searchCeoInfo.do")
+	public String searchCeoInfo(int reqPage, String searchCategory, String search, Model model) {
+		AdminUserInfoPageData auipd = service.searchCeoInfoList(reqPage, searchCategory, search);
+		
+		model.addAttribute("list", auipd.getList());
+		model.addAttribute("pageNavi", auipd.getPageNavi());
+		
+		return "/admin/ceoInfoList";
+	}
+	
 	@RequestMapping("/selectCeoInfoList.do")
 	public String selectCeoInfoList(int reqPage, Model model) {
-		AdminUserInfoPageData auipd = uService.selectCeoInfoList(reqPage);
+		AdminUserInfoPageData auipd = service.selectCeoInfoList(reqPage);
 
 		model.addAttribute("list", auipd.getList());
 		model.addAttribute("pageNavi", auipd.getPageNavi());

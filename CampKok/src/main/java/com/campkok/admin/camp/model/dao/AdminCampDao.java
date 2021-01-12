@@ -19,6 +19,10 @@ public class AdminCampDao {
 		return session.selectOne("adminCamp.getTotalCampCount");
 	}
 
+	public Camp selectCampInfo(String userId) {
+		return session.selectOne("adminCamp.selectCampInfo", userId);
+	}
+
 	public ArrayList<Camp> selectCampInfoList(int start, int end) {
 		HashMap<String, Integer> map = new HashMap<String, Integer>();
 
