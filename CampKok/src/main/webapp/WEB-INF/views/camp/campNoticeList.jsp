@@ -14,7 +14,7 @@
 		<tr>
 			<th>锅龋</th><th>力格</th><th>累己磊</th><th>累己老</th>
 		</tr>
-		<c:forEach items="${list }" var="n">
+		<c:forEach items="${list }" var="n" varStatus="index">
 			<tr>
 				<td>${n.CampNoticeNo }</td>
 				<td>${n.CampNoticeTitle }</td>

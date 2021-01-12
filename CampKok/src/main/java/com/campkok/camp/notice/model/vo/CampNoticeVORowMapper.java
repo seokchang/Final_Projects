@@ -10,13 +10,13 @@ public class CampNoticeVORowMapper implements RowMapper {
 	@Override
 	public Object mapRow(ResultSet rs, int rowNum) throws SQLException {
 		CampNoticeVO n = new CampNoticeVO();
-		n.setCampNoticeNo(rs.getInt("Camp_notice_no"));
-		n.setCampNoticeTitle(rs.getString("Camp_notice_title"));
+		n.setCampNoticeNo(rs.getInt("camp_notice_no"));
+		n.setCampNoticeTitle(rs.getString("camp_notice_title"));
 		n.setCampNo(rs.getInt("camp_no"));
-		n.setCampNoticeDate(rs.getString("Camp_notice_date"));
-		n.setCampNoticeContents(rs.getString("Camp_notice_contents"));
-		n.setCampNoticeFilename(rs.getString("Camp_notice_filename"));
-		n.setCampNoticefilePath(rs.getNString("Camp_notice_filepath"));
+		n.setCampNoticeDate(rs.getString("camp_notice_date"));
+		n.setCampNoticeContents(rs.getString("camp_notice_contents"));
+		n.setCampNoticeFilename(rs.getString("camp_notice_filename"));
+		n.setCampNoticefilePath(rs.getNString("camp_notice_filepath"));
 		return n;
 	}
 	
