@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.campkok.customer.model.service.UserService;
 import com.campkok.customer.model.vo.UserVO;
@@ -65,10 +66,23 @@ public class UserController {
 	public String login(UserVO u, HttpSession session, Model model) {
 		UserVO user = service.selectOneUser(u);
 		if(user != null) {
-			session.setAttribute("u", user);
+			session.setAttribute("user", user);
 			model.addAttribute("msg", "로그인 성공.");
 		}else {
 			model.addAttribute("msg", "아이디 또는 비밀번호를 확인해주세요.");
+		}
+		model.addAttribute("loc", "/");
+		return "common/msg";
+	}
+	
+	// 로그아웃 
+	@RequestMapping("/logout.do")
+	public String logout(HttpSession session, Model model, @SessionAttribute(required=false) UserVO user) {	
+		if(user != null) {
+			session.invalidate();
+			model.addAttribute("msg", "로그아웃 되었습니다.");			
+		}else {
+			model.addAttribute("msg", "로그인되어있지 않습니다.");
 		}
 		model.addAttribute("loc", "/");
 		return "common/msg";

@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +14,9 @@
 	</h3>
 	<hr>
 	<h3>고객</h3>
+	<h2>[${sessionScope.user.userName }]</h2>
 	<a href="/loginFrm.do">로그인</a>
+	<a href="/logout.do">로그아웃</a>
 	<a href="/joinPage.do">회원가입</a>
 	<a href="/mypage.do?userNo=2">마이페이지</a>
 	<a href="/chat.do?userNo=2">채팅</a>
