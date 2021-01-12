@@ -18,9 +18,7 @@ public class CampNoticeService {
 	public NoticePageData noticeList(int reqPage) {
 		int numPerPage = 10;
 		int end = reqPage * numPerPage;
-		System.out.println(end);
 		int start = end - numPerPage +1;
-		System.out.println(start);
 		/*
 		 * HashMap<String,Object> map = new HashMap<String,Object>();
 		 * map.put("start",start); map.put("end",end); 
