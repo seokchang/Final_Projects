@@ -95,6 +95,7 @@
 </head>
 <body>
 	<body>
+	<jsp:include page="/WEB-INF/views/common/header.jsp" />
     <h1>캠핑장 등록</h1>
     <div id="step"><img src="/resources/img/camp/step1.png"></div>
     <hr style="border:2px solid black">

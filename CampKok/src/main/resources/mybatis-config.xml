@@ -16,9 +16,7 @@
 
 		<!-- Camp -->
 		<typeAlias type="com.campkok.camp.model.vo.CampVO" alias="c" />
-<<<<<<< HEAD
 		<typeAlias type="com.campkok.customer.model.vo.UserVO" alias="u"/>
-=======
 		<typeAlias type="com.campkok.camp.notice.model.vo.CampNoticeVO" alias="cn" />
 		<typeAlias type="com.campkok.customer.model.vo.UserVO" alias="u" />
 
@@ -29,6 +27,5 @@
 		<typeAlias type="com.campkok.customer.model.vo.PointVO" alias="p"/>
 		<typeAlias type="com.campkok.customer.model.vo.UserVO" alias="u" />
 		<typeAlias type="com.campkok.customer.model.vo.ReservationVO" alias="r" />
->>>>>>> main
 	</typeAliases>
 </configuration>
