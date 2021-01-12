@@ -19,6 +19,15 @@ public class AdminCampDao {
 		return session.selectOne("adminCamp.getTotalCampCount");
 	}
 
+	public int getTotalSearchCampCount(String searchCategory, String search) {
+		HashMap<String, String> map = new HashMap<String, String>();
+
+		map.put("searchCategory", searchCategory);
+		map.put("search", search);
+
+		return session.selectOne("adminCamp.getSearchCampInfoCount", map);
+	}
+
 	public Camp selectCampInfo(String userId) {
 		return session.selectOne("adminCamp.selectCampInfo", userId);
 	}
@@ -34,4 +43,16 @@ public class AdminCampDao {
 		return (ArrayList<Camp>) list;
 	}
 
+	public ArrayList<Camp> searchCampInfoList(int start, int end, String searchCategory, String search) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+
+		map.put("start", start);
+		map.put("end", end);
+		map.put("searchCategory", searchCategory);
+		map.put("search", search);
+
+		List<Camp> list = session.selectList("adminCamp.searchCampInfoList", map);
+
+		return (ArrayList<Camp>) list;
+	}
 }

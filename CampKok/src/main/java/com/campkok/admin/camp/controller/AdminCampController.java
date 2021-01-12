@@ -12,14 +12,24 @@ import com.campkok.admin.camp.model.vo.AdminCampInfoPageData;
 public class AdminCampController {
 	@Autowired
 	private AdminCampService service;
-	
+
+	@RequestMapping("/searchCampInfoList.do")
+	public String searchCampInfoList(int reqPage, String searchCategory, String search, Model model) {
+		AdminCampInfoPageData acipd = service.searchCampInfoList(reqPage, searchCategory, search);
+
+		model.addAttribute("list", acipd.getList());
+		model.addAttribute("pageNavi", acipd.getPageNavi());
+
+		return "/admin/campInfoList";
+	}
+
 	@RequestMapping("/selectCampInfoList.do")
 	public String selectCampInfoList(int reqPage, Model model) {
 		AdminCampInfoPageData acipd = service.selectCampInfoList(reqPage);
-		
+
 		model.addAttribute("list", acipd.getList());
 		model.addAttribute("pageNavi", acipd.getPageNavi());
-		
+
 		return "/admin/campInfoList";
 	}
 
