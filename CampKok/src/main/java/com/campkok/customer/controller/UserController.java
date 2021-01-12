@@ -31,14 +31,22 @@ public class UserController {
 	}
 	
 	// 회원가입
+	
+	/* 이유는 모르겠는데 dao를 한번 더 다녀와서 ORA-01400: cannot insert NULL into ("CAMPKOK"."USER_TBL"."USER_ID") 오류 뜸... 내일 진실의방 다녀올 예정
+	 * 와중에 DB는 예쁘게 들어가서 더 환장할 노릇 */
 	@RequestMapping("/customerJoin.do")
 	public String customerJoin(UserVO u, Model model) {
+		System.out.println("이 메시지는 한번만 돌아야 합니다.");
+		System.out.println("전 : "+u.getUserId());
 		int result = service.insertUser(u);
 		System.out.println(u);
+		System.out.println("후 : "+u.getUserId());
 		if(result>0) {
 			model.addAttribute("msg","환영합니다.");
+			System.out.println("이게 도는거니?");
 		}else {
 			model.addAttribute("msg","회원가입에 실패하였습니다. 관리자에게 문의하세요.");
+			System.out.println("아니면 너니?");
 		}
 		return "common/msg";
 	}

@@ -56,9 +56,13 @@
                         <td>전화번호</td>
                         <td><input type="text" name="userPhone" placeholder="ex) 010-0000-0000"></td>
                     </tr>
+                    <tr style="display: none">
+                        <td>회원레벨</td>
+                        <td><input type="text" name="userLevel" value="1"></td>
+                    </tr>
                     <tr>
                         <td>생년월일</td>
-                        <td><input type="text" name="userBirth" placeholder="ex) 19941208"></td>
+                        <td><input type="text" name="userBirth" placeholder="ex) 1994-12-08"></td>
                         
                         <!-- 
                         <td>
@@ -230,7 +234,7 @@
     
     <script>
     	/* 아이디 중복체크 */
-		$("[name=userId]").change(function(){
+		/* $("[name=userId]").change(function(){
 			var userId = $(this).val();
 			$.ajax({
 				url : "/checkId.do",
@@ -248,7 +252,7 @@
 					}
 				}
 			});
-		});
+		}); */
     	
     	/* 
     	
