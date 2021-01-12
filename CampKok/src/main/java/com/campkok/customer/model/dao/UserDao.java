@@ -14,7 +14,6 @@ public class UserDao {
 
 	// 회원가입
 	public int insertUser(UserVO u) {
-		System.out.println("dao 이 메시지는 한번만 돌아야 합니다.");
 		return sqlSession.insert("user.insertUser",u);
 	}
 	

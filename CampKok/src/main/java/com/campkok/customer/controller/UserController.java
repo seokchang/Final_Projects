@@ -47,19 +47,13 @@ public class UserController {
 	 * 문정이가 고쳐줘서 진실의방 안가도 댐...ㅠㅠㅠㅠㅠㅠ */
 	@RequestMapping("/customerJoin.do")
 	public String customerJoin(UserVO u, Model model) {
-		System.out.println("이 메시지는 한번만 돌아야 합니다.");
-		System.out.println("전 : "+u.getUserId());
 		int result = service.insertUser(u);
-		System.out.println(u);
-		System.out.println("후 : "+u.getUserId());
 		if(result>0) {
 			model.addAttribute("msg","환영합니다.");
 			model.addAttribute("loc","/");	// 이거 빼먹음 빡대갈...
-			System.out.println("이게 도는거니?");
 		}else {
 			model.addAttribute("msg","회원가입에 실패하였습니다. 관리자에게 문의하세요.");
 			model.addAttribute("loc","/");	// 이걸 어떻게 빼먹을수 있어 ㅠ
-			System.out.println("아니면 너니?");
 		}
 		return "common/msg";
 	}

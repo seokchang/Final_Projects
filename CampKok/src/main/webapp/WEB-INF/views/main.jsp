@@ -17,11 +17,15 @@
     
     <!-- css -->
 	<link rel="stylesheet" href="/resources/css/main/main.css">
+	
+	<!-- favicon -->
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+	<link rel="icon" href="/favicon.ico" type="image/x-icon">
 </head>
 <body>
-	<jsp:include page="/WEB-INF/views/common/header.jsp" />
 	
 	<div class="header">
+        <div id="header-scroll"></div>
         <div class="header-logo">
             <a href="#"></a><img src="resources/img/main/logo-w.png">
             <p><a href="#">Campkok</a></p>
@@ -36,15 +40,17 @@
         </nav>
         <div class="header-user">
             <div class="user-btn"><a href="#">
-                    <div></div>
+                    <div id="user-btn-slide"></div>
                 </a></div>
             <div class="user-box">
                 <ul>
-                    <li>회원가입</li>
-                    <li>로그인</li>
-                    <li>마이페이지</li>
-                    <li>1:1 채팅</li>
-                    <li>쪽지</li>
+                    <li><a href="#">회원가입</a></li>
+                    <li><a href="#">로그인</a></li>
+                    <li><a href="#">로그아웃</a></li>
+                    <hr>
+                    <li><a href="#">마이페이지</a></li>
+                    <li><a href="#">1:1 채팅</a></li>
+                    <li><a href="#">쪽지</a></li>
                 </ul>
             </div>
         </div>
@@ -56,7 +62,7 @@
             <div class="banner-content">d</div>
             <div class="searchbar">
                 <form action="#" method="post">
-                    <input type="text" placeholder="어느곳으로 캠핑을 떠나보시겠어요?"><button type="submit">검색</button>
+                    <input type="text" value="어느곳으로 캠핑을 떠나보시겠어요?"><button type="submit">검색</button>
                 </form>
 
             </div>
@@ -228,35 +234,53 @@
         </div>
     </div>
 
-	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 
-    <!--<nav>네비게이션 메뉴</nav>
-    <div class="all">
-        <header>대충 상단</header>
-        <main>대충 본문</main>
-        <aside>대충 사이드바</aside>
-        <footer>대충 푸터</footer>
-    </div>-->
-
-    <!--<script>
-        function navigo() {
-            const header = document.querySelector('header'); //헤더부분획득
-            const headerheight = header.clientHeight; //헤더높이
-            document.addEventListener('scroll', onScroll, {
-                passive: true
-            }); //스크롤 이벤트
-            function onScroll() {
-                const scrollposition = pageYOffset; //스크롤 위치
-                const nav = document.querySelector('nav'); //네비게이션
-                if (headerheight <= scrollposition) { //만약 헤더높이<=스크롤위치라면
-                    nav.classList.add('fix') //fix클래스를 네비에 추가
-                } else { //그 외의 경우
-                    nav.classList.remove('fix'); //fix클래스를 네비에서 제거
+    <script>
+        $(document).ready(function() {
+            // header scroll fadin,out
+            var hdOffset = $('.header').offset();
+            $(window).scroll(function() {
+                if ($(document).scrollTop() > hdOffset.top) {
+                    $('#header-scroll').stop(true).animate({
+                        'opacity': 1
+                    }, 200);
+                } else {
+                    $('#header-scroll').stop(true).animate({
+                        'opacity': 0
+                    }, 200);
                 }
-            }
+            });
 
-        }
-        navigo()
-    </script>-->
+            // user-box show,hide
+            $("#user-btn-slide").click(function() {
+                if ($(".user-box").css("display") == "none") {
+                    /*$(this).css({'float':'right','background-color':'#2d2d2d'});*/
+                    $(this).css({'float':'right'});
+                    $(".user-btn").css({'backgroun-color':'#fff'}); // 이거 도대체 왜 안먹히는거야ㅏㅏㅏㅏㅏ
+                    $(".user-box").fadeIn('fast');
+                } else {
+                    /*$(this).css({'float':'','background-color':'#fff'});*/
+                    $(this).css({'float':''});
+                    $(".user-btn").css({'backgroun-color':''});
+                    $(".user-box").fadeOut('fast');
+                }
+            });
+
+            /*
+            // header 메뉴 클릭했을때 bgco fix
+            $('nav').find('a').click(function() {
+                if ($('#header-scroll').css("opacity") == "0") {
+                    $("#header-scroll").animate({
+                        'opacity': 1
+                    }, 200);
+                } else if($(this).mouseleave()) {
+                    $("#header-scroll").css('opacity', '0');
+                }
+            });
+            */
+        });
+    </script>
+    
+	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 </body>
 </html>

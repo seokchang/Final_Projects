@@ -14,10 +14,7 @@ public class UserService {
 
 	// 회원가입 
 	public int insertUser(UserVO u) {
-		System.out.println("servise 1 이 메시지는 한번만 돌아야 합니다.");
-		// if(u.getUserId() != null) 해봤는데 실패 메세지 알람 계속뜸....꺼지지도 않어...
 		int result = dao.insertUser(u);
-		System.out.println("service 2 이 메시지는 한번만 돌아야 합니다.");
 		return result;
 	}
 

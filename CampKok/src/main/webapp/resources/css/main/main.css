@@ -67,31 +67,76 @@ nav>ul>li>a {
 /* header user부분 */
 .header-user {
 	margin-right: 200px;
+	position: relative;
 }
 
 .user-btn {
 	line-height: 40px;
 	margin: 20px;
+	display: flex;
+	border-radius: 20px;
+	border: 1px solid lightgray;
 }
 
 .user-btn>a {
 	display: block;
-	border: 1px solid lightgray;
-	width: 80px;
-	border-radius: 20px;
-	height: 40px;
+	width: 70px;
 }
 
 .user-btn>a>div {
-	background-color: antiquewhite;
+	background-color: #fff;
 	width: 35px;
 	border-radius: 20px;
 	height: 35px;
 	margin: 2px;
+	/*float: right;*/
 }
 
 .user-box {
 	display: none;
+	width: 120px;
+	position: absolute;
+	background-color: #fff;
+	padding: 25px;
+	border-radius: 20px;
+	box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.5);
+	margin: -10px;
+}
+
+.user-box>ul {
+	padding: 0;
+	margin: 0;
+}
+
+.user-box>ul>hr {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.user-box>ul>li {
+	list-style: none;
+	margin-bottom: 10px;
+}
+
+.user-box>ul>li>a {
+	text-decoration: none;
+	color: #232323;
+	font-size: 20px;
+	border-radius: 10px;
+}
+
+.user-box>ul>li>a:hover {
+	font-weight: bold;
+}
+
+/* header-scroll */
+#header-scroll {
+	position: absolute;
+	background-color: #2d2d2d;
+	width: 100%;
+	height: 100%;
+	z-index: -1;
+	opacity: 0;
 }
 
 /* content */
@@ -102,11 +147,12 @@ nav>ul>li>a {
 
 .banner {
 	position: relative;
-	height: 100%;
+	height: 1100px;
+	overflow: hidden;
 }
 
 .banner>img {
-	width: 100%;
+	width: 2000px;
 }
 
 .banner-content {
@@ -119,7 +165,7 @@ nav>ul>li>a {
 .searchbar {
 	position: absolute;
 	width: 100%;
-	margin-top: 100px;
+	margin-top: 140px;
 }
 
 .searchbar>form {
@@ -130,31 +176,33 @@ nav>ul>li>a {
 
 .searchbar>form>input {
 	border: 1px solid lightgray;
-	width: 800px;
-	height: 50px;
+	width: 750px;
+	height: 60px;
 	padding: 0;
-	padding-left: 25px;
+	padding-left: 40px;
 	margin: 0;
 	border-top-left-radius: 50px;
 	border-bottom-left-radius: 50px;
+	box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.4);
+	font-size: 18px
 }
 
 .searchbar>form>button {
 	border: 1px solid lightgray;
 	background-color: #eba13d;
-	width: 130px;
-	height: 52px;
+	width: 180px;
+	height: 62px;
 	border: none;
 	font-size: 18px;
 	color: #fff;
 	border-top-right-radius: 50px;
 	border-bottom-right-radius: 50px;
+	font-size: 20px;
+	transition-duration: 0.5s;
 }
 
-.searchbar>button:hover {
-	background-color: #fff;
-	color: #eba13d;
-	border: 1px solid #eba13d;
+.searchbar>form>button:hover {
+	background-color: #F2542F;
 }
 
 /* title */
@@ -209,6 +257,7 @@ h3 {
 .new-camping-content>div>img {
 	height: 100%;
 	display: inline;
+	transition-duration: 0.5s;
 }
 
 .new-camping-content>div>img:hover {
