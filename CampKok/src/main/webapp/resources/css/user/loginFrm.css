@@ -39,6 +39,7 @@
 }
 
 .login-box {
+	background-color:#fff;
 	border: 1px solid lightgray;
 	width: 800px;
 	padding: 50px;
