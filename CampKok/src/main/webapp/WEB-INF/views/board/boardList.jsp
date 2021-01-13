@@ -70,7 +70,7 @@
           .post {
           display:inline-block;
             width: 92%;
-            text-align: right;	
+            text-align: left;	
             align-item: baseline;
         }
 /*         .post input{
@@ -137,9 +137,11 @@
                     
                 </form>
             </div>
+            <c:if test="${sessionScope.user.userId!=null }">
         <div class="write">
 			<a href="/boardFrm.do" class="write-btn">작성</a>
 		</div>
+		</c:if>
         </div>
            
         <div class="notice-naeyong">

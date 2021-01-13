@@ -43,6 +43,8 @@
 </head>
 
 <body>
+<c:set var="today" value="<%=new java.util.Date()%>" />
+<c:set var="date"><fmt:formatDate value="${today}" pattern="yyyy-MM-dd" /></c:set>
 	<jsp:include page="/WEB-INF/views/common/header.jsp" />
     <div class="header-img">
         <div>
@@ -63,9 +65,9 @@
                 </tr>
                 <tr>
                     <th width="25%">작성자</th>
-                    <td width="25%"><input type="text" name="userId" value="user01"></td>
+                    <td width="25%"><input type="text" name="userId" value="${sessionScope.user.userId }"></td>
                     <th width="25%">등록일</th>
-                    <td width="25%">${b.boardDate }</td>
+                    <td width="25%"><input type="text" name="boardDate" value="${date }"></td>
                 </tr>
                 <tr>
                     <th>첨부파일</th>
@@ -77,12 +79,11 @@
                 </tr>
                 <tr>
                 	<td colspan="4" style="text-align: center;height: 55px;">
-                    	
+                    	<input type="submit" class="notice-btn" value="등록">
+                    	<a href="javascript:history.go(-1)" class="notice-btn">취소</a>
                     </td>
                 </tr>
             </table>
-            			<input type="submit" class="notice-btn" value="등록">
-                    	<a href="javascript:history.go(-1)" class="notice-btn">취소</a>
             	</form>
             <table class="notice-tbl2">
                 <tr>

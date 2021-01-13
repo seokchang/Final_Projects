@@ -70,12 +70,14 @@
                     <td colspan="4" style="text-align: center;height: 55px;"><a href="/boardList.do?reqPage=1" class="notice-btn">목록</a></td>
                 </tr> -->
 <%--                 <c:if test="${sessionScope.member.memberId.equals(b.boardId) }"> --%>
+				<c:if test="${sessionScope.user.userId.equals(b.userId) }">
                 <tr>
                 	<td colspan="4" style="text-align: center;height: 55px;">
                     	<a href="/boardUpdateFrm.do?boardNo=${b.boardNo }" class="notice-btn">수정</a>
                     	<a href="/deleteBoard.do?boardNo=${b.boardNo }" class="notice-btn">삭제</a>
                     </td>
                 </tr>
+                </c:if>
             </table>
             <table class="notice-tbl2">
                 <tr>
