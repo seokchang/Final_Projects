@@ -8,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.campkok.customer.model.vo.BoardVO;
 import com.campkok.customer.model.vo.PointVO;
 import com.campkok.customer.model.vo.ReservationVO;
 import com.campkok.customer.model.vo.ReviewVO;
@@ -63,4 +64,5 @@ public class CustomerDao {
 		List<PointVO> list = sqlSession.selectList("customer.pointInfo", userNo);
 		return (ArrayList<PointVO>) list;
 	}
+
 }

@@ -19,7 +19,8 @@
 	<a href="/logout.do">로그아웃</a>
 	<a href="/joinPage.do">회원가입</a>
 	<a href="/mypage.do?userNo=2">마이페이지</a>
-	<a href="/chat.do?userNo=2">채팅</a>
+	<a href="/allMemberChat.do">채팅</a>
+	<a href="/boardList.do?reqPage=1">자유 게시판</a>
 	<a href="/customerNoticeList.do?reqPage=1">공지사항</a>
 	<a href="/mainCeoNoticeList.do?reqPage=1">공지사항</a>
 	<hr>

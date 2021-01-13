@@ -15,7 +15,7 @@
             background-color: #405944;
             margin: 0 auto;
             border-radius: 10px;
-            width: 1200px;
+            width: 100%;
             height: 1000px;
         }
 
@@ -155,6 +155,7 @@
 </head>
 
 <body>
+<jsp:include page="/WEB-INF/views/common/header.jsp" />
     <div class="content">
         <!--왼쪽-->
         <div class="mypage-menu">
