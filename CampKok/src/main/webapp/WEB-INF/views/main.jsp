@@ -49,6 +49,9 @@
 						<li><a href="/mainCeoNoticeList.do?reqPage=1">공지사항</a></li>
 						<li><a href="#">광고</a></li>
 					</c:when>
+					<c:when test="${sessionScope.user.userLevel == 0 }">
+						<li><a href="#">관리자</a></li>
+					</c:when>
 					<c:otherwise>
 						<li><a href="/customerNoticeList.do?reqPage=1">공지사항</a></li>
 					</c:otherwise>

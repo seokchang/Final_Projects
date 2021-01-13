@@ -15,12 +15,14 @@ public class CampListController {
 	@Autowired
 	private CampListService service;
 
+	// 캠핑장 리스트
 	@RequestMapping("/campList.do")
 	public String campList(int reqPage, Model model) {
 		CampListPageData clpd = service.campList(reqPage);
 		return "user/campList";
 	}
 	
+	// 캠핑장 상세페이지
 	@RequestMapping("/campView.do")
 	public String selectOneCamp(int campNo, Model model) {
 		CampVO c = service.selectOneCamp(campNo);
