@@ -5,7 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
     <style>
        .content {
             background-color: #5a7356;
@@ -161,6 +162,7 @@
 		}
     </style>
 </head>
+
 <body>
    <div class="content">
        
@@ -181,10 +183,10 @@
             </div>
         </div>
         <div class="chat-content">
-            <div class="chatMsg"></div>
+            <div class="chatMsg" id="chatMsg"></div>
             <textarea id="sendMsg" autofocus></textarea>
             <!-- <input type="button" value="전송"> -->
-            <button onclick="sendMsg('user01');">보내기</button>
+            <button class="chatSend" id="sendBtn" onclick="sendMsg('user01');">보내기</button>
         </div>
     </div>
     
@@ -224,6 +226,21 @@
 				$("#sendMsg").val('');
 			}
 		}
+	</script>
+	<script>
+    document.getElementById('sendMsg').addEventListener('keydown', function(event) {
+        if (event.keyCode == 13) {
+            event.preventDefault();
+            document.getElementById('sendBtn').click();
+        }
+    });
+    document.querySelector('.chatSend').addEventListener('click', function() {
+    	sendMsg('user01');
+    });
+</script>
+	<script>
+	$(".chatMsg").scrollTop($(".chatMsg")[0].scrollHeight);
+	
 	</script>
 </body>
 </html>

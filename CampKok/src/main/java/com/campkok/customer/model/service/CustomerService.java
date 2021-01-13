@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.campkok.customer.model.dao.CustomerDao;
+import com.campkok.customer.model.vo.BoardPageData;
+import com.campkok.customer.model.vo.BoardVO;
 import com.campkok.customer.model.vo.PointVO;
 import com.campkok.customer.model.vo.ReservationVO;
 import com.campkok.customer.model.vo.ReviewInfoPageData;
@@ -36,9 +38,9 @@ public class CustomerService {
 	}
 
 	public UseInfoPageData reserveList(int reqPage, int userNo) {
-		//°Ô½Ã¹° ±¸ÇØ¿Ã °Í
-		int numPerPage = 8; 	//ÇÑ ÆäÀÌÁö´ç °Ô½Ã¹° ¼ö
-		//°Ô½Ã¹° 10°³ °¡Á®¿À±â
+		//ê²Œì‹œë¬¼ êµ¬í•´ì˜¬ ê²ƒ
+		int numPerPage = 8; 	//í•œ í˜ì´ì§€ë‹¹ ê²Œì‹œë¬¼ ìˆ˜
+		//ê²Œì‹œë¬¼ 10ê°œ ê°€ì ¸ì˜¤ê¸°
 		int end = reqPage * numPerPage;
 		int start = end - numPerPage +1;
 		HashMap<String, Object> map = new HashMap<String, Object>();
@@ -46,25 +48,25 @@ public class CustomerService {
 		map.put("end",end);
 		map.put("userNo",userNo);
 		ArrayList<ReservationVO> list = dao.useSelectList(map);
-		//pageNavi Á¦ÀÛ
-		//ÃÑ °Ô½Ã¹° ¼ö
+		//pageNavi ì œì‘
+		//ì´ ê²Œì‹œë¬¼ ìˆ˜
 		int totalCount = dao.useTotalCount(userNo);
-		//ÃÑ ÆäÀÌÁö ¼ö
+		//ì´ í˜ì´ì§€ ìˆ˜
 		int totalPage = 0;
 		if(totalCount%numPerPage == 0) {
 			totalPage = totalCount/numPerPage;
 		}else {
 			totalPage = totalCount/numPerPage+1;
 		}
-		//ÆäÀÌÁö³×ºñÀÇ ±æÀÌ
+		//í˜ì´ì§€ë„¤ë¹„ì˜ ê¸¸ì´
 		int pageNaviSize = 5;
-		//ÆäÀÌÁö ³×ºñ ½ÃÀÛ¹øÈ£
+		//í˜ì´ì§€ ë„¤ë¹„ ì‹œì‘ë²ˆí˜¸
 		int pageNo = ((reqPage-1)/pageNaviSize)*pageNaviSize+1;
-		//ÆäÀÌÁö³×ºñ ÀÛ¼º
+		//í˜ì´ì§€ë„¤ë¹„ ì‘ì„±
 		String pageNavi = "";
-		//ÀÌÀü ¹öÆ° »ı¼º
+		//ì´ì „ ë²„íŠ¼ ìƒì„±
 		if(pageNo != 1) {
-	         pageNavi += "<a href='/reserveAll.do?reqPage="+(pageNo-1)+"&userNo="+userNo+"'>[ÀÌÀü]</a>";
+	         pageNavi += "<a href='/reserveAll.do?reqPage="+(pageNo-1)+"&userNo="+userNo+"'>[ì´ì „]</a>";
 	      }
 		for(int i=0; i<pageNaviSize; i++) {
 			if(pageNo != reqPage) {
@@ -77,18 +79,16 @@ public class CustomerService {
 				break;
 			}
 		}
-		//´ÙÀ½¹öÆ°
+		//ë‹¤ìŒë²„íŠ¼
 		if(pageNo <= totalPage) {
-	         pageNavi += "<a href='/reserveAll.do?reqPage="+pageNo+"&userNo="+userNo+"'>[´ÙÀ½]</a>";
+	         pageNavi += "<a href='/reserveAll.do?reqPage="+pageNo+"&userNo="+userNo+"'>[ë‹¤ìŒ]</a>";
 	      }
 		UseInfoPageData uipf = new UseInfoPageData(list, pageNavi);
 		return uipf;
 	}
 
 	public ReviewInfoPageData reviewList(int reqPage, String userId) {
-		//°Ô½Ã¹° ±¸ÇØ¿Ã °Í
-		int numPerPage = 8; 	//ÇÑ ÆäÀÌÁö´ç °Ô½Ã¹° ¼ö
-		//°Ô½Ã¹° 10°³ °¡Á®¿À±â
+		int numPerPage = 8; 
 		int end = reqPage * numPerPage;
 		int start = end - numPerPage +1;
 		HashMap<String, Object> map = new HashMap<String, Object>();
@@ -96,25 +96,18 @@ public class CustomerService {
 		map.put("end",end);
 		map.put("userId",userId);
 		ArrayList<ReviewVO> list = dao.reviewSelectList(map);
-		//pageNavi Á¦ÀÛ
-		//ÃÑ °Ô½Ã¹° ¼ö
 		int totalCount = dao.reviewTotalCount(userId);
-		//ÃÑ ÆäÀÌÁö ¼ö
 		int totalPage = 0;
 		if(totalCount%numPerPage == 0) {
 			totalPage = totalCount/numPerPage;
 		}else {
 			totalPage = totalCount/numPerPage+1;
 		}
-		//ÆäÀÌÁö³×ºñÀÇ ±æÀÌ
 		int pageNaviSize = 5;
-		//ÆäÀÌÁö ³×ºñ ½ÃÀÛ¹øÈ£
 		int pageNo = ((reqPage-1)/pageNaviSize)*pageNaviSize+1;
-		//ÆäÀÌÁö³×ºñ ÀÛ¼º
 		String pageNavi = "";
-		//ÀÌÀü ¹öÆ° »ı¼º
 		if(pageNo != 1) {
-	         pageNavi += "<a href='/review.do?reqPage="+(pageNo-1)+"&userId="+userId+"'>[ÀÌÀü]</a>";
+	         pageNavi += "<a href='/review.do?reqPage="+(pageNo-1)+"&userId="+userId+"'>[ì´ì „]</a>";
 	      }
 		for(int i=0; i<pageNaviSize; i++) {
 			if(pageNo != reqPage) {
@@ -127,9 +120,8 @@ public class CustomerService {
 				break;
 			}
 		}
-		//´ÙÀ½¹öÆ°
 		if(pageNo <= totalPage) {
-	         pageNavi += "<a href='/review.do?reqPage="+pageNo+"&userNo="+userId+"'>[´ÙÀ½]</a>";
+	         pageNavi += "<a href='/review.do?reqPage="+pageNo+"&userNo="+userId+"'>[ë‹¤ìŒ]</a>";
 	      }
 		ReviewInfoPageData ripf = new ReviewInfoPageData(list, pageNavi);
 		return ripf;
@@ -139,4 +131,5 @@ public class CustomerService {
 		// TODO Auto-generated method stub
 		return dao.pointList(userNo);
 	}
+
 }

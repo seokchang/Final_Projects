@@ -134,4 +134,77 @@
 			point_use_date as pointUseDate
 		from point where user_no=#{parameter}
 	</select>
+	<select id="boardList" parameterType="map" resultType="b">
+		select 
+			rownum as rnum,
+			board_no as boardNo,
+			user_id as userId,
+			board_filename as boardFilename,
+			board_filepath as boardFilepath,
+			board_contents as boardContents,
+			board_date as boardDate,
+			board_title as boardTitle
+		from (select rownum as rnum, n. * from (select * from board order by 1 desc)n) 
+	 	where rnum between #{start} and #{end}
+	</select>
+	<select id="totalBoard" resultType="b">
+		select
+			board_no as boardNo,
+			user_id as userId,
+			board_filename as boardFilename,
+			board_filepath as boardFilepath,
+			board_contents as boardContents,
+			board_date as boardDate,
+			board_title as boardTitle
+		from board
+	</select>
+	<select id="boardView" parameterType="_int" resultType="b">
+		select
+			board_no as boardNo,
+			user_id as userId,
+			board_filename as boardFilename,
+			board_filepath as boardFilepath,
+			board_contents as boardContents,
+			board_date as boardDate,
+			board_title as boardTitle
+		from board where board_no=#{parameter}
+	</select>
+	<insert id="boardInsert" parameterType="b">
+		insert into board values(board_seq.nextval,#{userId},#{boardFilename},#{boardFilepath},#{boardContents},to_char(sysdate, 'yyyy-mm-dd'),#{boardTitle})
+	</insert>
+	<delete id="boardDelete" parameterType="_int">
+		delete from board where board_no=#{_parameter}
+	</delete>
+	<update id="boardUpdate" parameterType="b">
+		update board set
+			board_filename=#{boardFilename},
+			board_filepath= #{boardFilepath},
+			board_contents= #{boardContents},
+			board_title= #{boardTitle}
+		where board_no=#{boardNo}
+	</update>
+	<select id="searchList" parameterType="map" resultType="b">
+		select 
+			rownum as rnum,
+			board_no as boardNo,
+			user_id as userId,
+			board_filename as boardFilename,
+			board_filepath as boardFilepath,
+			board_contents as boardContents,
+			board_date as boardDate,
+			board_title as boardTitle
+		from (select rownum as rnum, n.* from (select * from board order by 1 desc)n) 
+	 	where rnum between #{start} and #{end} and board_title like ('%'||#{keyword}||'%') 
+	</select>
+	<select id="searchBoard" parameterType="string" resultType="b">
+		select
+			board_no as boardNo,
+			user_id as userId,
+			board_filename as boardFilename,
+			board_filepath as boardFilepath,
+			board_contents as boardContents,
+			board_date as boardDate,
+			board_title as boardTitle
+		from board where board_title like ('%'||#{parameter}||'%')
+	</select>
 </mapper>
