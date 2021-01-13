@@ -29,8 +29,7 @@ public class CampListDao {
 	}
 
 	public CampVO selectOneCamp(int campNo) {
-		// TODO Auto-generated method stub
-		return null;
+		return session.selectOne("camp.selectOneCamp",campNo);
 	}
 
 }

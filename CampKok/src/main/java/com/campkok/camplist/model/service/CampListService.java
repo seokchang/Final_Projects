@@ -15,6 +15,7 @@ public class CampListService {
 	@Autowired
 	private CampListDao dao;
 	
+	// 캠핑장 리스트
 	public CampListPageData campList(int reqPage) {
 		int numPerPage = 12;	// 한 페이지당 게시물 수
 		// 1 : 1~12, 2 : 13~24, 3 : 25~37
@@ -64,6 +65,7 @@ public class CampListService {
 		return clpd;
 	}
 	
+	// 캠핑장 상세 페이지
 	public CampVO selectOneCamp(int campNo) {
 		CampVO c = dao.selectOneCamp(campNo);
 		return c;
