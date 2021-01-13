@@ -9,12 +9,27 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.campkok.admin.camp.model.vo.Camp;
+import com.campkok.admin.camp.model.vo.CampEnv;
+import com.campkok.admin.camp.model.vo.CampFile;
 
 @Repository
 public class AdminCampDao {
 	@Autowired
 	private SqlSessionTemplate session;
 
+	// ******************** CampEnvInfo ********************
+	public CampEnv selectCampEnvInfo(int campNo) {
+		return session.selectOne("adminCamp.selectCampEnvInfo", campNo);
+	}
+
+	// ******************** CampFiles ********************
+	public ArrayList<CampFile> selectCampFiles(int campNo) {
+		List<CampFile> list = session.selectList("adminCamp.selectCampFiles", campNo);
+
+		return (ArrayList<CampFile>) list;
+	}
+
+	// ******************** CampInfo ********************
 	public int getTotalCampCount() {
 		return session.selectOne("adminCamp.getTotalCampCount");
 	}
@@ -58,6 +73,10 @@ public class AdminCampDao {
 		List<Camp> list = session.selectList("adminCamp.searchCampInfoList", map);
 
 		return (ArrayList<Camp>) list;
+	}
+
+	public int deleteCampInfo(int campNo) {
+		return session.delete("adminCamp.deleteCampInfo", campNo);
 	}
 
 }

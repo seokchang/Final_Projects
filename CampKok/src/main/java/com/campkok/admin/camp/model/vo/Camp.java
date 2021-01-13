@@ -1,5 +1,7 @@
 package com.campkok.admin.camp.model.vo;
 
+import java.util.ArrayList;
+
 import com.campkok.admin.user.model.vo.User;
 
 public class Camp {
@@ -14,7 +16,7 @@ public class Camp {
 	private String campFac;
 	private String campCtg;
 	private CampEnv campEnv;
-	private CampFile campFile;
+	private ArrayList<CampFile> campFiles;
 	private User ceoInfo;
 
 	public Camp() {
@@ -22,7 +24,8 @@ public class Camp {
 	}
 
 	public Camp(int rNum, int campNo, String ceoId, String campName, String campAddr, String campSite, String campTel,
-			String campTheme, String campFac, String campCtg, CampEnv campEnv, CampFile campFile) {
+			String campTheme, String campFac, String campCtg, CampEnv campEnv, ArrayList<CampFile> campFiles,
+			User ceoInfo) {
 		super();
 		this.rNum = rNum;
 		this.campNo = campNo;
@@ -35,7 +38,8 @@ public class Camp {
 		this.campFac = campFac;
 		this.campCtg = campCtg;
 		this.campEnv = campEnv;
-		this.campFile = campFile;
+		this.campFiles = campFiles;
+		this.ceoInfo = ceoInfo;
 	}
 
 	public int getrNum() {
@@ -126,12 +130,12 @@ public class Camp {
 		this.campEnv = campEnv;
 	}
 
-	public CampFile getCampFile() {
-		return campFile;
+	public ArrayList<CampFile> getCampFiles() {
+		return campFiles;
 	}
 
-	public void setCampFile(CampFile campFile) {
-		this.campFile = campFile;
+	public void setCampFiles(ArrayList<CampFile> campFiles) {
+		this.campFiles = campFiles;
 	}
 
 	public User getCeoInfo() {

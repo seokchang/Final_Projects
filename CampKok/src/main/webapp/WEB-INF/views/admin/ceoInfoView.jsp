@@ -93,9 +93,55 @@
 						</table>
 					</form>
 				</div>
-				<hr>
+				<c:if test="${not empty ceoInfo.camp }">
+					<div class="camp-info" style="margin-top: 30px;">
+						<h1>캠핑장 정보</h1>
+						<hr>
+						<table class="table table-striped">
+							<tr>
+								<th>사업자 아이디</th>
+								<td>${ceoInfo.camp.ceoId }</td>
+								<th>사업자명</th>
+								<td>${ceoInfo.userName }</td>
+							</tr>
+							<tr>
+								<th>카테고리</th>
+								<td colspan="3">${ceoInfo.camp.campCtg }</td>
+							</tr>
+							<tr>
+								<th>캠핑장명</th>
+								<td colspan="3">${ceoInfo.camp.campName }</td>
+							</tr>
+							<tr>
+								<th>전화번호</th>
+								<td>${ceoInfo.camp.campTel }</td>
+								<th>웹사이트</th>
+								<td>${ceoInfo.camp.campSite }</td>
+							</tr>
+							<tr>
+								<th>주소</th>
+								<td colspan="3">${ceoInfo.camp.campAddr }</td>
+							</tr>
+							<tr>
+								<th>테마</th>
+								<td colspan="3">${ceoInfo.camp.campTheme }</td>
+							</tr>
+							<tr>
+								<th>시설</th>
+								<td colspan="3">${ceoInfo.camp.campFac }</td>
+							</tr>
+							<tr>
+								<th>이미지</th>
+								<td colspan="3">
+									<c:forEach items="${ceoInfo.camp.campFiles }" var="campFile">
+									${campFile.campFilePath }
+								</c:forEach>
+								</td>
+							</tr>
+						</table>
+					</div>
+				</c:if>
 				<div style="text-align: center;">
-					<button class="btn btn-warning btn-lg" onclick="">캠핑장 정보 보기</button>
 					<button class="btn btn-warning btn-md btn-list" onclick="location.href='/selectCeoInfoList.do?reqPage=1'">목록</button>
 				</div>
 			</div>

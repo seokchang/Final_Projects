@@ -31,12 +31,66 @@
 							<th>사업자명</th>
 							<td>${campInfo.ceoInfo.userName }</td>
 						</tr>
+						<tr>
+							<th>카테고리</th>
+							<td colspan="3">${campInfo.campCtg }</td>
+						</tr>
+						<tr>
+							<th>캠핑장명</th>
+							<td colspan="3">${campInfo.campName }</td>
+						</tr>
+						<tr>
+							<th>전화번호</th>
+							<td>${campInfo.campTel }</td>
+							<th>웹사이트</th>
+							<td>${campInfo.campSite }</td>
+						</tr>
+						<tr>
+							<th>주소</th>
+							<td colspan="3">${campInfo.campAddr }</td>
+						</tr>
+						<tr>
+							<th>테마</th>
+							<td colspan="3">${campInfo.campTheme }</td>
+						</tr>
+						<tr>
+							<th>시설</th>
+							<td colspan="3">${campInfo.campFac }</td>
+						</tr>
+						<tr>
+							<th>이미지</th>
+							<td colspan="3">
+								<c:forEach items="${campInfo.campFiles }" var="campFile">
+									${campFile.campFilePath }
+								</c:forEach>
+							</td>
+						</tr>
+					</table>
+				</div>
+				<div class="camp-fac-info" style="margin-top: 30px;">
+					<h1>주변 이용시설</h1>
+					<hr>
+					<table class="table table-striped">
+						<tr>
+							<th>이용시설</th>
+							<td>${campInfo.campEnv.envName }</td>
+							<th>전화번호</th>
+							<td>${campInfo.campEnv.envTel }</td>
+						</tr>
+						<tr>
+							<th>주소</th>
+							<td colspan="3">${campInfo.campEnv.envAddr }</td>
+						</tr>
+						<tr>
+							<th>이미지</th>
+							<td colspan="3">${campInfo.campEnv.envFilePath }</td>
+						</tr>
 					</table>
 				</div>
 				<hr>
 				<div style="text-align: center;">
-					<button class="btn btn-warning btn-lg" onclick="">캠핑장 정보 보기</button>
-					<button class="btn btn-warning btn-md btn-list" onclick="location.href='/selectCeoInfoList.do?reqPage=1'">목록</button>
+					<button class="btn btn-warning btn-lg" onclick="/deleteCampInfo.do?campNo=${campInfo.campNo}">캠핑장 정보 삭제</button>
+					<button class="btn btn-warning btn-md btn-list" onclick="location.href='/selectCampInfoList.do?reqPage=1'">목록</button>
 				</div>
 			</div>
 		</div>

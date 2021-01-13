@@ -76,9 +76,9 @@ public class AdminUserController {
 	@RequestMapping("/selectCeoInfo.do")
 	public String selectCeoInfo(int userNo, Model model) {
 		User ceoInfo = service.selectCeoInfo(userNo);
-		
+
 		model.addAttribute("ceoInfo", ceoInfo);
-		
+
 		return "/admin/ceoInfoView";
 	}
 

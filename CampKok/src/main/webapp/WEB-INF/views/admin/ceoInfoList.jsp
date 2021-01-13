@@ -73,7 +73,7 @@
 									<td>${ceoInfo.userAddr }</td>
 									<td>${ceoInfo.userDate }</td>
 									<td>
-										<button class="btn btn-warning btn-md" onclick="">상세보기</button>
+										<button class="btn btn-warning btn-md" onclick="location.href='/selectCeoInfo.do?userNo=${ceoInfo.userNo }'">상세보기</button>
 									</td>
 								</tr>
 							</c:forEach>

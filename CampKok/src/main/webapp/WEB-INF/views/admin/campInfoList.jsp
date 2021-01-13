@@ -74,7 +74,7 @@
 									<td>${campInfo.campAddr }</td>
 									<td>${campInfo.campTel }</td>
 									<td>
-										<button class="btn btn-warning btn-md" onclick="">상세보기</button>
+										<button class="btn btn-warning btn-md" onclick="location.href='/selectCampInfo.do?campNo=${campInfo.campNo }'">상세보기</button>
 									</td>
 								</tr>
 							</c:forEach>

@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.campkok.admin.camp.model.dao.AdminCampDao;
 import com.campkok.admin.camp.model.vo.Camp;
+import com.campkok.admin.camp.model.vo.CampFile;
 import com.campkok.admin.user.model.dao.AdminUserDao;
 import com.campkok.admin.user.model.vo.AdminUserInfoPageData;
 import com.campkok.admin.user.model.vo.User;
@@ -120,7 +121,12 @@ public class AdminUserService {
 		User ceoInfo = dao.selectCeoInfo(userNo);
 		Camp camp = campDao.selectCampInfo(ceoInfo.getUserId());
 
-		ceoInfo.setCamp(camp);
+		if (camp != null) {
+			ArrayList<CampFile> campFiles = campDao.selectCampFiles(camp.getCampNo());
+
+			camp.setCampFiles(campFiles);
+			ceoInfo.setCamp(camp);
+		}
 
 		return ceoInfo;
 	}

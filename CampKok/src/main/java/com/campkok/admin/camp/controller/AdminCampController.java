@@ -43,4 +43,18 @@ public class AdminCampController {
 		return "/admin/campInfoList";
 	}
 
+	@RequestMapping("/deleteCampInfo.do")
+	public String deleteCampInfo(int campNo, Model model) {
+		int result = service.deleteCampInfo(campNo);
+
+		if (result > 0) {
+			model.addAttribute("msg", "캠핑장 정보 삭제 성공");
+		} else {
+			model.addAttribute("msg", "캠핑장 정보 삭제 실패");
+		}
+		model.addAttribute("loc", "/selectCampInfoList.do?reqPage=1");
+
+		return "/common/msg";
+	}
+
 }

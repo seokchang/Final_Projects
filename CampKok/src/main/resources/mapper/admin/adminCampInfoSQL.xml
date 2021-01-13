@@ -1,6 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="adminCamp">
+	<!-- ******************** CampEnvInfo ******************** -->
+	<select id="selectCampEnvInfo" parameterType="_int" resultType="campEnv">
+		SELECT
+		env_no AS envNo,
+		camp_no AS campNo,
+		env_name AS envName,
+		env_addr AS
+		envAddr,
+		env_tel AS envTel,
+		env_filename AS envFileName,
+		env_filepath AS envFilePath
+		FROM campenv WHERE camp_no = #{_parameter}
+	</select>
+
+	<!-- ******************** CampFiles ******************** -->
+	<select id="selectCampFiles" parameterType="_int" resultType="campFile">
+		SELECT
+		file_no AS fileNo,
+		camp_no AS campNo,
+		camp_filename AS campFileName,
+		camp_filepath AS campFilePath
+		FROM file_tbl WHERE camp_no = #{_parameter}
+	</select>
+
+	<!-- ******************** CampInfo ******************** -->
 	<select id="getTotalCampCount" resultType="_int">
 		SELECT count(*) FROM camp
 	</select>
@@ -47,7 +72,8 @@
 		camp_theme AS campTheme,
 		camp_fac AS campFac,
 		camp_Ctg AS campCtg
-		FROM camp WHERE ceo_id = #{_parameter}
+		FROM camp WHERE ceo_id =
+		#{_parameter}
 	</select>
 
 	<select id="selectCampInfoList" parameterType="HashMap" resultType="camp">
@@ -95,4 +121,8 @@
 		)c)
 		WHERE rNum BETWEEN ${start} AND ${end}
 	</select>
+
+	<delete id="deleteCampInfo" parameterType="_int">
+		DELETE FROM camp WHERE camp_no = #{_parameter}
+	</delete>
 </mapper>

@@ -4,10 +4,13 @@ import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.campkok.admin.camp.model.dao.AdminCampDao;
 import com.campkok.admin.camp.model.vo.AdminCampInfoPageData;
 import com.campkok.admin.camp.model.vo.Camp;
+import com.campkok.admin.camp.model.vo.CampEnv;
+import com.campkok.admin.camp.model.vo.CampFile;
 import com.campkok.admin.user.model.dao.AdminUserDao;
 import com.campkok.admin.user.model.vo.User;
 
@@ -20,8 +23,12 @@ public class AdminCampService {
 
 	public Camp selectCampInfo(int campNo) {
 		Camp campInfo = dao.selectCampInfo(campNo);
+		CampEnv campEnvInfo = dao.selectCampEnvInfo(campNo);
+		ArrayList<CampFile> campFiles = dao.selectCampFiles(campNo);
 		User ceoInfo = userDao.selectCeoInfo(campInfo.getCeoId());
 
+		campInfo.setCampEnv(campEnvInfo);
+		campInfo.setCampFiles(campFiles);
 		campInfo.setCeoInfo(ceoInfo);
 
 		return campInfo;
@@ -113,6 +120,11 @@ public class AdminCampService {
 		AdminCampInfoPageData acipd = new AdminCampInfoPageData(list, pageNavi);
 
 		return acipd;
+	}
+
+	@Transactional
+	public int deleteCampInfo(int campNo) {
+		return dao.deleteCampInfo(campNo);
 	}
 
 }
