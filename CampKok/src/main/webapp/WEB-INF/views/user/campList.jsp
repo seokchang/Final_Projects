@@ -25,6 +25,7 @@
             </form>
         </div>
         <div class="camp-naeyong">
+        <!-- 왜이래ㅠ -->
         	<c:forEach items="${list }" var="list" varStatus="index">
 	            <div class="camp-item">
 	                <a href="#">

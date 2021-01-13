@@ -20,16 +20,16 @@ public class CampListDao {
 		HashMap<String,Integer> map = new HashMap<String,Integer>();
 		map.put("start", start);
 		map.put("end", end);
-		List<CampVO> list = session.selectList("camp.selectAllCampList",map);
+		List<CampVO> list = session.selectList("camplist.selectAllCampList",map);
 		return (ArrayList<CampVO>)list;
 	}
 
 	public int totalCount() {
-		return session.selectOne("camp.totalCount");
+		return session.selectOne("camplist.totalCount");
 	}
 
 	public CampVO selectOneCamp(int campNo) {
-		return session.selectOne("camp.selectOneCamp",campNo);
+		return session.selectOne("camplist.selectOneCamp",campNo);
 	}
 
 }
