@@ -9,7 +9,7 @@ body {
 }
 
 input {
-	outline: none;
+	/* outline: none; */
 }
 
 .header {
@@ -26,7 +26,9 @@ input {
 .header-logo {
 	display: flex;
 }
-
+.header-logo>p{
+	margin-top: 14px;
+}
 .header-logo>p>a {
 	font-family: 'Paytone One', sans-serif;
 	font-size: 30px;
@@ -63,6 +65,12 @@ nav>ul>li>a {
 	line-height: 80px;
 	display: block;
 	text-align: center;
+}
+
+nav>ul>li>a:hover{
+	text-decoration: none;
+	color: #fff;
+	font-weight: bold;
 }
 
 /* header user부분 */

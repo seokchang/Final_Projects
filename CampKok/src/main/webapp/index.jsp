@@ -15,6 +15,7 @@
 	<hr>
 	<h3>고객</h3>
 	<h2>[${sessionScope.user.userName }]</h2>
+	<h2>[${sessionScope.user.userLevel }]</h2>
 	<a href="/loginFrm.do">로그인</a>
 	<a href="/logout.do">로그아웃</a>
 	<a href="/joinPage.do">회원가입</a>

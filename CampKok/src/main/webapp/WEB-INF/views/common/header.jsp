@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,16 +9,20 @@
 <!-- jQuery -->
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-3.3.1.js"></script>
-	
-<!-- bootstrap 4 -->	
-<!-- 
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
- --> 
- 
-<!-- header css -->
-<link rel="stylesheet" href="/resources/css/common/header.css">
- 
+
+<!-- bootstrap 4 -->
+
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+	crossorigin="anonymous">
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+	integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+	crossorigin="anonymous"></script>
+
+
+
 <!-- font -->
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link
@@ -29,7 +33,7 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Paytone+One&display=swap"
 	rel="stylesheet">
-	
+
 </head>
 <body>
 	<div class="header">
@@ -46,6 +50,15 @@
 				<li><a href="#">게시판</a></li>
 				<li><a href="#">쇼핑몰</a></li>
 				<li><a href="#">FAQ</a></li>
+				<c:choose>
+					<c:when test="${sessionScope.user.userLevel == 2 }">
+						<li><a href="/mainCeoNoticeList.do?reqPage=1">공지사항</a></li>
+						<li><a href="#">광고</a></li>
+					</c:when>
+					<c:otherwise>
+						<li><a href="/customerNoticeList.do?reqPage=1">공지사항</a></li>
+					</c:otherwise>
+				</c:choose>
 			</ul>
 		</nav>
 		<div class="header-user">
@@ -71,7 +84,7 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<script>
         $(document).ready(function() {
 
@@ -92,5 +105,22 @@
             });
         });
     </script>
+
+	<style>
+		* {
+			-webkit-box-sizing: content-box;
+			-moz-box-sizing: content-box;
+			box-sizing: content-box;
+		}
+		
+		*:before, *:after {
+			-webkit-box-sizing: content-box;
+			-moz-box-sizing: content-box;
+			box-sizing: content-box;
+		}
+	</style>
+
+	<!-- header css -->
+	<link rel="stylesheet" href="/resources/css/common/header.css">
 </body>
 </html>

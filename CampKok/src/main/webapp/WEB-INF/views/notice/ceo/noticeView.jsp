@@ -5,7 +5,7 @@
 <html lang="kr">
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
+    <title>사장님 공지사항</title>
     <link rel="stylesheet" href="/resources/css/customer/noticeView.css">
 </head>
 

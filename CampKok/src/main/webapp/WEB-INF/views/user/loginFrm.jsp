@@ -4,8 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet" href="/resources/css/user/loginFrm.css">
+<title>로그인</title>
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
@@ -36,5 +35,8 @@
         </div>
     </div>
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />
+
+
+<link rel="stylesheet" href="/resources/css/user/loginFrm.css">
 </body>
 </html>

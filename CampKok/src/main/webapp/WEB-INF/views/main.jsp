@@ -33,17 +33,26 @@
 	<div class="header">
 		<div id="header-scroll"></div>
 		<div class="header-logo">
-			<a href="#"></a><img src="resources/img/main/logo-w.png">
+			<a href="/"></a><img src="resources/img/main/logo-w.png">
 			<p>
-				<a href="#">Campkok</a>
+				<a href="/">Campkok</a>
 			</p>
 		</div>
 		<nav>
 			<ul>
-				<li><a href="#">캠핑장</a></li>
+				<li><a href="/campList.do">캠핑장</a></li>
 				<li><a href="#">게시판</a></li>
 				<li><a href="#">쇼핑몰</a></li>
 				<li><a href="#">FAQ</a></li>
+				<c:choose>
+					<c:when test="${sessionScope.user.userLevel == 2 }">
+						<li><a href="/mainCeoNoticeList.do?reqPage=1">공지사항</a></li>
+						<li><a href="#">광고</a></li>
+					</c:when>
+					<c:otherwise>
+						<li><a href="/customerNoticeList.do?reqPage=1">공지사항</a></li>
+					</c:otherwise>
+				</c:choose>
 			</ul>
 		</nav>
 		<div class="header-user">
@@ -76,7 +85,7 @@
 			<div class="banner-content">d</div>
 			<div class="searchbar">
 				<form action="#" method="post">
-					<input type="text" value="어느곳으로 캠핑을 떠나보시겠어요?">
+					<input type="text" placeholder="어느곳으로 캠핑을 떠나보시겠어요?">
 					<button type="submit">검색</button>
 				</form>
 

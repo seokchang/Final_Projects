@@ -97,6 +97,7 @@ body {
 
 .notice-btn:hover {
 	color: #405944;
+	text-decoration: none;
 	background-color: #fff;
 	border: 1px solid #405944;
 }
