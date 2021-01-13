@@ -16,7 +16,9 @@ public class CampNoticeController {
 	
 	@RequestMapping("/campNotice.do")
 	public String campNotice(int reqPage, Model model) {
-		NoticePageData npd = service.noticeList(reqPage); 
-		return null;
+		NoticePageData npd = service.noticeList(reqPage);	
+		model.addAttribute("list",npd.getList());
+		model.addAttribute("pageNavi",npd.getPageNavi());
+		return "camp/campNoticeList";
 	}
 }

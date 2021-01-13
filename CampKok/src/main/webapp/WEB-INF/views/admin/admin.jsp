@@ -25,7 +25,6 @@
 				<ul class="todo">
 					<li style="background-color: #f3d479; color: #bf372b;"><strong>작업 리스트</strong></li>
 					<li><a href="#">신규등록 신청 <span class="count">1</span></a></li>
-
 				</ul>
 				<div class="content-list">
 					<!-- Client Info -->
@@ -162,10 +161,10 @@
 								<tr>
 									<td>${campInfo.rNum }</td>
 									<td>
-										<a href="#"><strong>${campInfo.ceoId }</strong></a>
+										<a href="/selectCeoInfo.do?userNo=${campInfo.ceoInfo.userNo }"><strong>${campInfo.ceoId }</strong></a>
 									</td>
 									<td>
-										<a href="#"><strong>${campInfo.campName }</strong></a>
+										<a href="/selectCampInfo.do?campNo=${campInfo.campNo }"><strong>${campInfo.campName }</strong></a>
 									</td>
 									<td>${campInfo.campAddr }</td>
 								</tr>
