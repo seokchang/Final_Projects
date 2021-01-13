@@ -186,7 +186,7 @@
             <div class="chatMsg" id="chatMsg"></div>
             <textarea id="sendMsg" autofocus></textarea>
             <!-- <input type="button" value="전송"> -->
-            <button class="chatSend" id="sendBtn" onclick="sendMsg('user01');">보내기</button>
+            <button class="chatSend" id="sendBtn" onclick="sendMsg('${sessionScope.user.userId }');">보내기</button>
         </div>
     </div>
     
@@ -203,7 +203,7 @@
 			console.log("서버 접속 완료");
 			var msg = {
 					type:"register",
-					data:"user01"
+					data:"${sessionScope.user.userId }"
 			}
 			ws.send(JSON.stringify(msg)); //스트링으로 전환해서 웹소켓에 전달
 		}
@@ -235,7 +235,7 @@
         }
     });
     document.querySelector('.chatSend').addEventListener('click', function() {
-    	sendMsg('user01');
+    	sendMsg('${sessionScope.user.userId }');
     });
 </script>
 	<script>

@@ -38,6 +38,12 @@
 		textarea:focus{
 			outline:none;
 		}
+		.del-btn{
+			color:red;
+			background-color: white;
+			border:none;
+			padding:0;
+		}
     </style>
 </head>
 
@@ -72,10 +78,10 @@
                     <td colspan="3">
 						<input type="hidden" id="status" name="status" value="stay">
 						<c:if test="${b.boardFilename!=null }">
-						<img src="/img/file.png" width="16px" class="delFile">
+						<img src="/resources/img/customer/file.png" width="16px" class="delFile">
 						<input type="file" name="file" id="file" style="display:none;">
 						<span class="delFile">${b.boardFilename }</span>
-						<button type="button" id="fileDelBtn" class="btn btn-primary btn-sm delFile">삭제</button>
+						<button type="button" id="fileDelBtn" class="del-btn">X</button>
 						<input type="hidden" name="oldFilename" value="${b.boardFilename }">
 						<input type="hidden" name="oldFilepath" value="${b.boardFilepath }">
 						</c:if>
@@ -103,8 +109,9 @@
     <jsp:include page="/WEB-INF/views/common/footer.jsp" />
     	<script>
 	$("#fileDelBtn").click(function() {
-		if(confirm('첨부파일으 사ㄱ제하시겟ㅆ브니ㅏ?')){
+		if(confirm('첨부파일을 삭제하시겠습니까?')){
 			$(".delFile").hide();
+			$(".del-btn").hide();
 			$("#file").show();
 			$("#status").val('delete');
 		}
