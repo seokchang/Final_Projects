@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="camp">
+<mapper namespace="camplist">
 
-  <select id="selectAllCampList" parameterType="map" resultType="clpd">
+  <select id="selectAllCampList" parameterType="map" resultType="c">
   		select * from (select rownum as rnum, c.*from(
   			select 
   				camp_no as campNo,
@@ -12,8 +12,8 @@
   				camp_site as campSite,
   				camp_tel as campTel,
   				camp_theme as campTheme,
-  				
-  				
+  				camp_fac as campFac,
+  				camp_ctg as campCtg
   			from camp order by 1 desc)c) 
   		where rnum between #{start} and #{end}
   </select>
@@ -24,7 +24,16 @@
   
   <select id="selectOneCamp" parameterType="string" resultType="c">
   	select
-  	
+  		camp_no as campNo,
+  		ceo_id as ceoId,
+  		camp_addr as campAddr,
+  		camp_name as campName,
+  		camp_site as campSite,
+  		camp_tel as campTel,
+  		camp_theme as campTheme,
+  		camp_fac as campFac,
+  		camp_ctg as campCtg
+  	from camp where camp_no = #{campId}
   </select>
   
 </mapper>
