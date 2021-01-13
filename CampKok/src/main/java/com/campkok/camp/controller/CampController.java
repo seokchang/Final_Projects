@@ -13,10 +13,19 @@ public class CampController {
 	@Autowired
 	private CampService service;
 	
-	@RequestMapping("/kihyun.do")
-	public String khpage() {
-		return "camp/kh";
+	/***********************************************
+	 *                     기현 
+	 ***********************************************/
+	@RequestMapping("campReservation.do")
+	public String campReservation() {
+		return "camp/campReservation2";
 	}
+	
+	
+	
+	/***********************************************
+	 *                     진우 
+	 ***********************************************/
 	@RequestMapping("jinwoo.do")
 	public String start() {
 		return "camp/start";

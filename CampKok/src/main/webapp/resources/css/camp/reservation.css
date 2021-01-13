@@ -1,0 +1,33 @@
+@charset "EUC-KR";
+
+.re-wrap{
+	border :1px solid black;
+	width : 100%;
+	height : 100%;
+}
+.cal_top{
+    text-align: center;
+    font-size: 30px;
+}
+.cal{
+    text-align: center;    
+}
+table.calendar{
+    border: 2.5px solid #405944;
+    display: inline-table;
+    text-align: left;
+}
+table.calendar td{
+    vertical-align: top;
+    border: 1px solid skyblue;
+    width: 100px;
+}
+.reservationInfo{
+	width:800px;
+	border:1px solid black;
+	margin : 0 auto;
+}
+body{
+	/* background-color:#dcdcdc; */
+}
+
