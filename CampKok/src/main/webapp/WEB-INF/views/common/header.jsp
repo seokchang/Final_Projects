@@ -35,14 +35,14 @@
 	<div class="header">
 		<div id="header-scroll"></div>
 		<div class="header-logo">
-			<a href="#"></a><img src="resources/img/main/logo-w.png">
+			<a href="/"></a><img src="resources/img/main/logo-w.png">
 			<p>
-				<a href="#">Campkok</a>
+				<a href="/">Campkok</a>
 			</p>
 		</div>
 		<nav>
 			<ul>
-				<li><a href="#">캠핑장</a></li>
+				<li><a href="/campList.do">캠핑장</a></li>
 				<li><a href="#">게시판</a></li>
 				<li><a href="#">쇼핑몰</a></li>
 				<li><a href="#">FAQ</a></li>
@@ -75,7 +75,7 @@
 	<script>
         $(document).ready(function() {
 
-            // user-box show,hide
+            // header user-box show,hide
             $("#user-btn-slide").click(function() {
                 if ($(".user-box").css("display") == "none") {
                     /*$(this).css({'float':'right','background-color':'#2d2d2d'});*/

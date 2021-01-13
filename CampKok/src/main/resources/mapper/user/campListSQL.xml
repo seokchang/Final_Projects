@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="camp">
+
+  <select id="selectAllCampList" parameterType="map" resultType="clpd">
+  		select * from (select rownum as rnum, n.*from(select * from camp order by 1 desc)n) where rnum between #{start} and #{end}
+  </select>
+  
+  <select id="totalCount" resultType="_int">
+  		select count(*) from camp
+  </select>
+  
+</mapper>
