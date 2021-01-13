@@ -8,7 +8,6 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.campkok.customer.model.vo.BoardVO;
 import com.campkok.customer.model.vo.PointVO;
 import com.campkok.customer.model.vo.ReservationVO;
 import com.campkok.customer.model.vo.ReviewVO;
@@ -27,7 +26,7 @@ public class CustomerDao {
 
 	public int updateCustomer(UserVO u) {
 		// TODO Auto-generated method stub
-		return sqlSession.update("customer.updateCustomer",u);
+		return sqlSession.update("customer.updateCustomer", u);
 	}
 
 	public ReservationVO selectOneReserve(int userNo) {

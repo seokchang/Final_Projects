@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>CEO Info List</title>
+<title>FAQ Info List</title>
 </head>
 <body>
 	<div class="wrap">
@@ -20,18 +20,20 @@
 
 			<!-- Main -->
 			<div class="content-main">
-				<h1>사업자정보 관리</h1>
+				<h1>FAQ</h1>
 				<hr>
 				<div class="search-wrap">
-					<form action="/searchCeoInfo.do" method="GET">
+					<form action="/searchFAQInfo.do" method="GET">
 						<input type="hidden" name="reqPage" value="1">
 						<table>
 							<tbody>
 								<tr>
 									<td>
 										<select class="form-control" id="search-category" name="searchCategory">
-											<option value="userId" selected="selected">아이디</option>
-											<option value="userName">이름</option>
+											<option value="FAQTitle" selected="selected">제목</option>
+											<option value="FAQContents">내용</option>
+											<option value="Client">고객</option>
+											<option value="Ceo">사업자</option>
 										</select>
 									</td>
 									<td>
@@ -51,35 +53,15 @@
 						<tbody>
 							<tr>
 								<th>번호</th>
-								<th>아이디</th>
-								<th>이름</th>
-								<th>캠핑장명</th>
-								<th>전화번호</th>
-								<th>주소</th>
-								<th>가입일</th>
+								<th>구분</th>
+								<th>제목</th>
+								<th>작성자</th>
+								<th>작성일</th>
 								<th></th>
 							</tr>
-							<c:forEach items="${list }" var="ceoInfo">
-								<tr>
-									<td>${ceoInfo.rNum }</td>
-									<td>
-										<a href="/selectCeoInfo.do?userNo=${ceoInfo.userNo }"><strong>${ceoInfo.userId }</strong></a>
-									</td>
-									<td>${ceoInfo.userName }</td>
-									<td>
-										<a href="/selectCampInfo.do?campNo=${ceoInfo.camp.campNo}"><strong>${ceoInfo.camp.campName }</strong></a>
-									</td>
-									<td>${ceoInfo.userPhone }</td>
-									<td>${ceoInfo.userAddr }</td>
-									<td>${ceoInfo.userDate }</td>
-									<td>
-										<button class="btn btn-warning btn-md" onclick="location.href='/selectCeoInfo.do?userNo=${ceoInfo.userNo }'">상세보기</button>
-									</td>
-								</tr>
-							</c:forEach>
 						</tbody>
 					</table>
-					<div id="pageNavi">${pageNavi }</div>
+					<%-- <div id="pageNavi">${pageNavi }</div> --%>
 				</div>
 			</div>
 		</div>

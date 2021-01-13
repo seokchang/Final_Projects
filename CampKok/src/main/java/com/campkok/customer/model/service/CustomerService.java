@@ -7,8 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.campkok.customer.model.dao.CustomerDao;
-import com.campkok.customer.model.vo.BoardPageData;
-import com.campkok.customer.model.vo.BoardVO;
 import com.campkok.customer.model.vo.PointVO;
 import com.campkok.customer.model.vo.ReservationVO;
 import com.campkok.customer.model.vo.ReviewInfoPageData;
