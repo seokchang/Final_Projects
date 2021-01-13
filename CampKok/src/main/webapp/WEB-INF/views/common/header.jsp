@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,10 +33,11 @@
 </head>
 <body>
 	<div class="header">
+		<div id="header-scroll"></div>
 		<div class="header-logo">
-			<a href="/"><img src="/resources/img/main/logo-w.png"></a>
+			<a href="#"></a><img src="resources/img/main/logo-w.png">
 			<p>
-				<a href="/">Campkok</a>
+				<a href="#">Campkok</a>
 			</p>
 		</div>
 		<nav>
@@ -48,20 +50,47 @@
 		</nav>
 		<div class="header-user">
 			<div class="user-btn">
-				<a href="#">
-					<div></div>
-				</a>
+				<div id="user-btn-slide"></div>
 			</div>
 			<div class="user-box">
 				<ul>
-					<li>회원가입</li>
-					<li>로그인</li>
-					<li>마이페이지</li>
-					<li>1:1 채팅</li>
-					<li>쪽지</li>
+					<c:choose>
+						<c:when test="${sessionScope.user == null }">
+							<li><a href="joinPage.do">회원가입</a></li>
+							<li><a href="loginFrm.do">로그인</a></li>
+						</c:when>
+						<c:otherwise>
+							<li><a href="#">마이페이지</a></li>
+							<li><a href="#">1:1 채팅</a></li>
+							<li><a href="#">쪽지</a></li>
+							<hr>
+							<li><a href="logout.do">로그아웃</a></li>
+						</c:otherwise>
+					</c:choose>
 				</ul>
 			</div>
 		</div>
 	</div>
+	
+	<script>
+        $(document).ready(function() {
+
+            // user-box show,hide
+            $("#user-btn-slide").click(function() {
+                if ($(".user-box").css("display") == "none") {
+                    /*$(this).css({'float':'right','background-color':'#2d2d2d'});*/
+                    // 버튼좀 스무스하게 움직이고 싶은데 마음대로 안되네
+                    $(".user-btn").css({'flex-direction':'row-reverse','transition-duration':'0.5s'});
+                    $(".user-box").fadeIn('fast');
+                } else {
+                    /*$(this).css({'float':'','background-color':'#fff'});*/
+                    $(this).css({'float':''});
+                    $(".user-btn").css({'flex-direction':'row'});
+                    // $(".user-btn").css({'backgroun-color':''});
+                    $(".user-box").fadeOut('fast');
+                }
+            });
+        });
+    </script>
 </body>
 </html>

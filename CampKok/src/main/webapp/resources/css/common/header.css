@@ -18,6 +18,7 @@ input {
 	flex: 1 1 100%;
 	display: flex;
 	justify-content: space-between;
+	/* position: fixed; */
 	color: #fff;
 	z-index: 10000;
 }
@@ -33,7 +34,7 @@ input {
 	text-decoration: none;
 }
 
-.header-logo>a>img {
+.header-logo>img {
 	height: 40px;
 	margin: 15px;
 	margin-left: 200px;
@@ -67,23 +68,21 @@ nav>ul>li>a {
 /* header user부분 */
 .header-user {
 	margin-right: 200px;
+	position: relative;
 }
 
 .user-btn {
 	line-height: 40px;
 	margin: 20px;
-}
-
-.user-btn>a {
-	display: block;
-	border: 1px solid lightgray;
-	width: 80px;
+	display: flex;
 	border-radius: 20px;
-	height: 40px;
+	border: 2px solid #fff;
+	width: 70px;
+	display: flex;
 }
 
-.user-btn>a>div {
-	background-color: antiquewhite;
+.user-btn>div {
+	background-color: #fff;
 	width: 35px;
 	border-radius: 20px;
 	height: 35px;
@@ -92,6 +91,49 @@ nav>ul>li>a {
 
 .user-box {
 	display: none;
+	width: 120px;
+	position: absolute;
+	background-color: #fff;
+	padding: 25px;
+	border-radius: 20px;
+	box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.5);
+	margin: -10px;
+}
+
+.user-box>ul {
+	padding: 0;
+	margin: 0;
+}
+
+.user-box>ul>hr {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.user-box>ul>li {
+	list-style: none;
+	margin-bottom: 10px;
+}
+
+.user-box>ul>li>a {
+	text-decoration: none;
+	color: #232323;
+	font-size: 20px;
+	border-radius: 10px;
+}
+
+.user-box>ul>li>a:hover {
+	font-weight: bold;
+}
+
+/* header-scroll */
+#header-scroll {
+	position: absolute;
+	background-color: #2d2d2d;
+	width: 100%;
+	height: 100%;
+	z-index: -1;
+	opacity: 0;
 }
 
 
