@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.campkok.camp.model.dao.CampDao;
 import com.campkok.camp.model.vo.CampRoomVO;
+import com.campkok.camp.model.vo.CampVO;
 
 @Service
 public class CampService {
@@ -14,5 +15,10 @@ public class CampService {
 	public CampRoomVO selectRoomInfo(int roomNo) {
 		return dao.selectRoomInfo(roomNo);
 	}
+
+	public CampVO selectCampInfo(int campNo) {
+		return dao.selectCampInfo(campNo);
+	}
+
 
 }

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.campkok.camp.model.service.CampService;
 import com.campkok.camp.model.vo.CampRoomVO;
+import com.campkok.camp.model.vo.CampVO;
 
 @Controller
 @RequestMapping("/camp")
@@ -27,7 +28,10 @@ public class CampController {
 		//4. 개별 예약정보는 로그인세션으로 디비에서 최근값 정렬후 가져오는걸로 해야할듯?(이것도 jsp에서 다시 고민)
 		int roomNo = 24;
 		CampRoomVO campRoomInfo = service.selectRoomInfo(roomNo);
+		int campNo = campRoomInfo.getCampNo();
+		CampVO campInfo = service.selectCampInfo(campNo);
 		model.addAttribute("campRoomInfo",campRoomInfo);
+		model.addAttribute("campInfo",campInfo);
 		return "camp/campReservation2";
 	}
 	
