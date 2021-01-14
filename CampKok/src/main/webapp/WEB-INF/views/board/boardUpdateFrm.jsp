@@ -44,6 +44,9 @@
 			border:none;
 			padding:0;
 		}
+		        .notice-tbl th{
+        	text-align: center;
+        }
     </style>
 </head>
 
