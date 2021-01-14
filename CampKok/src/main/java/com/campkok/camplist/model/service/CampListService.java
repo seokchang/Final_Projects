@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.campkok.camp.model.vo.CampVO;
 import com.campkok.camplist.model.dao.CampListDao;
+import com.campkok.camplist.model.vo.CampList;
 import com.campkok.camplist.model.vo.CampListPageData;
 
 @Service
@@ -21,7 +21,7 @@ public class CampListService {
 		// 1 : 1~12, 2 : 13~24, 3 : 25~37
 		int end = reqPage * numPerPage;
 		int start = end - numPerPage + 1;
-		ArrayList<CampVO> list = dao.selectList(start,end);
+		ArrayList<CampList> list = dao.selectList(start,end);
 		
 		/****** pageNavi ******/
 		int totalCount = dao.totalCount();	// 총 게시물 수
@@ -37,6 +37,8 @@ public class CampListService {
 		// pageNavi 길이
 		int pageNaviSize = 5;
 		int pageNo = ((reqPage-1)/pageNaviSize)*pageNaviSize+1;
+		
+		// 10/5 2  10  11 
 		
 		// pageNavi 작성
 		String pageNavi = "";
@@ -66,8 +68,8 @@ public class CampListService {
 	}
 	
 	// 캠핑장 상세 페이지
-	public CampVO selectOneCamp(int campNo) {
-		CampVO c = dao.selectOneCamp(campNo);
+	public CampList selectOneCamp(int campNo) {
+		CampList c = dao.selectOneCamp(campNo);
 		return c;
 	}
 

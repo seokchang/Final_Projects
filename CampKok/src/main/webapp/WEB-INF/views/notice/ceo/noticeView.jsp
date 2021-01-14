@@ -35,7 +35,7 @@
                 </tr>
                 <tr>
                     <th>첨부파일</th>
-                    <td colspan="3">${ceoNotice.ceoNoticeFilePath }</td>
+                    <td colspan="3"><a href="javascript:fileDownload('${ceoNotice.ceoNoticeFileName }', '${ceoNotice.ceoNoticeFilePath }')">${ceoNotice.ceoNoticeFileName }</a></td>
                 </tr>
                 <tr>
                     <td colspan="4" style="height: 400px;">${ceoNotice.ceoNoticeContents }</td>
