@@ -4,6 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
+    
+    <!-- bootstrap 4 -->
+
+	<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+	crossorigin="anonymous">
+	<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+	integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+	crossorigin="anonymous"></script>
+    
     <style>
         body {
             background-color: #f5f5f5;
@@ -54,7 +66,7 @@
             border: 1px solid lightgray;
             border-right: none;
             width: 200px;
-            height: 50px;
+            height: 60px;
             padding: 0;
             padding-left: 25px;
             margin: 0;
@@ -66,21 +78,19 @@
         }
 
         .searchbar>form>button {
-            border: 1px solid lightgray;
             background-color: #eba13d;
-            width: 130px;
-            height: 52px;
+            width: 150px;
+            height: 60px;
             border: none;
             font-size: 18px;
             color: #fff;
             border-top-right-radius: 50px;
             border-bottom-right-radius: 50px;
+            transition-duration: 0.5s;
         }
 
-        .searchbar>button:hover {
-            background-color: #fff;
-            color: #eba13d;
-            border: 1px solid #eba13d;
+        .searchbar>form>button:hover {
+            background-color: #F2542F;
         }
 
         .camp-content {

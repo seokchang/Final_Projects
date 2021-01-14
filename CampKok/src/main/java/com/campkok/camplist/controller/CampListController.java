@@ -31,4 +31,13 @@ public class CampListController {
 		model.addAttribute("c",c);
 		return "user/campView";
 	}
+	
+	// 캠핑장 검색
+	@RequestMapping("/searchCampList.do")
+	public String searchCampList(int reqPage, String searchSelect, String keyword, Model model) {
+		CampListPageData clpd = service.searchCampList(reqPage, searchSelect, keyword);
+		model.addAttribute("list",clpd.getList());
+		model.addAttribute("pagiNavi",clpd.getPageNavi());
+		return "user/campList";
+	}
 }

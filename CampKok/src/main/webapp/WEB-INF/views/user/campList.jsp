@@ -21,7 +21,11 @@
         </div>
         <div class="searchbar">
             <form action="#" method="post">
-                <input type="text"><input type="text"><input type="text"><input type="text"><button type="submit">검색</button>
+                <select name="searchSelect">
+                	<option value="campName">캠핑장이름</option>
+                	<option value="campAddr">지역</option>
+                </select>
+                <input type="text" name="keyword"><button type="submit">검색</button>
             </form>
         </div>
         <div class="camp-naeyong">

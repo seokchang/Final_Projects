@@ -2,8 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="camplist">
    
+   <!-- 캠프 리스트 -->
   <select id="selectAllCampList" parameterType="map" resultType="camplist">
-   	SELECT 
+   	select 
 	    camp.camp_no as campNo,
 	    camp_name as campName,
 	    camp_addr as campAddr,
@@ -19,10 +20,12 @@
 	on (camp.camp_no = campenv.camp_no)
   </select>
    
+   <!-- 캠핑장 수 -->
   <select id="totalCount" resultType="_int">
   		select count(*) from camp
   </select>
   
+  <!-- 캠핑장 상세보기 -->
   <select id="selectOneCamp" parameterType="string" resultType="camplist">
   	select
   		camp_no as campNo,
@@ -37,4 +40,32 @@
   	from camp where camp_no = #{campNo}
   </select>
   
+  <!-- 캠핑장 검색 -->
+  <select id="searchCampList" parameterType="map" resultType="camplist">
+  	select * from (select rownum as rnum, c.* from (
+		select 
+	    camp.camp_no as campNo,
+	    camp_name as campName,
+	    camp_addr as campAddr,
+	    camp_site as campSite,
+	    camp_tel as campTel,
+	    camp_theme as campTheme,
+	    camp_fac as campFac,
+	    camp_ctg as campCtg,
+	    campenv.env_name as campEnv,
+	    (select min(room_price) from camproom where camp_no = camp.camp_no) as campMinPrice,
+	    (select avg(rev_star) from review where camp_no = camp.camp_no) as campStar
+	from camp full where 
+		<choose>
+			<when test="searchSelect.equals('campName')">
+				camp_name like '%'||#{keyword}||'%'
+			</when>
+			<when test="searchSelect.equals('campAddr')">
+				camp_addr like '%'||#{keyword}||'%'
+			</when>
+		</choose>
+		join campenv on (camp.camp_no = campenv.camp_no)
+		)c)
+		where rnum between ${start} and ${end}
+  </select>  
 </mapper>
