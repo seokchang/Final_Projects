@@ -35,7 +35,7 @@
                 </tr>
                 <tr>
                     <th>첨부파일</th>
-                    <td colspan="3"><input type="file" name="clientNoticeFile" value="${clientNotice.clientNoticeFilePath }"></td>
+                    <td colspan="3">${clientNotice.clientNoticeFilePath }</td>
                 </tr>
                 <tr>
                     <td colspan="4" style="height: 400px;">${clientNotice.clientNoticeContents }</td>

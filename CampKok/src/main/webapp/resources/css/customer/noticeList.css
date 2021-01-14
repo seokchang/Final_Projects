@@ -44,6 +44,7 @@ body {
 
 .notice-tbl>tbody>tr>th {
 	background-color: #fcfcfc;
+	text-align: center;
 }
 
 .notice-tbl>tbody>tr>td, th {
