@@ -113,7 +113,14 @@
         	
              outline:none;
         }
+        .write-btn:hover{
+            text-decoration-line: none;
+            color: #f3d479;
+        }
         
+        .notice-tbl th{
+        	text-align: center;
+        }
 </style>
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
@@ -143,7 +150,7 @@
 		</div>
 		</c:if>
         </div>
-           
+           <br>
         <div class="notice-naeyong">
             <table class="notice-tbl">
                 <tr>

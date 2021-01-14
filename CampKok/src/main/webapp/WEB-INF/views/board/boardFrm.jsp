@@ -39,6 +39,9 @@
 		textarea:focus{
 			outline:none;
 		}
+		        .notice-tbl th{
+        	text-align: center;
+        }
     </style>
 </head>
 

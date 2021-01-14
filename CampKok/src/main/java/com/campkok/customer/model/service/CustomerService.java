@@ -64,7 +64,7 @@ public class CustomerService {
 		String pageNavi = "";
 		//이전 버튼 생성
 		if(pageNo != 1) {
-	         pageNavi += "<a href='/reserveAll.do?reqPage="+(pageNo-1)+"&userNo="+userNo+"'>[이전]</a>";
+	         pageNavi += "<a href='/reserveAll.do?reqPage="+(pageNo-1)+"&userNo="+userNo+"'><</a>";
 	      }
 		for(int i=0; i<pageNaviSize; i++) {
 			if(pageNo != reqPage) {
@@ -79,7 +79,7 @@ public class CustomerService {
 		}
 		//다음버튼
 		if(pageNo <= totalPage) {
-	         pageNavi += "<a href='/reserveAll.do?reqPage="+pageNo+"&userNo="+userNo+"'>[다음]</a>";
+	         pageNavi += "<a href='/reserveAll.do?reqPage="+pageNo+"&userNo="+userNo+"'>></a>";
 	      }
 		UseInfoPageData uipf = new UseInfoPageData(list, pageNavi);
 		return uipf;
@@ -105,7 +105,7 @@ public class CustomerService {
 		int pageNo = ((reqPage-1)/pageNaviSize)*pageNaviSize+1;
 		String pageNavi = "";
 		if(pageNo != 1) {
-	         pageNavi += "<a href='/review.do?reqPage="+(pageNo-1)+"&userId="+userId+"'>[이전]</a>";
+	         pageNavi += "<a href='/review.do?reqPage="+(pageNo-1)+"&userId="+userId+"'><</a>";
 	      }
 		for(int i=0; i<pageNaviSize; i++) {
 			if(pageNo != reqPage) {
@@ -119,7 +119,7 @@ public class CustomerService {
 			}
 		}
 		if(pageNo <= totalPage) {
-	         pageNavi += "<a href='/review.do?reqPage="+pageNo+"&userNo="+userId+"'>[다음]</a>";
+	         pageNavi += "<a href='/review.do?reqPage="+pageNo+"&userNo="+userId+"'>></a>";
 	      }
 		ReviewInfoPageData ripf = new ReviewInfoPageData(list, pageNavi);
 		return ripf;

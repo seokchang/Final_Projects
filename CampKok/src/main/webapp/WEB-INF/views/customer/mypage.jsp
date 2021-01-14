@@ -6,191 +6,234 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/resources/css/customer/mypage.css">
     <style>
-        .content {
-            background-color: #405944;
-            margin: 0 auto;
-            border-radius: 10px;
-            width: 100%;
-            height: 800px;
-        }
-
-        .mypage-menu {
-            position: relative;
-            width: 20%;
-            height: 100%;
-            background-color: #5a7356;
-            border-top-left-radius: 10px;
-            border-bottom-left-radius: 10px;
-            float: left;
-            font-family: 'Do Hyeon', sans-serif;
-        }
-
-        img {
-            display: block;
-            margin: 0 auto;
-            margin-top: 10px;
-        }
-
-        h1 {
-            text-align: center;
-            color: #eba13d;
-            margin: 0;
-            letter-spacing: 3px;
-        }
-
-        .menu {
-            line-height: 40px;
-            font-size: 20px;
-            margin-top: 40px;
-            margin-left: 30px;
-            color: #f3d479;
-            letter-spacing: 1px;
-        }
-
-        .menu a {
-            text-decoration-line: none;
-            color: #f3d479;
-        }
-
-        .mypage-main {
-            width: 80%;
-            height: 100%;
-            float: right;
+/*         body {
+            background-color: #f5f5f5;
         }
 
         .mypage-content {
-            margin: 3%;
-            width: 94%;
-            height: 93%;
-            background-color: #f2f2f2;
-            border-radius: 10px;
-        }
-
-        .info {
-            text-align: center;
-            line-height: 50px;
-            font-size: 18px;
-        }
-
-        .info form {
-            display: block;
+            width: 80%;
+            justify-items: center;
+            flex-direction: column;
+            align-items: center;
             margin: 0 auto;
         }
 
-        .info table {
-            border-collapse: collapse;
-            width: 80%;
-            border-color: darkgray;
-            margin: auto;
-            border: none;
+        .page-title {
+            width: 100%;
+            font-size: 30px;
+            margin: 30px;
+            margin-top: 60px;
+            margin-left: 0;
+            font-weight: bold;
+            color: #405944;
         }
 
-        .info table input {
-            width: 80%;
-            height: 40px;
+        .mypage-form {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .mypage-tbl {
+            background-color: #fff;
+            width: 100%;
+            border-top: 3px solid #405944;
+            border-collapse: collapse;
+        }
+
+        .mypage-tbl-th-1 {
+            padding: 20px 30px;
+        }
+
+        .mypage-tbl-th-2 {
+            width: 600px;
+        }
+
+        .mypage-tbl>tbody>tr>th {
+            background-color: #fcfcfc;
+        }
+
+        .mypage-tbl>tbody>tr>td,
+        th {
+            border-bottom: 1px solid #ccc;
+            padding: 15px 10px;
+        }
+
+		table input {
+            width: 95%;
+            height: 30px;
             border-radius: 5px;
             border: 1px solid darkgray;
             float: left;
             margin-left: 5px;
             box-shadow: 0px 0.5px 1.5px darkgray inset;
-            font-size: 18px;
         }
-
-        .info input:focus {
-            outline: none;
-        }
-
-        .info th {
-            background-color: #f3d479;
-        }
-
-        .info td {
-            background-color: white;
-            text-align: left;
-        }
-
-        .info input[type="submit"] {
-            width: 90px;
-            height: 45px;
-            border-radius: 5px;
-            font-size: 17px;
-            font-weight: bold;
-            background-color: #f3d479;
+        input[type=submit] {
+            display: block;
+            background-color: #405944;
+            width: 200px;
+            color: #fff;
+            text-decoration: none;
+            text-align: center;
+            height: 50px;
+            line-height: 50px;
+            padding: 0;
             border: none;
+            font-size: 16px;
+            margin:0 auto;
         }
+
+        input[type=submit]:hover {
+            color: #405944;
+            text-decoration: none;
+            background-color: #fff;
+            border: 1px solid #405944;
+
+        }
+
+        form {
+            width: 100%;
+        }
+
+        .mypage-tbl th {
+            text-align: center;
+        }
+
+        .modify-btn {
+            width: 100%;
+        }
+        
+                .navi {
+            width: 450px;
+            position: relative;
+        }
+
+        .navi>ul>li:first-child {
+            border-top-left-radius: 10px;
+        }
+
+        .navi>ul>li:last-child {
+            border-top-right-radius: 10px;
+        }
+
+        .navi>ul {
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
+        }
+
+        .navi>ul>li {
+            float: left;
+            width: 90px;
+            background-color: #5a7356;
+
+        }
+
+        .navi>ul>li>a {
+            text-decoration: none;
+            text-align: center;
+            line-height: 40px;
+            display: block;
+            height: 40px;
+            color: white;
+            box-sizing: border-box;
+            font-size: 13px;
+        }
+
+        .navi>ul>li:hover>a {
+            color: #f3d479;
+            font-weight: bolder;
+            font-size: 14px;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+
+        }
+
+        .navi>ul>li:hover>ul>li {
+            opacity: 1;
+            position: relative;
+            height: 50px;
+            transition-duration: 0.5s;
+        } */  
     </style>
 </head>
 
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
-    <div class="content">
-        <!--왼쪽-->
-        <div class="mypage-menu">
-            <img src="/resources/img/customer/tent.png" width="60%">
-            <h1>MY PAGE</h1>
-            <ul class="menu">
-                <li><a href="/mypage.do?userNo=${user.userNo }"><b>회원 정보</b></a></li>
+    <div class="header-img">
+        <div>
+            <p>마이페이지</p>
+            <p></p>
+        </div>
+    </div>
+    <div class="mypage-content">
+        <div class="page-title">
+            | My Page
+        </div>
+        <div class="navi">
+            <ul>
+                <li style="background-color: #405944;">
+                	<a style=" font-size: 14px; font-weight: bold; color: #f3d479;" href="/mypage.do?userNo=${user.userNo }">
+                		<b>회원 정보</b>
+                	</a>
+                </li>
                 <li><a href="/reserve.do?userNo=${user.userNo }">예약 확인</a></li>
                 <li><a href="/reserveAll.do?reqPage=1&userNo=${user.userNo }">이용 내역</a></li>
                 <li><a href="/review.do?reqPage=1&userId=${user.userId }">리뷰 내역</a></li>
                 <li><a href="/point.do?userNo=${user.userNo }">포인트 내역</a></li>
             </ul>
         </div>
-        <!--오른쪽-->
-        <div class="mypage-main">
-            <div class="mypage-content">
-                <br><br>
-                <div class="info">
-                    <h2>회원 정보 수정</h2>
-                    <form action="/update.do" method="post">
-                    	<input type="hidden" name="userNo" value="${u.userNo }">
-                        <table border="1">
+        <div class="mypage-form">
+            <form action="/update.do" method="post">
+            <input type="hidden" name="userNo" value="${u.userNo }">
+                <table class="mypage-tbl">
                             <tr>
                                 <th>아이디</th>
-                                <td style="padding-left: 5px;">${u.userId}</td>
+                                <td>${u.userId}</td>
                             </tr>
                             <tr>
                                 <th>비밀번호</th>
-                                <td><input type="password" placeholder="비밀번호를 입력해주세요" name="userPw" value="${u.userPw }"></td>
+                                <td style="padding:0;"><input type="password" placeholder="비밀번호를 입력해주세요" name="userPw" value="${u.userPw }"></td>
                             </tr>
                             <tr>
                                 <th>이름</th>
-                                <td style="padding-left: 5px;">${u.userName}</td>
+                                <td>${u.userName}</td>
                             </tr>
                             <tr>
                                 <th>생년월일</th>
-                                <td style="padding-left: 5px;">${u.userBirth }</td>
+                                <td>${u.userBirth }</td>
                             </tr>
                             <tr>
                                 <th>전화번호</th>
-                                <td><input type="text" placeholder="010-0000-0000" name="userPhone" value="${u.userPhone }"></td>
+                                <td style="padding:0;"><input type="text" placeholder="010-0000-0000" name="userPhone" value="${u.userPhone }"></td>
                             </tr>
                             <tr>
                                 <th>주소</th>
-                                <td><input type="text" name="userAddr" value="${u.userAddr}"></td>
+                                <td style="padding:0;"><input type="text" name="userAddr" value="${u.userAddr}"></td>
                             </tr>
                             <tr>
                                 <th>포인트</th>
-                                <td style="padding-left: 5px;">${u.userPoint}</td>
+                                <td>${u.userPoint}</td>
                             </tr>
                             <tr>
                                 <th>가입일</th>
                                 <td style="padding-left: 5px;">${u.userDate}</td>
                             </tr>
-                        </table>
-                        <br>
-                        <input type="submit" value="수정">
-                    </form>
+                </table>
+                <br>
+               
+                <div class="modify-btn">
+ 					<input type="submit" value="수정">
                 </div>
-            </div>
+            </form>
+
         </div>
-
-
     </div>
-        <jsp:include page="/WEB-INF/views/common/footer.jsp" />
+<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 </body>
 
 </html>
