@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.campkok.admin.board.model.service.AdminBoardService;
+import com.campkok.admin.board.model.vo.AdminBoardInfoPageData;
 import com.campkok.admin.camp.model.service.AdminCampService;
 import com.campkok.admin.camp.model.vo.AdminCampInfoPageData;
 import com.campkok.admin.notice.model.service.AdminNoticeService;
@@ -32,6 +34,8 @@ public class AdminNoticeController {
 	private AdminUserService uService;
 	@Autowired
 	private AdminCampService cService;
+	@Autowired
+	private AdminBoardService bService;
 
 	/* **************************************************
 	 * Admin Page
@@ -44,12 +48,14 @@ public class AdminNoticeController {
 		AdminUserInfoPageData clientInfoList = uService.selectClientInfoList(reqPage);
 		AdminUserInfoPageData ceoInfoList = uService.selectCeoInfoList(reqPage);
 		AdminCampInfoPageData campInfoList = cService.selectCampInfoList(reqPage);
+		AdminBoardInfoPageData boardInfoList = bService.selectBoardInfoList(reqPage);
 
 		model.addAttribute("ceoNoticeList", ceoNPD.getList());
 		model.addAttribute("clientNoticeList", clientNPD.getList());
 		model.addAttribute("clientInfoList", clientInfoList.getList());
 		model.addAttribute("ceoInfoList", ceoInfoList.getList());
 		model.addAttribute("campInfoList", campInfoList.getList());
+		model.addAttribute("boardInfoList", boardInfoList.getList());
 
 		return "/admin/admin";
 	}

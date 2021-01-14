@@ -176,10 +176,28 @@
 					<!-- Board Info -->
 					<div id="board">
 						<h3>
-							<a href="#">자유게시판 관리</a>
+							<a href="/selectBoardInfoList.do?reqPage=1">자유게시판 관리</a>
 						</h3>
+						<table class="table table-striped">
+							<tr>
+								<th>번호</th>
+								<th>제목</th>
+								<th>작성자</th>
+								<th>작성일</th>
+							</tr>
+							<c:forEach items="${boardInfoList }" var="boardInfo" begin="0" end="4" step="1">
+								<tr>
+									<td>${boardInfo.rNum }</td>
+									<td>
+										<a href="/selectBoardInfo.do?boardNo=${boardInfo.boardNo }"><strong>${boardInfo.boardTitle }</strong></a>
+									</td>
+									<td>${boardInfo.userId }</td>
+									<td>${boardInfo.boardDate }</td>
+								</tr>
+							</c:forEach>
+						</table>
+						<button class="btn btn-warning btn-md" onclick="location.href='/selectBoardInfoList.do?reqPage=1'">리스트보기</button>
 					</div>
-
 				</div>
 			</div>
 

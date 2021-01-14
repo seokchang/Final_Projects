@@ -33,7 +33,7 @@
 				<li><a href="#">신규등록 관리</a></li>
 			</ul>
 		</li>
-		<li><a href="#">자유게시판 관리</a></li>
+		<li><a href="/selectBoardInfoList?reqPage=1">자유게시판 관리</a></li>
 		<li><a href="/selectFAQInfoList.do">FAQ</a></li>
 		<li><a href="#">통계</a></li>
 		<li><a href="#">1:1채팅</a></li>

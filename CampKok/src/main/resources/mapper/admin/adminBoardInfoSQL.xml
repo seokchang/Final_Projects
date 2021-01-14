@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="adminBoard">
+	<!-- ********** Board ********** -->
+	<select id="getTotalBoardInfoCount" resultType="_int">
+		SELECT count(*) FROM board
+	</select>
+
+	<select id="getTotalSearchBoardInfoCount" resultType="_int">
+		SELECT count(*) FROM board WHERE
+		<choose>
+			<when test="searchCategory.equals('boardTitle')">
+				board_title LIKE '%'||#{search}||'%'
+			</when>
+			<when test="searchCategory.equals('boardContents')">
+				board_contents LIKE '%'||#{search}||'%'
+			</when>
+			<when test="searchCategory.equals('userId')">
+				user_id LIKE '%'||#{search}||'%'
+			</when>
+		</choose>
+	</select>
+
+	<select id="selectBoardInfo" parameterType="_int" resultType="board">
+		SELECT
+		board_no AS boardNo,
+		user_id AS userId,
+		board_title AS boardTitle,
+		board_contents AS boardContents,
+		board_date AS boardDate,
+		board_filename AS boardFileName,
+		board_filepath AS boardFilePath
+		FROM board WHERE board_no =
+		#{_parameter}
+	</select>
+
+	<select id="selectBoardInfoList" parameterType="HashMap" resultType="board">
+		SELECT * FROM (SELECT ROWNUM AS rNum, b.* FROM (
+		SELECT
+		board_no AS boardNo,
+		user_id AS userId,
+		board_title AS boardTitle,
+		board_contents AS boardContents,
+		board_date AS boardDate,
+		board_filename AS boardFileName,
+		board_filepath
+		AS boardFilePath
+		FROM board ORDER BY 1 DESC
+		)b)
+		WHERE rNum BETWEEN #{start} AND #{end}
+	</select>
+
+	<select id="getSearchBoardInfoList" parameterType="HashMap" resultType="board">
+		SELECT * FROM (SELECT ROWNUM AS rNum, b.* FROM (
+		SELECT
+		board_no AS boardNo,
+		user_id AS userId,
+		board_title AS boardTitle,
+		board_contents AS
+		boardContents,
+		board_date AS boardDate,
+		board_filename AS boardFileName,
+		board_filepath AS boardFilePath
+		FROM board
+		WHERE
+		<choose>
+			<when test="searchCategory.equals('boardTitle')">
+				board_title LIKE '%'||#{search}||'%'
+			</when>
+			<when test="searchCategory.equals('boardContents')">
+				board_contents LIKE '%'||#{search}||'%'
+			</when>
+			<when test="searchCategory.equals('userId')">
+				user_id LIKE '%'||#{search}||'%'
+			</when>
+		</choose>
+		ORDER BY 1 DESC
+		)b)
+		WHERE rNum BETWEEN ${start} AND ${end}
+	</select>
+
+	<delete id="deleteBoardInfo" parameterType="_int">
+		DELETE FROM board WHERE board_no = #{_parameter}
+	</delete>
+</mapper>

@@ -13,7 +13,9 @@
 		<typeAlias type="com.campkok.admin.user.model.vo.User" alias="user" />
 		<typeAlias type="com.campkok.admin.camp.model.vo.Camp" alias="camp" />
 		<typeAlias type="com.campkok.admin.camp.model.vo.CampEnv" alias="campEnv" />
-		<typeAlias type="com.campkok.admin.camp.model.vo.CampFile" alias="campFile"/>
+		<typeAlias type="com.campkok.admin.camp.model.vo.CampFile" alias="campFile" />
+		<typeAlias type="com.campkok.admin.board.model.vo.Board" alias="board" />
+		<typeAlias type="com.campkok.admin.board.model.vo.FAQ" alias="faq" />
 
 		<!-- Camp -->
 		<typeAlias type="com.campkok.camp.model.vo.CampVO" alias="c" />
