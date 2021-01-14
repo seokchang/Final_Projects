@@ -19,5 +19,35 @@
 			room_price roomPrice
 		from camproom where room_no=#{_parameter}
 	</select>
+	
+	<select id="selectCampInfo" parameterType="_int" resultType="c">
+		select
+			camp_no as campNo,
+			ceo_id as ceoId,
+			camp_addr as campAddr,
+			camp_name as campName,
+			camp_site as campSite,
+			camp_tel as campTel,
+			camp_theme as campTheme, 
+			camp_fac as campFac,
+			camp_ctg as campCtg
+		from camp where camp_no=#{_parameter}
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
   
 </mapper>

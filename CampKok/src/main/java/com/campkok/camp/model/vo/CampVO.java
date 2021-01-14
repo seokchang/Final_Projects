@@ -13,5 +13,4 @@ public class CampVO {
 	private String campTheme;
 	private String campFac;
 	private String campCtg;
-	private String campEnvInfo;
 }

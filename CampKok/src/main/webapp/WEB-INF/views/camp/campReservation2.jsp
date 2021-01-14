@@ -20,7 +20,7 @@
     <div id="cal_tab" class="cal">
     </div>
     <div class="reservationInfo">
-    	<h4>기본 예약 정보</h4>
+    	<h4>캠핑장 정보</h4>
     	<table>
     		<tr>
     			<th>회원명</th>
@@ -28,30 +28,55 @@
     		</tr>
     		<tr>
     			<th>캠핑장명</th>
-    			<th>test</th>
-    		</tr>
-    		<tr>
-    			<th>room번호</th>
-    			<th>${campRoomInfo.roomNo }</th>
-    		</tr>
-    		<tr>
-    			<th>입,퇴실시간</th>
-    			<th>test</th>
-    		</tr>
-    		<tr>
-    			<th>인원수</th>
-    			<th>${campRoomInfo.roomMember }</th>
+    			<th>${campInfo.campName }</th>
     		</tr>
     		<tr>
     			<th>방이름</th>
     			<th>${campRoomInfo.roomName }</th>
     		</tr>
+    		<tr>
+    			<th>기준인원</th>
+    			<th>${campRoomInfo.roomMember }</th>
+    		</tr>
+    		<tr>
+    			<th>입,퇴실시간</th>
+    			<th>15:00 / 11:00(익일)</th>
+    		</tr> 		
     	</table> 
-    	<h4>결제정보</h4>
+    	<hr>
+		<h4>예약 정보</h4>
+		<form action="/camp/campRes.do">  			
+			<input type="hidden" name="userNo" value="2"> <!-- 로그인세션정보담기 -->			
+			<input type="hidden" name="campNo" value="${campInfo.campNo }">
+			<input type="hidden" name="campRoomNo" value="${campRoomInfo.roomNo }">
+			<table>			
+				<tr>
+					<th>날짜선택</th>
+					<th>입실 : <input type="date" name="resInDate" id="sdate" min=""></th>
+					<th>퇴실 : <input type="date" name="resOutDate" id="edate" min=""></th>
+				</tr>
+				<tr>
+					<th>인원수</th>
+					<th><input type=text name=amount value=2>
+						<input type=button value="+" id="countPlus" onClick="javascript:this.form.amount.value++;">
+						<input type=button value="-" id="countMinus"onClick="javascript:this.form.amount.value--;">
+						<br><span style="font-size:10px;">*기준인원 초가시 1인당 5,000원의 추가요금이 발생합니다.</span>
+						
+					</th>
+				</tr>
+				<tr>
+					<th>비고</th>
+					<th><input type="text" name="resMemo" placeholder="픽업 부탁드려요 :)"></th>
+				</tr>
+			</table>
+			<input type="submit" value="예약하기">
+		</form>
+		<hr>
+    	<h4>결제 정보</h4>
     	<table>
     		<tr>
     			<th>결제금액</th>
-    			<th>test</th>
+    			<th id="price">${campRoomInfo.roomPrice }</th>
     		</tr>
     		<tr>
     			<th>포인트 사용여부</th>
@@ -171,6 +196,37 @@
         lastDay = new Date(year,month,0);
         drawDays();
     }
+    
+    //날짜 선택 오늘기준으로 전날 체크 불가
+    $('#sdate').click(function() {            
+         var date = new Date(); 
+         var yyyy = date.getFullYear(); 
+         var mm = date.getMonth()+1>9 ? date.getMonth()+1 : '0' +date.getMonth()+1;
+         var dd = date.getDate() > 9 ? date.getDate() : '0' + date.getDate();
+         if(mm==1){ mm="01"; }
+         var today = yyyy+"-"+mm+"-"+dd;
+         $('#sdate').attr('min',today);
+      });
+      
+    $('#edate').click(function() {
+    	 var sdate=$('#sdate').val();
+        /*   var date = new Date(); 
+         var yyyy = date.getFullYear(); 
+         var mm = date.getMonth()+1>9 ? date.getMonth()+1 : '0' +date.getMonth()+1; 
+         var dd = date.getDate() > 9 ? date.getDate()+1 : '0' + date.getDate()+1; 
+         { mm="01"; } 
+         var today = yyyy+"-"+mm+"-"+dd;*/
+         $('#edate').attr('min',sdate); 
+      });
+    
+    $('#countPlus').click(function() {
+    	$('#price').text(Number($('#price').text())+5000);
+    });
+    $('#countMinus').click(function() {
+    	$('#price').text(Number($('#price').text())-5000);
+    });
+    
+    
 </script>
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />
 <link rel="stylesheet" href="/resources/css/camp/reservation.css">
