@@ -20,11 +20,11 @@
     <div id="cal_tab" class="cal">
     </div>
     <div class="reservationInfo">
-    	<h4>예약정보</h4>
+    	<h4>기본 예약 정보</h4>
     	<table>
     		<tr>
     			<th>회원명</th>
-    			<th>test</th>
+    			<th>세션정보</th>
     		</tr>
     		<tr>
     			<th>캠핑장명</th>
@@ -32,7 +32,7 @@
     		</tr>
     		<tr>
     			<th>room번호</th>
-    			<th>test</th>
+    			<th>${campRoomInfo.roomNo }</th>
     		</tr>
     		<tr>
     			<th>입,퇴실시간</th>
@@ -40,11 +40,11 @@
     		</tr>
     		<tr>
     			<th>인원수</th>
-    			<th>test</th>
+    			<th>${campRoomInfo.roomMember }</th>
     		</tr>
     		<tr>
-    			<th>캠핑장명</th>
-    			<th>test</th>
+    			<th>방이름</th>
+    			<th>${campRoomInfo.roomName }</th>
     		</tr>
     	</table> 
     	<h4>결제정보</h4>
@@ -89,10 +89,19 @@
         for(var i=0;i<6;i++){
             setTableHTML+='<tr height="100">';
             for(var j=0;j<7;j++){
-                setTableHTML+='<td style="text-overflow:ellipsis;overflow:hidden;white-space:nowrap; border:1px solid #d9bd6a;">';
-                setTableHTML+='    <div class="cal-day"></div>';
-                setTableHTML+='    <div class="cal-schedule"><span id="test">room1예약완료</span><br><span id="test">room3예약대기</span></div>';
-                setTableHTML+='</td>';
+            	//예약된 room 캘린더 표시
+            	if(i==4 && j==5){
+            		 setTableHTML+='<td style="text-overflow:ellipsis;overflow:hidden;white-space:nowrap; border:1px solid #d9bd6a;">';
+                     setTableHTML+='    <div class="cal-day"></div>';
+                     setTableHTML+='    <div class="cal-schedule"><span id="test">room1예약완료</span><br><span id="test">room3예약대기</span></div>';
+                     setTableHTML+='</td>';
+            	}else{
+            		 setTableHTML+='<td style="text-overflow:ellipsis;overflow:hidden;white-space:nowrap; border:1px solid #d9bd6a;">';
+                     setTableHTML+='    <div class="cal-day"></div>';
+                     setTableHTML+='    <div class="cal-schedule"></div>';
+                     setTableHTML+='</td>';
+            	}
+               
             }
             setTableHTML+='</tr>';
         }
