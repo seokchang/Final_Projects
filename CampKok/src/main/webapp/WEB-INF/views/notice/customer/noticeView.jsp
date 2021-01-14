@@ -5,7 +5,7 @@
 <html lang="kr">
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
+    <title>공지사항</title>
     <link rel="stylesheet" href="/resources/css/customer/noticeView.css">
 </head>
 
@@ -35,7 +35,7 @@
                 </tr>
                 <tr>
                     <th>첨부파일</th>
-                    <td colspan="3">${clientNotice.clientNoticeFilePath }</td>
+                    <td colspan="3"><a href="javascript:fileDownload('${clientNotice.clientNoticeFileName }', '${clientNotice.clientNoticeFilePath }')">${clientNotice.clientNoticeFileName }</a></td>
                 </tr>
                 <tr>
                     <td colspan="4" style="height: 400px;">${clientNotice.clientNoticeContents }</td>

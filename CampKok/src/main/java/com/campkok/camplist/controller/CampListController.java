@@ -5,8 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.campkok.camp.model.vo.CampVO;
 import com.campkok.camplist.model.service.CampListService;
+import com.campkok.camplist.model.vo.CampList;
 import com.campkok.camplist.model.vo.CampListPageData;
 
 @Controller
@@ -19,13 +19,15 @@ public class CampListController {
 	@RequestMapping("/campList.do")
 	public String campList(int reqPage, Model model) {
 		CampListPageData clpd = service.campList(reqPage);
+		model.addAttribute("list",clpd.getList());
+		model.addAttribute("pageNavi",clpd.getPageNavi());
 		return "user/campList";
 	}
 	
 	// 캠핑장 상세페이지
 	@RequestMapping("/campView.do")
 	public String selectOneCamp(int campNo, Model model) {
-		CampVO c = service.selectOneCamp(campNo);
+		CampList c = service.selectOneCamp(campNo);
 		model.addAttribute("c",c);
 		return "user/campView";
 	}
