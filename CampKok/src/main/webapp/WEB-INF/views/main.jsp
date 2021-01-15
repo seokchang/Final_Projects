@@ -87,8 +87,10 @@
 		<div class="banner">
 			<div class="banner-content">d</div>
 			<div class="searchbar">
-				<form action="#" method="post">
-					<input type="text" placeholder="어느곳으로 캠핑을 떠나보시겠어요?">
+				<form action="/searchCampList.do" method="post">
+					<input type="text" name="keyword" placeholder="어느곳으로 캠핑을 떠나보시겠어요?">
+					<input type="hidden" name="reqPage" value="1">
+	            	<input type="hidden" name="searchSelect" value="campAddr">
 					<button type="submit">검색</button>
 				</form>
 
@@ -132,181 +134,35 @@
 
 		<div class="hr-sect">새로운 캠핑장</div>
 		<div class="new-camping">
-			<div class="new-camping-content">
-				<div>
-					<img src="resources/img/main/3e35dcbb689fea33c2ed122a2b05c07f.jpg">
+			<c:forEach items="${newCampList }" var="newCamp" begin="0" end="4" step="1">
+				<div class="new-camping-content">
+					<div>
+						<img src="resources/img/main/3e35dcbb689fea33c2ed122a2b05c07f.jpg">
+					</div>
+					<p><a href="#">[ 지역 ] ${newCamp.campName }</a></p>
 				</div>
-				<p>[ 지역 ] 캠핑장이름</p>
-			</div>
-			<div class="new-camping-content">
-				<div>
-					<img src="resources/img/main/3e35dcbb689fea33c2ed122a2b05c07f.jpg">
-				</div>
-				<p>[ 지역 ] 캠핑장이름</p>
-			</div>
-			<div class="new-camping-content">
-				<div>
-					<img src="resources/img/main/3e35dcbb689fea33c2ed122a2b05c07f.jpg">
-				</div>
-				<p>[ 지역 ] 캠핑장이름</p>
-			</div>
-			<div class="new-camping-content">
-				<div>
-					<img src="resources/img/main/3e35dcbb689fea33c2ed122a2b05c07f.jpg">
-				</div>
-				<p>[ 지역 ] 캠핑장이름</p>
-			</div>
-			<div class="new-camping-content">
-				<div>
-					<img src="resources/img/main/3e35dcbb689fea33c2ed122a2b05c07f.jpg">
-				</div>
-				<p>[ 지역 ] 캠핑장이름</p>
-			</div>
+			</c:forEach>
 		</div>
 
 		<div class="hr-sect">캠핑장 랭킹</div>
 		<div class="rank-camping-wrap">
 			<div class="rank-camping">
-				<div class="rank-content">
-					<div>
-						<img
-							src="resources/img/main/best-free-camping-united-states-740x419.jpg">
+				<c:forEach items="${campRanking }" var="rank" varStatus="vs" begin="0" end="9" step="1">
+					<div class="rank-content">
+						<div>
+							<img
+								src="resources/img/main/best-free-camping-united-states-740x419.jpg">
+						</div>
+						<ul>
+							<li>
+								<p>${vs.count }&nbsp;</p>${rank.campName }
+							</li>
+							<li>${rank.campAddr }</li>
+							<li>★ ${rank.campStar }</li>
+							<li>${rank.campMinPrice }원 ~</li>
+						</ul>
 					</div>
-					<ul>
-						<li>
-							<p>1&nbsp;</p>고양캠핑장
-						</li>
-						<li>경기도 고양시 고양동</li>
-						<li>★ 5.0</li>
-						<li>58,000원 ~</li>
-					</ul>
-				</div>
-				<div class="rank-content">
-					<div>
-						<img
-							src="resources/img/main/best-free-camping-united-states-740x419.jpg">
-					</div>
-					<ul>
-						<li>
-							<p>2&nbsp;</p>고양캠핑장
-						</li>
-						<li>경기도 고양시 고양동</li>
-						<li>★ 5.0</li>
-						<li>58,000원 ~</li>
-					</ul>
-				</div>
-				<div class="rank-content">
-					<div>
-						<img
-							src="resources/img/main/best-free-camping-united-states-740x419.jpg">
-					</div>
-					<ul>
-						<li>
-							<p>3&nbsp;</p>고양캠핑장
-						</li>
-						<li>경기도 고양시 고양동</li>
-						<li>★ 5.0</li>
-						<li>58,000원 ~</li>
-					</ul>
-				</div>
-				<div class="rank-content">
-					<div>
-						<img
-							src="resources/img/main/best-free-camping-united-states-740x419.jpg">
-					</div>
-					<ul>
-						<li>
-							<p>4&nbsp;</p>고양캠핑장
-						</li>
-						<li>경기도 고양시 고양동</li>
-						<li>★ 5.0</li>
-						<li>58,000원 ~</li>
-					</ul>
-				</div>
-				<div class="rank-content">
-					<div>
-						<img
-							src="resources/img/main/best-free-camping-united-states-740x419.jpg">
-					</div>
-					<ul>
-						<li>
-							<p>5&nbsp;</p>고양캠핑장
-						</li>
-						<li>경기도 고양시 고양동</li>
-						<li>★ 5.0</li>
-						<li>58,000원 ~</li>
-					</ul>
-				</div>
-				<div class="rank-content">
-					<div>
-						<img
-							src="resources/img/main/best-free-camping-united-states-740x419.jpg">
-					</div>
-					<ul>
-						<li>
-							<p>6&nbsp;</p>고양캠핑장
-						</li>
-						<li>경기도 고양시 고양동</li>
-						<li>★ 5.0</li>
-						<li>58,000원 ~</li>
-					</ul>
-				</div>
-				<div class="rank-content">
-					<div>
-						<img
-							src="resources/img/main/best-free-camping-united-states-740x419.jpg">
-					</div>
-					<ul>
-						<li>
-							<p>7&nbsp;</p>고양캠핑장
-						</li>
-						<li>경기도 고양시 고양동</li>
-						<li>★ 5.0</li>
-						<li>58,000원 ~</li>
-					</ul>
-				</div>
-				<div class="rank-content">
-					<div>
-						<img
-							src="resources/img/main/best-free-camping-united-states-740x419.jpg">
-					</div>
-					<ul>
-						<li>
-							<p>8&nbsp;</p>고양캠핑장
-						</li>
-						<li>경기도 고양시 고양동</li>
-						<li>★ 5.0</li>
-						<li>58,000원 ~</li>
-					</ul>
-				</div>
-				<div class="rank-content">
-					<div>
-						<img
-							src="resources/img/main/best-free-camping-united-states-740x419.jpg">
-					</div>
-					<ul>
-						<li>
-							<p>9&nbsp;</p>고양캠핑장
-						</li>
-						<li>경기도 고양시 고양동</li>
-						<li>★ 5.0</li>
-						<li>58,000원 ~</li>
-					</ul>
-				</div>
-				<div class="rank-content">
-					<div>
-						<img
-							src="resources/img/main/best-free-camping-united-states-740x419.jpg">
-					</div>
-					<ul>
-						<li>
-							<p>10&nbsp;</p>고양캠핑장
-						</li>
-						<li>경기도 고양시 고양동</li>
-						<li>★ 5.0</li>
-						<li>58,000원 ~</li>
-					</ul>
-				</div>
+				</c:forEach>
 			</div>
 		</div>
 	</div>

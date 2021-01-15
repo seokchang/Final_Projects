@@ -1,6 +1,7 @@
 package com.campkok.camplist.model.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -69,8 +70,8 @@ public class CampListService {
 	
 	// 캠핑장 상세 페이지
 	public CampList selectOneCamp(int campNo) {
-		CampList c = dao.selectOneCamp(campNo);
-		return c;
+		CampList cl = dao.selectOneCamp(campNo);
+		return cl;
 	}
 
 	public CampListPageData searchCampList(int reqPage, String searchSelect, String keyword) {
@@ -120,6 +121,19 @@ public class CampListService {
 		}
 		CampListPageData clpd = new CampListPageData(list, pageNavi);
 		return clpd;
+	}
+
+	public List<Object> mainAdCampList(CampList cl) {
+		List<Object> adCampList = dao.mainAdCampList(cl);
+		return adCampList;
+	}
+
+	public ArrayList<CampList> mainNewCampList() {
+		return dao.mainNewCampList();
+	}
+
+	public ArrayList<CampList> mainCampRanking() {
+		return dao.mainCampRanking();
 	}
 
 }

@@ -180,7 +180,8 @@ nav>ul>li>a {
 	border-top-left-radius: 50px;
 	border-bottom-left-radius: 50px;
 	box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.4);
-	font-size: 18px
+	font-size: 18px;
+	opacity: 80%;
 }
 
 .searchbar>form>button {
@@ -195,6 +196,7 @@ nav>ul>li>a {
 	border-bottom-right-radius: 50px;
 	font-size: 20px;
 	transition-duration: 0.5s;
+	z-index: 10;
 }
 
 .searchbar>form>button:hover {
@@ -282,7 +284,7 @@ h3 {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
-	width: 70%;
+	width: 1200px;
 }
 
 .rank-content {
