@@ -21,10 +21,10 @@ public class CampListController {
 	// 메인 페이지 로드할 때 캠핑장 광고, 새로운 캠핑장 리스트 
 	@RequestMapping("/main.do")
 	public String main(Model model) {
-		//List<Object> adCampList = service.mainAdCampList(cl);	// main 캠핑장 광고 리스트
+		ArrayList<CampList> adCampList = service.mainAdCampList();	// main 캠핑장 광고 리스트
 		ArrayList<CampList> newCampList = service.mainNewCampList();	// main 새로운 캠핑장 리스트
 		ArrayList<CampList> campRanking = service.mainCampRanking();	// main 캠핑장 랭킹
-		//model.addAttribute("adCampList",adCampList);
+		model.addAttribute("adCampList",adCampList);
 		model.addAttribute("newCampList",newCampList);
 		model.addAttribute("campRanking",campRanking);
 		return "main";
