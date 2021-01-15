@@ -33,7 +33,10 @@ public class CampListDao {
 	}
 
 	public int totalSerchCampList(String searchSelect, String keyword) {
-		return session.selectOne("camplist.totalSerchCampList",keyword);
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("searchSelect", searchSelect);
+		map.put("keyword", keyword);
+		return session.selectOne("camplist.totalSearchCampList",map);
 	}
 
 	public ArrayList<CampList> searchCampList(int start, int end, String searchSelect, String keyword) {
@@ -44,6 +47,20 @@ public class CampListDao {
 		map.put("keyword", keyword);
 		List<CampList> list = session.selectList("camplist.searchCampList",map);
 		return (ArrayList<CampList>)list;
+	}
+
+	public List<Object> mainAdCampList(CampList cl) {
+		return session.selectList("camplist.mainAdCampList",cl);
+	}
+
+	public ArrayList<CampList> mainNewCampList() {
+		List<CampList> newCampList = session.selectList("camplist.mainNewCampList");
+		return (ArrayList<CampList>) newCampList;
+	}
+
+	public ArrayList<CampList> mainCampRanking() {
+		List<CampList> campRanking = session.selectList("camplist.mainCampRanking");
+		return (ArrayList<CampList>) campRanking; 
 	}
 
 }

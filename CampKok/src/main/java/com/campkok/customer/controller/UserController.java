@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
+import com.campkok.admin.user.model.vo.User;
 import com.campkok.customer.model.service.UserService;
 import com.campkok.customer.model.vo.UserVO;
 
@@ -18,12 +19,6 @@ public class UserController {
 	@Autowired
 	private UserService service;
 	
-	// 메인 페이지로 이동
-		@RequestMapping("/main.do")
-		public String main() {
-			return "main";
-		}
-		
 	// 회원가입 선택 페이지로 이동
 	@RequestMapping("/joinPage.do")
 	public String join() {
@@ -79,6 +74,8 @@ public class UserController {
 	// 로그인
 	@RequestMapping("/login.do")
 	public String login(UserVO u, HttpSession session, Model model) {
+		System.out.println(u.getUserId());
+		System.out.println(u.getUserPw());
 		UserVO user = service.selectOneUser(u);
 		if(user != null) {
 			session.setAttribute("user", user);
