@@ -40,4 +40,9 @@ public class CampListController {
 		model.addAttribute("pagiNavi",clpd.getPageNavi());
 		return "user/campList";
 	}
+	
+	// main 캠핑장 광고
+	
+	
+	// main 새로운 캠핑장
 }

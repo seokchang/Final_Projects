@@ -4,20 +4,22 @@
    
    <!-- 캠프 리스트 -->
   <select id="selectAllCampList" parameterType="map" resultType="camplist">
-   	select 
-	    camp.camp_no as campNo,
-	    camp_name as campName,
-	    camp_addr as campAddr,
-	    camp_site as campSite,
-	    camp_tel as campTel,
-	    camp_theme as campTheme,
-	    camp_fac as campFac,
-	    camp_ctg as campCtg,
-	    campenv.env_name as campEnv,
-	    (select min(room_price) from camproom where camp_no = camp.camp_no) as campMinPrice,
-	    (select avg(rev_star) from review where camp_no = camp.camp_no) as campStar
-	from camp full join campenv 
-	on (camp.camp_no = campenv.camp_no)
+  	select * from (select rownum as rnum, c.* from (
+	   	select 
+		    camp.camp_no as campNo,
+		    camp_name as campName,
+		    camp_addr as campAddr,
+		    camp_site as campSite,
+		    camp_tel as campTel,
+		    camp_theme as campTheme,
+		    camp_fac as campFac,
+		    camp_ctg as campCtg,
+		    campenv.env_name as campEnv,
+		    (select min(room_price) from camproom where camp_no = camp.camp_no) as campMinPrice,
+		    (select avg(rev_star) from review where camp_no = camp.camp_no) as campStar
+		from camp full join campenv on (camp.camp_no = campenv.camp_no)
+	)c)
+	where rnum between ${start} and ${end}
   </select>
    
    <!-- 캠핑장 수 -->
@@ -40,6 +42,19 @@
   	from camp where camp_no = #{campNo}
   </select>
   
+  <!-- 검색 된 캠핑장 총 개수 -->
+  <select id="totalSearchCampList" parameterType="HashMap" resultType="_int">
+		select count(*)
+		<choose>
+			<when test="searchSelect.equals('campName')">
+				from camp where camp_name like '%'||#{keyword}||'%'
+			</when>
+			<when test="searchSelect.equals('campAddr')">
+				from camp where camp_addr like '%'||#{keyword}||'%'
+			</when>
+		</choose>
+	</select>
+  
   <!-- 캠핑장 검색 -->
   <select id="searchCampList" parameterType="map" resultType="camplist">
   	select * from (select rownum as rnum, c.* from (
@@ -55,7 +70,7 @@
 	    campenv.env_name as campEnv,
 	    (select min(room_price) from camproom where camp_no = camp.camp_no) as campMinPrice,
 	    (select avg(rev_star) from review where camp_no = camp.camp_no) as campStar
-	from camp full where 
+	from camp full join campenv on (camp.camp_no = campenv.camp_no) where 
 		<choose>
 			<when test="searchSelect.equals('campName')">
 				camp_name like '%'||#{keyword}||'%'
@@ -64,8 +79,7 @@
 				camp_addr like '%'||#{keyword}||'%'
 			</when>
 		</choose>
-		join campenv on (camp.camp_no = campenv.camp_no)
-		)c)
-		where rnum between ${start} and ${end}
+	)c)
+	where rnum between ${start} and ${end}
   </select>  
 </mapper>

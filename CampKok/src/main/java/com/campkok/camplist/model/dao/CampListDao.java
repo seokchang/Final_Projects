@@ -33,7 +33,10 @@ public class CampListDao {
 	}
 
 	public int totalSerchCampList(String searchSelect, String keyword) {
-		return session.selectOne("camplist.totalSerchCampList",keyword);
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("searchSelect", searchSelect);
+		map.put("keyword", keyword);
+		return session.selectOne("camplist.totalSearchCampList",map);
 	}
 
 	public ArrayList<CampList> searchCampList(int start, int end, String searchSelect, String keyword) {

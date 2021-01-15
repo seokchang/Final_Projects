@@ -20,7 +20,8 @@
             
         </div>
         <div class="searchbar">
-            <form action="#" method="post">
+            <form action="/searchCampList.do" method="get">
+            	<input type="hidden" name="reqPage" value="1">
                 <select name="searchSelect">
                 	<option value="campName">캠핑장이름</option>
                 	<option value="campAddr">지역</option>
