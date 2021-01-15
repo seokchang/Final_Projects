@@ -20,7 +20,9 @@
 
 			<!-- Main -->
 			<div class="content-main">
-				<h1>자유게시판 관리</h1>
+				<h1>
+					<a href="/selectBoardInfoList.do?reqPage=1">자유게시판 관리</a>
+				</h1>
 				<hr>
 				<div class="search-wrap">
 					<form action="/searchBoardInfoList.do" method="GET">

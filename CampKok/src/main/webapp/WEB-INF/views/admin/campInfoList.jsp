@@ -20,7 +20,9 @@
 
 			<!-- Main -->
 			<div class="content-main">
-				<h1>캠핑장정보 관리</h1>
+				<h1>
+					<a href="/selectCampInfoList.do?reqPage=1">캠핑장정보 관리</a>
+				</h1>
 				<hr>
 				<div class="search-wrap">
 					<form action="/searchCampInfoList.do" method="GET">

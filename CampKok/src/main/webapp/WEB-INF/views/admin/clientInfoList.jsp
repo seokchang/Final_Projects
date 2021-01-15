@@ -20,7 +20,9 @@
 
 			<!-- Main -->
 			<div class="content-main">
-				<h1>고객정보 관리</h1>
+				<h1>
+					<a href="/selectClientInfoList.do?reqPage=1">고객정보 관리</a>
+				</h1>
 				<hr>
 				<div class="search-wrap">
 					<form action="/searchClientInfo.do" method="GET">

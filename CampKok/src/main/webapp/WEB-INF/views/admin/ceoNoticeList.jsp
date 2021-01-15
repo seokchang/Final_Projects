@@ -21,7 +21,9 @@
 
 			<!-- Main -->
 			<div class="content-main">
-				<h1>사업자 공지사항</h1>
+				<h1>
+					<a href="/selectCeoNoticeList.do?reqPage=1">사업자 공지사항</a>
+				</h1>
 				<hr>
 				<div class="search-wrap">
 					<form action="/searchCeoNotice.do?" method="GET">

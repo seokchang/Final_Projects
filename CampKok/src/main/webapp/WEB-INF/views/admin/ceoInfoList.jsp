@@ -20,7 +20,9 @@
 
 			<!-- Main -->
 			<div class="content-main">
-				<h1>사업자정보 관리</h1>
+				<h1>
+					<a href="/selectCeoInfoList.do?reqPage=1">사업자정보 관리</a>
+				</h1>
 				<hr>
 				<div class="search-wrap">
 					<form action="/searchCeoInfo.do" method="GET">

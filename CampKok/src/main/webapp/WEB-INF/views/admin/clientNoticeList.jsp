@@ -21,7 +21,9 @@
 
 			<!-- Main -->
 			<div class="content-main">
-				<h1>고객 공지사항</h1>
+				<h1>
+					<a href="/selectClientNoticeList.do?reqPage=1">고객 공지사항</a>
+				</h1>
 				<hr>
 				<div class="search-wrap">
 					<form action="/searchClientNotice.do?" method="GET">

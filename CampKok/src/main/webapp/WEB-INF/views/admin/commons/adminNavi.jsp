@@ -28,7 +28,11 @@
 				<li><a href="#">신규등록 관리</a></li>
 			</ul></li>
 		<li><a href="/selectBoardInfoList.do?reqPage=1">자유게시판 관리</a></li>
-		<li><a href="/selectFAQInfoList.do">FAQ</a></li>
+		<li><a href="javascript:void(0)" id="faq">FAQ 관리</a>
+			<ul class="submenu">
+				<li><a href="/pageFAQForm.do">FAQ 등록</a></li>
+				<li><a href="/selectFAQInfoList.do?reqPage=1">FAQ 리스트</a></li>
+			</ul></li>
 		<li><a href="#">통계</a></li>
 		<li><a href="#">1:1채팅</a></li>
 	</ul>
@@ -38,7 +42,7 @@
 		$(function() {
 			$(".submenu").hide();
 			$(".submenu").prev().append("<span class='more'>+</span>");
-			
+
 			$("#notice").click(function() {
 				$(this).next().slideToggle();
 				$(this).children().toggleClass("active");
@@ -48,8 +52,13 @@
 				$(this).next().slideToggle();
 				$(this).children().toggleClass("active");
 			})
-						
+
 			$("#camp").click(function() {
+				$(this).next().slideToggle();
+				$(this).children().toggleClass("active");
+			})
+
+			$("#faq").click(function() {
 				$(this).next().slideToggle();
 				$(this).children().toggleClass("active");
 			})
