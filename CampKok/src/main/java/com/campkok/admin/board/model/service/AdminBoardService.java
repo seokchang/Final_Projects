@@ -59,17 +59,11 @@ public class AdminBoardService {
 		return abipd;
 	}
 
-	@Transactional
-	public int deleteBoardInfo(int boardNo) {
-		return dao.deleteBoardInfo(boardNo);
-	}
-
 	public AdminBoardInfoPageData searchBoardInfoList(int reqPage, String searchCategory, String search) {
-		int totalBoardInfo = dao.getTotalSearchBoardInfoCount(searchCategory, search);
-		System.out.println("totalBoardInfo : " + totalBoardInfo);
+		int totalSearchBoardInfo = dao.getTotalSearchBoardInfoCount(searchCategory, search);
 		int numPerPage = 10;
-		int totalPage = (totalBoardInfo / numPerPage == 0) ? (totalBoardInfo / numPerPage)
-				: (totalBoardInfo / numPerPage) + 1;
+		int totalPage = (totalSearchBoardInfo / numPerPage == 0) ? (totalSearchBoardInfo / numPerPage)
+				: (totalSearchBoardInfo / numPerPage) + 1;
 		int start = (reqPage - 1) * numPerPage + 1;
 		int end = reqPage * numPerPage;
 
@@ -103,6 +97,11 @@ public class AdminBoardService {
 		AdminBoardInfoPageData abipd = new AdminBoardInfoPageData(list, pageNavi);
 
 		return abipd;
+	}
+
+	@Transactional
+	public int deleteBoardInfo(int boardNo) {
+		return dao.deleteBoardInfo(boardNo);
 	}
 
 	// ******************** FAQ ********************
