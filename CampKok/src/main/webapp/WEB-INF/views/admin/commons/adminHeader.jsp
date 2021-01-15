@@ -10,6 +10,8 @@
 <!-- 부가적인 테마 -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <link rel="stylesheet" href="/resources/css/admin/adminHeader.css">
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.5.1.js"></script>
 </head>
 
 <body>

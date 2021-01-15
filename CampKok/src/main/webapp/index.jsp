@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,7 +32,7 @@
 	<a href="/camp/campReservation.do">캠핑장 예약하기</a>
 	<a href="/mypage.do?userNo=2">마이페이지</a>
 	<a href="/camp/jinwoo.do">진우 작업페이지</a>
-	
+
 	<hr>
 	<a href="/main.do">메인페이지</a>
 </body>
