@@ -10,4 +10,7 @@
 		SELECT count(*) FROM user_tbl WHERE user_gender = '여'
 	</select>
 
+	<select id="getResMemberCount" parameterType="_int" resultType="_int">
+		SELECT count(*) FROM reservation WHERE res_member = #{_parameter}
+	</select>
 </mapper>

@@ -17,4 +17,8 @@ public class ChartDao {
 		return session.selectOne("adminChart.getWomanNumber");
 	}
 
+	public int getResMemberCount(int member) {
+		return session.selectOne("adminChart.getResMemberCount", member);
+	}
+
 }

@@ -1,8 +1,5 @@
 package com.campkok.admin.chart.controller;
 
-import java.util.HashMap;
-import java.util.Set;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,26 +19,23 @@ public class ChartController {
 	@RequestMapping("/pageChart.do")
 	public String pageChart(Model model) {
 		String genderRatio = getUserGenderRatio();
+		String resMemberRatio = getReservationMemberRatio();
 
 		model.addAttribute("genderRatio", genderRatio);
+		model.addAttribute("resMemberRatio", resMemberRatio);
 
 		return "/admin/chartView";
 	}
 
-	@RequestMapping("/getUserGenderRatio.do")
 	public String getUserGenderRatio() {
-		HashMap<String, Integer> userRatio = service.getUserGenderRatio();
+		String userRatio = service.getUserGenderRatio();
 
-		String result = "";
-		Set<String> gender = userRatio.keySet();
+		return userRatio;
+	}
 
-		for (String key : gender) {
-			if (result != "") {
-				result += ", ";
-			}
-			result += "['" + key + "', " + userRatio.get(key) + "]";
-		}
+	public String getReservationMemberRatio() {
+		String resMemberRatio = service.getReservationMemberRatio();
 
-		return result;
+		return resMemberRatio;
 	}
 }

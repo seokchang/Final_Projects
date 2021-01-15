@@ -32,12 +32,13 @@
 						<h3>방문자 수</h3>
 					</div>
 					<div id="chart-gender">
-						<h3>
-							<a href="/getUserGenderRatio.do">회원 성별 비율</a>
-						</h3>
-						<div id="donutchart" style="width: 100%; height: 350px;"></div>
+						<h3>회원 성별 비율</h3>
+						<div id="gender" style="width: 100%; height: 350px;"></div>
 					</div>
-					<div id="client-notice" style="background-color: yellow;"></div>
+					<div id="chart-reservation">
+						<h3>예약별 인원 통계</h3>
+						<div id="reservation" style="width: 100%; height: 350px;"></div>
+					</div>
 					<div id="ceo-notice" style="background-color: green;"></div>
 					<div id="camp-info" style="background-color: blue;"></div>
 					<div id="board" style="background-color: navi;"></div>
@@ -85,12 +86,14 @@ h3 {
 </style>
 
 	<script type="text/javascript">
+		/* ********** Gender Chart ********** */
 		google.charts.load("current", {
 			packages : [ "corechart" ]
 		});
-		google.charts.setOnLoadCallback(drawChart);
+		google.charts.setOnLoadCallback(userGender);
+		google.charts.setOnLoadCallback(reservationMember);
 		
-		function drawChart() {
+		function userGender() {
 			var data = google.visualization.arrayToDataTable([
 					[ 'UserRatio', 'Number' ], ${genderRatio} ]);
 
@@ -100,7 +103,22 @@ h3 {
 			};
 
 			var chart = new google.visualization.PieChart(document
-					.getElementById('donutchart'));
+					.getElementById('gender'));
+			chart.draw(data, options);
+		}
+		
+		/* ********** Reservation Chart ********** */
+		function reservationMember() {
+			var data = google.visualization.arrayToDataTable([
+					[ 'Reservation Member', 'Number' ], ${resMemberRatio} ]);
+
+			var options = {
+				title : 'User Gender Ratio',
+				pieHole : 0.4,
+			};
+
+			var chart = new google.visualization.PieChart(document
+					.getElementById('reservation'));
 			chart.draw(data, options);
 		}
 	</script>
