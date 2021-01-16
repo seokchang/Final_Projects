@@ -34,8 +34,27 @@
 		from camp where camp_no=#{_parameter}
 	</select>
 	
+	<insert id="campRes" parameterType="map">
+		insert into reservation values(reservation_seq.nextval,#{userNo},#{campNo},#{campRoomNo},#{resInTime},#{resOutTime},#{resInDate},#{resOutDate},#{resMember},#{resPrice},#{resMemo},1)                              
+	</insert>
 	
+	<select id="selectUserPoint" parameterType="_int" resultType="cu">
+		select user_no as userNo,user_name as userName,user_point as userPoint from user_tbl where user_no=#{_parameter}
+	</select>
 	
+	<update id="updateUserPoint" parameterType="map">
+		update user_tbl set
+			user_point = (user_point-#{userUsePoint})
+		where user_no = #{userNo}
+	</update>
+	
+	<select id="totalPoint" parameterType="_int" resultType="_int">
+		select user_point from user_tbl where user_no=#{_parameter}
+	</select>
+	
+	<insert id="insertPoint" parameterType="map">
+		insert into point values(point_seq.nextval,#{userNo},null,null,null,#{totalPoint},#{userUsePoint},'예약 시 포인트 사용',to_char(sysdate,'yyyy-mm-dd'))
+	</insert>
 	
 	
 	

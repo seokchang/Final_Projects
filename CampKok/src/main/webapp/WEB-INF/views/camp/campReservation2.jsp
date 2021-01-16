@@ -20,11 +20,14 @@
     <div id="cal_tab" class="cal">
     </div>
     <div class="reservationInfo">
+   	<!-- 캠핑장 테이블 : campInfo
+   	캠핑장 룸 테이블 : campRoomInfo
+   	유저 테이블 : userInfo -->
     	<h4>캠핑장 정보</h4>
     	<table>
     		<tr>
     			<th>회원명</th>
-    			<th>세션정보</th>
+    			<th>${userInfo.userName }</th>
     		</tr>
     		<tr>
     			<th>캠핑장명</th>
@@ -45,47 +48,55 @@
     	</table> 
     	<hr>
 		<h4>예약 정보</h4>
-		<form action="/camp/campRes.do">  			
+		<form action="/camp/campRes.do" method="post" accept-charset="utf-8">  			
 			<input type="hidden" name="userNo" value="2"> <!-- 로그인세션정보담기 -->			
-			<input type="hidden" name="campNo" value="${campInfo.campNo }">
-			<input type="hidden" name="campRoomNo" value="${campRoomInfo.roomNo }">
+			<input type="hidden" name="campNo" value=${campInfo.campNo }>
+			<input type="hidden" name="campRoomNo" value=${campRoomInfo.roomNo }>
 			<table>			
 				<tr>
 					<th>날짜선택</th>
-					<th>입실 : <input type="date" name="resInDate" id="sdate" min=""></th>
-					<th>퇴실 : <input type="date" name="resOutDate" id="edate" min=""></th>
+					<th>입실 : <input type="date" name="resInDate" id="sdate" min="" required></th>
+					<th>퇴실 : <input type="date" name="resOutDate" id="edate" min="" required></th>
 				</tr>
 				<tr>
 					<th>인원수</th>
-					<th><input type=text name=amount value=2>
-						<input type=button value="+" id="countPlus" onClick="javascript:this.form.amount.value++;">
-						<input type=button value="-" id="countMinus"onClick="javascript:this.form.amount.value--;">
+					<th><input type=text size="2" id="resMember" name=resMember value=2>
+						<input type=button value="+" id="countPlus" onClick="javascript:this.form.resMember.value++;">
+						<input type=button value="-" id="countMinus"onClick="javascript:this.form.resMember.value--;">
 						<br><span style="font-size:10px;">*기준인원 초가시 1인당 5,000원의 추가요금이 발생합니다.</span>
 						
 					</th>
 				</tr>
 				<tr>
-					<th>비고</th>
-					<th><input type="text" name="resMemo" placeholder="픽업 부탁드려요 :)"></th>
-				</tr>
+					<th>예약시 요청사항</th>
+					<th><input type="text" name="resMemo" placeholder="ex)픽업부탁드립니다!" value=""></th>
+				</tr>				
 			</table>
-			<input type="submit" value="예약하기">
-		</form>
+			
+		
 		<hr>
     	<h4>결제 정보</h4>
     	<table>
     		<tr>
-    			<th>결제금액</th>
-    			<th id="price">${campRoomInfo.roomPrice }</th>
+    			<th>보유 포인트</th>
+    			<th id="userTotalPoint">${userInfo.userPoint }</th>
     		</tr>
     		<tr>
-    			<th>포인트 사용여부</th>
-    			<th>test</th>
+    			<th><input type="text" size="8" id="userUsePoint" name="userUsePoint" value=0></th>
+    			<th><input type="button" id="point" value="포인트 사용하기"></th>
     		</tr>
+    		<tr>
+    			<th>결제금액</th>
+    			<th id="price">${campRoomInfo.roomPrice }</th>
+    			<th><input type="hidden" id="price2" name="resPrice" value=""></th>
+    			<th><input type="hidden" id="constPrice" name="constPrice" value="${campRoomInfo.roomPrice }"></th>   			
+    		</tr>    		    		
     		<tr>
     			<th><br><input type="button" value="결제하기"></th>
     		</tr>   		
-    	</table> 
+    	</table>
+    	<input type="submit" value="예약하기"> 
+    	</form>
     </div>
  
 <script type="text/javascript">
@@ -219,12 +230,49 @@
          $('#edate').attr('min',sdate); 
       });
     
+    //인원수 +,-
     $('#countPlus').click(function() {
-    	$('#price').text(Number($('#price').text())+5000);
+    	var price = Number($('#price').text())+5000; 
+    	$('#price').text(price);
+    	$('#price2').val(price);
+    	var resMember = Number($('#resMember').val());
+    	$('#resMember').attr('value',resMember);
+    	
     });
     $('#countMinus').click(function() {
-    	$('#price').text(Number($('#price').text())-5000);
+    	var price = Number($('#price').text())-5000;
+    	$('#price').text(price);
+    	$('#price2').val(price);
+    	var resMember = Number($('#resMember').val());
+    	$('#resMember').attr('value',resMember);
     });
+    
+    //결제금액에 포인트 적용
+    $('#point').click(function name() {
+    	var constPrice = Number($('#constPrice').val());
+    	var resMember = Number($('#resMember').val());
+    	var constPrice2 = constPrice+(5000*(resMember-2));
+    	console.log(constPrice2);
+		var userTotalPoint = Number($('#userTotalPoint').text());
+		var userUsePoint = Number($('#userUsePoint').val());
+		var price = Number($('#price').text());
+		
+		if(userUsePoint>constPrice2){
+			alert("포인트사용 금액이 결제금액보다 큽니다.");
+			$('#userUsePoint').val(" ");
+		}else{
+			if(userTotalPoint>userUsePoint){
+				var result = constPrice2-userUsePoint;
+				$('#price').text(result);
+				$('#price2').val(result);
+			}else{
+				alert("포인트사용 금액이 보유금액보다 큽니다.");
+				$('#userUsePoint').val(" ");
+			}
+		}
+		
+	});
+    
     
     
 </script>
