@@ -23,11 +23,11 @@ body {
 .join-naeyong {
 	background-color: #fff;
 	width: 840px;
-	height: 750px;
+	height: 900px;
 	padding: 80px;
 	padding-top: 50px;
 	padding-bottom: 50px;
-	margin-bottom: 100px;
+	margin-bottom: 50px;
 	border-top: 3px solid #405944;
 }
 
@@ -50,9 +50,9 @@ body {
 .join-naeyong>form>button {
 	color: #fff;
 	background-color: #405944;
+	border: 1px solid #405944;
 	width: 250px;
 	height: 50px;
-	border: none;
 	outline: none;
 	font-size: 15px;
 	font-weight: bold;
@@ -132,4 +132,18 @@ select {
 .gender-radio:checked+label {
 	background-color: gray;
 	color: #fff;
+}
+
+.joinfrm-btn{
+	height: 50px;
+	width: 100px;
+	background-color: gray;
+	border: 1px solid gray;
+	color: #fff;
+	transition-duration: 0.5s;
+}
+
+.joinfrm-btn:hover{
+	background-color: #444;
+	border: 1px solid #444;
 }
