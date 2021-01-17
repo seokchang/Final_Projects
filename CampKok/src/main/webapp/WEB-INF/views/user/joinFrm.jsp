@@ -5,6 +5,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<!-- 다음 주소찾기 API -->
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	
 <link rel="stylesheet" href="/resources/css/user/joinFrm.css">
 </head>
 <body>
@@ -217,7 +220,23 @@
                     </tr>
                     <tr>
                         <td>주소</td>
-                        <td><input type="text" name="userAddr"></td>
+						<td>
+							<input id="postCode" style="width: 150px;" type="text" placeholder="우편번호" readonly>
+							<button id="addrSearchBtn" type="button" onclick="addrSearch();" class="joinfrm-btn">주소검색</button>
+						</td>
+						<td><input type="hidden" name="userAddr"></td>
+                    </tr>
+                    <tr>
+                    	<td></td>
+						<td>
+							<input type="text" id="roadAddr" placeholder="도로명주소" readonly>
+						</td>
+                    </tr>
+                    <tr>
+                    	<td></td>
+						<td>
+							<input id="detailAddr" placeholder="상세주소">
+						</td>
                     </tr>
                 </table>
 
@@ -253,6 +272,19 @@
 				}
 			});
 		}); */
+		
+		function addrSearch() {
+	    	  new daum.Postcode({
+	    		 oncomplete : function(data) {
+	    			 //검색해서 선택한 결과가 data라는 매개변수를 통해서 들어옴
+	    			 //다양한 값이 들어오지만 그 중 3개의 값만 사용
+	    			 //1)우편번호    2)도로명주소    3)지번주소
+	    			 $("#postCode").val(data.zonecode); //우편번호
+	    			 $("#roadAddr").val(data.roadAddress); //도로명주소
+	    			 $("#detailAddr").focus(); //상세주소로 포커스 이동
+	    		 } 
+	    	  }).open();
+	      }
     	
     	/* 
     	

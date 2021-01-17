@@ -46,8 +46,8 @@
 		</div>
 		<nav>
 			<ul>
-				<li><a href="/campList.do">캠핑장</a></li>
-				<li><a href="#">게시판</a></li>
+				<li><a href="/campList.do?reqPage=1">캠핑장</a></li>
+				<li><a href="/boardList.do?reqPage=1">게시판</a></li>
 				<li><a href="#">쇼핑몰</a></li>
 				<li><a href="#">FAQ</a></li>
 				<c:choose>
@@ -56,7 +56,7 @@
 						<li><a href="#">광고</a></li>
 					</c:when>
 					<c:when test="${sessionScope.user.userLevel == 0 }">
-						<li><a href="#">관리자</a></li>
+						<li><a href="/pageAdmin.do?reqPage=1">관리자</a></li>
 					</c:when>
 					<c:otherwise>
 						<li><a href="/customerNoticeList.do?reqPage=1">공지사항</a></li>

@@ -36,14 +36,15 @@
 		<trim prefixOverrides="and">
 			<choose>
 				<when test="userId != null">
-				user_id=#{userId} 
+				user_id=#{userId}
+				and user_pw=#{userPw}
 				</when>
-				<when test="userPw != null">
+				<!-- <when test="userPw != null">
 				and user_pw=#{userPw}
 				</when>
 				<when test="userNo != null">
 				user_no=#{userNo}
-				</when>
+				</when> -->
 			</choose>
 		</trim>
 	</select>

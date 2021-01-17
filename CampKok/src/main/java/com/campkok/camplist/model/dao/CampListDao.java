@@ -49,8 +49,9 @@ public class CampListDao {
 		return (ArrayList<CampList>)list;
 	}
 
-	public List<Object> mainAdCampList(CampList cl) {
-		return session.selectList("camplist.mainAdCampList",cl);
+	public ArrayList<CampList> mainAdCampList() {
+		List<CampList> adCampList = session.selectList("camplist.mainAdCampList");
+		return (ArrayList<CampList>) adCampList;
 	}
 
 	public ArrayList<CampList> mainNewCampList() {

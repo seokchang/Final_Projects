@@ -123,9 +123,8 @@ public class CampListService {
 		return clpd;
 	}
 
-	public List<Object> mainAdCampList(CampList cl) {
-		List<Object> adCampList = dao.mainAdCampList(cl);
-		return adCampList;
+	public ArrayList<CampList> mainAdCampList() {
+		return dao.mainAdCampList();
 	}
 
 	public ArrayList<CampList> mainNewCampList() {
