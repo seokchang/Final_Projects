@@ -29,7 +29,7 @@
                         <td><label>아이디</label></td>
                         <td><input type="text" name="userId" placeholder="5~20자의 영문 소문자, 숫자와 특수기호'_','-'만 사용 가능합니다."></td>
                     </tr>
-                    <tr style="display: none;" id="chkId">
+                    <tr id="chkId">
                         <td></td>
                         <td style="padding: 0px; padding-left: 10px; padding-bottom: 5px;"><span id="chkIdMsg"></span></td>
                     </tr>
@@ -224,7 +224,6 @@
 							<input id="postCode" style="width: 150px;" type="text" placeholder="우편번호" readonly>
 							<button id="addrSearchBtn" type="button" onclick="addrSearch();" class="joinfrm-btn">주소검색</button>
 						</td>
-						<td><input type="hidden" name="userAddr"></td>
                     </tr>
                     <tr>
                     	<td></td>
@@ -236,6 +235,7 @@
                     	<td></td>
 						<td>
 							<input id="detailAddr" placeholder="상세주소">
+							<input type="hidden" name="userAddr" id="userAddr">
 						</td>
                     </tr>
                 </table>
@@ -252,27 +252,8 @@
     </div>
     
     <script>
-    	/* 아이디 중복체크 */
-		/* $("[name=userId]").change(function(){
-			var userId = $(this).val();
-			$.ajax({
-				url : "/checkId.do",
-				data : {userId:userId},
-				success : function(data){
-					if($(this).val() != "" || data == 0){
-						$("#chkId").css('display','');
-						$("#chkIdMsg").html("멋진 아이디네요!");
-					}else if($(this).val() == ""){
-	                    $("#chkId").css('display','');
-						$("#chkIdMsg").html("아이디를 입력해주세요.");
-	                } else if($(this).val() != "" || data == 1){
-						$("#chkId").css('display','');
-						$("#chkIdMsg").html("이미 사용중인 아이디 입니다.");
-					}
-				}
-			});
-		}); */
 		
+		// 주소 API
 		function addrSearch() {
 	    	  new daum.Postcode({
 	    		 oncomplete : function(data) {
@@ -285,8 +266,16 @@
 	    		 } 
 	    	  }).open();
 	      }
+		$(document).ready(function() {
+			$("[type=submit]").click(function(){
+				var ra = $( '#roadAddr' ).val();
+				var da = $( '#detailAddr' ).val();
+				const str = ra +' '+ da;
+				$("#userAddr").val(str);
+			});
+		});
     	
-    	/* 
+    	
     	
         $(document).ready(function() {
             // 배열로 처리
@@ -295,19 +284,42 @@
             
             // 정규표현식 
             // 포커스인아웃을 사용하면 불필요할때도 값을 검사하지만 체인지는 값이 바뀔때만 검사함 
-            $('[name=userId]').keyup(function() {
-                $("#chkId").css('display','none');
-				$("#chkIdMsg").html("");
-                var reg = /^[a-z][a-z0-9_-]{4,19}$/;
+            
+    	
+             $('[name=userId]').keyup(function() {
+                 $("#chkId").css('display','none');
+ 				$("#chkIdMsg").html("");
+            	 
+            	 /* 아이디 중복체크 */
+            	 var userId = $(this).val();
+     			$.ajax({
+     				url : "/checkId.do",
+     				data : {userId:userId},
+     				success : function(data){
+     					if($(this).val() != "" || data == 0){
+     						$("#chkId").css('display','');
+     						$("#chkIdMsg").html("멋진 아이디네요!");
+     					}else if($(this).val() == ""){
+     	                    $("#chkId").css('display','');
+     						$("#chkIdMsg").html("아이디를 입력해주세요.");
+     	                } else if($(this).val() != "" || data == 1){
+     						$("#chkId").css('display','');
+     						$("#chkIdMsg").html("이미 사용중인 아이디 입니다.");
+     					}
+     				}
+     			});
+            	 
+            	 
+                /* var reg = /^[a-z][a-z0-9_-]{4,19}$/;
                 if (reg.test($(this).val())) {
                     check[0] = true;
                 } else {
                     check[0] = false;
                     $("#chkId").css('display','');
 					$("#chkIdMsg").html("5~20자의 영문 소문자, 숫자와 특수기호'_','-'만 사용 가능합니다.");
-                }
-            });
-            $('#name').keyup(function() {
+                } */
+            }); 
+            $('[name=userName]').keyup(function() {
                 $(this).prevAll().last().children().html("");
                 var reg = /^[가-힝]{2,4}$/;
                 if (reg.test($(this).val())) {
@@ -375,7 +387,7 @@
                 $('.info').children().filter('input').val('');
                 $('.info').children().filter('input').focusout();
             });
-        }); */
+        }); 
 	</script>
     
     <jsp:include page="/WEB-INF/views/common/footer.jsp" />

@@ -17,8 +17,13 @@ public class UserDao {
 		return sqlSession.insert("user.insertUser",u);
 	}
 	
-	// 로그인, 아이디중복
+	// 로그인
 	public UserVO selectOneUser(UserVO u) {
 		return sqlSession.selectOne("user.selectOneUser",u);
+	}
+	
+	// 아이디중복
+	public UserVO checkId(UserVO u) {
+		return sqlSession.selectOne("user.checkId",u);
 	}
 }

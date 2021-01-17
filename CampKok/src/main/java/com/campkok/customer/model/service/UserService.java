@@ -18,8 +18,13 @@ public class UserService {
 		return result;
 	}
 
-	// 로그인, 아이디 중복체크
+	// 로그인
 	public UserVO selectOneUser(UserVO u) {
 		return dao.selectOneUser(u);
+	}
+	
+	// 아이디 중복체크
+	public UserVO checkId(UserVO u) {
+		return dao.checkId(u);
 	}
 }

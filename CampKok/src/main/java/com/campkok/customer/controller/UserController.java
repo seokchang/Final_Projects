@@ -35,7 +35,7 @@ public class UserController {
 	public String customerJoin(UserVO u, Model model) {
 		int result = service.insertUser(u);
 		if(result>0) {
-			model.addAttribute("msg","환영합니다.");
+			model.addAttribute("msg","캠핑의 모든 것! 캠콕에 가입하신걸 환영합니다.");
 		}else {
 			model.addAttribute("msg","회원가입에 실패하였습니다. 관리자에게 문의하세요.");
 		}
@@ -47,7 +47,8 @@ public class UserController {
 	@ResponseBody
 	@RequestMapping("/checkId.do")
 	public String checkId(UserVO u) {
-		UserVO user = service.selectOneUser(u);
+		UserVO user = service.checkId(u);
+		System.out.println(user);
 		if(user==null) {
 			return "0";
 		}else {
@@ -69,6 +70,7 @@ public class UserController {
 		UserVO user = service.selectOneUser(u);
 		if(user != null) {
 			session.setAttribute("user", user);
+			model.addAttribute("msg", user.getUserName()+"님 환영합니다");
 		}else {
 			model.addAttribute("msg", "아이디 또는 비밀번호를 확인해주세요.");
 		}
@@ -81,7 +83,7 @@ public class UserController {
 	public String logout(HttpSession session, Model model, @SessionAttribute(required=false) UserVO user) {	
 		if(user != null) {
 			session.invalidate();
-			model.addAttribute("msg", "로그아웃 되었습니다.");	
+			model.addAttribute("msg", "로그아웃 되었습니다. 안녕히가세요.");	
 		}else {
 			model.addAttribute("msg", "로그인되어있지 않습니다.");
 		}
