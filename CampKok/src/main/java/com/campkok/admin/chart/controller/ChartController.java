@@ -20,9 +20,11 @@ public class ChartController {
 	public String pageChart(Model model) {
 		String genderRatio = getUserGenderRatio();
 		String resMemberRatio = getReservationMemberRatio();
+		String reviewScoreRatio = getReviewScoreRatio();
 
 		model.addAttribute("genderRatio", genderRatio);
 		model.addAttribute("resMemberRatio", resMemberRatio);
+		model.addAttribute("reviewScoreRatio", reviewScoreRatio);
 
 		return "/admin/chartView";
 	}
@@ -37,5 +39,11 @@ public class ChartController {
 		String resMemberRatio = service.getReservationMemberRatio();
 
 		return resMemberRatio;
+	}
+
+	public String getReviewScoreRatio() {
+		String reviewScoreRatio = service.getReviewScoreRatio();
+
+		return reviewScoreRatio;
 	}
 }

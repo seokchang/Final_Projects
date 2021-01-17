@@ -124,7 +124,6 @@ public class AdminNoticeService {
 	}
 
 	// *********************************************************************************************************
-
 	public ClientNoticePageData searchClientNotice(int reqPage, String searchCategory, String search) {
 		int totalSearchClientNotice = dao.getTotalClientNoticeCount(searchCategory, search);
 		int numPerPage = 10;

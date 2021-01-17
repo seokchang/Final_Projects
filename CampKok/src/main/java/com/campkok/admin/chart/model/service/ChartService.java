@@ -1,5 +1,7 @@
 package com.campkok.admin.chart.model.service;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Set;
 
@@ -36,32 +38,49 @@ public class ChartService {
 	}
 
 	public String getReservationMemberRatio() {
-		int one = dao.getResMemberCount(1);
-		int two = dao.getResMemberCount(2);
-		int three = dao.getResMemberCount(3);
-		int four = dao.getResMemberCount(4);
-		int five = dao.getResMemberCount(5);
-		int six = dao.getResMemberCount(6);
+		HashMap<Integer, Integer> resMemberRatio = new HashMap<Integer, Integer>();
+
+		for (int i = 1; i < 7; i++) {
+			int member = dao.getResMemberCount(i);
+
+			resMemberRatio.put(i, member);
+		}
+
+		Set<Integer> keySet = resMemberRatio.keySet();
+		ArrayList<Integer> list = new ArrayList<Integer>(keySet);
+		Collections.sort(list);
 		String result = "";
 
-		HashMap<String, Integer> resMemberRatio = new HashMap<String, Integer>();
-
-		resMemberRatio.put("one", one);
-		resMemberRatio.put("two", two);
-		resMemberRatio.put("three", three);
-		resMemberRatio.put("four", four);
-		resMemberRatio.put("five", five);
-		resMemberRatio.put("six", six);
-
-		Set<String> keySet = resMemberRatio.keySet();
-
-		for (String key : keySet) {
+		for (int key : list) {
 			if (result != "") {
 				result += ", ";
 			}
-			result += "['" + key + "', " + resMemberRatio.get(key) + "]";
+
+			result += (key < 6) ? "['" + key + "인', " + resMemberRatio.get(key) + "]"
+					: "['" + key + "인 이상', " + resMemberRatio.get(key) + "]";
+		}
+		return result;
+	}
+
+	public String getReviewScoreRatio() {
+		HashMap<Integer, Integer> reviewScore = new HashMap<Integer, Integer>();
+
+		for (int i = 1; i < 6; i++) {
+			int count = dao.getReviewScoreCount(i);
+
+			reviewScore.put(i, count);
 		}
 
+		Set<Integer> keySet = reviewScore.keySet();
+		ArrayList<Integer> list = new ArrayList<Integer>(keySet);
+		Collections.sort(list);
+		String result = "";
+
+		for (int key : list) {
+			if (result != "")
+				result += ", ";
+			result += "['" + key + "점', " + reviewScore.get(key) + "]";
+		}
 		return result;
 	}
 }

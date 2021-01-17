@@ -69,7 +69,7 @@
 									<td>${faqInfo.userId }</td>
 									<td>${faqInfo.faqDate }</td>
 									<td>
-										<button class="btn btn-warning btn-sm" onclick="location.href='/selectFAQInfo.do?faqNo=${faqInfo.faqNo}'">상세보기</button>
+										<button class="btn btn-warning btn-md" onclick="location.href='/selectFAQInfo.do?faqNo=${faqInfo.faqNo}'">상세보기</button>
 									</td>
 								</tr>
 							</c:forEach>

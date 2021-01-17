@@ -36,12 +36,13 @@
 						<div id="gender" style="width: 100%; height: 350px;"></div>
 					</div>
 					<div id="chart-reservation">
-						<h3>예약별 인원 통계</h3>
+						<h3>캠피장 예약별 인원 통계</h3>
 						<div id="reservation" style="width: 100%; height: 350px;"></div>
 					</div>
-					<div id="ceo-notice" style="background-color: green;"></div>
-					<div id="camp-info" style="background-color: blue;"></div>
-					<div id="board" style="background-color: navi;"></div>
+					<div id="chart-review">
+						<h3>리뷰 별점 통계</h3>
+						<div id="review" style="width: 100%; height: 350px;"></div>
+					</div>
 				</div>
 			</div>
 
@@ -92,6 +93,7 @@ h3 {
 		});
 		google.charts.setOnLoadCallback(userGender);
 		google.charts.setOnLoadCallback(reservationMember);
+		google.charts.setOnLoadCallback(reviewScore);
 		
 		function userGender() {
 			var data = google.visualization.arrayToDataTable([
@@ -119,6 +121,21 @@ h3 {
 
 			var chart = new google.visualization.PieChart(document
 					.getElementById('reservation'));
+			chart.draw(data, options);
+		}
+		
+		/* ********** Review Chart ********** */
+		function reviewScore() {
+			var data = google.visualization.arrayToDataTable([
+					[ 'Review', 'Score' ], ${reviewScoreRatio} ]);
+
+			var options = {
+				title : 'Review Score',
+				pieHole : 0.3,
+			};
+
+			var chart = new google.visualization.PieChart(document
+					.getElementById('review'));
 			chart.draw(data, options);
 		}
 	</script>

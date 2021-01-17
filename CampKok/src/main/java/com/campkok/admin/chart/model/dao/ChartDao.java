@@ -21,4 +21,8 @@ public class ChartDao {
 		return session.selectOne("adminChart.getResMemberCount", member);
 	}
 
+	public int getReviewScoreCount(int count) {
+		return session.selectOne("adminChart.getReviewScoreCount", count);
+	}
+
 }
