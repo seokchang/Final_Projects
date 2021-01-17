@@ -26,6 +26,7 @@
 	<a href="/mypage.do?userNo=${sessionScope.user.userNo }">마이페이지</a>
 	<a href="/allMemberChat.do">채팅</a>
 	<a href="/boardList.do?reqPage=1">자유 게시판</a>
+	<a href="/dmList.do?userId=${sessionScope.user.userId }">쪽지 ㄱ</a>
 	<hr>
 	<h3>사업자</h3>
 	<a href="/campNotice/campNotice.do?reqPage=1">캠핑장 공지사항</a>

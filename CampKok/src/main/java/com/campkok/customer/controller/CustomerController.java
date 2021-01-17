@@ -18,11 +18,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.campkok.customer.model.service.CustomerService;
 import com.campkok.customer.model.vo.BoardPageData;
 import com.campkok.customer.model.vo.BoardVO;
+import com.campkok.customer.model.vo.DmVO;
 import com.campkok.customer.model.vo.PointVO;
 import com.campkok.customer.model.vo.ReservationVO;
 import com.campkok.customer.model.vo.ReviewInfoPageData;
@@ -84,11 +86,45 @@ public class CustomerController {
 		model.addAttribute("list", list);
 		return "customer/pointInfo";
 	}
-
+	
+	
+	//채팅
 	@RequestMapping("/allMemberChat.do")
 	public String allMemberChat() {
 		return "customer/allMemberChat";
 	}
 
 	
+	//DM
+	@RequestMapping("/dmList.do")
+	public String dmList(String userId, Model model) {
+		ArrayList<DmVO> list = service.selectDMList(userId);
+		model.addAttribute("list", list);
+		return "customer/dmList";
+	}
+	@ResponseBody
+	@RequestMapping("/dmInsert.do")
+	public int dmInsert(DmVO dm) {
+		System.out.println(dm.getDmContents());
+		System.out.println(dm.getDmSender());
+		System.out.println(dm.getDmReceiver());
+		return service.insertDM(dm);
+	}
+	@ResponseBody
+	@RequestMapping("/dmDelete.do")
+	public int dmDelete(int dmNo) {
+		return service.deleteDm(dmNo);
+	}
+	@ResponseBody
+	@RequestMapping("/dmSelect.do")
+	public DmVO dmSelect(int dmNo, String dmSender, Model model) {
+		DmVO dm = service.selectOneDm(dmNo);
+		model.addAttribute("dm", dm);
+		return dm;
+	}
+	@ResponseBody
+	@RequestMapping("/dmUpdate.do")
+	public int dmUpdate(int dmNo) {
+		return service.updateDm(dmNo);
+	}
 }
