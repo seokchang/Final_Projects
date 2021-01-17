@@ -1,5 +1,6 @@
 package com.campkok.camp.model.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.campkok.camp.model.dao.CampDao;
 import com.campkok.camp.model.vo.CampRoomVO;
 import com.campkok.camp.model.vo.CampVO;
+import com.campkok.camp.model.vo.ReviewVO;
 import com.campkok.camp.model.vo.UserVO;
 
 @Service
@@ -62,6 +64,18 @@ public class CampService {
 		map.put("userUsePoint",userUsePoint);
 		map.put("totalPoint",totalPoint);
 		return dao.pointUpdate(map);
+	}
+
+	public int insertComment(String userId, int campNo, String revContents) {
+		HashMap<String,Object> map = new HashMap<String,Object>();
+		map.put("userId",userId);
+		map.put("campNo",campNo);
+		map.put("revContents", revContents);
+		return dao.insertComment(map);
+	}
+
+	public ArrayList<ReviewVO> selectAllComment() {
+		return dao.selectAllComment();
 	}
 
 

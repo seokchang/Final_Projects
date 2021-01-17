@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.campkok.camp.model.service.CampService;
 import com.campkok.camp.model.vo.CampRoomVO;
 import com.campkok.camp.model.vo.CampVO;
+import com.campkok.camp.model.vo.ReviewVO;
 import com.campkok.camp.model.vo.UserVO;
 
 @Controller
@@ -56,12 +57,38 @@ public class CampController {
 			model.addAttribute("msg","예약이 완료되었습니다.");
 		}else {
 			model.addAttribute("msg","예약중 오류가 발생했습니다. 다시 예약해주세요.");
-			model.addAttribute("loc","/camp/campReservation");
+			model.addAttribute("loc","/camp/campReservation2");
 		}
 		model.addAttribute("loc","/");
 		return "common/msg";
 	}
 	
+	@RequestMapping("commentFrm.do")
+	public String commentFrm(Model model) {
+		int userNo = 2; //세션정보로 받아서 교체할 예정
+		UserVO userInfo = service.selectUserPoint(userNo);
+		model.addAttribute("userInfo",userInfo);
+		//review테이블 가져오기
+		ArrayList<ReviewVO> commentList = service.selectAllComment();
+		model.addAttribute("commentList",commentList);
+		return "camp/commentFrm";
+	}
+	
+	@RequestMapping("insertComment.do")
+	public String insertComment(String userId, int campNo,String revContents,Model model) {
+		//review테이블 인서트
+		int result = service.insertComment(userId,campNo,revContents);
+		
+		if(result>0) {
+			model.addAttribute("msg","댓글 등록이 완료되었습니다.");
+		}else {
+			model.addAttribute("msg","댓글등록중 오류가 발생했습니다. 다시 작성해주세요.");
+			model.addAttribute("loc","/camp/commentFrm");
+		}
+		model.addAttribute("loc","/");
+		return "common/msg";
+	}
+
 	
 	
 	/***********************************************
