@@ -1,6 +1,8 @@
 package com.campkok.camp.model.dao;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.campkok.camp.model.vo.CampRoomVO;
 import com.campkok.camp.model.vo.CampVO;
+import com.campkok.camp.model.vo.ReviewVO;
 import com.campkok.camp.model.vo.UserVO;
 
 @Repository
@@ -41,6 +44,15 @@ public class CampDao {
 
 	public int pointUpdate(HashMap<String, Object> map) {
 		return sqlSession.insert("camp.insertPoint",map);
+	}
+
+	public int insertComment(HashMap<String, Object> map) {
+		return sqlSession.insert("camp.insertComment",map);
+	}
+
+	public ArrayList<ReviewVO> selectAllComment() {
+		List<ReviewVO> commentList = sqlSession.selectList("camp.selectAllComment"); 
+		return (ArrayList<ReviewVO>)commentList;
 	}
 
 

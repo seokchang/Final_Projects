@@ -30,6 +30,7 @@
 	<h3>사업자</h3>
 	<a href="/campNotice/campNotice.do?reqPage=1">캠핑장 공지사항</a>
 	<a href="/camp/campReservation.do">캠핑장 예약하기</a>
+	<a href="/camp/commentFrm.do">댓글달기</a>
 	<a href="/mypage.do?userNo=2">마이페이지</a>
 	<a href="/camp/jinwoo.do">진우 작업페이지</a>
 
