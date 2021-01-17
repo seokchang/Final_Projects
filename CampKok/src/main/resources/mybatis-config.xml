@@ -34,6 +34,7 @@
 		<typeAlias type="com.campkok.customer.model.vo.UserVO" alias="u" />
 		<typeAlias type="com.campkok.customer.model.vo.ReservationVO" alias="r" />
 		<typeAlias type="com.campkok.customer.model.vo.BoardVO" alias="b" />
+		<typeAlias type="com.campkok.customer.model.vo.DmVO" alias="d" />
 		
 		<typeAlias type="com.campkok.camplist.model.vo.CampList" alias="camplist"/>
 		

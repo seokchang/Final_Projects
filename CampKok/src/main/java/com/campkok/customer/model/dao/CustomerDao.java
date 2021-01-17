@@ -8,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.campkok.customer.model.vo.DmVO;
 import com.campkok.customer.model.vo.PointVO;
 import com.campkok.customer.model.vo.ReservationVO;
 import com.campkok.customer.model.vo.ReviewVO;
@@ -62,6 +63,32 @@ public class CustomerDao {
 		// TODO Auto-generated method stub
 		List<PointVO> list = sqlSession.selectList("customer.pointInfo", userNo);
 		return (ArrayList<PointVO>) list;
+	}
+
+	public ArrayList<DmVO> selectDmList(String userId) {
+		// TODO Auto-generated method stub
+		List<DmVO> list = sqlSession.selectList("customer.dmList", userId);
+		return (ArrayList<DmVO>) list;
+	}
+
+	public int insertDM(DmVO dm) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("customer.inserDM",dm);
+	}
+
+	public int deleteDm(int dmNo) {
+		// TODO Auto-generated method stub
+		return sqlSession.delete("customer.deleteDm", dmNo);
+	}
+
+	public DmVO selectOneDm(int dmNo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("customer.selectDm", dmNo);
+	}
+
+	public int updateDm(int dmNo) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("customer.updateDm", dmNo);
 	}
 
 }

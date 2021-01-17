@@ -78,6 +78,7 @@
                         </div>
                 <br><br>
                   <h4>사용 내역</h4>
+                  <div style="width: 100%;height: 300px; overflow: auto;">
                     <table class="mypage-tbl">
                     
                            <tr>
@@ -101,7 +102,7 @@
                         </table>
                   </div>
                 </div>
-  
+  				</div>
             <jsp:include page="/WEB-INF/views/common/footer.jsp" />
 </body>
 <script>

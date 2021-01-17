@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.campkok.customer.model.dao.CustomerDao;
+import com.campkok.customer.model.vo.DmVO;
 import com.campkok.customer.model.vo.PointVO;
 import com.campkok.customer.model.vo.ReservationVO;
 import com.campkok.customer.model.vo.ReviewInfoPageData;
@@ -128,6 +129,32 @@ public class CustomerService {
 	public ArrayList<PointVO> pointList(int userNo) {
 		// TODO Auto-generated method stub
 		return dao.pointList(userNo);
+	}
+
+
+	public ArrayList<DmVO> selectDMList(String userId) {
+		// TODO Auto-generated method stub
+		return dao.selectDmList(userId);
+	}
+
+	public int insertDM(DmVO dm) {
+		// TODO Auto-generated method stub
+		return dao.insertDM(dm);
+	}
+
+	public int deleteDm(int dmNo) {
+		// TODO Auto-generated method stub
+		return dao.deleteDm(dmNo);
+	}
+
+	public DmVO selectOneDm(int dmNo) {
+		// TODO Auto-generated method stub
+		return dao.selectOneDm(dmNo); 
+	}
+
+	public int updateDm(int dmNo) {
+		// TODO Auto-generated method stub
+		return dao.updateDm(dmNo);
 	}
 
 }
