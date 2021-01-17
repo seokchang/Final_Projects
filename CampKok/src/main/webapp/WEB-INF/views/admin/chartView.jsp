@@ -99,7 +99,7 @@ h3 {
 
 			var options = {
 				title : 'User Gender Ratio',
-				pieHole : 0.4,
+				pieHole : 0.3,
 			};
 
 			var chart = new google.visualization.PieChart(document
@@ -113,8 +113,8 @@ h3 {
 					[ 'Reservation Member', 'Number' ], ${resMemberRatio} ]);
 
 			var options = {
-				title : 'User Gender Ratio',
-				pieHole : 0.4,
+				title : 'Reservation Member',
+				pieHole : 0.3,
 			};
 
 			var chart = new google.visualization.PieChart(document
