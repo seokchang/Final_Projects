@@ -1,6 +1,7 @@
 package com.campkok.admin.chart.model.service;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Set;
@@ -14,6 +15,32 @@ import com.campkok.admin.chart.model.dao.ChartDao;
 public class ChartService {
 	@Autowired
 	private ChartDao dao;
+
+	public String getVisitUserRatio() {
+		Calendar cal = Calendar.getInstance();
+		int day = cal.get(cal.DATE);
+		HashMap<Integer, Integer> visitRatio = new HashMap<Integer, Integer>();
+
+		// 날짜 계산 로직 변경
+		for (int i = (day - 6); i <= day; i++) {
+			String date = "2021-01-" + ((i < 10) ? "0" + String.valueOf(i) : String.valueOf(i));
+			int count = dao.getVisitUserCount(date);
+
+			visitRatio.put(i, count);
+		}
+
+		Set<Integer> keySet = visitRatio.keySet();
+		ArrayList<Integer> list = new ArrayList<Integer>(keySet);
+		Collections.sort(list);
+		String result = "";
+
+		for (int key : list) {
+			if (result != "")
+				result += ", ";
+			result += "[" + key + ", " + visitRatio.get(key) + "]";
+		}
+		return result;
+	}
 
 	public String getUserGenderRatio() {
 		int totalMan = dao.getNumberOfMan();
@@ -80,6 +107,26 @@ public class ChartService {
 			if (result != "")
 				result += ", ";
 			result += "['" + key + "점', " + reviewScore.get(key) + "]";
+		}
+		return result;
+	}
+
+	public String getUserInfoRatio() {
+		HashMap<String, Integer> userInfo = new HashMap<String, Integer>();
+
+		int ceoCount = dao.getCeoCount();
+		int clientCount = dao.getClientCount();
+
+		userInfo.put("ceo", ceoCount);
+		userInfo.put("client", clientCount);
+
+		Set<String> keySet = userInfo.keySet();
+		String result = "";
+
+		for (String key : keySet) {
+			if (result != "")
+				result += ", ";
+			result += "['" + key + "', " + userInfo.get(key) + "]";
 		}
 		return result;
 	}

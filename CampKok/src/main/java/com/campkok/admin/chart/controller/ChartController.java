@@ -18,15 +18,25 @@ public class ChartController {
 	*/
 	@RequestMapping("/pageChart.do")
 	public String pageChart(Model model) {
+		String visitUserRatio = getVisitUserRatio();
 		String genderRatio = getUserGenderRatio();
 		String resMemberRatio = getReservationMemberRatio();
 		String reviewScoreRatio = getReviewScoreRatio();
+		String userInfoRatio = getUserInfoRatio();
 
+		model.addAttribute("visitUserRatio", visitUserRatio);
 		model.addAttribute("genderRatio", genderRatio);
 		model.addAttribute("resMemberRatio", resMemberRatio);
 		model.addAttribute("reviewScoreRatio", reviewScoreRatio);
+		model.addAttribute("userInfoRatio", userInfoRatio);
 
 		return "/admin/chartView";
+	}
+
+	public String getVisitUserRatio() {
+		String visitUserRatio = service.getVisitUserRatio();
+
+		return visitUserRatio;
 	}
 
 	public String getUserGenderRatio() {
@@ -45,5 +55,11 @@ public class ChartController {
 		String reviewScoreRatio = service.getReviewScoreRatio();
 
 		return reviewScoreRatio;
+	}
+
+	public String getUserInfoRatio() {
+		String userInfoRatio = service.getUserInfoRatio();
+
+		return userInfoRatio;
 	}
 }

@@ -28,12 +28,17 @@
 					<li><a href="#">신규등록 신청 <span class="count">1</span></a></li>
 				</ul>
 				<div class="content-list">
-					<div id="chart-visitor">
+					<div id="chart-visitor" style="width: 97.5%">
 						<h3>방문자 수</h3>
+						<div id="visit" style="margin-top: 10px;"></div>
 					</div>
 					<div id="chart-gender">
 						<h3>회원 성별 비율</h3>
 						<div id="gender" style="width: 100%; height: 350px;"></div>
+					</div>
+					<div id="chart-user">
+						<h3>회원 분류</h3>
+						<div id="userInfo" style="width: 100%; height: 350px;"></div>
 					</div>
 					<div id="chart-reservation">
 						<h3>캠피장 예약별 인원 통계</h3>
@@ -87,6 +92,36 @@ h3 {
 </style>
 
 	<script type="text/javascript">
+	/* ********** Visit Chart ********** */
+    google.charts.load('current', {'packages':['line']});
+    google.charts.setOnLoadCallback(visitor);
+
+	  function visitor() {
+	
+	    var data = new google.visualization.DataTable();
+	    data.addColumn('number', 'Day');
+	    data.addColumn('number', 'Visitor');
+	
+	    data.addRows([
+	      ${visitUserRatio}
+	    ]);
+	
+	    var options = {
+	      chart: {
+	      },
+	      width: 760.5,
+	      height: 350,
+	      axes: {
+	        x: {
+	          0: {side: 'top'}
+	        }
+	      }
+	    };
+	
+	    var chart = new google.charts.Line(document.getElementById('visit'));
+	
+	    chart.draw(data, google.charts.Line.convertOptions(options));
+	  }
 		/* ********** Gender Chart ********** */
 		google.charts.load("current", {
 			packages : [ "corechart" ]
@@ -106,6 +141,29 @@ h3 {
 
 			var chart = new google.visualization.PieChart(document
 					.getElementById('gender'));
+			chart.draw(data, options);
+		}
+		
+		/* ********** User Chart ********** */
+		google.charts.load("current", {
+			packages : [ "corechart" ]
+		});
+		google.charts.setOnLoadCallback(userGender);
+		google.charts.setOnLoadCallback(userInfo);
+		google.charts.setOnLoadCallback(reservationMember);
+		google.charts.setOnLoadCallback(reviewScore);
+		
+		function userInfo() {
+			var data = google.visualization.arrayToDataTable([
+					[ 'UserInfoRatio', 'Number' ], ${userInfoRatio} ]);
+
+			var options = {
+				title : 'User Info Ratio',
+				pieHole : 0.3,
+			};
+
+			var chart = new google.visualization.PieChart(document
+					.getElementById('userInfo'));
 			chart.draw(data, options);
 		}
 		
@@ -141,6 +199,3 @@ h3 {
 	</script>
 </body>
 </html>
-
-
-

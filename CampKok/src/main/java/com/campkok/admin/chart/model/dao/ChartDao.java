@@ -9,6 +9,10 @@ public class ChartDao {
 	@Autowired
 	private SqlSessionTemplate session;
 
+	public int getVisitUserCount(String date) {
+		return session.selectOne("adminChart.getVisitUserCount", date);
+	}
+
 	public int getNumberOfMan() {
 		return session.selectOne("adminChart.getManNumber");
 	}
@@ -23,6 +27,14 @@ public class ChartDao {
 
 	public int getReviewScoreCount(int count) {
 		return session.selectOne("adminChart.getReviewScoreCount", count);
+	}
+
+	public int getCeoCount() {
+		return session.selectOne("adminChart.getCeoCount");
+	}
+
+	public int getClientCount() {
+		return session.selectOne("adminChart.getClientCount");
 	}
 
 }
