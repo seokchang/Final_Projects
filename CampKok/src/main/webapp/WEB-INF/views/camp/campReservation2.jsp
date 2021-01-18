@@ -6,6 +6,7 @@
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 
 </head>
 <body>
@@ -44,7 +45,11 @@
     		<tr>
     			<th>입,퇴실시간</th>
     			<th>15:00 / 11:00(익일)</th>
-    		</tr> 		
+    		</tr> 	
+    		<tr>
+    			<th>금액(1박기준)</th>
+    			<th id="roomPrice">${campRoomInfo.roomPrice }</th>
+    		</tr>	
     	</table> 
     	<hr>
 		<h4>예약 정보</h4>
@@ -56,7 +61,7 @@
 				<tr>
 					<th>날짜선택</th>
 					<th>입실 : <input type="date" name="resInDate" id="sdate" min="" required></th>
-					<th>퇴실 : <input type="date" name="resOutDate" id="edate" min="" required></th>
+					<th>퇴실 : <input type="date" name="resOutDate" id="edate" min="" required><span id="dateresult"></span></th>
 				</tr>
 				<tr>
 					<th>인원수</th>
@@ -64,7 +69,6 @@
 						<input type=button value="+" id="countPlus" onClick="javascript:this.form.resMember.value++;">
 						<input type=button value="-" id="countMinus"onClick="javascript:this.form.resMember.value--;">
 						<br><span style="font-size:10px;">*기준인원 초가시 1인당 5,000원의 추가요금이 발생합니다.</span>
-						
 					</th>
 				</tr>
 				<tr>
@@ -92,10 +96,12 @@
     			<th><input type="hidden" id="constPrice" name="constPrice" value="${campRoomInfo.roomPrice }"></th>   			
     		</tr>    		    		
     		<tr>
-    			<th><br><input type="button" value="결제하기"></th>
+    			<th><br><input type="button" id="payment" value="결제하기"><br><p id="paymentResult">*결제후 예약이 가능합니다.</p></th>
+    			
     		</tr>   		
     	</table>
-    	<input type="submit" value="예약하기"> 
+    	<input type="submit" id="res" value="예약하기" style="display:none;"> 
+    	<input type="hidden" id="payresult" value="0">
     	</form>
     </div>
  
@@ -221,14 +227,45 @@
       
     $('#edate').click(function() {
     	 var sdate=$('#sdate').val();
-        /*   var date = new Date(); 
-         var yyyy = date.getFullYear(); 
-         var mm = date.getMonth()+1>9 ? date.getMonth()+1 : '0' +date.getMonth()+1; 
-         var dd = date.getDate() > 9 ? date.getDate()+1 : '0' + date.getDate()+1; 
-         { mm="01"; } 
-         var today = yyyy+"-"+mm+"-"+dd;*/
          $('#edate').attr('min',sdate); 
       });
+    
+    //날짜선택에 따른 가격 추가 , 퇴실날짜가 입실날짜보다 더 빠른것 방지
+    $('#edate').focusout(function() {
+		var sdate = $('#sdate').val();
+		var edate = $('#edate').val();
+    	var splitSdate = sdate.split("-");
+		var numberSplitSdate = Number(splitSdate[0]+splitSdate[1]+splitSdate[2]);
+		var splitEdate = edate.split("-");
+		var numberSplitEdate = Number(splitEdate[0]+splitEdate[1]+splitEdate[2]);
+		var dateResult = Number(numberSplitEdate-numberSplitSdate);
+		var roomPrice = Number($('#roomPrice').text());
+		if(dateResult>0){
+			$('#dateresult').html(""); //날짜span삭제
+			$('#userUsePoint').val(""); //포인트 초기화
+			$('#resMember').val("2"); //인원수 초기화
+			$('#price2').val("");
+			$('#price').text(roomPrice*dateResult);
+		}else{
+			$('#dateresult').html("날짜 형식이 올바르지 않습니다.");
+		}
+	});   
+    $('#sdate').focusout(function() {
+		var sdate = $('#sdate').val();
+		var edate = $('#edate').val();
+    	var splitSdate = sdate.split("-");
+		var numberSplitSdate = Number(splitSdate[0]+splitSdate[1]+splitSdate[2]);
+		var splitEdate = edate.split("-");
+		var numberSplitEdate = Number(splitEdate[0]+splitEdate[1]+splitEdate[2]);
+		var dateResult = numberSplitEdate-numberSplitSdate;
+		var roomPrice = Number($('#roomPrice').text());
+		if(dateResult>0){
+			$('#dateresult').html("");
+			console.log(roomPrice*dateResult);
+		}else{
+			$('#dateresult').html("날짜 형식이 올바르지 않습니다.");
+		}
+	});
     
     //인원수 +,-
     $('#countPlus').click(function() {
@@ -249,10 +286,9 @@
     
     //결제금액에 포인트 적용
     $('#point').click(function name() {
-    	var constPrice = Number($('#constPrice').val());
+    	var price = Number($('#price').text());
     	var resMember = Number($('#resMember').val());
-    	var constPrice2 = constPrice+(5000*(resMember-2));
-    	console.log(constPrice2);
+    	var constPrice2 = price+(5000*(resMember-2));
 		var userTotalPoint = Number($('#userTotalPoint').text());
 		var userUsePoint = Number($('#userUsePoint').val());
 		var price = Number($('#price').text());
@@ -261,8 +297,8 @@
 			alert("포인트사용 금액이 결제금액보다 큽니다.");
 			$('#userUsePoint').val(" ");
 		}else{
-			if(userTotalPoint>userUsePoint){
-				var result = constPrice2-userUsePoint;
+			if(userTotalPoint>=userUsePoint){
+				var result = price-userUsePoint;
 				$('#price').text(result);
 				$('#price2').val(result);
 			}else{
@@ -273,7 +309,51 @@
 		
 	});
     
-    
+    //결제
+    $('#payment').click(function() {  	
+		var price = $('#price').text();
+		var sdate = $('#sdate').val();
+		var edate = $('#edate').val();
+		var splitSdate = sdate.split("-");
+		var numberSplitSdate = Number(splitSdate[0]+splitSdate[1]+splitSdate[2]);
+		var splitEdate = edate.split("-");
+		var numberSplitEdate = Number(splitEdate[0]+splitEdate[1]+splitEdate[2]);
+		var dateResult = numberSplitEdate-numberSplitSdate;
+		
+		if(sdate=="" || edate==""){
+			$('#dateresult').html("날짜를 선택해주세요.");
+		}else{
+			$('#dateresult').html("");
+			if(dateResult>0){
+				$('#dateresult').html("");
+				var d = new Date();
+				var date = d.getFullYear() +''+(d.getMonth()+1)+''+d.getDate()+''+d.getHours()+''+d.getMinutes()+''+d.getSeconds();
+				IMP.init("imp83406565");
+				IMP.request_pay({
+					merchant_uid : '상품명_'+date,	  //상점거래ID
+					name : "결제테스트",				  //결제 이름
+					amount : price,              	  //결제금액
+					buyer_email : 'next007@nate.com', //구매자 eamil
+					buyer_name : "구매자이름", 			  //구매자 이름
+					buyer_tel : "010-1234-5678", 	  //구매자 전화번호
+					buyer_addr : "서울시 영등포구 당산동", 	  //구매자 주소
+					buyer_postcode : "123-456" 		  //우편번호
+				},function(rsp){
+					if(rsp.success){ //결제 성공
+						var r3="결제금액 : "+rsp.paid_amount;
+						$('#paymentResult').html(r3+"<p>원 결제가 완료되었습니다.<p>");
+						var test = $('#payresult').val("1");
+						$('#res').css("display","inline");
+					}else{ 			 //결제 실패
+						$('#paymentResult').html("결제 실패 사유 : "+rsp.error_msg);
+						var test = $('#payresult').val("0");
+					}
+				})
+			}else{
+				$('#dateresult').html("날짜 형식이 올바르지 않습니다.");
+			}
+		}
+	});
     
 </script>
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />

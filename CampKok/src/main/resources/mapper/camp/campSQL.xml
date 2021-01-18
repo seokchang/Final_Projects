@@ -79,7 +79,37 @@
 		from review
 	</select>
 	
+	<select id="getCampNoticeCount" resultType="_int">
+		SELECT count(*) FROM camp_notice
+	</select>
 	
+	<select id="selectCampNoticeList" parameterType="map" resultType="cnv">
+		SELECT * FROM (SELECT ROWNUM as rNum, n.* FROM (
+			SELECT
+			camp_notice_no AS campNoticeNo,
+			camp_no AS campNo,
+			camp_notice_title AS campNoticeTitle,
+			camp_notice_contents AS campNoticeContents,
+			camp_notice_date AS campNoticeDate,
+			camp_notice_filename AS campNoticeFileName,
+			camp_notice_filepath AS campNoticeFilePath
+			FROM camp_notice ORDER BY 1 DESC
+			)n)
+		WHERE rNum BETWEEN
+		#{start} AND #{end}
+	</select>
+	
+	<select id="selectCampNotice" parameterType="_int" resultType="cnv">
+		SELECT 
+			camp_notice_no AS campNoticeNo,
+			camp_no AS campNo,
+			camp_notice_title AS campNoticeTitle,
+			camp_notice_contents AS campNoticeContents,
+			camp_notice_date AS campNoticeDate,
+			camp_notice_filename AS campNoticeFileName,
+			camp_notice_filepath AS campNoticeFilePath
+		FROM camp_notice where camp_notice_no=#{_parameter}
+	</select>
 	
 	
 	

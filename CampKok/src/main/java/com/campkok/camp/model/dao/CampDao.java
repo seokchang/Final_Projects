@@ -8,6 +8,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.campkok.admin.notice.model.vo.ClientNotice;
+import com.campkok.camp.model.vo.CampNoticeVO;
 import com.campkok.camp.model.vo.CampRoomVO;
 import com.campkok.camp.model.vo.CampVO;
 import com.campkok.camp.model.vo.ReviewVO;
@@ -53,6 +55,22 @@ public class CampDao {
 	public ArrayList<ReviewVO> selectAllComment() {
 		List<ReviewVO> commentList = sqlSession.selectList("camp.selectAllComment"); 
 		return (ArrayList<ReviewVO>)commentList;
+	}
+
+	public int getTotalCampNotice() {
+		return sqlSession.selectOne("camp.getCampNoticeCount");
+	}
+
+	public ArrayList<CampNoticeVO> selectCampNoticeList(int start, int end) {
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put("start", start);
+		map.put("end", end);
+		List<CampNoticeVO> list = sqlSession.selectList("camp.selectCampNoticeList", map);
+		return (ArrayList<CampNoticeVO>) list;
+	}
+
+	public CampNoticeVO selectCampNotice(int campNoticeNo) {
+		return sqlSession.selectOne("camp.selectCampNotice",campNoticeNo);
 	}
 
 

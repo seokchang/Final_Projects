@@ -25,6 +25,7 @@
 		<typeAlias type="com.campkok.camp.model.vo.CampRoomVO" alias="cr" />
 		<typeAlias type="com.campkok.camp.model.vo.UserVO" alias="cu" />
 		<typeAlias type="com.campkok.camp.model.vo.ReviewVO" alias="rvo" />
+		<typeAlias type="com.campkok.camp.model.vo.CampNoticeVO" alias="cnv" />
 
 		<!-- Customer -->
 		<typeAlias type="com.campkok.customer.model.vo.UserVO" alias="u" />
