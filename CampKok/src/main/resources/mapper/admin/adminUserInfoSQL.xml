@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="adminUserInfo">
+	<!-- ********** Visit ********** -->
+	<insert id="insertVisit" parameterType="visit">
+		INSERT INTO visit VALUES (
+		visit_seq.NEXTVAL,
+		#{visitId},
+		#{visitIp},
+		<if test="visitRefer != null and visitRefer != ''">
+			#{visitRefer}
+		</if>
+		#{visitAgent},
+		TO_CHAR(sysdate, 'yyyy-mm-dd')
+		)
+	</insert>
 
 	<!-- ********** Client Info ********** -->
 	<select id="getClientInfoCount" resultType="_int">

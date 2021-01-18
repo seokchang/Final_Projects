@@ -25,6 +25,10 @@ public class AdminUserService {
 		return dao.selectClientInfo(userNo);
 	}
 
+	public ArrayList<User> selectClientInfoList(int start, int end) {
+		return dao.selectClientInfoList(start, end);
+	}
+
 	public AdminUserInfoPageData selectClientInfoList(int reqPage) {
 		int totalClientInfo = dao.getTotalClientInfo();
 		int numPerPage = 10;
@@ -129,6 +133,10 @@ public class AdminUserService {
 		}
 
 		return ceoInfo;
+	}
+
+	public ArrayList<User> selectCeoInfoList(int start, int end) {
+		return dao.selectCeoInfoList(start, end);
 	}
 
 	public AdminUserInfoPageData selectCeoInfoList(int reqPage) {

@@ -1,19 +1,21 @@
 package com.campkok.admin.common;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.campkok.admin.board.model.service.AdminBoardService;
-import com.campkok.admin.board.model.vo.AdminBoardInfoPageData;
+import com.campkok.admin.board.model.vo.Board;
 import com.campkok.admin.camp.model.service.AdminCampService;
-import com.campkok.admin.camp.model.vo.AdminCampInfoPageData;
+import com.campkok.admin.camp.model.vo.Camp;
 import com.campkok.admin.notice.model.service.AdminNoticeService;
-import com.campkok.admin.notice.model.vo.CeoNoticePageData;
-import com.campkok.admin.notice.model.vo.ClientNoticePageData;
+import com.campkok.admin.notice.model.vo.CeoNotice;
+import com.campkok.admin.notice.model.vo.ClientNotice;
 import com.campkok.admin.user.model.service.AdminUserService;
-import com.campkok.admin.user.model.vo.AdminUserInfoPageData;
+import com.campkok.admin.user.model.vo.User;
 
 @Controller
 public class AdminPageController {
@@ -31,20 +33,23 @@ public class AdminPageController {
 	 * **************************************************
 	*/
 	@RequestMapping("/pageAdmin.do")
-	public String pageAdmin(int reqPage, Model model) {
-		CeoNoticePageData ceoNPD = nService.selectCeoNoticeList(reqPage);
-		ClientNoticePageData clientNPD = nService.selectClientNoticeList(reqPage);
-		AdminUserInfoPageData clientInfoList = uService.selectClientInfoList(reqPage);
-		AdminUserInfoPageData ceoInfoList = uService.selectCeoInfoList(reqPage);
-		AdminCampInfoPageData campInfoList = cService.selectCampInfoList(reqPage);
-		AdminBoardInfoPageData boardInfoList = bService.selectBoardInfoList(reqPage);
+	public String pageAdmin(Model model) {
+		int start = 1;
+		int end = 5;
 
-		model.addAttribute("ceoNoticeList", ceoNPD.getList());
-		model.addAttribute("clientNoticeList", clientNPD.getList());
-		model.addAttribute("clientInfoList", clientInfoList.getList());
-		model.addAttribute("ceoInfoList", ceoInfoList.getList());
-		model.addAttribute("campInfoList", campInfoList.getList());
-		model.addAttribute("boardInfoList", boardInfoList.getList());
+		ArrayList<CeoNotice> ceoNoticeList = nService.selectCeoNoticeList(start, end);
+		ArrayList<ClientNotice> clientNoticeList = nService.selectClientNoticeList(start, end);
+		ArrayList<User> clientInfoList = uService.selectClientInfoList(start, end);
+		ArrayList<User> ceoInfoList = uService.selectCeoInfoList(start, end);
+		ArrayList<Camp> campInfoList = cService.selectCampInfoList(start, end);
+		ArrayList<Board> boardInfoList = bService.selectBoardInfoList(start, end);
+
+		model.addAttribute("ceoNoticeList", ceoNoticeList);
+		model.addAttribute("clientNoticeList", clientNoticeList);
+		model.addAttribute("clientInfoList", clientInfoList);
+		model.addAttribute("ceoInfoList", ceoInfoList);
+		model.addAttribute("campInfoList", campInfoList);
+		model.addAttribute("boardInfoList", boardInfoList);
 
 		return "/admin/admin";
 	}

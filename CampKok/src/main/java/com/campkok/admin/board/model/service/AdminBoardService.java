@@ -22,6 +22,10 @@ public class AdminBoardService {
 		return dao.selectBoardInfo(boardNo);
 	}
 
+	public ArrayList<Board> selectBoardInfoList(int start, int end) {
+		return dao.selectBoardInfoList(start, end);
+	}
+
 	public AdminBoardInfoPageData selectBoardInfoList(int reqPage) {
 		int totalBoardInfo = dao.getTotalBoardInfoCount();
 		int numPerPage = 10;

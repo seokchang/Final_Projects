@@ -24,6 +24,10 @@ public class AdminNoticeService {
 		return notice;
 	}
 
+	public ArrayList<CeoNotice> selectCeoNoticeList(int start, int end) {
+		return dao.selectCeoNoticeList(start, end);
+	}
+
 	public CeoNoticePageData selectCeoNoticeList(int reqPage) {
 		int totalCeoNotice = dao.getTotalCeoNotice();
 		int numPerPage = 10;
@@ -168,6 +172,10 @@ public class AdminNoticeService {
 		return dao.selectClientNotice(clientNoticeNo);
 	}
 
+	public ArrayList<ClientNotice> selectClientNoticeList(int start, int end) {
+		return dao.selectClientNoticeList(start, end);
+	}
+
 	public ClientNoticePageData selectClientNoticeList(int reqPage) {
 		int totalClientNotice = dao.getTotalClientNotice();
 		int numPerPage = 10;
@@ -220,4 +228,5 @@ public class AdminNoticeService {
 	public int deleteClientNotice(int clientNoticeNo) {
 		return dao.deleteClientNotice(clientNoticeNo);
 	}
+
 }

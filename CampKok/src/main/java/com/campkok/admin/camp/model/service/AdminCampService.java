@@ -34,6 +34,10 @@ public class AdminCampService {
 		return campInfo;
 	}
 
+	public ArrayList<Camp> selectCampInfoList(int start, int end) {
+		return dao.selectCampInfoList(start, end);
+	}
+
 	public AdminCampInfoPageData selectCampInfoList(int reqPage) {
 		int totalCamp = dao.getTotalCampCount();
 		int numPerPage = 10;
