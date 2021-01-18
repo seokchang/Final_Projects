@@ -72,22 +72,28 @@ public class UserController {
 		System.out.println(u.getUserId());
 		System.out.println(u.getUserPw());
 		UserVO user = service.selectOneUser(u);
+
 		if (user != null) {
 			session.setAttribute("user", user);
-			Visit visit = new Visit();
-
-			visit.setVisitId((String) user.getUserId());
-			visit.setVisitIp((req.getRemoteAddr()));
-			visit.setVisitRefer(req.getHeader("referer"));
-			visit.setVisitAgent(req.getHeader("User-Agent"));
-			visitCtrl.insertVisitInfo(visit);
-
 			model.addAttribute("msg", user.getUserName() + "님 환영합니다");
+
+			if (user.getUserLevel() != 0)
+				model.addAttribute("loc", "/");
+			else {
+				Visit visit = new Visit();
+
+				visit.setVisitId((String) user.getUserId());
+				visit.setVisitIp((req.getRemoteAddr()));
+				visit.setVisitRefer(req.getHeader("referer"));
+				visit.setVisitAgent(req.getHeader("User-Agent"));
+				visitCtrl.insertVisitInfo(visit);
+				model.addAttribute("loc", "/pageAdmin.do?reqPage=1");
+			}
 		} else {
 			model.addAttribute("msg", "아이디 또는 비밀번호를 확인해주세요.");
+			model.addAttribute("loc", "/");
 		}
-		model.addAttribute("loc", "/");
-		return "common/msg";
+		return "/common/msg";
 	}
 
 	// 로그아웃 

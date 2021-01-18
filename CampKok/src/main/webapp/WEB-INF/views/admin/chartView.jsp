@@ -60,19 +60,19 @@
 							<tr>
 								<th>아이디</th>
 								<td>
-									<input type="text" name="userId" value="admin" readonly="readonly">
+									<input type="text" name="userId" value="${sessionScope.user.userId }" readonly="readonly">
 								</td>
 							</tr>
 							<tr>
 								<th>이름</th>
 								<td>
-									<input type="text" name="userName" value="홍길동" readonly="readonly">
+									<input type="text" name="userName" value="${sessionScope.user.userName }" readonly="readonly">
 								</td>
 							</tr>
 							<tr>
 								<th>전화번호</th>
 								<td>
-									<input type="text" name="phone" value="010-1234-5678" readonly="readonly">
+									<input type="text" name="phone" value="${sessionScope.user.userPhone }" readonly="readonly">
 								</td>
 							</tr>
 						</table>
