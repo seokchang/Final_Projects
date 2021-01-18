@@ -16,7 +16,7 @@
 		    camp_ctg as campCtg,
 		    campenv.env_name as campEnv,
 		    (select min(room_price) from camproom where camp_no = camp.camp_no) as campMinPrice,
-		    (select avg(rev_star) from review where camp_no = camp.camp_no) as campStar
+		    (select round(avg(rev_star),1) from review where camp_no = camp.camp_no) as campStar
 		from camp full join campenv on (camp.camp_no = campenv.camp_no)
 	)c)
 	where rnum between ${start} and ${end}
@@ -69,7 +69,7 @@
 	    camp_ctg as campCtg,
 	    campenv.env_name as campEnv,
 	    (select min(room_price) from camproom where camp_no = camp.camp_no) as campMinPrice,
-	    (select avg(rev_star) from review where camp_no = camp.camp_no) as campStar
+	    (select round(avg(rev_star),1) from review where camp_no = camp.camp_no) as campStar
 	from camp full join campenv on (camp.camp_no = campenv.camp_no) where 
 		<choose>
 			<when test="searchSelect.equals('campName')">
@@ -101,7 +101,7 @@
 	    camp_ctg as campCtg,
 	    campenv.env_name as campEnv,
 	    (select min(room_price) from camproom where camp_no = camp.camp_no) as campMinPrice,
-	    (select avg(rev_star) from review where camp_no = camp.camp_no) as campStar
+	    (select round(avg(rev_star),1) from review where camp_no = camp.camp_no) as campStar
 	from camp full join campenv on (camp.camp_no = campenv.camp_no) order by camp.camp_no desc
   </select>
   
@@ -117,7 +117,7 @@
 	    camp_fac as campFac,
 	    campenv.env_name as campEnv,
 	    (select min(room_price) from camproom where camp_no = camp.camp_no) as campMinPrice,
-	    (select avg(rev_star) from review where camp_no = camp.camp_no) as campStar,
+	    (select round(avg(rev_star),1) from review where camp_no = camp.camp_no) as campStar,
 	    (select sum(res_count) from reservation where camp_no = camp.camp_no) as resCount
 	from camp full join campenv 
 	on (camp.camp_no = campenv.camp_no) order by resCount
