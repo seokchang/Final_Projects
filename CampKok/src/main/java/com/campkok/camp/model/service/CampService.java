@@ -6,7 +6,10 @@ import java.util.HashMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.campkok.admin.notice.model.vo.ClientNotice;
 import com.campkok.camp.model.dao.CampDao;
+import com.campkok.camp.model.vo.CampNoticePageData;
+import com.campkok.camp.model.vo.CampNoticeVO;
 import com.campkok.camp.model.vo.CampRoomVO;
 import com.campkok.camp.model.vo.CampVO;
 import com.campkok.camp.model.vo.ReviewVO;
@@ -76,6 +79,48 @@ public class CampService {
 
 	public ArrayList<ReviewVO> selectAllComment() {
 		return dao.selectAllComment();
+	}
+
+	public CampNoticePageData selectCampNoticeList(int reqPage) {
+		int totalCampNotice = dao.getTotalCampNotice();
+		int numPerPage = 10;
+		int totalPage = (totalCampNotice / numPerPage == 0) ? (totalCampNotice / numPerPage)
+				: (totalCampNotice / numPerPage) + 1;
+		int start = (reqPage - 1) * numPerPage + 1;
+		int end = reqPage * numPerPage;
+		
+		ArrayList<CampNoticeVO> list = dao.selectCampNoticeList(start, end);
+		
+		int pageNaviSize = 5;
+		String pageNavi = "";
+		int pageNo = ((reqPage - 1) / pageNaviSize) * pageNaviSize + 1;
+		
+		if (pageNo != 1) {
+			pageNavi += "<a class='btn' href='/camp/campNotice2.do?reqPage=" + (pageNo - 1) + "'>[이전]</a>";
+		}
+		
+		for (int i = 0; i < pageNaviSize; i++) {
+			if (reqPage == pageNo) {
+				pageNavi += "<span class='selectPage'>" + pageNo + "</span>";
+			} else {
+				pageNavi += "<a class='btn' href='/camp/campNotice2.do?reqPage=" + pageNo + "'>" + pageNo + "</a>";
+			}
+			pageNo++;
+			if (pageNo > totalPage)
+				break;
+		}
+		if (pageNo <= totalPage) {
+			pageNavi += "<a class='btn' href='/camp/campNotice2.do?reqPage=" + pageNo + "'>[다음]</a>";
+		}
+		
+		CampNoticePageData npd = new CampNoticePageData(list,pageNavi);
+		return npd;
+		
+		
+	}
+
+	public CampNoticeVO selectCampNotice(int campNoticeNo) {
+		return dao.selectCampNotice(campNoticeNo);
 	}
 
 
