@@ -1,4 +1,4 @@
-package com.campkok.admin.user.model.vo;
+package com.campkok.admin.visit.model.vo;
 
 public class Visit {
 	private int visitNo;
