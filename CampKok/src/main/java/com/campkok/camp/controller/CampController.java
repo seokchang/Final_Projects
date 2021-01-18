@@ -8,6 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.campkok.camp.model.service.CampService;
+import com.campkok.camp.model.vo.CampNoticePageData;
+import com.campkok.camp.model.vo.CampNoticeVO;
 import com.campkok.camp.model.vo.CampRoomVO;
 import com.campkok.camp.model.vo.CampVO;
 import com.campkok.camp.model.vo.ReviewVO;
@@ -88,6 +90,23 @@ public class CampController {
 		model.addAttribute("loc","/");
 		return "common/msg";
 	}
+	
+	@RequestMapping("campNotice2.do")
+	public String selectCampNoticeList(int reqPage, Model model) {
+		CampNoticePageData npd = service.selectCampNoticeList(reqPage);
+		model.addAttribute("list",npd.getList());
+		model.addAttribute("pageNavi",npd.getPageNavi());
+		return "camp/campNoticeList";
+	}
+	
+	@RequestMapping("selectCampNotice.do")
+	public String selectCampNotice(int campNoticeNo,Model model) {
+		CampNoticeVO campNotice = service.selectCampNotice(campNoticeNo);
+		model.addAttribute("campNotice",campNotice);
+		return "camp/campNoticeView";
+	}
+		
+	
 
 	
 	

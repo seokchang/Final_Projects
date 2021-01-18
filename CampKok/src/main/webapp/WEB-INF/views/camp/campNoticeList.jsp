@@ -1,12 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
      <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 
 <head>
-	<meta charset="EUC-KR">
-	<title>Ä·ÇÎÀå °øÁö»çÇ×</title>
+	<meta charset="UTF-8">
+	<title>ìº í•‘ìž¥ ê³µì§€ì‚¬í•­</title>
 	<link rel="stylesheet" href="/resources/css/customer/noticeList.css">
 </head>
 
@@ -15,7 +15,7 @@
 	
 	<div class="header-img">
         <div>
-            <p>Ä·ÇÎÀå °øÁö»çÇ×</p>
+            <p>ìº í•‘ìž¥ ê³µì§€ì‚¬í•­</p>
             <p></p>
         </div>
     </div>
@@ -28,15 +28,15 @@
          <div class="notice-naeyong">
         	<table class="notice-tbl">
 			<tr>
-				<th class="notice-tbl-th-1">¹øÈ£</th>
-				<th class="notice-tbl-th-2">Á¦¸ñ</th>
-				<th>Ä·ÇÎÀå</th>
-				<th>ÀÛ¼ºÀÏ</th>
+				<th class="notice-tbl-th-1">ë²ˆí˜¸</th>
+				<th class="notice-tbl-th-2">ì œëª©</th>
+				<th>ìº í•‘ìž¥</th>
+				<th>ìž‘ì„±ì¼</th>
 			</tr>
 			<c:forEach items="${list }" var="n" varStatus="index">
 			<tr>
 				<td style="text-align: center">${n.campNoticeNo }</td>
-				<td>${n.campNoticeTitle }</td>
+				<td><a href="/camp/selectCampNotice.do?campNoticeNo=${n.campNoticeNo}">${n.campNoticeTitle }</a></td>
 				<td style="text-align: center">${n.campNo }</td>
 				<td style="text-align: center">${n.campNoticeDate }</td>
 			</tr>
