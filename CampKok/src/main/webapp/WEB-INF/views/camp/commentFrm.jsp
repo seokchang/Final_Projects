@@ -6,7 +6,7 @@
 <head>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
-	<link rel="stylesheet" href="/resources/css/camp/comment.css">
+	<link rel="stylesheet" href="/resources/css/camp/comment3.css">
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp" />
@@ -14,7 +14,8 @@
 		          : 화면 넘어올때 캠핑장 no받아야함
 	-->
 	<div class="inputComment">
-	<span>*일반이용자만 댓글등록이 가능합니다.</span>
+
+	<span id="aa">*일반이용자만 댓글등록이 가능합니다.</span>
 		<form action="/camp/insertComment.do" method="post" accept-charset="utf-8">
 			<ul>
 				<li>
@@ -30,24 +31,25 @@
 			</ul>
 		</form>	
 	</div>
+	
 	<div class="commentList">
 		<c:forEach items="${commentList }" var="commentList">
-			<ul>
+			<ul id="aa">
 				<li>
-					<p>${commentList.userId }</p>
-					<p>${commentList.revDate }</p>
+					<p id="infotext">${commentList.userId }</p>
+					<p id="infotext">${commentList.revDate }</p>
 				</li>
 				<li>
 					<p class="linkbox">
 						<textarea name="noticeCommentContet">${commentList.revContents }</textarea>
 						<!-- user01부분 세션아이디로 바꿔야함 -->
 						<c:if test="${commentList.userId eq 'user01'}">
-							<a href="#" >삭제</a>
-							<a href="#" >수정</a>
+							<a href="/camp/commentDelete.do?revNo=${commentList.revNo }" style="color:#f3d479;">삭제</a>
+							<%-- <a class="recShow" href="/camp/commentUpdate.do?revNo=${commentList.revNo }" >수정</a> --%>
 						</c:if>
 						<!-- 1(고객)부분 2(사업자)로바꿔야함 -->
-						<c:if test="${userInfo.userLevel eq '1'}">
-							<a href="javascript:void(0)" class="recShow">답글달기</a>
+						<c:if test="${userInfo.userLevel eq '5'}">
+							<a href="javascript:void(0)" class="recShow2">답글달기</a>
 						</c:if>						
 					</p>
 					<div class="inputComment re">
@@ -69,23 +71,8 @@
 			</ul>
 		</c:forEach>
 	</div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
+	
 	<script>
 	$(".recShow").click(function(){
 		$(this).hide();

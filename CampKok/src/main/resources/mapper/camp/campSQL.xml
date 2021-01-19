@@ -67,16 +67,15 @@
 	</insert>
 	
 	<select id="selectAllComment" resultType="rvo">
-		select
-			rev_no as revNo,
-			user_id as userId,
-			camp_no as campNo,
+	SELECT A.* FROM (
+	SELECT rev_no as revNo, 
+			user_id as userId, 
+			camp_no as campNo, 
 			rev_contents as revContents,
 			rev_star as revStar,
-			rev_date as revDate,
-			rev_image as revImage,
-			rev_heart as revHeart
-		from review
+			rev_date as revDate, 
+			rev_image as revImage, 
+			rev_heart as revHeart FROM review ORDER BY rev_no desc) A
 	</select>
 	
 	<select id="getCampNoticeCount" resultType="_int">
@@ -111,7 +110,33 @@
 		FROM camp_notice where camp_notice_no=#{_parameter}
 	</select>
 	
+	<select id="selectCampResList" parameterType="_int" resultType="campResVO">
+		select 
+			res_no as resNo,
+			user_no as userNo,
+			camp_no as campNo,
+			camp_room as campRoom,
+			res_in_date as resInDate,
+			res_out_date as resOutDate,
+			res_in_time as resInTime,
+			res_out_time as resOutTime,
+			res_member as resMember,
+			res_price as resPrice,
+			res_memo as resMemo,
+			res_count as resCount
+		from reservation where camp_room=#{_parameter}
+	</select>
 	
+	<delete id="commentDelete" parameterType="_int">
+		delete review where rev_no=#{_parameter}
+	</delete>
+	
+	<update id="commentUpdate" parameterType="_int">
+	update user_tbl set
+			user_point = (user_point-#{userUsePoint})
+		where user_no = #{userNo}
+		update rev_contents set  
+	</update>
 	
 	
 	
