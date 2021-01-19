@@ -19,15 +19,14 @@
 		<typeAlias type="com.campkok.admin.board.model.vo.FAQ" alias="faq" />
 
 		<!-- Camp -->
-		<typeAlias type="com.campkok.camp.model.vo.CampVO" alias="c" />
-		<typeAlias type="com.campkok.customer.model.vo.UserVO" alias="u" />
 		<typeAlias type="com.campkok.camp.notice.model.vo.CampNoticeVO" alias="cn" />
-		<typeAlias type="com.campkok.customer.model.vo.UserVO" alias="u" />
+		<typeAlias type="com.campkok.camp.model.vo.CampVO" alias="c" />
 		<typeAlias type="com.campkok.camp.model.vo.CampRoomVO" alias="cr" />
 		<typeAlias type="com.campkok.camp.model.vo.UserVO" alias="cu" />
 		<typeAlias type="com.campkok.camp.model.vo.ReviewVO" alias="rvo" />
 		<typeAlias type="com.campkok.camp.model.vo.CampNoticeVO" alias="cnv" />
-
+		<typeAlias type="com.campkok.camp.model.vo.CampResVO" alias="campResVO" />
+		
 		<!-- Customer -->
 		<typeAlias type="com.campkok.customer.model.vo.UserVO" alias="u" />
 		<typeAlias type="com.campkok.customer.model.vo.ReservationVO" alias="r" />

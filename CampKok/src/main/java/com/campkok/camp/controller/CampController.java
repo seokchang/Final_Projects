@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.campkok.camp.model.service.CampService;
 import com.campkok.camp.model.vo.CampNoticePageData;
 import com.campkok.camp.model.vo.CampNoticeVO;
+import com.campkok.camp.model.vo.CampResVO;
 import com.campkok.camp.model.vo.CampRoomVO;
 import com.campkok.camp.model.vo.CampVO;
 import com.campkok.camp.model.vo.ReviewVO;
@@ -37,12 +38,15 @@ public class CampController {
 		//캠핑장룸 정보 가져오기
 		int roomNo = 24; //뷰에서 넘겨줄때 roomNo=? 형식으로 받아올 예정
 		CampRoomVO campRoomInfo = service.selectRoomInfo(roomNo);
+		//캠핑장예약리스트 가져오기
+		ArrayList<CampResVO> campResList = service.selectCampResList(roomNo);
 		//캠핑장 정보 가져오기
 		int campNo = campRoomInfo.getCampNo();
 		CampVO campInfo = service.selectCampInfo(campNo);
 		model.addAttribute("campRoomInfo",campRoomInfo); //캠핑장 룸
 		model.addAttribute("campInfo",campInfo); //캠핑장
 		model.addAttribute("userInfo",userInfo);
+		model.addAttribute("campResList",campResList); //예약 리스트 
 		return "camp/campReservation2";
 	}
 	
@@ -83,11 +87,11 @@ public class CampController {
 		
 		if(result>0) {
 			model.addAttribute("msg","댓글 등록이 완료되었습니다.");
+			model.addAttribute("loc","/camp/commentFrm.do");
 		}else {
 			model.addAttribute("msg","댓글등록중 오류가 발생했습니다. 다시 작성해주세요.");
-			model.addAttribute("loc","/camp/commentFrm");
+			model.addAttribute("loc","/camp/commentFrm.do");
 		}
-		model.addAttribute("loc","/");
 		return "common/msg";
 	}
 	
@@ -104,6 +108,32 @@ public class CampController {
 		CampNoticeVO campNotice = service.selectCampNotice(campNoticeNo);
 		model.addAttribute("campNotice",campNotice);
 		return "camp/campNoticeView";
+	}
+	
+	@RequestMapping("commentDelete.do")
+	public String commentDelete(int revNo,Model model) {
+		int result = service.commentDelete(revNo);
+		if(result>0) {
+			model.addAttribute("msg","댓글이 삭제되었습니다.");
+			model.addAttribute("loc","/camp/commentFrm.do");
+		}else {
+			model.addAttribute("msg","댓글삭제중 오류가 발생했습니다. 다시 삭제해주세요.");
+			model.addAttribute("loc","/camp/commentFrm.do");
+		}
+		return "common/msg";
+	}
+	
+	@RequestMapping("commentUpdate.do")
+	public String commentUpdate(int revNo,Model model) {
+		int result = service.commentUpdate(revNo);
+		if(result>0) {
+			model.addAttribute("msg","댓글이 수정되었습니다.");
+			model.addAttribute("loc","/camp/commentFrm.do");
+		}else {
+			model.addAttribute("msg","댓글수정중 오류가 발생했습니다. 다시 수정해주세요.");
+			model.addAttribute("loc","/camp/commentFrm.do");
+		}
+		return "common/msg";
 	}
 		
 	

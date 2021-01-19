@@ -1,17 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
+
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
-
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
 <br>
+	<c:forEach items="${campResList }" var="campResList" varStatus="index">
+		<input type="hidden" id="calSdate" value="${campResList.resInDate }">
+	</c:forEach>
+	<c:forEach items="${campResList }" var="campResList" varStatus="index">
+		<input type="hidden" id="calEdate" value="${campResList.resOutDate }">
+	</c:forEach>
+	
 	<div class="cal_top">
         <a href="#" id="movePrevMonth"><span id="prevMonth" class="cal_tit">&lt;</span></a>
         <span id="cal_top_year"></span>
@@ -19,12 +27,20 @@
         <a href="#" id="moveNextMonth"><span id="nextMonth" class="cal_tit">&gt;</span></a>
     </div>
     <div id="cal_tab" class="cal">
+    	ㅁ
     </div>
+    <div class="page-title2">
+    <div class="page-title">
+            | Reservation
+    </div>
+    </div>
+    
     <div class="reservationInfo">
    	<!-- 캠핑장 테이블 : campInfo
    	캠핑장 룸 테이블 : campRoomInfo
    	유저 테이블 : userInfo -->
-    	<h4>캠핑장 정보</h4>
+   	<div class="reser">
+   	<h4>캠핑장 정보</h4>
     	<table>
     		<tr>
     			<th>회원명</th>
@@ -103,6 +119,8 @@
     	<input type="submit" id="res" value="예약하기" style="display:none;"> 
     	<input type="hidden" id="payresult" value="0">
     	</form>
+   	</div>
+    	
     </div>
  
 <script type="text/javascript">
@@ -286,6 +304,25 @@
     
     //결제금액에 포인트 적용
     $('#point').click(function name() {
+    	var calSdate = $('#calSdate').html().get();
+    	for(var i=0; i<calSdate.length; i++){
+    		console.log(calSdate[i]);
+    	}
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
     	var price = Number($('#price').text());
     	var resMember = Number($('#resMember').val());
     	var constPrice2 = price+(5000*(resMember-2));
@@ -356,7 +393,8 @@
 	});
     
 </script>
+<link rel="stylesheet" href="/resources/css/camp/test.css">
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />
-<link rel="stylesheet" href="/resources/css/camp/reservation.css">
+
 </body>
 </html>

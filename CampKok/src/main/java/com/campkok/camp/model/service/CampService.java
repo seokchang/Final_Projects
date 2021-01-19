@@ -10,6 +10,7 @@ import com.campkok.admin.notice.model.vo.ClientNotice;
 import com.campkok.camp.model.dao.CampDao;
 import com.campkok.camp.model.vo.CampNoticePageData;
 import com.campkok.camp.model.vo.CampNoticeVO;
+import com.campkok.camp.model.vo.CampResVO;
 import com.campkok.camp.model.vo.CampRoomVO;
 import com.campkok.camp.model.vo.CampVO;
 import com.campkok.camp.model.vo.ReviewVO;
@@ -121,6 +122,18 @@ public class CampService {
 
 	public CampNoticeVO selectCampNotice(int campNoticeNo) {
 		return dao.selectCampNotice(campNoticeNo);
+	}
+
+	public ArrayList<CampResVO> selectCampResList(int roomNo) {
+		return dao.selectCampResList(roomNo);
+	}
+
+	public int commentDelete(int revNo) {
+		return dao.commentDelete(revNo);
+	}
+
+	public int commentUpdate(int revNo) {
+		return dao.commentUpdate(revNo);
 	}
 
 
