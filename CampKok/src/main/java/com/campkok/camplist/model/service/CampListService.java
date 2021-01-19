@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.campkok.admin.camp.model.vo.CampFile;
 import com.campkok.camplist.model.dao.CampListDao;
 import com.campkok.camplist.model.vo.CampList;
 import com.campkok.camplist.model.vo.CampListPageData;
@@ -71,9 +72,13 @@ public class CampListService {
 	// 캠핑장 상세 페이지
 	public CampList selectOneCamp(int campNo) {
 		CampList cl = dao.selectOneCamp(campNo);
+		ArrayList<CampFile> campFiles = dao.selectCampFiles(campNo);
+		cl.setCampFiles(campFiles);
+		System.out.println(campFiles.size());
 		return cl;
 	}
 
+	// 캠핑장 검색
 	public CampListPageData searchCampList(int reqPage, String searchSelect, String keyword) {
 		int numPerPage = 12;	// 한 페이지당 게시물 수
 		// 1 : 1~12, 2 : 13~24, 3 : 25~37

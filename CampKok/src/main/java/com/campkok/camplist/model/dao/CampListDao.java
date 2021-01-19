@@ -8,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.campkok.admin.camp.model.vo.CampFile;
 import com.campkok.camplist.model.vo.CampList;
 
 @Repository
@@ -22,6 +23,11 @@ public class CampListDao {
 		map.put("end", end);
 		List<CampList> list = session.selectList("camplist.selectAllCampList",map);
 		return (ArrayList<CampList>)list;
+	}
+	
+	public ArrayList<CampFile> selectCampFiles(int campNo) {
+		List<CampFile> list = session.selectList("camplist.selectCampFiles", campNo);
+		return (ArrayList<CampFile>) list;
 	}
 
 	public int totalCount() {

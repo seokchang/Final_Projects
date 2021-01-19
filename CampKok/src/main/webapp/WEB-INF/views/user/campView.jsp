@@ -1,33 +1,34 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+	<!-- Swiper -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+
+    <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+    <!-- 네이버 지도 API -->
+    <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=bxltou71l0&submodules=geocoder"></script>
 </head>
+
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp" />
 
 	<!-- Swiper -->
     <div class="swiper-container" style="margin-top: 50px;">
         <div class="swiper-wrapper">
-            <div class="swiper-slide">
-                <img src="/src/main/webapp/resources/img/main/campfire-984020.jpg">
-            </div>
-            <div class="swiper-slide">
-                <img src="/src/main/webapp/resources/img/main/starry-night-1081993.jpg">
-            </div>
-            <div class="swiper-slide">
-                <img src="/src/main/webapp/resources/img/camp/">
-            </div>
-            <div class="swiper-slide">Slide 4</div>
-            <div class="swiper-slide">Slide 5</div>
-            <div class="swiper-slide">Slide 6</div>
-            <div class="swiper-slide">Slide 7</div>
-            <div class="swiper-slide">Slide 8</div>
-            <div class="swiper-slide">Slide 9</div>
-            <div class="swiper-slide">Slide 10</div>
+        	<c:forEach items="${cl.campFiles }" var="campFile">
+	            <div class="swiper-slide">
+	                <img src="/resources/img/camp/${campFile.campFilePath }">
+	            </div>
+        	</c:forEach>
         </div>
         <!-- Add Pagination -->
         <div class="swiper-pagination"></div>
@@ -51,8 +52,8 @@
     <div class="camp-content">
         <div class="camp-title">
             <div>
-                <p>고양캠핑장</p>
-                <p><span>★ 4.9 </span> 경기도 고양시 고양구</p>
+                <p>${cl.campName }</p>
+                <p><span>★ ${cl.campStar } </span> ${cl.campAddr }</p>
             </div>
             <a href="#">예약하기</a>
         </div>
@@ -63,22 +64,21 @@
                 <table class="camp-tbl">
                     <tr>
                         <th>테마</th>
-                        <td>산</td>
+                        <td>${cl.campTheme }</td>
                         <th>카테고리</th>
-                        <td>글램핑</td>
+                        <td>${cl.campCtg }</td>
                     </tr>
                     <tr>
                         <th>시설</th>
                         <td colspan="3">
                             <div style="display: flex">
                                 <ul>
-                                    <li>test</li>
-                                    <li>test</li>
-                                    <li>test</li>
-                                    <li>test</li>
+                                	<c:forEach items="${list }" var="cl">
+                                   		<li>${cl.campFac }</li>
+                                    </c:forEach>
                                 </ul>
                                 <ul>
-                                    <li>test</li>
+                                    <li>${cl.campFac }</li>
                                     <li>test</li>
                                     <li>test</li>
                                     <li>test</li>
@@ -114,7 +114,7 @@
 
             <div class="hr-sect">찾아오시는 길</div>
             <div>
-                <p>경기도 고양시 고양구</p>
+                <p id="address">경기도 고양시 고양구</p>
                 <div id="map" style="width: 1140px; height: 400px;border: 1px solid"></div>
             </div>
         </div>
@@ -181,9 +181,9 @@
 
             //최초 중심지 주소
             var contentString = [
-                '<div class="iw_inner">',
-                '	<h3>KH정보교육원</h3>',
-                '	<p>서울시 영등포구 선유2로 57 이레빌딩 19F, 20F</p>',
+                '<div class="iw_inner" style="padding:10px;">',
+                '	<h4>${cl.campName }</h4>',
+                '	<p>${cl.campAddr }</p>',
                 '</div>'
             ].join('');
 
@@ -205,6 +205,41 @@
     <jsp:include page="/WEB-INF/views/common/footer.jsp" />
     
     <link rel="stylesheet" href="/resources/css/user/campView.css">
+<style>
+	
 
+/* Swiper */
+.swiper-container {
+	width: 1200px;
+	height: 700px;
+}
+
+.swiper-slide {
+	text-align: center;
+	font-size: 18px;
+	background: #fff;
+	/* Center slide text vertically */
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	-webkit-justify-content: center;
+	justify-content: center;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	-webkit-align-items: center;
+	align-items: center;
+}
+
+.swiper-slide>img {
+	width: 100%;
+}
+
+:root { -
+	-swiper-theme-color: #405944;
+}
+</style>
 </body>
 </html>

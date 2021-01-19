@@ -70,5 +70,6 @@
 	<context:component-scan base-package="com.campkok.camp" />
 	<context:component-scan base-package="com.campkok.notice" />
 	<context:component-scan base-package="com.campkok.camplist" />
+	<context:component-scan base-package="com.campkok.faq" />
 
 </beans:beans>
