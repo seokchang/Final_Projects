@@ -17,6 +17,11 @@ public class AdminCampDao {
 	@Autowired
 	private SqlSessionTemplate session;
 
+	/* 
+	 * ***************************************************************************
+	 * Camp Info List
+	 * ***************************************************************************
+	*/
 	// ******************** CampEnvInfo ********************
 	public CampEnv selectCampEnvInfo(int campNo) {
 		return session.selectOne("adminCamp.selectCampEnvInfo", campNo);
@@ -77,6 +82,42 @@ public class AdminCampDao {
 
 	public int deleteCampInfo(int campNo) {
 		return session.delete("adminCamp.deleteCampInfo", campNo);
+	}
+
+	/* 
+	 * ***************************************************************************
+	 * Temp Camp Info List
+	 * ***************************************************************************
+	*/
+	// ******************** Temp Camp Env ********************
+	public CampEnv selectTempCampEnv(int campNo) {
+		return session.selectOne("tempCampInfo.selectTempCampEnvInfo", campNo);
+	}
+
+	// ******************** Temp Camp Files ********************
+	public ArrayList<CampFile> selectTempCampFiles(int campNo) {
+		List<CampFile> list = session.selectList("tempCampInfo.selectTempCampFiles", campNo);
+
+		return (ArrayList<CampFile>) list;
+	}
+
+	public int getTotalTempCampCount() {
+		return session.selectOne("tempCampInfo.getTempCampInfoCount");
+	}
+
+	public Camp selectTempCampInfo(int campNo) {
+		return session.selectOne("tempCampInfo.selectTempCamp", campNo);
+	}
+
+	public ArrayList<Camp> selectTempCampInfoList(int start, int end) {
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+
+		map.put("start", start);
+		map.put("end", end);
+
+		List<Camp> list = session.selectList("tempCampInfo.selectTempCampList", map);
+
+		return (ArrayList<Camp>) list;
 	}
 
 }

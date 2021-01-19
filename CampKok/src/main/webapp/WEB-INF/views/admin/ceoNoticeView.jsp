@@ -52,7 +52,15 @@
 									<c:if test="${not empty ceoNotice.ceoNoticeFilePath}">
 										<span id="fileInfo">${ceoNotice.ceoNoticeFilePath }</span>
 									</c:if>
-									<input type="file" name="ceoNoticeFile">
+									<input type="file" name="ceoNoticeFile" onchange="LoadImg(this)">
+								</td>
+							</tr>
+							<tr>
+								<th>이미지</th>
+								<td colspan="3">
+									<div style="text-align: left;">
+										<img id="img-view" src="" style="width: 20%;">
+									</div>
 								</td>
 							</tr>
 							<tr>
@@ -80,5 +88,6 @@
 	</div>
 
 	<link rel="stylesheet" href="/resources/css/admin/adminDesignCommon.css">
+	<script type="text/javascript" src="/resources/js/admin/imgPreView.js"></script>
 </body>
 </html>

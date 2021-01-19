@@ -14,6 +14,11 @@ public class AdminCampController {
 	@Autowired
 	private AdminCampService service;
 
+	/* 
+	 * ***************************************************************************
+	 * Camp Info List
+	 * ***************************************************************************
+	*/
 	@RequestMapping("/selectCampInfo.do")
 	public String selectCampInfo(int campNo, Model model) {
 		Camp campInfo = service.selectCampInfo(campNo);
@@ -55,6 +60,30 @@ public class AdminCampController {
 		model.addAttribute("loc", "/selectCampInfoList.do?reqPage=1");
 
 		return "/common/msg";
+	}
+
+	/* 
+	 * ***************************************************************************
+	 * Temp Camp Info List
+	 * ***************************************************************************
+	*/
+	@RequestMapping("/selectTempCampInfo.do")
+	public String selectTempCampInfo(int campNo, Model model) {
+		Camp campInfo = service.selectTempCampInfo(campNo);
+
+		model.addAttribute("campInfo", campInfo);
+
+		return "/admin/insertCampInfoView";
+	}
+
+	@RequestMapping("/selectTempCampInfoList.do")
+	public String selectTempCampInfoList(int reqPage, Model model) {
+		AdminCampInfoPageData acipd = service.selectTempCampList(reqPage);
+
+		model.addAttribute("list", acipd.getList());
+		model.addAttribute("pageNavi", acipd.getPageNavi());
+
+		return "/admin/insertCampInfoList";
 	}
 
 }

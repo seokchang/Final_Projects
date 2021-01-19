@@ -25,7 +25,7 @@
 		<li><a href="javascript:void(0)" id="camp">캠핑장정보 관리</a>
 			<ul class="submenu">
 				<li><a href="/selectCampInfoList.do?reqPage=1">캠핑장 리스트</a></li>
-				<li><a href="#">신규등록 관리</a></li>
+				<li><a href="/selectTempCampInfoList.do?reqPage=1">신규등록 관리</a></li>
 			</ul></li>
 		<li><a href="/selectBoardInfoList.do?reqPage=1">자유게시판 관리</a></li>
 		<li><a href="javascript:void(0)" id="faq">FAQ 관리</a>

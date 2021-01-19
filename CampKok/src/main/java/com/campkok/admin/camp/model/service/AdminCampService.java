@@ -9,8 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.campkok.admin.camp.model.dao.AdminCampDao;
 import com.campkok.admin.camp.model.vo.AdminCampInfoPageData;
 import com.campkok.admin.camp.model.vo.Camp;
-import com.campkok.admin.camp.model.vo.CampEnv;
-import com.campkok.admin.camp.model.vo.CampFile;
 import com.campkok.admin.user.model.dao.AdminUserDao;
 import com.campkok.admin.user.model.vo.User;
 
@@ -21,15 +19,17 @@ public class AdminCampService {
 	@Autowired
 	private AdminUserDao userDao;
 
+	/* 
+	 * ***************************************************************************
+	 * Camp Info List
+	 * ***************************************************************************
+	*/
 	public Camp selectCampInfo(int campNo) {
 		Camp campInfo = dao.selectCampInfo(campNo);
-		CampEnv campEnvInfo = dao.selectCampEnvInfo(campNo);
-		ArrayList<CampFile> campFiles = dao.selectCampFiles(campNo);
-		User ceoInfo = userDao.selectCeoInfo(campInfo.getCeoId());
 
-		campInfo.setCampEnv(campEnvInfo);
-		campInfo.setCampFiles(campFiles);
-		campInfo.setCeoInfo(ceoInfo);
+		campInfo.setCampEnv(dao.selectCampEnvInfo(campNo));
+		campInfo.setCampFiles(dao.selectCampFiles(campNo));
+		campInfo.setCeoInfo(userDao.selectCeoInfo(campInfo.getCeoId()));
 
 		return campInfo;
 	}
@@ -47,10 +47,12 @@ public class AdminCampService {
 
 		ArrayList<Camp> list = dao.selectCampInfoList(start, end);
 
-		for (Camp camp : list) {
-			User ceoInfo = userDao.selectCeoInfo(camp.getCeoId());
+		if (!list.isEmpty()) {
+			for (Camp camp : list) {
+				User ceoInfo = userDao.selectCeoInfo(camp.getCeoId());
 
-			camp.setCeoInfo(ceoInfo);
+				camp.setCeoInfo(ceoInfo);
+			}
 		}
 
 		int pageNaviSize = 5;
@@ -90,10 +92,12 @@ public class AdminCampService {
 
 		ArrayList<Camp> list = dao.searchCampInfoList(start, end, searchCategory, search);
 
-		for (Camp camp : list) {
-			User user = userDao.selectCeoInfo(camp.getCeoId());
+		if (!list.isEmpty()) {
+			for (Camp camp : list) {
+				User user = userDao.selectCeoInfo(camp.getCeoId());
 
-			camp.setCeoInfo(user);
+				camp.setCeoInfo(user);
+			}
 		}
 
 		int pageNaviSize = 5;
@@ -129,6 +133,66 @@ public class AdminCampService {
 	@Transactional
 	public int deleteCampInfo(int campNo) {
 		return dao.deleteCampInfo(campNo);
+	}
+
+	/* 
+	 * ***************************************************************************
+	 * Temp Camp Info List
+	 * ***************************************************************************
+	*/
+	public Camp selectTempCampInfo(int campNo) {
+		Camp campInfo = dao.selectTempCampInfo(campNo);
+
+		campInfo.setCampEnv(dao.selectTempCampEnv(campNo));
+		campInfo.setCampFiles(dao.selectTempCampFiles(campNo));
+		campInfo.setCeoInfo(userDao.selectCeoInfo(campInfo.getCeoId()));
+
+		return campInfo;
+	}
+
+	public AdminCampInfoPageData selectTempCampList(int reqPage) {
+		int totalTempCamp = dao.getTotalTempCampCount();
+		int numPerPage = 10;
+		int totalPage = (totalTempCamp / numPerPage) == 0 ? (totalTempCamp / numPerPage)
+				: (totalTempCamp / numPerPage) + 1;
+		int start = (reqPage - 1) * numPerPage + 1;
+		int end = reqPage * numPerPage;
+
+		ArrayList<Camp> list = dao.selectTempCampInfoList(start, end);
+
+		if (!list.isEmpty()) {
+			for (Camp camp : list) {
+				User user = userDao.selectCeoInfo(camp.getCeoId());
+
+				camp.setCeoInfo(user);
+			}
+		}
+
+		int pageNaviSize = 5;
+		String pageNavi = "";
+		int pageNo = ((reqPage - 1) / pageNaviSize) * pageNaviSize + 1;
+
+		if (pageNo != 1) {
+			pageNavi += "<a class='btn' href='/selectTempCampList.do?reqPage=" + (pageNo - 1) + "'>이전</a>";
+		}
+
+		for (int i = 0; i < pageNaviSize; i++) {
+			if (reqPage == pageNo) {
+				pageNavi += "<span class='selectPage'>" + pageNo + "</span>";
+			} else {
+				pageNavi += "<a class='btn' href='/selectTempCampList.do?reqPage=" + pageNo + "'>" + pageNo + "</a>";
+			}
+			pageNo++;
+			if (pageNo > totalPage)
+				break;
+		}
+
+		if (pageNo <= totalPage) {
+			pageNavi += "<a class='btn' href='/selectTempCampList.do?reqPage=" + pageNo + "'>다음</a>";
+		}
+		AdminCampInfoPageData acipd = new AdminCampInfoPageData(list, pageNavi);
+
+		return acipd;
 	}
 
 }

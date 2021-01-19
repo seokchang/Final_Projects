@@ -48,7 +48,15 @@
 							<tr>
 								<th>첨부파일</th>
 								<td colspan="3">
-									<input type="file" name="noticeFile">
+									<input type="file" name="noticeFile" onchange="LoadImg(this)">
+								</td>
+							</tr>
+							<tr>
+								<th>이미지</th>
+								<td colspan="3">
+									<div style="text-align: left;">
+										<img id="img-view" src="" style="width: 20%;">
+									</div>
 								</td>
 							</tr>
 							<tr>
@@ -74,5 +82,6 @@
 	</div>
 
 	<link rel="stylesheet" href="/resources/css/admin/adminDesignCommon.css">
+	<script type="text/javascript" src="/resources/js/admin/imgPreView.js"></script>
 </body>
 </html>
