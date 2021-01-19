@@ -21,8 +21,8 @@
 	<a href="/customerNoticeList.do?reqPage=1">공지사항</a>
 	<a href="/mainCeoNoticeList.do?reqPage=1">사장님공지사항</a>
 	<a href="/campList.do?reqPage=1">캠핑장리스트</a>
-	<a href="/faqList.do?reqPage=1">client FAQ</a>
-	<a href="/campList.do?reqPage=1">캠핑장리스트</a>
+	<a href="/faqList.do?reqPage=1&faqUser=client">client FAQ</a>
+	<a href="/faqList.do?reqPage=1&faqUser=ceo">ceo FAQ</a>
 	<hr>
 	<h3>고객</h3>
 	<a href="/mypage.do?userNo=${sessionScope.user.userNo }">마이페이지</a>
