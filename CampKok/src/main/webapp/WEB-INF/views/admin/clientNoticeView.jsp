@@ -52,7 +52,15 @@
 									<c:if test="${not empty clientNotice.clientNoticeFilePath }">
 										<span id="fileInfo">${clientNotice.clientNoticeFilePath }</span>
 									</c:if>
-									<input type="file" name="clientNoticeFile" value="${clientNotice.clientNoticeFilePath }">
+									<input type="file" name="clientNoticeFile" value="${clientNotice.clientNoticeFilePath }" onchange="LoadImg(this)">
+								</td>
+							</tr>
+							<tr>
+								<th>이미지</th>
+								<td colspan="3">
+									<div style="text-align: left;">
+										<img id="img-view" src="/imgPreview.do?filePath=${clientNotice.clientNoticeFilePath }" style="width: 20%;">
+									</div>
 								</td>
 							</tr>
 							<tr>
@@ -80,5 +88,6 @@
 	</div>
 
 	<link rel="stylesheet" href="/resources/css/admin/adminDesignCommon.css">
+	<script type="text/javascript" src="/resources/js/admin/imgPreView.js"></script>
 </body>
 </html>

@@ -1,7 +1,13 @@
 package com.campkok.admin.common;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -52,5 +58,23 @@ public class AdminPageController {
 		model.addAttribute("boardInfoList", boardInfoList);
 
 		return "/admin/admin";
+	}
+
+	@RequestMapping("/imgPreview.do")
+	public void imgPreview(String filePath, HttpServletResponse response) {
+		String path = "file:///Users/seohong/Desktop/HSC/Projects/02_Final_Project/02_uploadFiles/";
+		StringBuilder sb = new StringBuilder(path);
+		sb.append(filePath);
+
+		try {
+			URL fileUrl = new URL(sb.toString());
+			IOUtils.copy(fileUrl.openStream(), response.getOutputStream());
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException ie) {
+			// TODO Auto-generated catch block
+			ie.printStackTrace();
+		}
 	}
 }

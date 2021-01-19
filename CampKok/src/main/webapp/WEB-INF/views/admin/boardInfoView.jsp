@@ -40,6 +40,14 @@
 							<td colspan="3">${boardInfo.boardFilePath }</td>
 						</tr>
 						<tr>
+							<th>이미지</th>
+							<td colspan="3">
+								<div style="text-align: left;">
+									<img id="img-view" src="/imgPreview.do?filePath=${boardInfo.boardFilePath }" style="width: 20%;">
+								</div>
+							</td>
+						</tr>
+						<tr>
 							<th>내용</th>
 							<td colspan="3">
 								<textarea class="read-only" readonly="readonly" style="width: 100%">${boardInfo.boardContents }</textarea>

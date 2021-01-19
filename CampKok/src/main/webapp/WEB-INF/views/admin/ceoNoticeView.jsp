@@ -59,7 +59,7 @@
 								<th>이미지</th>
 								<td colspan="3">
 									<div style="text-align: left;">
-										<img id="img-view" src="" style="width: 20%;">
+										<img id="img-view" src="/imgPreview.do?filePath=${ceoNotice.ceoNoticeFilePath }" style="width: 20%;">
 									</div>
 								</td>
 							</tr>
