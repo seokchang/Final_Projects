@@ -89,57 +89,75 @@
 			<div class="searchbar">
 				<form action="/searchCampList.do" method="post">
 					<input type="text" name="keyword" placeholder="어느곳으로 캠핑을 떠나보시겠어요?">
-					<input type="hidden" name="reqPage" value="1">
-	            	<input type="hidden" name="searchSelect" value="campAddr">
+					<input type="hidden" name="reqPage" value="1"> <input
+						type="hidden" name="searchSelect" value="campAddr">
 					<button type="submit">검색</button>
 				</form>
 
 			</div>
-			<img src="resources/img/main/3e35dcbb689fea33c2ed122a2b05c07f.jpg">
+			<img src="/resources/img/main/3e35dcbb689fea33c2ed122a2b05c07f.jpg">
 		</div>
 
 		<div class="hr-sect">이런 캠핑장은 어떠세요?</div>
 		<div class="new-camping">
 			<div class="new-camping-content">
-				<div>
-					<img src="resources/img/main/3e35dcbb689fea33c2ed122a2b05c07f.jpg">
-				</div>
-				<p>[ 지역 ] 캠핑장이름</p>
+				<a href="#">
+					<div>
+						<img
+							src="/resources/img/main/3e35dcbb689fea33c2ed122a2b05c07f.jpg">
+					</div>
+					<p>[ 지역 ] 캠핑장이름</p>
+				</a>
 			</div>
 			<div class="new-camping-content">
-				<div>
-					<img src="resources/img/main/3e35dcbb689fea33c2ed122a2b05c07f.jpg">
-				</div>
-				<p>[ 지역 ] 캠핑장이름</p>
+				<a href="#">
+					<div>
+						<img
+							src="/resources/img/main/3e35dcbb689fea33c2ed122a2b05c07f.jpg">
+					</div>
+					<p>[ 지역 ] 캠핑장이름</p>
+				</a>
 			</div>
 			<div class="new-camping-content">
-				<div>
-					<img src="resources/img/main/3e35dcbb689fea33c2ed122a2b05c07f.jpg">
-				</div>
-				<p>[ 지역 ] 캠핑장이름</p>
+				<a href="#">
+					<div>
+						<img
+							src="/resources/img/main/3e35dcbb689fea33c2ed122a2b05c07f.jpg">
+					</div>
+					<p>[ 지역 ] 캠핑장이름</p>
+				</a>
 			</div>
 			<div class="new-camping-content">
-				<div>
-					<img src="resources/img/main/3e35dcbb689fea33c2ed122a2b05c07f.jpg">
-				</div>
-				<p>[ 지역 ] 캠핑장이름</p>
+				<a href="#">
+					<div>
+						<img
+							src="/resources/img/main/3e35dcbb689fea33c2ed122a2b05c07f.jpg">
+					</div>
+					<p>[ 지역 ] 캠핑장이름</p>
+				</a>
 			</div>
 			<div class="new-camping-content">
-				<div>
-					<img src="resources/img/main/3e35dcbb689fea33c2ed122a2b05c07f.jpg">
-				</div>
-				<p>[ 지역 ] 캠핑장이름</p>
+				<a href="#">
+					<div>
+						<img
+							src="/resources/img/main/3e35dcbb689fea33c2ed122a2b05c07f.jpg">
+					</div>
+					<p>[ 지역 ] 캠핑장이름</p>
+				</a>
 			</div>
 		</div>
 
 		<div class="hr-sect">새로운 캠핑장</div>
 		<div class="new-camping">
-			<c:forEach items="${newCampList }" var="newCamp" begin="0" end="4" step="1">
+			<c:forEach items="${newCampList }" var="newCamp" begin="0" end="4"
+				step="1">
 				<div class="new-camping-content">
-					<div>
-						<img src="resources/img/main/3e35dcbb689fea33c2ed122a2b05c07f.jpg">
-					</div>
-					<p><a href="#">[ 지역 ] ${newCamp.campName }</a></p>
+					<a href="/campView.do?campNo=${newCamp.campNo }">
+						<div>
+							<img src="/resources/img/camp/${newCamp.imgpath }">
+						</div>
+						<p>[ 지역 ] ${newCamp.campName }</p>
+					</a>
 				</div>
 			</c:forEach>
 		</div>
@@ -147,11 +165,11 @@
 		<div class="hr-sect">캠핑장 랭킹</div>
 		<div class="rank-camping-wrap">
 			<div class="rank-camping">
-				<c:forEach items="${campRanking }" var="rank" varStatus="vs" begin="0" end="9" step="1">
+				<c:forEach items="${campRanking }" var="rank" varStatus="vs"
+					begin="0" end="9" step="1">
 					<div class="rank-content">
 						<div>
-							<img
-								src="resources/img/main/best-free-camping-united-states-740x419.jpg">
+							<img src="/resources/img/camp/${rank.imgpath }">
 						</div>
 						<ul>
 							<li>
@@ -159,7 +177,7 @@
 							</li>
 							<li>${rank.campAddr }</li>
 							<li>★ ${rank.campStar }</li>
-							<li>${rank.campMinPrice }원 ~</li>
+							<li>${rank.campMinPrice }원~</li>
 						</ul>
 					</div>
 				</c:forEach>
@@ -169,51 +187,58 @@
 
 
 	<script>
-        $(document).ready(function() {
-            // header scroll fadin,out
-            var hdOffset = $('.header').offset();
-            $(window).scroll(function() {
-                if ($(document).scrollTop() > hdOffset.top) {
-                    $('#header-scroll').stop(true).animate({
-                        'opacity': 1
-                    }, 200);
-                } else {
-                    $('#header-scroll').stop(true).animate({
-                        'opacity': 0
-                    }, 200);
-                }
-            });
+		$(document).ready(function() {
+			// header scroll fadin,out
+			var hdOffset = $('.header').offset();
+			$(window).scroll(function() {
+				if ($(document).scrollTop() > hdOffset.top) {
+					$('#header-scroll').stop(true).animate({
+						'opacity' : 1
+					}, 200);
+				} else {
+					$('#header-scroll').stop(true).animate({
+						'opacity' : 0
+					}, 200);
+				}
+			});
 
-            // user-box show,hide
-            $("#user-btn-slide").click(function() {
-                if ($(".user-box").css("display") == "none") {
-                    /*$(this).css({'float':'right','background-color':'#2d2d2d'});*/
-                    // 버튼좀 스무스하게 움직이고 싶은데 마음대로 안되네
-                    $(".user-btn").css({'flex-direction':'row-reverse','transition-duration':'0.5s'});
-                    $(".user-box").fadeIn('fast');
-                } else {
-                    /*$(this).css({'float':'','background-color':'#fff'});*/
-                    $(this).css({'float':''});
-                    $(".user-btn").css({'flex-direction':'row'});
-                    // $(".user-btn").css({'backgroun-color':''});
-                    $(".user-box").fadeOut('fast');
-                }
-            });
+			// user-box show,hide
+			$("#user-btn-slide").click(function() {
+				if ($(".user-box").css("display") == "none") {
+					/*$(this).css({'float':'right','background-color':'#2d2d2d'});*/
+					// 버튼좀 스무스하게 움직이고 싶은데 마음대로 안되네
+					$(".user-btn").css({
+						'flex-direction' : 'row-reverse',
+						'transition-duration' : '0.5s'
+					});
+					$(".user-box").fadeIn('fast');
+				} else {
+					/*$(this).css({'float':'','background-color':'#fff'});*/
+					$(this).css({
+						'float' : ''
+					});
+					$(".user-btn").css({
+						'flex-direction' : 'row'
+					});
+					// $(".user-btn").css({'backgroun-color':''});
+					$(".user-box").fadeOut('fast');
+				}
+			});
 
-            /*
-            // header 메뉴 클릭했을때 bgco fix
-            $('nav').find('a').click(function() {
-                if ($('#header-scroll').css("opacity") == "0") {
-                    $("#header-scroll").animate({
-                        'opacity': 1
-                    }, 200);
-                } else if($(this).mouseleave()) {
-                    $("#header-scroll").css('opacity', '0');
-                }
-            });
-            */
-        });
-    </script>
+			/*
+			// header 메뉴 클릭했을때 bgco fix
+			$('nav').find('a').click(function() {
+			    if ($('#header-scroll').css("opacity") == "0") {
+			        $("#header-scroll").animate({
+			            'opacity': 1
+			        }, 200);
+			    } else if($(this).mouseleave()) {
+			        $("#header-scroll").css('opacity', '0');
+			    }
+			});
+			 */
+		});
+	</script>
 
 	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 </body>

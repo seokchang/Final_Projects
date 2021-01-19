@@ -182,6 +182,11 @@ nav>ul>li>a {
 	box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.4);
 	font-size: 18px;
 	opacity: 80%;
+	transition-duration: 0.5s;
+}
+
+.searchbar>form>input:focus{
+   	opacity: 100%;
 }
 
 .searchbar>form>button {
@@ -242,8 +247,14 @@ h3 {
 	width: 300px;
 	padding: 10px;
 }
-
-.new-camping-content>div {
+.new-camping-content>a{
+	text-decoration: none;
+	color: #232323;
+	font-size: 18px;
+	margin: 0 auto;
+	margin-top: 10px;
+}
+.new-camping-content>a>div {
 	overflow: hidden;
 	width: 300px;
 	height: 300px;
@@ -252,25 +263,20 @@ h3 {
 	text-align: center
 }
 
-.new-camping-content>div>img {
+.new-camping-content>a>div>img {
 	height: 100%;
 	display: inline;
 	transition-duration: 0.5s;
 }
 
-.new-camping-content>div>img:hover {
+.new-camping-content>a>div>img:hover {
 	height: 105%;
 }
 
-.new-camping-content>div:hover {
+.new-camping-content>a>div:hover {
 	box-shadow: 1px 1px 3px 1px lightgrey;
 }
 
-.new-camping-content>p {
-	margin: 0 auto;
-	margin-top: 10px;
-	font-size: 20px;
-}
 
 /* ranking */
 .rank-camping-wrap {
@@ -303,11 +309,11 @@ h3 {
 	width: 200px;
 	height: 200px;
 	overflow: hidden;
+	border: 1px solid #ccc;
 }
 
 .rank-content>div>img {
 	height: 100%;
-	border: 1px solid #ccc;
 }
 
 .rank-content>ul {

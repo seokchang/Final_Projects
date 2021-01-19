@@ -42,6 +42,7 @@ public class CampListController {
 	// 캠핑장 상세페이지
 	@RequestMapping("/campView.do")
 	public String selectOneCamp(int campNo, Model model) {
+		System.out.println("캠핑장 번호:"+campNo);
 		CampList cl = service.selectOneCamp(campNo);
 		model.addAttribute("cl",cl);
 		return "user/campView";

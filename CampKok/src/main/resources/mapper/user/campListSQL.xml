@@ -16,7 +16,8 @@
 		    camp_ctg as campCtg,
 		    campenv.env_name as campEnv,
 		    (select min(room_price) from camproom where camp_no = camp.camp_no) as campMinPrice,
-		    (select round(avg(rev_star),1) from review where camp_no = camp.camp_no) as campStar
+		    (select round(avg(rev_star),1) from review where camp_no = camp.camp_no) as campStar,
+		    (select camp_filepath from file_tbl where file_no = (select min(file_no) from file_tbl where camp_no = camp.camp_no)) as imgpath
 		from camp full join campenv on (camp.camp_no = campenv.camp_no)
 	)c)
 	where rnum between ${start} and ${end}
@@ -27,8 +28,18 @@
   		select count(*) from camp
   </select>
   
+  <!-- 캠핑장 이미지 -->
+  <select id="selectCampFiles" parameterType="_int" resultType="campFile">
+  	select
+		file_no as fileNo,
+		camp_no as campNo,
+		camp_filename as campFileName,
+		camp_filepath as campFilePath
+	from file_tbl where camp_no = #{_parameter}
+	</select>
+  
   <!-- 캠핑장 상세보기 -->
-  <select id="selectOneCamp" parameterType="string" resultType="camplist">
+  <select id="selectOneCamp" parameterType="_int" resultType="camplist">
   	select
   		camp_no as campNo,
   		ceo_id as ceoId,
@@ -69,7 +80,8 @@
 	    camp_ctg as campCtg,
 	    campenv.env_name as campEnv,
 	    (select min(room_price) from camproom where camp_no = camp.camp_no) as campMinPrice,
-	    (select round(avg(rev_star),1) from review where camp_no = camp.camp_no) as campStar
+	    (select round(avg(rev_star),1) from review where camp_no = camp.camp_no) as campStar,
+	    (select camp_filepath from file_tbl where file_no = (select min(file_no) from file_tbl where camp_no = camp.camp_no)) as imgpath
 	from camp full join campenv on (camp.camp_no = campenv.camp_no) where 
 		<choose>
 			<when test="searchSelect.equals('campName')">
@@ -101,7 +113,8 @@
 	    camp_ctg as campCtg,
 	    campenv.env_name as campEnv,
 	    (select min(room_price) from camproom where camp_no = camp.camp_no) as campMinPrice,
-	    (select round(avg(rev_star),1) from review where camp_no = camp.camp_no) as campStar
+	    (select round(avg(rev_star),1) from review where camp_no = camp.camp_no) as campStar,
+	    (select camp_filepath from file_tbl where file_no = (select min(file_no) from file_tbl where camp_no = camp.camp_no)) as imgpath
 	from camp full join campenv on (camp.camp_no = campenv.camp_no) order by camp.camp_no desc
   </select>
   
@@ -118,7 +131,8 @@
 	    campenv.env_name as campEnv,
 	    (select min(room_price) from camproom where camp_no = camp.camp_no) as campMinPrice,
 	    (select round(avg(rev_star),1) from review where camp_no = camp.camp_no) as campStar,
-	    (select sum(res_count) from reservation where camp_no = camp.camp_no) as resCount
+	    (select sum(res_count) from reservation where camp_no = camp.camp_no) as resCount,
+	    (select camp_filepath from file_tbl where file_no = (select min(file_no) from file_tbl where camp_no = camp.camp_no)) as imgpath
 	from camp full join campenv 
 	on (camp.camp_no = campenv.camp_no) order by resCount
   </select>

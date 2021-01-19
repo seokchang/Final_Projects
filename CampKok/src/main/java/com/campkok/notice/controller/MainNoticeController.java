@@ -25,19 +25,15 @@ public class MainNoticeController {
 	@RequestMapping("/customerNoticeList.do")
 	public String selectCustomerNoticeList(int reqPage, Model model) {
 		ClientNoticePageData cnpd = service.selectClientNoticeList(reqPage);
-		
 		model.addAttribute("list", cnpd.getList());
 		model.addAttribute("pageNavi", cnpd.getPageNavi());
-
 		return "notice/customer/noticeList";
 	}
 	
 	@RequestMapping("/selectCustomerNotice.do")
 	public String selectClientNotice(int clientNoticeNo, Model model) {
 		ClientNotice clientNotice = nService.selectClientNotice(clientNoticeNo);
-
 		model.addAttribute("clientNotice", clientNotice);
-
 		return "notice/customer/noticeView";
 	}
 	
@@ -45,19 +41,16 @@ public class MainNoticeController {
 	@RequestMapping("/mainCeoNoticeList.do")
 	public String selectCeoNoticeList(int reqPage, Model model) {
 		CeoNoticePageData cnpd = service.selectMainCeoNoticeList(reqPage);
-		
 		model.addAttribute("list", cnpd.getList());
 		model.addAttribute("pageNavi", cnpd.getpageNavi());
-
 		return "notice/ceo/noticeList";
 	}
 	
 	@RequestMapping("/selectMainCeoNotice.do")
 	public String selectMainCeoNotice(int ceoNoticeNo, Model model) {
 		CeoNotice ceoNotice = nService.selectCeoNotice(ceoNoticeNo);
-
 		model.addAttribute("ceoNotice", ceoNotice);
-
 		return "notice/ceo/noticeView";
 	}
+	
 }
