@@ -15,7 +15,7 @@
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
     <!-- 네이버 지도 API -->
-    <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=m3nqauulpe&submodules=geocoder"></script>
+    <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=bxltou71l0&submodules=geocoder"></script>
 </head>
 
 <body>
@@ -114,7 +114,7 @@
 
             <div class="hr-sect">찾아오시는 길</div>
             <div>
-                <p>경기도 고양시 고양구</p>
+                <p id="address">경기도 고양시 고양구</p>
                 <div id="map" style="width: 1140px; height: 400px;border: 1px solid"></div>
             </div>
         </div>
@@ -181,9 +181,9 @@
 
             //최초 중심지 주소
             var contentString = [
-                '<div class="iw_inner">',
-                '	<h3>KH정보교육원</h3>',
-                '	<p>서울시 영등포구 선유2로 57 이레빌딩 19F, 20F</p>',
+                '<div class="iw_inner" style="padding:10px;">',
+                '	<h4>${cl.campName }</h4>',
+                '	<p>${cl.campAddr }</p>',
                 '</div>'
             ].join('');
 
