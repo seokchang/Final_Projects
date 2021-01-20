@@ -58,9 +58,11 @@
 							<tr>
 								<th>이미지</th>
 								<td colspan="3">
-									<div style="text-align: left;">
-										<img id="img-view" src="/imgPreview.do?filePath=${clientNotice.clientNoticeFilePath }" style="width: 20%;">
-									</div>
+									<c:if test="${not empty clientNotice.clientNoticeFilePath }">
+										<div style="text-align: left;">
+											<img id="img-view" src="/imgPreview.do?filePath=${clientNotice.clientNoticeFilePath }" style="width: 20%;">
+										</div>
+									</c:if>
 								</td>
 							</tr>
 							<tr>

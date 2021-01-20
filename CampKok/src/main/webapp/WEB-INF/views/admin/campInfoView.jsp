@@ -60,18 +60,20 @@
 						<tr>
 							<th>이미지</th>
 							<td colspan="3">
-								<div style="text-align: left;">
-									<c:forEach items="${campInfo.campFiles }" var="campFile">
-										<img id="img-view" src="/imgPreview.do?filePath=${campFile.campFilePath }" style="width: 20%;">
-									</c:forEach>
-								</div>
+								<c:if test="${not empty campFile.campFilePath }">
+									<div style="text-align: left;">
+										<c:forEach items="${campInfo.campFiles }" var="campFile">
+											<img id="img-view" src="/imgPreview.do?filePath=${campFile.campFilePath }" style="width: 20%;">
+										</c:forEach>
+									</div>
+								</c:if>
 							</td>
 						</tr>
 					</table>
 				</div>
-				<div class="camp-fac-info" style="margin-top: 30px;">
-					<h1>주변 이용시설</h1>
-					<hr>
+				<div class="camp-fac-info">
+					<h1 style="margin: 0 auto;">주변 이용시설</h1>
+					<hr style="margin-left: 0;">
 					<table class="table table-striped">
 						<tr>
 							<th>이용시설</th>
@@ -86,9 +88,11 @@
 						<tr>
 							<th>이미지</th>
 							<td colspan="3">
-								<div style="text-align: left;">
-									<img id="img-view" src="/imgPreview.do?filePath=${campInfo.campEnv.envFilePath }" style="width: 20%;">
-								</div>
+								<c:if test="${not empty campInfo.campEnv.envFilePath }">
+									<div style="text-align: left;">
+										<img id="img-view" src="/imgPreview.do?filePath=${campInfo.campEnv.envFilePath }" style="width: 20%;">
+									</div>
+								</c:if>
 							</td>
 						</tr>
 					</table>

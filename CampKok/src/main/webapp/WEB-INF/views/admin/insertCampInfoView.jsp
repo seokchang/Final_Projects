@@ -126,9 +126,11 @@
 							<tr>
 								<th>이미지 미리보기</th>
 								<td colspan="3">
-									<div style="text-align: left;">
-										<img id="img-view" src="/imgPreview.do?filePath=${campInfo.campEnv.envFilePath }" style="width: 20%">
-									</div>
+									<c:if test="${not empty campInfo.campEnv.envFilePath }">
+										<div style="text-align: left;">
+											<img id="img-view" src="/imgPreview.do?filePath=${campInfo.campEnv.envFilePath }" style="width: 20%">
+										</div>
+									</c:if>
 								</td>
 							</tr>
 							<tr>

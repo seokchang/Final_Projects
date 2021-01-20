@@ -91,9 +91,9 @@
 					</form>
 				</div>
 				<c:if test="${not empty ceoInfo.camp }">
-					<div class="camp-info" style="margin-top: 30px;">
-						<h1>캠핑장 정보</h1>
-						<hr>
+					<div class="camp-info">
+						<h1 style="margin: 0 auto;">캠핑장 정보</h1>
+						<hr style="margin-left: 0;">
 						<table class="table table-striped">
 							<tr>
 								<th>사업자 아이디</th>

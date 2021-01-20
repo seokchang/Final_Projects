@@ -34,7 +34,6 @@
 				<li><a href="/selectFAQInfoList.do?reqPage=1">FAQ 리스트</a></li>
 			</ul></li>
 		<li><a href="/pageChart.do">통계</a></li>
-		<li><a href="#">1:1채팅</a></li>
 	</ul>
 
 	<script type="text/javascript" src="http://code.jquery.com/jquery-3.5.1.js"></script>
