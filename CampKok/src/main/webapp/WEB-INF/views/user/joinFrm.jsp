@@ -29,7 +29,7 @@
                         <td><label>아이디</label></td>
                         <td><input type="text" name="userId" placeholder="5~20자의 영문 소문자, 숫자와 특수기호'_','-'만 사용 가능합니다."></td>
                     </tr>
-                    <tr id="chkId">
+                    <tr style="display: none;" id="chkId">
                         <td></td>
                         <td style="padding: 0px; padding-left: 10px; padding-bottom: 5px;"><span id="chkIdMsg"></span></td>
                     </tr>
@@ -242,8 +242,8 @@
 
                 <div>
                     <p><input type="checkbox" class="chk" id="chk_all"><b> 약관전체동의</b></p>
-                    <p><input type="checkbox" class="chk" name="chk"> 이용약관에 동의합니다. (필수)</p>
-                    <p><input type="checkbox" class="chk" name="chk"> 개인정보 처리방침에 동의합니다. (필수)</p>
+                    <p><input type="checkbox" class="chk" name="chk" id="chk1"> 이용약관에 동의합니다. (필수)</p>
+                    <p><input type="checkbox" class="chk" name="chk" id="chk2"> 개인정보 처리방침에 동의합니다. (필수)</p>
                 </div>
 
                 <button type="submit">가입하기</button>
@@ -266,15 +266,24 @@
 	    		 } 
 	    	  }).open();
 	      }
-		$(document).ready(function() {
-			$("[type=submit]").click(function(){
-				var ra = $( '#roadAddr' ).val();
-				var da = $( '#detailAddr' ).val();
-				const str = ra +' '+ da;
-				$("#userAddr").val(str);
-			});
+		
+		$(function(){
+			if($("input:checkbox[id='chk_all']").is(":checked")){
+			     $("input:checkbox[id='chk1']").attr("checked", true);
+			     $("input:checkbox[id='chk2']").attr("checked", true);
+	
+			}else{
+			     $("input:checkbox[id='chk1']").attr("checked", false);
+			     $("input:checkbox[id='chk2']").attr("checked", false);
+			}
+			
+			if($("input:checkbox[name='chk']").is(":checked") == true){
+			    console.log('체크된 상태');
+			}
+			if($("input:checkbox[name='chk']").is(":checked") == false ){
+			    console.log('체크x');
+			}
 		});
-    	
 
         $(document).ready(function() {
             // 배열로 처리
@@ -286,40 +295,40 @@
             
     	
              $('[name=userId]').keyup(function() {
-                 $("#chkId").css('display','none');
  				$("#chkIdMsg").html("");
-            	 
-            	 /* 아이디 중복체크 */
-            	 var userId = $(this).val();
-     			$.ajax({
-     				url : "/checkId.do",
-     				data : {userId:userId},
-     				success : function(data){
-     					if($(this).val() != "" || data == 0){
-     						$("#chkId").css('display','');
-     						$("#chkIdMsg").html("멋진 아이디네요!");
-     					}else if($(this).val() == ""){
-     	                    $("#chkId").css('display','');
-     						$("#chkIdMsg").html("아이디를 입력해주세요.");
-     	                } else if($(this).val() != "" || data == 1){
-     						$("#chkId").css('display','');
-     						$("#chkIdMsg").html("이미 사용중인 아이디 입니다.");
-     					}
-     				}
-     			});
-            	 
-            	 
+                $("#chkId").css('display','none');
                 var reg = /^[a-z][a-z0-9_-]{4,19}$/;
                 if (reg.test($(this).val())) {
-                    check[0] = true;
+                    //check[0] = true;
+                	var userId = $(this).val();
+        			 $.ajax({
+        				url : "/checkId.do",
+        				data : {userId:userId},
+        				success : function(data){
+        					if($(this).val() != "" && data == 0){
+        						$("#chkId").css('display','');
+        						$("#chkIdMsg").html("멋진 아이디네요!");
+        						check[0] = true;
+        					}else if($(this).val() == ""){
+        	                    $("#chkId").css('display','');
+        						$("#chkIdMsg").html("아이디를 입력해주세요.");
+        						check[0] = false;
+        	                } else if($(this).val() != "" && data == 1){
+        						$("#chkId").css('display','');
+        						$("#chkIdMsg").html("이미 사용중인 아이디 입니다.");
+        						check[0] = false;
+        					}
+        				}
+        			}); 
                 } else {
                     check[0] = false;
                     $("#chkId").css('display','');
 					$("#chkIdMsg").html("5~20자의 영문 소문자, 숫자와 특수기호'_','-'만 사용 가능합니다.");
                 }
             }); 
+            
             $('[name=userName]').keyup(function() {
-                $(this).prevAll().last().children().html("");
+            	$("#chkNameMsg").html("");
                 var reg = /^[가-힣]{2,4}$/;
                 if (reg.test($(this).val())) {
                     check[1] = true;
@@ -330,6 +339,7 @@
 					$("#chkNameMsg").html("한글 2~4글자만 사용 가능합니다.");
                 }
             });
+            
             $('[name=userPw]').change(function() {
                 $(this).prevAll().last().children().html("");
                 var reg = /^[A-Za-z0-9_-]{6,18}$/;
@@ -342,6 +352,7 @@
 					$("#chkPwMsg").html("영문대소문자+숫자 6~18자리만 사용 가능합니다.");
                 }
             });
+            
             $('[name=userPwChk]').change(function() {
                 $(this).prevAll().last().children().html("");
                 console.log($('[name=userPw]').val());
@@ -354,29 +365,16 @@
 					$("#chkchkPwMsg").html("비밀번호가 일치하지 않습니다.");
                 }
             });
-            /*$('[name=userAddr]').change(function() {
-                if ((this).val() != null) {
-                    check[4] = true;
-                    $("#chkAddr").css('display','none');
-                } else {
-                    check[4] = false;
-                    $("#chkAddr").css('display','');
-					$("#chkAddrMsg").html("주소를 입력해 주세요.");
-                }
-            });*/
             
             
-            $('#roadAddr').change(function() {
-                if ((this).val() == null) {
-                	check[4] = false;
-                    $("#chkAddr").css('display','');
-					$("#chkAddrMsg").html("주소를 입력해 주세요.");
-                } 
-                check[4] = true;
-            	alert('입력성공');
-                $("#chkAddr").css('display','');
-				$("#chkAddrMsg").html("입력성공");
-            });
+            $(".chk").click(function(){
+				var ra = $( '#roadAddr' ).val();
+				var da = $( '#detailAddr' ).val();
+				const str = ra +' '+ da;
+				$("#userAddr").val(str);
+				check[4] = true;
+				console.log(check);
+			});
             
             
             $('[name=userPhone]').change(function() {
@@ -391,6 +389,7 @@
 					$("#chkPhoneMsg").html("입력형식'010-0000-0000'에 맞춰 입력해주세요.");
                 }
             });
+            
             
             $('[name=userBirth]').change(function() {
                 $(this).prevAll().last().children().html("");
@@ -427,7 +426,7 @@
                     }
                 }
                 if (count < 7) {
-                	alert('입력값을 확인 해 주세요');
+                	alert('입력값을 확인해 주세요');
                     return false;
                 }
             });

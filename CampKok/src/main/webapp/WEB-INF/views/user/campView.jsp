@@ -7,10 +7,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-	<!-- Swiper -->
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css">
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
-
     <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
@@ -78,9 +74,6 @@
                                 </ul> --%>
                                 <ul>
                                     <li>${cl.campFac }</li>
-                                    <li>test</li>
-                                    <li>test</li>
-                                    <li>test</li>
                                 </ul>
                             </div>
                         </td>
@@ -116,88 +109,81 @@
 
     </div>
 
+
     <script>
         window.onload = function() {
+        	let campAddr = '${cl.campAddr}'
+        	
+        	naver.maps.Service.geocode({
+		        query: campAddr // String 타입의 주소값
+		    }, function(status, response) {
+		        if (status !== naver.maps.Service.Status.OK) {
+		            // 실행이 되지 않을 경우 
+                    return alert('Something wrong!');
+                    
+		        }
+				
+                // 제대로 된 query가 들어가 결과가 나올 경우 
+		        var result = response.v2, // 검색 결과의 컨테이너
+		            items = result.addresses; // 검색 결과의 배열
+				/* alert(items[0].x+', '+items[0].y+', '+typeof items[0].x+', '+typeof items[0].y); */
+		            
+		        
+		    	//지도에 마커찍기 
+		    	let x = parseFloat(items[0].x); // 경도
+		    	let y = parseFloat(items[0].y); // 위도 
+		    	
+		    	
+                // 지도 띄우기 
+		    	var map = new naver.maps.Map('map', {
+		    	    center: new naver.maps.LatLng(y, x),
+		    	    zoom: 19,
+		    	    zoomControl: true, //지도 확대,축소 컨트롤러
+	                zoomControlOptions: {
+	                    position: naver.maps.Position.TOP_RIGHT, //컨트롤러 위치 설정 (우측상단)
+	                    style: naver.maps.ZoomControlStyle.SMALL //컨트롤러 크기 설정 (작게)
+	                }
+		    	});
+				
+                // 마커 찍기 
+		    	var marker = new naver.maps.Marker({
+		    	    position: new naver.maps.LatLng(y, x),
+		    	    map: map
+		    	});
+		
+		    	// 최초 중심지 주소
+	            var contentString = [
+	                '<div class="iw_inner" style="padding:10px;">',
+	                '	<h4>${cl.campName }</h4>',
+	                '	<p>${cl.campAddr }</p>',
+	                '</div>'
+	            ].join('');
 
-            //div id="map"에 네이버 지도를 넣어줘..
-            //var map = new naver.maps.Map("map")
-            //아무 값도 지정하지 않고 지도객체를 불러오면 서울 시청을 중심으로 불러와짐
-            var map = new naver.maps.Map("map", {
-                center: new naver.maps.LatLng(37.533801, 126.896772), //지도 중심좌표 설정
-                zoom: 17, //지도 확대해서 보여주는 설정
-                zoomControl: true, //지도 확대,축소 컨트롤러
-                zoomControlOptions: {
-                    position: naver.maps.Position.TOP_RIGHT, //컨트롤러 위치 설정 (우측상단)
-                    style: naver.maps.ZoomControlStyle.SMALL //컨트롤러 크기 설정 (작게)
-                }
-            });
-
-            //마커 추가(내위치 표시하는 파란 표시)
-            var marker = new naver.maps.Marker({
-                position: new naver.maps.LatLng(37.533801, 126.896772), //마커위치
-                map: map //어떤 지도에 마커를 추가할지 설정
-            });
-
-            //지도에 클릭이벤트 추가
-            naver.maps.Event.addListener(map, "click", function(e) {
-                //클릭한 곳으로 마커 이동
-                //e.coord : 클릭한 위치의 위경도 값
-                marker.setPosition(e.coord);
-
-                //정보창이 열린 상태로 이동하면 닫아주기
-                if (infoWindow != null) {
-                    if (infoWindow.getMap()) {
-                        infoWindow.close();
-                    }
-                }
-
-                //위치! 클릭함수 안에
-                //위경도 좌표를 주소로 가져오는 기능 reverseGeocode -> submodule추가
-                naver.maps.Service.reverseGeocode({
-                    location: new naver.maps.LatLng(e.coord.lat(), e.coord.lng()), //위경도 좌표를 이용해서 주소 요청
-
-                }, function(status, response) {
-                    //오류일 때
-                    if (status != naver.maps.Service.Status.OK) {
-                        return alert("주소검색오류");
-                    }
-                    //정상일 때
-                    var result = response.result;
-                    var items = result.items; //json형태로 주소값을 가지고 옴
-                    var address = items[1].address; //[0]지번, [1]도로명
-                    contentString = [
-                        '<div class="iw_inner">',
-                        '	<p>' + address + '</p>',
-                        '</div>'
-                    ].join('');
-                });
-
-            });
-
-            //최초 중심지 주소
-            var contentString = [
-                '<div class="iw_inner" style="padding:10px;">',
-                '	<h4>${cl.campName }</h4>',
-                '	<p>${cl.campAddr }</p>',
-                '</div>'
-            ].join('');
-
-            var infoWindow = new naver.maps.InfoWindow();
-            naver.maps.Event.addListener(marker, 'click', function(e) {
-                if (infoWindow.getMap()) { //현재 정보창이 열려있으면
-                    infoWindow.close(); //열려있는 정보창 닫기
-                } else {
-                    infoWindow = new naver.maps.InfoWindow({
-                        content: contentString
-                    });
-                    infoWindow.open(map, marker);
-                }
-            });
+	            var infoWindow = new naver.maps.InfoWindow();
+	            naver.maps.Event.addListener(marker, 'click', function(e) {
+	                if (infoWindow.getMap()) { //현재 정보창이 열려있으면
+	                    infoWindow.close(); //열려있는 정보창 닫기
+	                } else {
+	                    infoWindow = new naver.maps.InfoWindow({
+	                        content: contentString
+	                    });
+	                    infoWindow.open(map, marker);
+	                }
+	            });
+                
+                
+		    });
+        	
 
         }
     </script>
     
     <jsp:include page="/WEB-INF/views/common/footer.jsp" />
+    
+
+	<!-- Swiper -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
     
     <link rel="stylesheet" href="/resources/css/user/campView.css">
 <style>

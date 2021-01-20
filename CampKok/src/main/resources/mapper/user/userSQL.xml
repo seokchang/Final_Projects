@@ -25,7 +25,7 @@
 			user_id as userId,
 			user_pw as userPw,
 			user_name as userName,
-			user_Phone as userPhone,
+			user_phone as userPhone,
 			user_level as userLevel,
 			user_birth as userBirth,
 			user_date as userDate,
@@ -42,5 +42,17 @@
 		from user_tbl where user_id=#{userId}
 	</select>
 	
+	<!-- 아이디 찾기 -->
+	<select id="findUserId" parameterType="u" resultType="u">
+		select
+			user_id as userId
+		from user_tbl where user_name=#{userName} and user_phone=#{userPhone}
+	</select>
 	
+	<!-- 비번 찾기 -->
+	<select id="findUserPw" parameterType="u" resultType="u">
+		select
+			user_pw as userPw
+		from user_tbl where user_name=#{userName} and user_id=#{userId} and user_phone=#{userPhone}
+	</select>
 </mapper>

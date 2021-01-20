@@ -5,9 +5,6 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.campkok.admin.board.model.dao.AdminBoardDao;
-import com.campkok.admin.board.model.vo.AdminFAQInfoPageData;
-import com.campkok.admin.board.model.vo.FAQ;
 import com.campkok.admin.notice.model.dao.AdminNoticeDao;
 import com.campkok.admin.notice.model.vo.CeoNotice;
 import com.campkok.admin.notice.model.vo.CeoNoticePageData;
@@ -19,9 +16,6 @@ public class MainNoticeService {
 	@Autowired
 	private AdminNoticeDao adminDao;
 	
-	@Autowired
-	private AdminBoardDao abDao;
-
 	public ClientNoticePageData selectClientNoticeList(int reqPage) {
 		int totalClientNotice = adminDao.getTotalClientNotice();
 		int numPerPage = 10;

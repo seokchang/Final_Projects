@@ -26,4 +26,14 @@ public class UserDao {
 	public UserVO checkId(UserVO u) {
 		return sqlSession.selectOne("user.checkId",u);
 	}
+
+	// 아이디 찾기
+	public UserVO findUserId(UserVO u) {
+		return sqlSession.selectOne("user.findUserId",u);
+	}
+	
+	// 비번 찾기
+	public UserVO findUserPw(UserVO u) {
+		return sqlSession.selectOne("user.findUserPw",u);
+	}
 }
