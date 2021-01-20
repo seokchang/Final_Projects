@@ -64,7 +64,7 @@
             box-shadow: 0px 0.5px 1.5px darkgray inset;
         }
         input[type=submit] {
-            display: block;
+            display:  inline-block;
             background-color: #405944;
             width: 200px;
             color: #fff;
@@ -198,4 +198,22 @@
         	border-radius: 5px;
         	background-color: white;
         	margin:5px;
+        }
+        .pageNavi a:hover{
+            text-decoration-line: none;
+            color: #f3d479;
+        }
+        .delete-btn{
+        	    display: block;
+    background-color: #405944;
+    width: 200px;
+    color: #fff;
+    text-decoration: none;
+    text-align: center;
+    height: 50px;
+    line-height: 50px;
+    padding: 0;
+    border: none;
+    font-size: 16px;
+    margin: 0 auto;
         }

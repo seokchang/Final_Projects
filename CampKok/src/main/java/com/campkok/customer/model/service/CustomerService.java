@@ -31,7 +31,7 @@ public class CustomerService {
 		return dao.updateCustomer(u);
 	}
 
-	public ReservationVO selectOneReserve(int userNo) {
+	public ArrayList<ReservationVO> selectOneReserve(int userNo) {
 		// TODO Auto-generated method stub
 		return dao.selectOneReserve(userNo);
 	}
@@ -155,6 +155,11 @@ public class CustomerService {
 	public int updateDm(int dmNo) {
 		// TODO Auto-generated method stub
 		return dao.updateDm(dmNo);
+	}
+
+	public int deleteCustomer(int userNo) {
+		// TODO Auto-generated method stub
+		return dao.deleteCustomer(userNo);
 	}
 
 }

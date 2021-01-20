@@ -7,7 +7,45 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
     <link rel="stylesheet" href="/resources/css/customer/mypage.css">
+<style>
+	.modify-btn{
+		margin:0 auto;
+		text-align: center;
+	}
+        .delete-btn{
+        	    display: inline-block;
+    background-color: #bf372b;
+    width: 200px;
+    color: #fff;
+    text-decoration: none;
+    text-align: center;
+    height: 50px;
+    line-height: 50px;
+    padding: 0;
+    border: none;
+    font-size: 16px;
+        }
+          .delete-btn:hover {
+            color: #bf372b;
+            text-decoration: none;
+            background-color: #fff;
+            border: 1px solid #bf372b;
 
+        }
+                input[type=submit] {
+            display:  inline-block;
+            background-color: #405944;
+            width: 200px;
+            color: #fff;
+            text-decoration: none;
+            text-align: center;
+            height: 50px;
+            line-height: 50px;
+            padding: 0;
+            border: none;
+            font-size: 16px;
+        }
+</style>
 </head>
 
 <body>
@@ -76,7 +114,9 @@
                
                 <div class="modify-btn">
  					<input type="submit" value="수정">
+ 					<a href="/delete.do?userNo=${u.userNo }" class="delete-btn">탈퇴</a>	
                 </div>
+                
             </form>
 
         </div>
