@@ -115,4 +115,18 @@ public class AdminCampController {
 		return "/admin/insertCampInfoList";
 	}
 
+	@RequestMapping("/deleteTempCampInfo.do")
+	public String deleteTempCampInfo(int campNo, Model model) {
+		int result = service.deleteTempCampInfo(campNo);
+
+		if (result > 0) {
+			model.addAttribute("msg", "캠핑장 등록신청 반려 성공");
+		} else {
+			model.addAttribute("msg", "캠핑장 등록신청 반려 실패");
+		}
+		model.addAttribute("loc", "/selectTempCampInfoList.do?reqPage=1");
+
+		return "/common/msg";
+	}
+
 }

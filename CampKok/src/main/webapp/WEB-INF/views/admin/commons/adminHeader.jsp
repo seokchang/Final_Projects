@@ -19,8 +19,7 @@
 		<li><a href="/pageAdmin.do?reqPage=1"><img alt="Not Found Logo.png" src="/resources/img/admin/Logo.png"></a></li>
 		<li>
 			<div class="header-menu">
-				<a href="/selectTempCampInfoList.do?reqPage=1">신규등록 신청</a>
-				<a href="/selectFAQInfoList.do?reqPage=1">FAQ</a>
+				<a href="/selectTempCampInfoList.do?reqPage=1">신규등록 신청 관리</a> <a href="/selectFAQInfoList.do?reqPage=1">FAQ</a>
 				<button class="btnExit" onclick="location.href='index.jsp'">Main Page</button>
 			</div>
 		</li>

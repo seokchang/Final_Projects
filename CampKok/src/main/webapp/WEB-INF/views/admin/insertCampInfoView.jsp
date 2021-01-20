@@ -134,7 +134,8 @@
 							<tr>
 								<td colspan="4" style="text-align: center;">
 									<input class="btn btn-warning btn-lg" type="submit" value="캠핑장 등록">
-									<button class="btn btn-warning btn-lg" onclick="/deleteTempCampInfo.do?campNo=${campInfo.campNo}">캠핑장 등록 반려</button>
+									<button class="btn btn-warning btn-lg" type="button" onclick="location.href='/deleteTempCampInfo.do?campNo=${campInfo.campNo}'">캠핑장
+										등록 반려</button>
 								</td>
 							</tr>
 						</table>

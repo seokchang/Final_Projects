@@ -25,7 +25,7 @@
 			<div class="content-main">
 				<ul class="todo">
 					<li style="background-color: #f3d479; color: #bf372b;"><strong>작업 리스트</strong></li>
-					<li><a href="/selectTempCampInfoList.do?reqPage=1">신규등록 신청 <span class="count">${tempCampCount }</span></a></li>
+					<li><a href="/selectTempCampInfoList.do?reqPage=1">신규등록 신청 관리 <span class="count">${tempCampCount }</span></a></li>
 				</ul>
 				<div class="content-list">
 					<div id="chart-visitor" style="width: 97.5%">

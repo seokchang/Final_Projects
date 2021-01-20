@@ -146,16 +146,21 @@ public class AdminCampService {
 	public int insertCampFile(Camp camp, CampFiles campFiles) {
 		Camp realCampInfo = dao.selectCampInfo(camp.getCeoId()); // 신규 등록 대기중인 사장님 아이디를 가지고 실제 등록된 테이블의 캠핑장 정보 얻음
 		int result = 0;
-		int fileLength = campFiles.getCampFilePath().length; // 파일 갯수
 		String[] fileNames = campFiles.getCampFileName();
 		String[] filePaths = campFiles.getCampFilePath();
 
-		for (int i = 0; i < fileLength; i++) {
-			CampFile campFile = new CampFile(realCampInfo.getCampNo(), fileNames[i], filePaths[i]);
+		if (campFiles.getCampFileName() != null && campFiles.getCampFilePath() != null) {
+			int fileLength = campFiles.getCampFilePath().length; // 파일 갯수
 
+			for (int i = 0; i < fileLength; i++) {
+				CampFile campFile = new CampFile(realCampInfo.getCampNo(), fileNames[i], filePaths[i]);
+
+				result = dao.insertCampFiles(campFile);
+			}
+		} else {
+			CampFile campFile = new CampFile(realCampInfo.getCampNo(), null, null);
 			result = dao.insertCampFiles(campFile);
 		}
-
 		return result;
 	}
 
