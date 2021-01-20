@@ -1,21 +1,21 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 	<link rel="stylesheet" href="/resources/css/camp/comment3.css">
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp" />
-	<!-- userInfo : no,�̸�,����,������Ʈ 
-		          : ȭ�� �Ѿ�ö� ķ���� no�޾ƾ���
+	<!-- userInfo : no,이름,레벨,총포인트 
+		          : 화면 넘어올때 캠핑장 no받아야함
 	-->
 	<div class="inputComment">
 
-	<span id="aa">*�Ϲ��̿��ڸ� ��۵���� �����մϴ�.</span>
+	<span id="aa">*일반이용자만 댓글등록이 가능합니다.</span>
 		<form action="/camp/insertComment.do" method="post" accept-charset="utf-8">
 			<ul>
 				<li>
@@ -25,7 +25,7 @@
 				</li>
 				<c:if test="${userInfo.userLevel eq '1'}">
 				<li>				
-					<input type="submit" value="���"></input>					
+					<input type="submit" value="등록"></input>					
 				</li>	
 				</c:if>		
 			</ul>
@@ -42,14 +42,14 @@
 				<li>
 					<p class="linkbox">
 						<textarea name="noticeCommentContet">${commentList.revContents }</textarea>
-						<!-- user01�κ� ���Ǿ��̵�� �ٲ���� -->
+						<!-- user01부분 세션아이디로 바꿔야함 -->
 						<c:if test="${commentList.userId eq 'user01'}">
-							<a href="/camp/commentDelete.do?revNo=${commentList.revNo }" style="color:#f3d479;">����</a>
-							<%-- <a class="recShow" href="/camp/commentUpdate.do?revNo=${commentList.revNo }" >����</a> --%>
+							<a href="/camp/commentDelete.do?revNo=${commentList.revNo }" style="color:#f3d479;">삭제</a>
+							<%-- <a class="recShow" href="/camp/commentUpdate.do?revNo=${commentList.revNo }" >수정</a> --%>
 						</c:if>
-						<!-- 1(����)�κ� 2(�����)�ιٲ���� -->
+						<!-- 1(고객)부분 2(사업자)로바꿔야함 -->
 						<c:if test="${userInfo.userLevel eq '5'}">
-							<a href="javascript:void(0)" class="recShow2">��۴ޱ�</a>
+							<a href="javascript:void(0)" class="recShow2">답글달기</a>
 						</c:if>						
 					</p>
 					<div class="inputComment re">
@@ -61,8 +61,8 @@
 									<textarea class="form-control" name="noticeCommentContent"></textarea>
 								</li>
 								<li>
-									<button type="submit" class="btn btn-secondary btn-sm btn-black">���</button>
-									<button type="button" class="btn btn-secondary btn-sm btn-black recCancel">���</button>
+									<button type="submit" class="btn btn-secondary btn-sm btn-black">등록</button>
+									<button type="button" class="btn btn-secondary btn-sm btn-black recCancel">취소</button>
 									</li>
 							</ul>
 						</form>
