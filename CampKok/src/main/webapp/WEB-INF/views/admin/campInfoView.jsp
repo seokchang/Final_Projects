@@ -95,7 +95,7 @@
 				</div>
 				<hr>
 				<div style="text-align: center;">
-					<button class="btn btn-warning btn-lg" onclick="/deleteCampInfo.do?campNo=${campInfo.campNo}">캠핑장 정보 삭제</button>
+					<button class="btn btn-warning btn-lg" onclick="location.href='/deleteCampInfo.do?campNo=${campInfo.campNo}'">캠핑장 정보 삭제</button>
 					<button class="btn btn-warning btn-md btn-list" onclick="location.href='/selectCampInfoList.do?reqPage=1'">목록</button>
 				</div>
 			</div>
