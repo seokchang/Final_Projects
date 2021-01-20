@@ -105,4 +105,14 @@ public class AdminCampController {
 		return "/admin/insertCampInfoList";
 	}
 
+	@RequestMapping("/searchTempCampInfoList.do")
+	public String searchTempCampInfoList(int reqPage, String searchCategory, String search, Model model) {
+		AdminCampInfoPageData acipd = service.searchTempCampInfoList(reqPage, searchCategory, search);
+
+		model.addAttribute("list", acipd.getList());
+		model.addAttribute("pageNavi", acipd.getPageNavi());
+
+		return "/admin/insertCampInfoList";
+	}
+
 }

@@ -32,8 +32,8 @@
 								<tr>
 									<td>
 										<select class="form-control" id="search-category" name="searchCategory">
-											<option value="ceoName" selected="selected">사업자명</option>
-											<option value="ceoId">아이디</option>
+											<option value="ceoId" selected="selected">아이디</option>
+											<option value="ceoName">이름</option>
 											<option value="campName">캠핑장명</option>
 										</select>
 									</td>

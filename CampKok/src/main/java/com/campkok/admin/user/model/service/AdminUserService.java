@@ -232,4 +232,14 @@ public class AdminUserService {
 
 		return auipd;
 	}
+
+	@Transactional
+	public int updateCeoInfo(User ceoInfo) {
+		return dao.updateCeoInfo(ceoInfo);
+	}
+
+	@Transactional
+	public int deleteCeoInfo(int userNo) {
+		return dao.deleteCeoInfo(userNo);
+	}
 }

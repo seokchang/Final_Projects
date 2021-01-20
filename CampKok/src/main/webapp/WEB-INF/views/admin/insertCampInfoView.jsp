@@ -87,7 +87,13 @@
 							</tr>
 							<tr>
 								<th>이미지 미리보기</th>
-								<td colspan="3">Camp Files</td>
+								<td colspan="3">
+									<div style="text-align: left;">
+										<c:forEach items="${campInfo.campFiles }" var="campFile">
+											<img id="img-view" src="/imgPreview.do?filePath=${campFile.campFilePath }" style="width: 20%;">
+										</c:forEach>
+									</div>
+								</td>
 							</tr>
 							<tr>
 								<th colspan="4" style="text-align: left;">
@@ -119,7 +125,11 @@
 							</tr>
 							<tr>
 								<th>이미지 미리보기</th>
-								<td>Camp Env File</td>
+								<td colspan="3">
+									<div style="text-align: left;">
+										<img id="img-view" src="/imgPreview.do?filePath=${campInfo.campEnv.envFilePath }" style="width: 20%">
+									</div>
+								</td>
 							</tr>
 							<tr>
 								<td colspan="4" style="text-align: center;">

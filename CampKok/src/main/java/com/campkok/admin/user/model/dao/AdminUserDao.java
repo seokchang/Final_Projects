@@ -114,4 +114,12 @@ public class AdminUserDao {
 		return (ArrayList<User>) list;
 	}
 
+	public int updateCeoInfo(User ceoInfo) {
+		return session.update("adminUserInfo.updateCeoInfo", ceoInfo);
+	}
+
+	public int deleteCeoInfo(int userNo) {
+		return session.delete("adminUserInfo.deleteCeoInfo", userNo);
+	}
+
 }

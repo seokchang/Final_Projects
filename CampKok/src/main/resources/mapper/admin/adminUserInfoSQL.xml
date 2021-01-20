@@ -220,4 +220,12 @@
 		WHERE rNum
 		BETWEEN ${start} AND ${end}
 	</select>
+
+	<update id="updateCeoInfo" parameterType="user">
+		UPDATE user_tbl SET user_point = #{userPoint} WHERE user_no = #{userNo}
+	</update>
+
+	<delete id="deleteCeoInfo" parameterType="_int">
+		DELETE FROM user_tbl WHERE user_no = #{_parameter}
+	</delete>
 </mapper>

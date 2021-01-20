@@ -111,6 +111,15 @@ public class AdminCampDao {
 	}
 
 	// ******************** Temp Camp Files ********************
+	public int getTotalSearchTempCampCount(String searchCategory, String search) {
+		HashMap<String, String> map = new HashMap<String, String>();
+
+		map.put("searchCategory", searchCategory);
+		map.put("search", search);
+
+		return session.selectOne("tempCampInfo.getSearchTempCampCount", map);
+	}
+
 	public ArrayList<CampFile> selectTempCampFiles(int campNo) {
 		List<CampFile> list = session.selectList("tempCampInfo.selectTempCampFiles", campNo);
 
@@ -132,6 +141,19 @@ public class AdminCampDao {
 		map.put("end", end);
 
 		List<Camp> list = session.selectList("tempCampInfo.selectTempCampList", map);
+
+		return (ArrayList<Camp>) list;
+	}
+
+	public ArrayList<Camp> searchTempCampInfoList(int start, int end, String searchCategory, String search) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+
+		map.put("start", start);
+		map.put("end", end);
+		map.put("searchCategory", searchCategory);
+		map.put("search", search);
+
+		List<Camp> list = session.selectList("tempCampInfo.searchTempCampInfoList", map);
 
 		return (ArrayList<Camp>) list;
 	}

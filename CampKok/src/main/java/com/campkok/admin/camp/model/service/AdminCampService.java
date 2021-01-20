@@ -237,6 +237,54 @@ public class AdminCampService {
 		return acipd;
 	}
 
+	public AdminCampInfoPageData searchTempCampInfoList(int reqPage, String searchCategory, String search) {
+		int totalSearchTempCampInfo = dao.getTotalSearchTempCampCount(searchCategory, search);
+		int numPerPage = 10;
+		int totalPage = (totalSearchTempCampInfo / numPerPage == 0) ? (totalSearchTempCampInfo / numPerPage)
+				: (totalSearchTempCampInfo / numPerPage) + 1;
+		int start = (reqPage - 1) / numPerPage + 1;
+		int end = reqPage * numPerPage;
+
+		ArrayList<Camp> list = dao.searchTempCampInfoList(start, end, searchCategory, search);
+
+		if (!list.isEmpty()) {
+			for (Camp camp : list) {
+				User user = userDao.selectCeoInfo(camp.getCeoId());
+
+				camp.setCeoInfo(user);
+			}
+		}
+
+		int pageNaviSize = 5;
+		String pageNavi = "";
+		int pageNo = ((reqPage - 1) / pageNaviSize) * pageNaviSize + 1;
+
+		if (pageNo != 1) {
+			pageNavi += "<a class='btn' href='/searchTempCampInfoList.do?reqPage=" + (pageNo - 1) + "&searchCategory="
+					+ searchCategory + "&search=" + search + "'>이전</a>";
+		}
+
+		for (int i = 0; i < pageNaviSize; i++) {
+			if (reqPage == pageNo) {
+				pageNavi += "<span class='selectPage'>" + pageNo + "</span>";
+			} else {
+				pageNavi += "<a class='btn' href='/searchTempCampInfoList.do?reqPage=" + pageNo + "&searchCategory="
+						+ searchCategory + "&search=" + search + "'>" + pageNo + "</a>";
+			}
+			pageNo++;
+			if (pageNo > totalPage)
+				break;
+		}
+
+		if (pageNo <= totalPage) {
+			pageNavi += "<a class='btn' href='/searchTempCampInfoList.do?reqPage=" + pageNo + "&searchCategory="
+					+ searchCategory + "&search=" + search + "'>다음</a>";
+		}
+		AdminCampInfoPageData acipd = new AdminCampInfoPageData(list, pageNavi);
+
+		return acipd;
+	}
+
 	@Transactional
 	public int deleteTempCampInfo(int campNo) {
 		return dao.deleteTempCampInfo(campNo);

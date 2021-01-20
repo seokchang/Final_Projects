@@ -31,10 +31,7 @@
 								<tr>
 									<th>분류</th>
 									<td colspan="3">
-										<select class="form-control" name="userLevel" style="width: 13%">
-											<option value="1">고객</option>
-											<option value="2" selected="selected">사업자</option>
-										</select>
+										<input class="read-only" type="text" value="사업자" readonly="readonly">
 									</td>
 								</tr>
 								<tr>
@@ -131,11 +128,21 @@
 								<td colspan="3">${ceoInfo.camp.campFac }</td>
 							</tr>
 							<tr>
-								<th>이미지</th>
+								<th>첨부파일</th>
 								<td colspan="3">
 									<c:forEach items="${ceoInfo.camp.campFiles }" var="campFile">
 									${campFile.campFilePath }
 								</c:forEach>
+								</td>
+							</tr>
+							<tr>
+								<th>이미지</th>
+								<td colspan="3">
+									<div style="text-align: left">
+										<c:forEach items="${ceoInfo.camp.campFiles }" var="campFile">
+											<img id="img-view" src="/imgPreview.do?filePath=${campFile.campFilePath }" style="width: 20%">
+										</c:forEach>
+									</div>
 								</td>
 							</tr>
 						</table>

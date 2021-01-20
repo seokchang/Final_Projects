@@ -101,4 +101,33 @@ public class AdminUserController {
 
 		return "/admin/ceoInfoList";
 	}
+
+	@RequestMapping("/updateCeoInfo.do")
+	public String updateCeoInfo(User ceoInfo, Model model) {
+		int result = service.updateCeoInfo(ceoInfo);
+
+		if (result > 0) {
+			model.addAttribute("msg", "사업자정보 변경 성공");
+		} else {
+			model.addAttribute("msg", "사업자정보 변경 실패");
+		}
+		model.addAttribute("loc", "/selectCeoInfoList.do?reqPage=1");
+
+		return "/common/msg";
+	}
+
+	@RequestMapping("/deleteCeoInfo.do")
+	public String deleteCeoInfo(int userNo, Model model) {
+		int result = service.deleteCeoInfo(userNo);
+
+		if (result > 0) {
+			model.addAttribute("msg", "사업자정보 삭제 완료");
+		} else {
+			model.addAttribute("msg", "사업자정보 삭제 실패");
+		}
+		model.addAttribute("loc", "/selectCeoInfoList.do?reqPage=1");
+
+		return "/common/msg";
+	}
+
 }
