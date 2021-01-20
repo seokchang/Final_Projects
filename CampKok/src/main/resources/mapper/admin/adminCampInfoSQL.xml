@@ -88,7 +88,7 @@
 		camp_theme AS campTheme,
 		camp_fac AS campFac,
 		camp_ctg AS campCtg
-		FROM camp
+		FROM camp ORDER BY 1 DESC
 		)c)
 		WHERE rNum BETWEEN #{start} AND #{end}
 	</select>
@@ -117,10 +117,44 @@
 				FROM camp WHERE camp_name LIKE '%'||#{search}||'%'
 			</when>
 		</choose>
-
 		)c)
 		WHERE rNum BETWEEN ${start} AND ${end}
 	</select>
+
+	<insert id="insertCampInfo" parameterType="camp">
+		INSERT INTO camp VALUES (
+		camp_seq.NEXTVAL,
+		#{ceoId},
+		#{campAddr},
+		#{campName},
+		#{campSite},
+		#{campTel},
+		#{campTheme},
+		#{campFac},
+		#{campCtg}
+		)
+	</insert>
+
+	<insert id="insertCampFile" parameterType="campFile">
+		INSERT INTO file_tbl VALUES (
+		file_tbl_seq.NEXTVAL,
+		#{campNo},
+		#{campFileName},
+		#{campFilePath}
+		)
+	</insert>
+
+	<insert id="insertCampEnv" parameterType="campEnv">
+		INSERT INTO campenv VALUES(
+		campenv_seq.NEXTVAL,
+		#{campNo},
+		#{envName},
+		#{envAddr},
+		#{envTel},
+		#{envFileName},
+		#{envFilePath}
+		)
+	</insert>
 
 	<delete id="deleteCampInfo" parameterType="_int">
 		DELETE FROM camp WHERE camp_no = #{_parameter}

@@ -17,29 +17,11 @@ public class Camp {
 	private String campCtg;
 	private CampEnv campEnv;
 	private ArrayList<CampFile> campFiles;
+	private ArrayList<CampFiles> campFilesList;
 	private User ceoInfo;
 
 	public Camp() {
 		// TODO Auto-generated constructor stub
-	}
-
-	public Camp(int rNum, int campNo, String ceoId, String campName, String campAddr, String campSite, String campTel,
-			String campTheme, String campFac, String campCtg, CampEnv campEnv, ArrayList<CampFile> campFiles,
-			User ceoInfo) {
-		super();
-		this.rNum = rNum;
-		this.campNo = campNo;
-		this.ceoId = ceoId;
-		this.campName = campName;
-		this.campAddr = campAddr;
-		this.campSite = campSite;
-		this.campTel = campTel;
-		this.campTheme = campTheme;
-		this.campFac = campFac;
-		this.campCtg = campCtg;
-		this.campEnv = campEnv;
-		this.campFiles = campFiles;
-		this.ceoInfo = ceoInfo;
 	}
 
 	public int getrNum() {
@@ -136,6 +118,14 @@ public class Camp {
 
 	public void setCampFiles(ArrayList<CampFile> campFiles) {
 		this.campFiles = campFiles;
+	}
+
+	public ArrayList<CampFiles> getCampFilesList() {
+		return campFilesList;
+	}
+
+	public void setCampFilesList(ArrayList<CampFiles> campFilesList) {
+		this.campFilesList = campFilesList;
 	}
 
 	public User getCeoInfo() {

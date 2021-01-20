@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.campkok.admin.camp.model.service.AdminCampService;
 import com.campkok.admin.camp.model.vo.AdminCampInfoPageData;
 import com.campkok.admin.camp.model.vo.Camp;
+import com.campkok.admin.camp.model.vo.CampEnv;
+import com.campkok.admin.camp.model.vo.CampFiles;
 
 @Controller
 public class AdminCampController {
@@ -46,6 +48,23 @@ public class AdminCampController {
 		model.addAttribute("pageNavi", acipd.getPageNavi());
 
 		return "/admin/campInfoList";
+	}
+
+	@RequestMapping("/insertCampInfo.do")
+	public String insertCampInfo(Camp camp, CampFiles campFiles, CampEnv campEnv, Model model) {
+		int result = service.insertCampInfo(camp); // 실제 사용 캠핑장 테이블에 신규 캠핑장 등록
+		result = service.insertCampFile(camp, campFiles); // 실제 사용 이미지 테이블에 신규 캠핑장 이미지 등록
+		result = service.insertCampEnv(camp, campEnv); // 실제 사용 이용시설 테이블에 신규 캠핑장 이용시설 등록
+		result = service.deleteTempCampInfo(camp.getCampNo()); // 테이블에 모두 등록 후 temp 테이블에서 삭제
+
+		if (result > 0) {
+			model.addAttribute("msg", "캠핑장 등록 성공");
+		} else {
+			model.addAttribute("msg", "캠핑장 등록 실패");
+		}
+		model.addAttribute("loc", "/selectTempCampInfoList.do?reqPage=1");
+
+		return "/common/msg";
 	}
 
 	@RequestMapping("/deleteCampInfo.do")

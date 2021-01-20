@@ -22,7 +22,7 @@
 			<div class="content-main">
 				<h1>신규등록 캠핑장정보 관리</h1>
 				<hr>
-				<form action="/insertCampInfo.do" method="POST" enctype="multipart/form-data">
+				<form action="/insertCampInfo.do" method="POST">
 					<div class="table-wrap" style="margin-top: 30px;">
 						<table class="table table-striped">
 							<tr>

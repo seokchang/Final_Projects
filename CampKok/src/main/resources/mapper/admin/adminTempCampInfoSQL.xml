@@ -2,6 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
 <mapper namespace="tempCampInfo">
+	<select id="getTempCampCount" resultType="_int">
+		SELECT count(*) FROM temp_camp
+	</select>
+
 	<!-- ********** Temp Camp Env ********** -->
 	<select id="selectTempCampEnvInfo" parameterType="_int" resultType="campEnv">
 		SELECT
@@ -63,4 +67,8 @@
 		)tc)
 		WHERE rNum BETWEEN #{start} AND #{end}
 	</select>
+
+	<delete id="deleteTempCampInfo" parameterType="_int">
+		DELETE FROM temp_camp WHERE camp_no = #{_parameter}
+	</delete>
 </mapper>

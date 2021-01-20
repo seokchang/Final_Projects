@@ -10,6 +10,13 @@ public class CampFile {
 		// TODO Auto-generated constructor stub
 	}
 
+	public CampFile(int campNo, String campFileName, String campFilePath) {
+		super();
+		this.campNo = campNo;
+		this.campFileName = campFileName;
+		this.campFilePath = campFilePath;
+	}
+
 	public CampFile(int fileNo, int campNo, String campFileName, String campFilePath) {
 		super();
 		this.fileNo = fileNo;
@@ -49,5 +56,4 @@ public class CampFile {
 	public void setCampFilePath(String campFilePath) {
 		this.campFilePath = campFilePath;
 	}
-
 }

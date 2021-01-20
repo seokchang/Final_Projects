@@ -80,6 +80,18 @@ public class AdminCampDao {
 		return (ArrayList<Camp>) list;
 	}
 
+	public int insertCampInfo(Camp camp) {
+		return session.insert("adminCamp.insertCampInfo", camp);
+	}
+
+	public int insertCampFiles(CampFile campFile) {
+		return session.insert("adminCamp.insertCampFile", campFile);
+	}
+
+	public int insertCampEnv(CampEnv campEnv) {
+		return session.insert("adminCamp.insertCampEnv", campEnv);
+	}
+
 	public int deleteCampInfo(int campNo) {
 		return session.delete("adminCamp.deleteCampInfo", campNo);
 	}
@@ -89,6 +101,10 @@ public class AdminCampDao {
 	 * Temp Camp Info List
 	 * ***************************************************************************
 	*/
+	public int getTempCampCount() {
+		return session.selectOne("tempCampInfo.getTempCampCount");
+	}
+
 	// ******************** Temp Camp Env ********************
 	public CampEnv selectTempCampEnv(int campNo) {
 		return session.selectOne("tempCampInfo.selectTempCampEnvInfo", campNo);
@@ -118,6 +134,10 @@ public class AdminCampDao {
 		List<Camp> list = session.selectList("tempCampInfo.selectTempCampList", map);
 
 		return (ArrayList<Camp>) list;
+	}
+
+	public int deleteTempCampInfo(int campNo) {
+		return session.delete("tempCampInfo.deleteTempCampInfo", campNo);
 	}
 
 }

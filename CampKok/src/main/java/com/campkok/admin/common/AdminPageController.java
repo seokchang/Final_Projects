@@ -49,6 +49,7 @@ public class AdminPageController {
 		ArrayList<User> ceoInfoList = uService.selectCeoInfoList(start, end);
 		ArrayList<Camp> campInfoList = cService.selectCampInfoList(start, end);
 		ArrayList<Board> boardInfoList = bService.selectBoardInfoList(start, end);
+		int tempCampCount = getTempCampCount();
 
 		model.addAttribute("ceoNoticeList", ceoNoticeList);
 		model.addAttribute("clientNoticeList", clientNoticeList);
@@ -56,8 +57,15 @@ public class AdminPageController {
 		model.addAttribute("ceoInfoList", ceoInfoList);
 		model.addAttribute("campInfoList", campInfoList);
 		model.addAttribute("boardInfoList", boardInfoList);
+		model.addAttribute("tempCampCount", tempCampCount);
 
 		return "/admin/admin";
+	}
+
+	public int getTempCampCount() {
+		int insertTempCampCount = cService.getTempCampCount();
+
+		return insertTempCampCount;
 	}
 
 	@RequestMapping("/imgPreview.do")

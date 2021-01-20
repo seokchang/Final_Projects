@@ -9,6 +9,9 @@ import org.springframework.transaction.annotation.Transactional;
 import com.campkok.admin.camp.model.dao.AdminCampDao;
 import com.campkok.admin.camp.model.vo.AdminCampInfoPageData;
 import com.campkok.admin.camp.model.vo.Camp;
+import com.campkok.admin.camp.model.vo.CampEnv;
+import com.campkok.admin.camp.model.vo.CampFile;
+import com.campkok.admin.camp.model.vo.CampFiles;
 import com.campkok.admin.user.model.dao.AdminUserDao;
 import com.campkok.admin.user.model.vo.User;
 
@@ -131,6 +134,41 @@ public class AdminCampService {
 	}
 
 	@Transactional
+	public int insertCampInfo(Camp camp) {
+		int result = dao.insertCampInfo(camp);
+
+		return result;
+	}
+
+	@Transactional
+	// camp : 신규 등록 대기 중인 캠핑장
+	// campFiles : 신규 등록 대기 중인 캠핑장 이미지
+	public int insertCampFile(Camp camp, CampFiles campFiles) {
+		Camp realCampInfo = dao.selectCampInfo(camp.getCeoId()); // 신규 등록 대기중인 사장님 아이디를 가지고 실제 등록된 테이블의 캠핑장 정보 얻음
+		int result = 0;
+		int fileLength = campFiles.getCampFilePath().length; // 파일 갯수
+		String[] fileNames = campFiles.getCampFileName();
+		String[] filePaths = campFiles.getCampFilePath();
+
+		for (int i = 0; i < fileLength; i++) {
+			CampFile campFile = new CampFile(realCampInfo.getCampNo(), fileNames[i], filePaths[i]);
+
+			result = dao.insertCampFiles(campFile);
+		}
+
+		return result;
+	}
+
+	@Transactional
+	public int insertCampEnv(Camp camp, CampEnv campEnv) {
+		Camp realCampInfo = dao.selectCampInfo(camp.getCeoId());
+		campEnv.setCampNo(realCampInfo.getCampNo());
+		int result = dao.insertCampEnv(campEnv);
+
+		return result;
+	}
+
+	@Transactional
 	public int deleteCampInfo(int campNo) {
 		return dao.deleteCampInfo(campNo);
 	}
@@ -140,6 +178,10 @@ public class AdminCampService {
 	 * Temp Camp Info List
 	 * ***************************************************************************
 	*/
+	public int getTempCampCount() {
+		return dao.getTempCampCount();
+	}
+
 	public Camp selectTempCampInfo(int campNo) {
 		Camp campInfo = dao.selectTempCampInfo(campNo);
 
@@ -193,6 +235,11 @@ public class AdminCampService {
 		AdminCampInfoPageData acipd = new AdminCampInfoPageData(list, pageNavi);
 
 		return acipd;
+	}
+
+	@Transactional
+	public int deleteTempCampInfo(int campNo) {
+		return dao.deleteTempCampInfo(campNo);
 	}
 
 }
