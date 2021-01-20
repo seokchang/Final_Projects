@@ -8,6 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.campkok.camp.model.vo.CampResVO;
+import com.campkok.camp.model.vo.ReviewVO;
+import com.campkok.camp.notice.model.vo.CampNoticeVO;
 import com.campkok.camplist.model.service.CampListService;
 import com.campkok.camplist.model.vo.CampList;
 import com.campkok.camplist.model.vo.CampListPageData;
@@ -42,9 +45,12 @@ public class CampListController {
 	// 캠핑장 상세페이지
 	@RequestMapping("/campView.do")
 	public String selectOneCamp(int campNo, Model model) {
-		System.out.println("캠핑장 번호:"+campNo);
 		CampList cl = service.selectOneCamp(campNo);
+		ArrayList<CampNoticeVO> cnList = service.selectCampNoticeList(campNo);
+		ArrayList<ReviewVO> crList = service.selectCampReviewList(campNo);
 		model.addAttribute("cl",cl);
+		model.addAttribute("cnList", cnList);
+		model.addAttribute("crList", crList);
 		return "user/campView";
 	}
 	

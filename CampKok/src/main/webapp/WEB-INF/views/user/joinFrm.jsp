@@ -37,9 +37,9 @@
                         <td>비밀번호</td>
                         <td><input type="password" name="userPw" placeholder="8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요."></td>
                     </tr>
-                    <tr style="display: none;" id="chkId">
+                    <tr style="display: none;" id="chkPw">
                         <td></td>
-                        <td style="padding: 0px; padding-left: 10px; padding-bottom: 5px;"><span id="chkIdMsg"></span></td>
+                        <td style="padding: 0px; padding-left: 10px; padding-bottom: 5px;"><span id="chkPwMsg"></span></td>
                     </tr>
                     <tr>
                         <td>비밀번호확인</td>
@@ -47,9 +47,9 @@
                                 <!--8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요.-->
                             </span></td>
                     </tr>
-                    <tr style="display: none;" id="chkId">
+                    <tr style="display: none;" id="chkchkPw">
                         <td></td>
-                        <td style="padding: 0px; padding-left: 10px; padding-bottom: 5px;"><span id="chkIdMsg"></span></td>
+                        <td style="padding: 0px; padding-left: 10px; padding-bottom: 5px;"><span id="chkchkPwMsg"></span></td>
                     </tr>
                     <tr>
                         <td>이름</td>
@@ -275,11 +275,10 @@
 			});
 		});
     	
-    	
-    	
+
         $(document).ready(function() {
             // 배열로 처리
-            var check = [false, false, false, false, false, false];
+            var check = [false, false, false, false, false, false, false];
             $('input').val(''); // 값 비워주는 코드
             
             // 정규표현식 
@@ -310,75 +309,125 @@
      			});
             	 
             	 
-                /* var reg = /^[a-z][a-z0-9_-]{4,19}$/;
+                var reg = /^[a-z][a-z0-9_-]{4,19}$/;
                 if (reg.test($(this).val())) {
                     check[0] = true;
                 } else {
                     check[0] = false;
                     $("#chkId").css('display','');
 					$("#chkIdMsg").html("5~20자의 영문 소문자, 숫자와 특수기호'_','-'만 사용 가능합니다.");
-                } */
+                }
             }); 
             $('[name=userName]').keyup(function() {
                 $(this).prevAll().last().children().html("");
-                var reg = /^[가-힝]{2,4}$/;
+                var reg = /^[가-힣]{2,4}$/;
                 if (reg.test($(this).val())) {
                     check[1] = true;
+                    $("#chkName").css('display','none');
                 } else {
                     check[1] = false;
-                    $(this).prevAll().last().children().html("한글 2~4글자");
+                    $("#chkName").css('display','');
+					$("#chkNameMsg").html("한글 2~4글자만 사용 가능합니다.");
                 }
             });
-            $('#pw').change(function() {
+            $('[name=userPw]').change(function() {
                 $(this).prevAll().last().children().html("");
                 var reg = /^[A-Za-z0-9_-]{6,18}$/;
                 if (reg.test($(this).val())) {
                     check[2] = true;
+                    $("#chkPw").css('display','none');
                 } else {
                     check[2] = false;
-                    $(this).prevAll().last().children().html("영문대소문자+숫자 6~18자리");
+                    $("#chkPw").css('display','');
+					$("#chkPwMsg").html("영문대소문자+숫자 6~18자리만 사용 가능합니다.");
                 }
             });
-            $('#pwRe').change(function() {
+            $('[name=userPwChk]').change(function() {
                 $(this).prevAll().last().children().html("");
-                console.log(pw);
-                if ($(this).val() == $("#pw").val()) {
+                console.log($('[name=userPw]').val());
+                if ($(this).val() == $("[name=userPw]").val()) {
                     check[3] = true;
+                    $("#chkchkPw").css('display','none');
                 } else {
                     check[3] = false;
-                    $(this).prevAll().last().children().html("비밀번호가 일치하지 않습니다.");
+                    $("#chkchkPw").css('display','');
+					$("#chkchkPwMsg").html("비밀번호가 일치하지 않습니다.");
                 }
             });
-            $('#email').change(function() {
-                $(this).prevAll().last().children().html("");
-                var reg = /^[a-z][a-z0-9_-]{3,11}@([a-z\d\.-]+)\.([a-z]{2,6})$/;
-                if (reg.test($(this).val())) {
+            /*$('[name=userAddr]').change(function() {
+                if ((this).val() != null) {
                     check[4] = true;
+                    $("#chkAddr").css('display','none');
                 } else {
                     check[4] = false;
-                    $(this).prevAll().last().children().html("Email형식에 맞지 않습니다.");
+                    $("#chkAddr").css('display','');
+					$("#chkAddrMsg").html("주소를 입력해 주세요.");
                 }
+            });*/
+            
+            
+            $('#roadAddr').change(function() {
+                if ((this).val() == null) {
+                	check[4] = false;
+                    $("#chkAddr").css('display','');
+					$("#chkAddrMsg").html("주소를 입력해 주세요.");
+                } 
+                check[4] = true;
+            	alert('입력성공');
+                $("#chkAddr").css('display','');
+				$("#chkAddrMsg").html("입력성공");
             });
-            $('#phone').change(function() {
+            
+            
+            $('[name=userPhone]').change(function() {
                 $(this).prevAll().last().children().html("");
                 var reg = /^\d{2,3}-\d{3,4}-\d{4}$/;
                 if (reg.test($(this).val())) {
                     check[5] = true;
+                    $("#chkPhone").css('display','none');
                 } else {
                     check[5] = false;
-                    $(this).prevAll().last().children().html("전화번호 형식(000-0000-0000)");
+                    $("#chkPhone").css('display','');
+					$("#chkPhoneMsg").html("입력형식'010-0000-0000'에 맞춰 입력해주세요.");
                 }
             });
             
+            $('[name=userBirth]').change(function() {
+                $(this).prevAll().last().children().html("");
+                var reg = /^\d{3,4}-\d{1,2}-\d{2}$/;
+                if (reg.test($(this).val())) {
+                    check[6] = true;
+                    $("#chkBirth").css('display','none');
+                } else {
+                    check[6] = false;
+                    $("#chkBirth").css('display','');
+					$("#chkBirthMsg").html("입력형식'1900-00-00'에 맞춰 입력해주세요.");
+                }
+            });
+            
+            /*$('[name=userGender]').change(function() {
+                if (($(this).val())!=null) {
+                    check[7] = true;
+                    $("#chkGender").css('display','none');
+                } else {
+                    check[7] = false;
+                    $("#chkGender").css('display','');
+					$("#chkGenderMsg").html("성별을 체크해 주세요");
+                }
+            });*/
+            
+            console.log(check);
             
             $('form').submit(function() {
+                console.log(check);
                 var count = 0;
                 for (var i = 0; i < check.length; i++) {
                     if (check[i] == true) {
                         count++;
                     }
                 }
-                if (count < 6) {
+                if (count < 7) {
+                	alert('입력값을 확인 해 주세요');
                     return false;
                 }
             });

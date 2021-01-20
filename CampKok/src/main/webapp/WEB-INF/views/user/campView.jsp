@@ -53,12 +53,11 @@
         <div class="camp-title">
             <div>
                 <p>${cl.campName }</p>
-                <p><span>★ ${cl.campStar } </span> ${cl.campAddr }</p>
+                <p><span>★ ${cl.campStar }&nbsp;&nbsp;</span>&nbsp;${cl.campAddr }</p>
             </div>
             <a href="#">예약하기</a>
         </div>
         <div class="camp-naeyong">
-
             <div class="hr-sect">캠핑장 정보</div>
             <div>
                 <table class="camp-tbl">
@@ -71,12 +70,12 @@
                     <tr>
                         <th>시설</th>
                         <td colspan="3">
-                            <div style="display: flex">
+                            <div style="display: flex"><%-- 
                                 <ul>
                                 	<c:forEach items="${list }" var="cl">
                                    		<li>${cl.campFac }</li>
                                     </c:forEach>
-                                </ul>
+                                </ul> --%>
                                 <ul>
                                     <li>${cl.campFac }</li>
                                     <li>test</li>
@@ -93,28 +92,24 @@
                 <div>
                     <p>REVIEW <a href="#">more</a></p>
                     <ul>
-                        <li><a href="#">너무 조아용</a></li>
-                        <li><a href="#">너무 조아용</a></li>
-                        <li><a href="#">너무 조아용</a></li>
-                        <li><a href="#">너무 조아용</a></li>
-                        <li><a href="#">너무 조아용</a></li>
+                    <c:forEach items="${crList }" var="cr" begin="0" end="4" step="1">
+                    	<li><a href="#">${cr.revContents }</a></li>
+                    </c:forEach>
                     </ul>
                 </div>
                 <div>
                     <p>NOTICE <a href="#">more</a></p>
                     <ul>
-                        <li><a href="#">공지사항</a></li>
-                        <li><a href="#">공지공지공지지지</a></li>
-                        <li><a href="#">공지공지공지지지</a></li>
-                        <li><a href="#">공지공지공지지지</a></li>
-                        <li><a href="#">공지공지공지지지</a></li>
+                    <c:forEach items="${cnList }" var="cn" begin="0" end="4" step="1">
+                        <li><a href="#">${cn.campNoticeTitle }</a></li>
+                    </c:forEach>
                     </ul>
                 </div>
             </div>
 
             <div class="hr-sect">찾아오시는 길</div>
             <div>
-                <p id="address">경기도 고양시 고양구</p>
+                <p id="address">${cl.campAddr }</p>
                 <div id="map" style="width: 1140px; height: 400px;border: 1px solid"></div>
             </div>
         </div>
