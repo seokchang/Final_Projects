@@ -11,6 +11,10 @@
 		td{
 			text-align: center;
 		}
+		        .pageNavi a:hover{
+            text-decoration-line: none;
+            color: #f3d479;
+        }
     </style>
 </head>
 
@@ -40,11 +44,11 @@
             </ul>
         </div>
         <div class="mypage-form">
-                   <c:if test="${r==null }">
+                   <c:if test="${list==null }">
                      <br>
                      	<p>캠핑장을 이용하신 내역이 없습니다.</p>
                      </c:if>
-                     <c:if test="${r!=null }">
+                     <c:if test="${list!=null }">
                     <table class="mypage-tbl">
                            <tr>
                                <th width="20%">캠핑장 명</th>

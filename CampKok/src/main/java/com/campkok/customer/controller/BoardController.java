@@ -20,8 +20,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.campkok.customer.model.service.BoardService;
+import com.campkok.customer.model.vo.BoardCommentVO;
 import com.campkok.customer.model.vo.BoardPageData;
 import com.campkok.customer.model.vo.BoardVO;
+import com.campkok.customer.model.vo.BoardViewData;
 import com.campkok.hik.common.FileNameOverlap;
 
 @Controller
@@ -39,8 +41,9 @@ public class BoardController {
 	
 	@RequestMapping("/boardView.do")
 	public String boardView(int boardNo, Model model) {
-		BoardVO b = service.selectOneBoard(boardNo);
-		model.addAttribute("b", b);
+		BoardViewData bvd = service.selectBoardView(boardNo);
+		model.addAttribute("b", bvd.getB());
+		model.addAttribute("list", bvd.getList());
 		return "board/boardView";
 	}
 	
@@ -237,5 +240,43 @@ public class BoardController {
 		model.addAttribute("list",bpd.getList());
 		model.addAttribute("pageNavi", bpd.getPageNavi());
 		return "board/boardList";
+	}
+	
+	@RequestMapping("/insertBoardComment.do")
+	public String insertBoardComment(BoardCommentVO bc, Model model) {
+		System.out.println(bc.getBoardCommentContent());
+		int result = service.insertBoardComment(bc);
+		if (result > 0) {
+			model.addAttribute("msg", "댓글 작성이 완료되었습니다.");
+		} else {
+			model.addAttribute("msg", "댓글 작성이 실패하였습니다.");
+		}
+		model.addAttribute("loc", "/boardView.do?boardNo="+bc.getBoardRef());
+		return "common/msg";
+	}
+	@RequestMapping("/updateBoardComment.do")
+	public String updateBoardComment(int boardNo, int boardCommentNo, String boardCommentContent, Model model) {
+		BoardCommentVO bc = new BoardCommentVO();
+		bc.setBoardCommentNo(boardCommentNo);
+		bc.setBoardCommentContent(boardCommentContent);
+		int result = service.updateBoardComment(bc);
+		if (result > 0) {
+			model.addAttribute("msg", "댓글 수정이 완료되었습니다.");
+		} else {
+			model.addAttribute("msg", "댓글 수정이 실패하였습니다.");
+		}
+		model.addAttribute("loc", "/boardView.do?boardNo="+boardNo);
+		return "common/msg";
+	}
+	@RequestMapping("/deleteBoardComment.do")
+	public String deleteBoardComment(int boardCommentNo, int boardNo, Model model) {
+		int result = service.deleteBoardComment(boardCommentNo);
+		if (result > 0) {
+			model.addAttribute("msg", "댓글 삭제가 완료되었습니다.");
+		} else {
+			model.addAttribute("msg", "댓글 삭제가 실패하였습니다.");
+		}
+		model.addAttribute("loc", "/boardView.do?boardNo="+boardNo);
+		return "common/msg";
 	}
 }

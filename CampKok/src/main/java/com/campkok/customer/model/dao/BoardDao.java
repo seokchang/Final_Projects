@@ -8,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.campkok.customer.model.vo.BoardCommentVO;
 import com.campkok.customer.model.vo.BoardVO;
 
 @Repository
@@ -59,5 +60,26 @@ public class BoardDao {
 		// TODO Auto-generated method stub
 		List<BoardVO> list = sqlSession.selectList("customer.searchBoard", keyword);
 		return list.size();
+	}
+
+	public ArrayList<BoardCommentVO> selectBoardComment(int boardNo) {
+		// TODO Auto-generated method stub
+		List<BoardCommentVO> list = sqlSession.selectList("customer.boardCommentList", boardNo);
+		return (ArrayList<BoardCommentVO>) list;
+	}
+
+	public int insertBoardComment(BoardCommentVO bc) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("customer.boardCommentInsert", bc);
+	}
+
+	public int updateBoardComment(BoardCommentVO bc) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("customer.boardCommentUpdate", bc);
+	}
+
+	public int deleteBoardComment(int boardCommentNo) {
+		// TODO Auto-generated method stub
+		return sqlSession.delete("customer.boardCommentDelete", boardCommentNo);
 	}
 }

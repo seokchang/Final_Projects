@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.campkok.customer.model.dao.BoardDao;
+import com.campkok.customer.model.vo.BoardCommentVO;
 import com.campkok.customer.model.vo.BoardPageData;
 import com.campkok.customer.model.vo.BoardVO;
+import com.campkok.customer.model.vo.BoardViewData;
 
 @Service
 public class BoardService {
@@ -133,5 +135,28 @@ public class BoardService {
 	      }
 		BoardPageData bpd = new BoardPageData(list, pageNavi);
 		return bpd;
+	}
+
+	public BoardViewData selectBoardView(int boardNo) {
+		// TODO Auto-generated method stub
+		BoardVO b = dao.selectOneBoard(boardNo);
+		ArrayList<BoardCommentVO> list = dao.selectBoardComment(boardNo);
+		BoardViewData bvd = new BoardViewData(b, list);
+		return bvd;
+	}
+
+	public int insertBoardComment(BoardCommentVO bc) {
+		// TODO Auto-generated method stub
+		return dao.insertBoardComment(bc);
+	}
+
+	public int updateBoardComment(BoardCommentVO bc) {
+		// TODO Auto-generated method stub
+		return dao.updateBoardComment(bc);
+	}
+
+	public int deleteBoardComment(int boardCommentNo) {
+		// TODO Auto-generated method stub
+		return dao.deleteBoardComment(boardCommentNo);
 	}
 }

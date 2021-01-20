@@ -23,6 +23,9 @@
 			user_addr=#{userAddr}
 		where user_no=#{userNo}	
 	</update>
+	<delete id="deleteCustomer" parameterType="_int">
+		delete from user_tbl where user_no=#{_parameter}
+	</delete>
 	<select id="reserveInfo" parameterType="_int" resultType="r">
 		select 
 			R.res_no as resNo,
@@ -169,9 +172,20 @@
 			board_title as boardTitle
 		from board where board_no=#{parameter}
 	</select>
+	<select id="boardCommentList" parameterType="_int" resultType="bc">
+		select
+			board_comment_no as boardCommentNo,
+			board_comment_writer as boardCommentWriter,
+			board_comment_content as boardCommentContent,
+			board_ref as boardRef,
+			board_comment_date as boardCommentDate
+		from board_comment where board_ref=#{parameter}
+			
+	</select>
 	<insert id="boardInsert" parameterType="b">
 		insert into board values(board_seq.nextval,#{userId},#{boardFilename},#{boardFilepath},#{boardContents},to_char(sysdate, 'yyyy-mm-dd'),#{boardTitle})
 	</insert>
+	
 	<delete id="boardDelete" parameterType="_int">
 		delete from board where board_no=#{_parameter}
 	</delete>
@@ -183,6 +197,17 @@
 			board_title= #{boardTitle}
 		where board_no=#{boardNo}
 	</update>
+	<insert id="boardCommentInsert" parameterType="bc">
+		insert into board_comment values(board_comment_seq.nextval,#{boardCommentWriter},#{boardCommentContent},#{boardRef},to_char(sysdate,'yyyy-mm-dd'))
+	</insert>
+	<update id="boardCommentUpdate" parameterType="bc">
+		update board_comment set
+			board_comment_content=#{boardCommentContent}
+		where board_comment_no=#{boardCommentNo}
+	</update>
+	<delete id="boardCommentDelete" parameterType="_int">
+		delete from board_comment where board_comment_no=#{_parameter}
+	</delete>
 	<select id="searchList" parameterType="map" resultType="b">
 		select 
 			rownum as rnum,
@@ -216,7 +241,7 @@
 			dm_contents as dmContents,
 			dm_date as dmDate,
 			dm_check as dmCheck
-		from dm where dm_sender=#{parameter} or dm_receiver=#{parameter}
+		from dm where dm_sender=#{parameter} or dm_receiver=#{parameter} order by 1 desc
 	</select>
 	<insert id="inserDM" parameterType="d">
 		insert into dm values(dm_seq.nextval, #{dmSender}, #{dmReceiver}, #{dmContents}, to_char(sysdate, 'yyyy-mm-dd'), '읽지않음')
