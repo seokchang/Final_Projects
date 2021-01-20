@@ -29,7 +29,7 @@
 				</ul>
 				<div class="content-list">
 					<div id="chart-visitor" style="width: 97.5%">
-						<h3>방문자 수</h3>
+						<h3>주간 방문자 수</h3>
 						<div id="visit" style="margin-top: 10px;"></div>
 					</div>
 					<div id="chart-gender">
