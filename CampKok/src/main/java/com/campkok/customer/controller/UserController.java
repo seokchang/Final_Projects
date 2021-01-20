@@ -37,6 +37,7 @@ public class UserController {
 	// 회원가입
 	@RequestMapping("/customerJoin.do")
 	public String customerJoin(UserVO u, Model model) {
+		System.out.println(u);
 		int result = service.insertUser(u);
 		if (result > 0) {
 			model.addAttribute("msg", "캠핑의 모든 것! 캠콕에 가입하신걸 환영합니다.");
@@ -58,6 +59,34 @@ public class UserController {
 		} else {
 			return "1";
 		}
+	}
+	
+	// 아이디 찾기로 이동
+	@RequestMapping("/findIdPage.do")
+	public String findIdPage() {
+		return "user/findId";
+	}
+	
+	// 아이디 찾기
+	@RequestMapping("/findId.do")
+	public String findId(UserVO u, Model model) {
+		UserVO user = service.findUserId(u);
+		model.addAttribute("user",user);
+		return "user/findIdResult";
+	}
+	
+	// 비밀번호 찾기로 이동
+	@RequestMapping("/findPwPage.do")
+	public String findPwPage() {
+		return "user/findPw";
+	}
+	
+	// 비밀번호 찾기
+	@RequestMapping("/findPw.do")
+	public String findPw(UserVO u, Model model) {
+		UserVO user = service.findUserPw(u);
+		model.addAttribute("user",user);
+		return "user/findPwResult";
 	}
 
 	// 로그인 페이지로 이동

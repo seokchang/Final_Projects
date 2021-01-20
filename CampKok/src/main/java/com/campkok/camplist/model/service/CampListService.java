@@ -76,7 +76,6 @@ public class CampListService {
 		CampList cl = dao.selectOneCamp(campNo);
 		ArrayList<CampFile> campFiles = dao.selectCampFiles(campNo);
 		cl.setCampFiles(campFiles);
-		System.out.println(campFiles.size());
 		return cl;
 	}
 

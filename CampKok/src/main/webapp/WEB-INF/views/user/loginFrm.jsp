@@ -31,9 +31,11 @@
                 <button type="submit" class="login-btn">로그인</button>
             </form>
             
-        <p><a href="#">아이디</a> 또는 <a href="#">비밀번호</a> 찾기 / <a href="/joinPage.do">회원가입</a></p>
+        <p><a href="/findIdPage.do">아이디</a> 또는 <a href="/findPwPage.do">비밀번호</a> 찾기 / <a href="/joinPage.do">회원가입</a></p>
         </div>
-    </div>
+    </div>    
+    
+    
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />
 
 
