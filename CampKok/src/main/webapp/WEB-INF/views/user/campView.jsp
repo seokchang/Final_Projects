@@ -58,7 +58,6 @@
             <a href="#">예약하기</a>
         </div>
         <div class="camp-naeyong">
-
             <div class="hr-sect">캠핑장 정보</div>
             <div>
                 <table class="camp-tbl">
@@ -71,12 +70,12 @@
                     <tr>
                         <th>시설</th>
                         <td colspan="3">
-                            <div style="display: flex">
+                            <div style="display: flex"><%-- 
                                 <ul>
                                 	<c:forEach items="${list }" var="cl">
                                    		<li>${cl.campFac }</li>
                                     </c:forEach>
-                                </ul>
+                                </ul> --%>
                                 <ul>
                                     <li>${cl.campFac }</li>
                                     <li>test</li>
