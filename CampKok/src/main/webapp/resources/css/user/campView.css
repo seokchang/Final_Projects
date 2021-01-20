@@ -83,6 +83,7 @@
 	display: flex;
 	flex-wrap: wrap;
 	background-color: #fff;
+	border: 1px solid #ccc;
 }
 
 .camp-tbl {
@@ -140,4 +141,10 @@
 
 .camp-re-no>div>p {
 	margin: 0;
+}
+
+.camp-re-no>div>ul{
+	list-style-type: circle;
+	padding-left: 23px;
+	padding-top: 12px;
 }

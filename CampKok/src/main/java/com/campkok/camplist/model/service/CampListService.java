@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.campkok.admin.camp.model.vo.CampFile;
+import com.campkok.camp.model.vo.ReviewVO;
+import com.campkok.camp.notice.model.vo.CampNoticeVO;
 import com.campkok.camplist.model.dao.CampListDao;
 import com.campkok.camplist.model.vo.CampList;
 import com.campkok.camplist.model.vo.CampListPageData;
@@ -138,6 +140,14 @@ public class CampListService {
 
 	public ArrayList<CampList> mainCampRanking() {
 		return dao.mainCampRanking();
+	}
+
+	public ArrayList<CampNoticeVO> selectCampNoticeList(int campNo) {
+		return dao.selectCampNoticeList(campNo);
+	}
+
+	public ArrayList<ReviewVO> selectCampReviewList(int campNo) {
+		return dao.selectCampReviewList(campNo);
 	}
 
 }
