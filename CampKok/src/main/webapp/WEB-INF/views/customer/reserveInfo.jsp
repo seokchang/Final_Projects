@@ -38,13 +38,15 @@
         </div>
         <div class="mypage-form">
                
-                     <c:if test="${r==null }">
+                     <c:if test="${list==null }">
                      <br>
                      	<p>최근 예약하신 내역이 없습니다.</p>
                      </c:if>
-                     <c:if test="${r!=null }">
-                    
+                     <c:if test="${list!=null }">
+                     
+                    <c:forEach items="${list }" var="r">
                     <table class="mypage-tbl">
+                    
                             <tr>
                                 <th>캠피장명</th>
                                 <td style="padding-left: 5px;">${r.campName }</td>
@@ -69,8 +71,12 @@
                                 <th>메모</th>
                                 <td style="padding-left: 5px;">${r.resMemo }</td>
                             </tr>
+                           
                         </table><br>
+                        
                         <span>* 예약에 변동사항이 있을 시에는 따로 문의 부탁드려요~ *</span>
+                        <br>
+                         </c:forEach>
                        </c:if>
                 </div>
             </div>

@@ -30,9 +30,10 @@ public class CustomerDao {
 		return sqlSession.update("customer.updateCustomer", u);
 	}
 
-	public ReservationVO selectOneReserve(int userNo) {
+	public ArrayList<ReservationVO> selectOneReserve(int userNo) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne("customer.reserveInfo", userNo);
+		List<ReservationVO> list = sqlSession.selectList("customer.reserveInfo", userNo);
+		return (ArrayList<ReservationVO>) list;
 	}
 
 	public ArrayList<ReservationVO> useSelectList(HashMap<String, Object> map) {
@@ -89,6 +90,11 @@ public class CustomerDao {
 	public int updateDm(int dmNo) {
 		// TODO Auto-generated method stub
 		return sqlSession.update("customer.updateDm", dmNo);
+	}
+
+	public int deleteCustomer(int userNo) {
+		// TODO Auto-generated method stub
+		return sqlSession.delete("customer.deleteCustomer", userNo);
 	}
 
 }

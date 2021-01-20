@@ -72,6 +72,9 @@ td {
 .dm-info-btn:hover {
 	font-weight: bold;
 }
+#re-dmReceiver{
+	display: none;
+}
 </style>
 </head>
 <body>
@@ -115,7 +118,7 @@ td {
 										<div class="modal-body">
 
 
-											발신자 아이디 <input type="text" name="dmSender" value="" readonly><br> <br>
+											발신자 아이디 <input type="text" name="dmSender2" value="" readonly><br> <br>
 											<textarea rows="10" cols="50" name="dmContents" id="dmContents" readonly></textarea>
 
 
@@ -125,7 +128,7 @@ td {
 										<div class="modal-footer">
 											<button class="delete-btn" data-toggle="modal" data-target="#myModal-sen-delete">삭제</button>
 
-											<button class="write-btn">답장</button>
+											<button class="write-btn" data-toggle="modal" data-target="#myModal">답장</button> 
 
 											<!--  <button type="button" class="btn btn-danger" data-dismiss="modal">닫기</button> -->
 										</div>
@@ -161,7 +164,7 @@ td {
 								<td>${d.dmSender }</td>
 
 								<td>
-									<button type="button" onclick="selectDm('${d.dmNo }');updateDm('${d.dmNo }')" class="dm-info-btn" data-toggle="modal" data-target="#myModal-sen-info">${d.dmContents }</button>
+									<button type="button" onclick="selectReDm('${d.dmNo }');updateDm('${d.dmNo }')" class="dm-info-btn" data-toggle="modal" data-target="#myModal-sen-info">${d.dmContents }</button>
 								</td>
 								<td>${d.dmCheck }</td>
 								<td>${d.dmDate }</td>
@@ -201,7 +204,7 @@ td {
 
 										<!-- Modal body -->
 										<div class="modal-body">
-											수신자 아이디 <input type="text" name="dmSender" value="" readonly><br> <br>
+											수신자 아이디 <input type="text" name="dmReceiver" value="" readonly><br> <br>
 											<textarea rows="10" cols="50" name="dmContents" id="dmContents" readonly></textarea>
 
 
@@ -242,7 +245,7 @@ td {
 								</div>
 							</div>
 							<tr>
-								<td>${d.dmSender }</td>
+								<td>${d.dmReceiver }</td>
 
 								<td>
 									<button type="button" onclick="selectDm('${d.dmNo }')" class="dm-info-btn" data-toggle="modal" data-target="#myModal-rec-info">${d.dmContents }</button>
@@ -272,16 +275,17 @@ td {
 
 				<!-- Modal body -->
 				<div class="modal-body">
-					수신자 아이디 <input type="text" name="dmReceiver"><br> <br>
+				 <!-- <input type="hidden" name="re-dmSender">
+				 <input type="hidden" name="dmReceiver2" id="re-dmReceiver"> -->
+				 수신자 아이디 
+					 <input type="text" name="dmReceiver2" id="dmReceiver"><br> <br>					
 					<textarea rows="10" cols="50" name="dmContent" id="dmContents"></textarea>
-
 
 				</div>
 
 				<!-- Modal footer -->
 				<div class="modal-footer">
 					<button class="write-btn" onclick="insertDm('${sessionScope.user.userId }')">보내기</button>
-					<!--  <button type="button" class="btn btn-danger" data-dismiss="modal">닫기</button> -->
 				</div>
 
 			</div>
@@ -290,14 +294,14 @@ td {
 
 
 
-
-
 	<script>
 		function insertDm(dmSender) {
-			var dmReceiver = $("[name=dmReceiver]").val();
+			
+			var dmReceiver = $("[name=dmReceiver2]").val();
 			var dmContents = $("[name=dmContent]").val(); 
 			console.log(dmContents+"dd");
 			console.log(dmSender+"F");
+			console.log(dmReceiver+"ss");
 			$.ajax({
 				url : "/dmInsert.do",
 				data : {
@@ -318,6 +322,7 @@ td {
 				}
 			});
 		}
+
 		function selectDm(dmNo) {
 			console.log(dmNo);
 			$.ajax({
@@ -328,13 +333,41 @@ td {
 				type : "post",
 				success : function(data) {
 					if (data != null) {
-						$("[name=dmSender]").val(data.dmSender);
+						$("[name=dmReceiver]").val(data.dmReceiver);
 						$("[name=dmContents]").val(data.dmContents);
 						$("[name=dmNo-del]").val(data.dmNo);
+						$("[name=re-dmSender]").val(data.dmSender);
+	
 					}
 				}
 			});
 		}
+
+ 		function selectReDm(dmNo) {
+			console.log(dmNo);
+			$.ajax({
+				url : "/dmSelect.do",
+				data : {
+					dmNo : dmNo
+				},
+				type : "post",
+				success : function(data) {
+					if (data != null) {
+						$("[name=dmSender2]").val(data.dmSender);
+						$("[name=dmReceiver]").val(data.dmReceiver);
+						$("[name=dmContents]").val(data.dmContents);
+						$("[name=dmNo-del]").val(data.dmNo);
+						if(data.dmSender==$("[name=dmSender2]").val()){
+							$("[name=dmReceiver2]").val(data.dmSender);
+
+						}
+						$("[name=re-dmSender]").val(data.dmSender);
+						
+						
+					}
+				}
+			});
+		}  
 		function updateDm(dmNo) {
 			$.ajax({
 				url : "/dmUpdate.do",
@@ -345,6 +378,7 @@ td {
 
 			});
 		}
+
 		function deleteDm() {
 			var dmNo = $("[name=dmNo-del]").val();
 			console.log(dmNo+"삭제");
@@ -366,6 +400,7 @@ td {
 				}
 			});
 		}
+
 		$(".close").click(function() {
 			location.reload();
 		});
