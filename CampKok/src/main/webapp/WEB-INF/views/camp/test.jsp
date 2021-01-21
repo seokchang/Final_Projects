@@ -139,7 +139,7 @@
 </style>
 </head>
 <body>
-
+<jsp:include page="/WEB-INF/views/common/header.jsp" />
 <div class="inputComment">
 	<span id="aa">*일반이용자만 댓글등록이 가능합니다.</span>
 		<div class="page-title">
@@ -193,7 +193,7 @@
 	
 	
 </div>
-
+<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 
 
 
