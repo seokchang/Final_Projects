@@ -220,14 +220,14 @@ public class AdminCampService {
 		int pageNo = ((reqPage - 1) / pageNaviSize) * pageNaviSize + 1;
 
 		if (pageNo != 1) {
-			pageNavi += "<a class='btn' href='/selectTempCampList.do?reqPage=" + (pageNo - 1) + "'>이전</a>";
+			pageNavi += "<a class='btn' href='/selectTempCampInfoList.do?reqPage=" + (pageNo - 1) + "'>이전</a>";
 		}
 
 		for (int i = 0; i < pageNaviSize; i++) {
 			if (reqPage == pageNo) {
 				pageNavi += "<span class='selectPage'>" + pageNo + "</span>";
 			} else {
-				pageNavi += "<a class='btn' href='/selectTempCampList.do?reqPage=" + pageNo + "'>" + pageNo + "</a>";
+				pageNavi += "<a class='btn' href='/selectTempCampInfoList.do?reqPage=" + pageNo + "'>" + pageNo + "</a>";
 			}
 			pageNo++;
 			if (pageNo > totalPage)
@@ -235,7 +235,7 @@ public class AdminCampService {
 		}
 
 		if (pageNo <= totalPage) {
-			pageNavi += "<a class='btn' href='/selectTempCampList.do?reqPage=" + pageNo + "'>다음</a>";
+			pageNavi += "<a class='btn' href='/selectTempCampInfoList.do?reqPage=" + pageNo + "'>다음</a>";
 		}
 		AdminCampInfoPageData acipd = new AdminCampInfoPageData(list, pageNavi);
 
