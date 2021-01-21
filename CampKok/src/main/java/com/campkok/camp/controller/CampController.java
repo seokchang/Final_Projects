@@ -23,52 +23,51 @@ public class CampController {
 	private CampService service;
 	
 	/***********************************************
-	 *                     ±âÇö 
+	 *                     ï¿½ï¿½ï¿½ï¿½ 
 	 ***********************************************/
-	@RequestMapping("test.do")
-	public String test() {
-		return "camp/test";
-	}
+	/*
+	 * @RequestMapping("test.do") public String test() { return "camp/test"; }
+	 */
 	@RequestMapping("campReservation.do")
 	public String campReservation(Model model,int roomNo) {
-		//1. ¿¹¾àµÈ Á¤º¸ ÀüºÎ °¡Á®¿À±â
-		//2. ÇØ´çÆäÀÌÁö¿¡ ¸®½ºÆ®·Î »Ñ·ÁÁÖ°í
-		//3. ´Ş·Â¿¡´Â ¹è¿­Ã³¸®·Î ³¯Â¥º°·Î ÀüÃ¼ ¿¹¾àÁ¤º¸ ³Ö±â(nullÀÎÁö ¾Æ´ÑÁö·Î? -> Ä¶¸°´õjsp ´Ù½Ã °í¹Î)
-		//4. °³º° ¿¹¾àÁ¤º¸´Â ·Î±×ÀÎ¼¼¼ÇÀ¸·Î µğºñ¿¡¼­ ÃÖ±Ù°ª Á¤·ÄÈÄ °¡Á®¿À´Â°É·Î ÇØ¾ßÇÒµí?(ÀÌ°Íµµ jsp¿¡¼­ ´Ù½Ã °í¹Î)
-		
-		//user_tbl¿¡¼­ Æ÷ÀÎÆ® °¡Á®¿À±â
+		//1. ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		//2. ï¿½Ø´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Ñ·ï¿½ï¿½Ö°ï¿½
+		//3. ï¿½Ş·Â¿ï¿½ï¿½ï¿½ ï¿½è¿­Ã³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Â¥ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö±ï¿½(nullï¿½ï¿½ï¿½ï¿½ ï¿½Æ´ï¿½ï¿½ï¿½ï¿½ï¿½? -> Ä¶ï¿½ï¿½ï¿½ï¿½jsp ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½)
+		//4. ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Î±ï¿½ï¿½Î¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ñ¿¡¼ï¿½ ï¿½Ö±Ù°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â°É·ï¿½ ï¿½Ø¾ï¿½ï¿½Òµï¿½?(ï¿½Ì°Íµï¿½ jspï¿½ï¿½ï¿½ï¿½ ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½)
+		 
+		//user_tblï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		/*
-		 * int userNo = 2; //¼¼¼ÇÁ¤º¸·Î ¹Ş¾Æ¼­ ´ëÃ¼ÇÒ¿¹Á¤ UserVO userInfo =
+		 * int userNo = 2; //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ş¾Æ¼ï¿½ ï¿½ï¿½Ã¼ï¿½Ò¿ï¿½ï¿½ï¿½ UserVO userInfo =
 		 * service.selectUserPoint(userNo);
 		 */
-		//Ä·ÇÎÀå·ë Á¤º¸ °¡Á®¿À±â
+		//Ä·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		CampRoomVO campRoomInfo = service.selectRoomInfo(roomNo);
-		//Ä·ÇÎÀå¿¹¾à¸®½ºÆ® °¡Á®¿À±â
+		//Ä·ï¿½ï¿½ï¿½å¿¹ï¿½à¸®ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		ArrayList<CampResVO> campResList = service.selectCampResList(roomNo);
-		//Ä·ÇÎÀå Á¤º¸ °¡Á®¿À±â
+		//Ä·ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		int campNo = campRoomInfo.getCampNo();
 		CampVO campInfo = service.selectCampInfo(campNo);
-		model.addAttribute("campRoomInfo",campRoomInfo); //Ä·ÇÎÀå ·ë
-		model.addAttribute("campInfo",campInfo); //Ä·ÇÎÀå
+		model.addAttribute("campRoomInfo",campRoomInfo); //Ä·ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+		model.addAttribute("campInfo",campInfo); //Ä·ï¿½ï¿½ï¿½ï¿½
 		/* model.addAttribute("userInfo",userInfo); */
-		model.addAttribute("campResList",campResList); //¿¹¾à ¸®½ºÆ® 
+		model.addAttribute("campResList",campResList); //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® 
 		return "camp/campReservation2";
 	}
 	
 	@RequestMapping("campRes.do")
 	public String campRes(Integer userNo, Integer campNo, Integer campRoomNo, String resInDate, String resOutDate, Integer resMember, String resMemo, Integer resPrice,Integer userUsePoint, Model model) {				
-		//user_tbl Æ÷ÀÎÆ® ¾÷µ¥ÀÌÆ®
+		//user_tbl ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
 		int result = service.userPointUpdate(userNo,userUsePoint);
-		//Æ÷ÀÎÆ® Å×ÀÌºí ÀÎ¼­Æ®
-		int totalPoint = service.totalPoint(userNo); //ÅäÅ»Æ÷ÀÎÆ® °¡Á®¿À±â
+		//ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½Ìºï¿½ ï¿½Î¼ï¿½Æ®
+		int totalPoint = service.totalPoint(userNo); //ï¿½ï¿½Å»ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		int result2 = service.pointUpdate(userNo,totalPoint,userUsePoint);
-		//¿¹¾à Å×ÀÌºí ÀÎ¼­Æ®
-		int resResult = service.campRes(userNo,campNo,campRoomNo,resInDate,resOutDate,resMember,resPrice,resMemo); //À¯Àú³Ñ¹ö ¼¼¼ÇÁ¤º¸·Î ¹ŞÀ»¿¹Á¤
+		//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìºï¿½ ï¿½Î¼ï¿½Æ®
+		int resResult = service.campRes(userNo,campNo,campRoomNo,resInDate,resOutDate,resMember,resPrice,resMemo); //ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¹ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		if(resResult >0) {
-			model.addAttribute("msg","¿¹¾àÀÌ ¿Ï·áµÇ¾ú½À´Ï´Ù.");
+			model.addAttribute("msg","ì˜ˆì•½ì´ ì™„ë£Œë˜ì—ˆìŠµë‹ˆë‹¤.");
 		}else {
-			model.addAttribute("msg","¿¹¾àÁß ¿À·ù°¡ ¹ß»ıÇß½À´Ï´Ù. ´Ù½Ã ¿¹¾àÇØÁÖ¼¼¿ä.");
-			model.addAttribute("loc","/camp/campReservation2");
+			model.addAttribute("msg","ì˜ˆì•½ë“±ë¡ì¤‘ ì˜¤ë¥˜ê°€ ë°œìƒí–ˆìŠµë‹ˆë‹¤.");
+			model.addAttribute("loc","/");
 		}
 		model.addAttribute("loc","/");
 		return "common/msg";
@@ -78,29 +77,29 @@ public class CampController {
 	public String commentFrm(Model model,int userNo,int campNo) {
 		UserVO userInfo = service.selectUserPoint(userNo);
 		model.addAttribute("userInfo",userInfo);
-		//reviewÅ×ÀÌºí °¡Á®¿À±â
+		//reviewï¿½ï¿½ï¿½Ìºï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		ArrayList<ReviewVO> commentList = service.selectAllComment(campNo);
 		model.addAttribute("commentList",commentList);
 		model.addAttribute("campNo",campNo);
-		return "camp/commentFrm";
+		return "camp/test";
 	}
 	
 	@RequestMapping("insertComment.do")
 	public String insertComment(String userId, int campNo,String revContents,Model model) {
-		//¸®ºäÀÛ¼º½Ã Æ÷ÀÎÆ® ÀÎ¼­Æ®
+		//ï¿½ï¿½ï¿½ï¿½ï¿½Û¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½Î¼ï¿½Æ®
 		UserVO userInfo = service.selectUser(userId);
 		int userNo = userInfo.getUserNo();
 		int pointTotal =userInfo.getUserPoint();
 		int result2 = service.insertPoint(userNo,pointTotal);
-		//user_tbl ÅäÅ»Æ÷ÀÎÆ® ¾÷µ¥ÀÌÆ®
+		//user_tbl ï¿½ï¿½Å»ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
 		int result3 = service.updateUserPoint(userNo);
-		//reviewÅ×ÀÌºí ÀÎ¼­Æ®
+		//reviewï¿½ï¿½ï¿½Ìºï¿½ ï¿½Î¼ï¿½Æ®
 		int result = service.insertComment(userId,campNo,revContents);
 		if(result>0) {
-			model.addAttribute("msg","´ñ±Û µî·ÏÀÌ ¿Ï·áµÇ¾ú½À´Ï´Ù.");
+			model.addAttribute("msg","í›„ê¸°ê°€ ë“±ë¡ë˜ì—ˆìŠµë‹ˆë‹¤.");
 			model.addAttribute("loc","/campView.do?campNo="+campNo);
 		}else {
-			model.addAttribute("msg","´ñ±Ûµî·ÏÁß ¿À·ù°¡ ¹ß»ıÇß½À´Ï´Ù. ´Ù½Ã ÀÛ¼ºÇØÁÖ¼¼¿ä.");
+			model.addAttribute("msg","í›„ê¸°ë“±ë¡ì¤‘ ì˜¤ë¥˜ê°€ ë°œìƒí–ˆìŠµë‹ˆë‹¤.");
 			model.addAttribute("loc","/camp/commentFrm.do");
 		}
 		return "common/msg";
@@ -125,10 +124,10 @@ public class CampController {
 	public String commentDelete(int revNo,Model model,int campNo) {
 		int result = service.commentDelete(revNo);
 		if(result>0) {
-			model.addAttribute("msg","´ñ±ÛÀÌ »èÁ¦µÇ¾ú½À´Ï´Ù.");
+			model.addAttribute("msg","í›„ê¸°ê°€ ì‚­ì œë˜ì—ˆìŠµë‹ˆë‹¤.");
 			model.addAttribute("loc","/campView.do?campNo="+campNo);
 		}else {
-			model.addAttribute("msg","´ñ±Û»èÁ¦Áß ¿À·ù°¡ ¹ß»ıÇß½À´Ï´Ù. ´Ù½Ã »èÁ¦ÇØÁÖ¼¼¿ä.");
+			model.addAttribute("msg","í›„ê¸° ì‚­ì œì¤‘ ì˜¤ë¥˜ê°€ ë°œìƒí–ˆìŠµë‹ˆë‹¤.");
 			model.addAttribute("loc","/camp/commentFrm.do");
 		}
 		return "common/msg";
@@ -138,10 +137,10 @@ public class CampController {
 	public String commentUpdate(int revNo,Model model) {
 		int result = service.commentUpdate(revNo);
 		if(result>0) {
-			model.addAttribute("msg","´ñ±ÛÀÌ ¼öÁ¤µÇ¾ú½À´Ï´Ù.");
+			model.addAttribute("msg","í›„ê¸° ìˆ˜ì •ì´ ì™„ë£Œë˜ì—ˆìŠµë‹ˆë‹¤.");
 			model.addAttribute("loc","/camp/commentFrm.do");
 		}else {
-			model.addAttribute("msg","´ñ±Û¼öÁ¤Áß ¿À·ù°¡ ¹ß»ıÇß½À´Ï´Ù. ´Ù½Ã ¼öÁ¤ÇØÁÖ¼¼¿ä.");
+			model.addAttribute("msg","í›„ê¸° ìˆ˜ì •ì¤‘ ì˜¤ë¥˜ê°€ ë°œìƒí–ˆìŠµë‹ˆë‹¤.");
 			model.addAttribute("loc","/camp/commentFrm.do");
 		}
 		return "common/msg";
@@ -152,7 +151,7 @@ public class CampController {
 	
 	
 	/***********************************************
-	 *                     Áø¿ì 
+	 *                     ï¿½ï¿½ï¿½ï¿½ 
 	 ***********************************************/
 	@RequestMapping("jinwoo.do")
 	public String start() {
