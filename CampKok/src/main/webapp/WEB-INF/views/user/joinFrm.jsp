@@ -436,7 +436,7 @@
                 }
             });*/
             
-            console.log(check);
+            console.log($('[name=userGender]'));
             
             $('form').submit(function() {
                 console.log(check);
@@ -453,7 +453,7 @@
                 }
             });
             
-         // 전체 갯수
+         	// 전체 갯수
             $("input:checkbox[name=is_check]").length
              
             // 선택된 갯수
