@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>CampKok Main</h1>
+	<h1>작업페이지 (추후 삭제)</h1>
 	<hr>
 	<h3>
 		<a href="/pageAdmin.do?reqPage=1">Admin Page</a>

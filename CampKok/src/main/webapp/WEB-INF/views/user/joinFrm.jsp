@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>일반회원가입</title>
 <!-- 다음 주소찾기 API -->
 <script
 	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -265,16 +265,13 @@
 
 				<div>
 					<p>
-						<input type="checkbox" class="chk" id="chk_all"><b>
-							약관전체동의</b>
+						<input type="checkbox" class="chk" id="chk_all"> <label for="chk_all"><b> 약관전체동의</b></label>
 					</p>
 					<p>
-						<input type="checkbox" class="chk" name="chk" id="chk1">
-						이용약관에 동의합니다. (필수)
+						<input type="checkbox" class="chk" name="chk" id="chk1"> <label for="chk1">이용약관에 동의합니다. (필수)</label>
 					</p>
 					<p>
-						<input type="checkbox" class="chk" name="chk" id="chk2">
-						개인정보 처리방침에 동의합니다. (필수)
+						<input type="checkbox" class="chk" name="chk" id="chk2"> <label for="chk2">개인정보 처리방침에 동의합니다. (필수)</label>
 					</p>
 				</div>
 
@@ -298,60 +295,57 @@
 	    		 } 
 	    	  }).open();
 	      }
-		$(document).ready(function() {
-			$("#chk_all").click(function(){
-				var ra = $( '#roadAddr' ).val();
-				var da = $( '#detailAddr' ).val();
-				const str = ra +' '+ da;
-				$("#userAddr").val(str);
-			});
-		});
     	
 		
 
+		// 정규표현식
         $(document).ready(function() {
             // 배열로 처리
             var check = [false, false, false, false, false, false, false];
-            $('input').val(''); // 값 비워주는 코드
-            
-            // 정규표현식 
             // 포커스인아웃을 사용하면 불필요할때도 값을 검사하지만 체인지는 값이 바뀔때만 검사함 
-            
     	
-             $('[name=userId]').keyup(function() {
-                 $("#chkId").css('display','none');
- 				$("#chkIdMsg").html("");
+             $('[name=userId]').change(function() {
+            	 $("#chkId").css('display','none');
+ 				 $("#chkIdMsg").html("");
             	 
             	 /* 아이디 중복체크 */
-            	 var userId = $(this).val();
-     			$.ajax({
-     				url : "/checkId.do",
-     				data : {userId:userId},
-     				success : function(data){
-     					if(userId != "" && data == 0){
-     						$("#chkId").css('display','');
-     						$("#chkIdMsg").html("멋진 아이디네요!");
-     					}else if(userId == ""){
-     	                    $("#chkId").css('display','');
-     						$("#chkIdMsg").html("아이디를 입력해주세요.");
-     	                } else if(userId != "" && data == 1){
-     						$("#chkId").css('display','');
-     						$("#chkIdMsg").html("이미 사용중인 아이디 입니다.");
-     					}
-     				}
-     			});
-            	 
+            	var userId = $(this).val();
             	 
                 var reg = /^[a-z][a-z0-9_-]{4,19}$/;
                 if (reg.test($(this).val())) {
+                	$.ajax({
+         				url : "/checkId.do",
+         				data : {userId:userId},
+         				success : function(data){
+         					if(userId != "" && data == 0){
+         						$("#chkId").css('display','');
+         						$("#chkIdMsg").html("멋진 아이디네요!");
+         						$("#chkIdMsg").css('color','#405944');
+         						$(this).css('border','1px solid #405944');
+         					}else if(userId == ""){
+         	                    $("#chkId").css('display','');
+         						$("#chkIdMsg").html("아이디를 입력해주세요.");
+         						$("#chkIdMsg").css('color','#BF372B');
+         						$(this).css('border','1px solid #BF372B');
+         	                } else if(userId != "" && data == 1){
+         						$("#chkId").css('display','');
+         						$("#chkIdMsg").html("이미 사용중인 아이디 입니다.");
+         						$("#chkIdMsg").css('color','#BF372B');
+         						$(this).css('border','1px solid #BF372B');
+         					}
+         				} 
+         			});
                     check[0] = true;
                 } else {
                     check[0] = false;
                     $("#chkId").css('display','');
 					$("#chkIdMsg").html("5~20자의 영문 소문자, 숫자와 특수기호'_','-'만 사용 가능합니다.");
+					$("#chkIdMsg").css('color','#BF372B');
+					$(this).css('border','1px solid #BF372B');
                 }
             }); 
-            $('[name=userName]').keyup(function() {
+            
+            $('[name=userName]').change(function() {
                 $(this).prevAll().last().children().html("");
                 var reg = /^[가-힣]{2,4}$/;
                 if (reg.test($(this).val())) {
@@ -363,6 +357,7 @@
 					$("#chkNameMsg").html("한글 2~4글자만 사용 가능합니다.");
                 }
             });
+            
             $('[name=userPw]').change(function() {
                 $(this).prevAll().last().children().html("");
                 var reg = /^[A-Za-z0-9_-]{6,18}$/;
@@ -375,6 +370,7 @@
 					$("#chkPwMsg").html("영문대소문자+숫자 6~18자리만 사용 가능합니다.");
                 }
             });
+            
             $('[name=userPwChk]').change(function() {
                 $(this).prevAll().last().children().html("");
                 console.log($('[name=userPw]').val());
@@ -387,19 +383,7 @@
 					$("#chkchkPwMsg").html("비밀번호가 일치하지 않습니다.");
                 }
             });
-            /*$('[name=userAddr]').change(function() {
-                if ((this).val() != null) {
-                    check[4] = true;
-                    $("#chkAddr").css('display','none');
-                } else {
-                    check[4] = false;
-                    $("#chkAddr").css('display','');
-					$("#chkAddrMsg").html("주소를 입력해 주세요.");
-                }
-            });*/
             
-
-    		
     		$("#chk_all").click(function(){
     			var ra = $( '#roadAddr' ).val();
     			var da = $( '#detailAddr' ).val();
@@ -414,7 +398,6 @@
 					$("#chkAddrMsg").html("주소를 입력해 주세요.");
                 }
     		});
-            
             
             $('[name=userPhone]').change(function() {
                 $(this).prevAll().last().children().html("");
@@ -465,14 +448,30 @@
                 }
                 if (count < 7) {
                 	alert('입력값을 확인 해 주세요');
-                    return false;
+                	event.preventDefault();
+                    //return false;
                 }
             });
-            $('.btn-3').eq(1).click(function() {
-                $("span").text('');
-                $('.info').children().filter('input').val('');
-                $('.info').children().filter('input').focusout();
+            
+         // 전체 갯수
+            $("input:checkbox[name=is_check]").length
+             
+            // 선택된 갯수
+            $("input:checkbox[name=is_check]:checked").length
+             
+            // 전체 체크
+            $("input[name=mycheck]:checkbox").prop("checked", true);
+             
+            // 전체 체크 순회
+            $("input:checkbox[name=is_check]").each(function() {
+             this.checked = true;
             });
+             
+            // 체크여부 확인
+            if($("input:checkbox[name=complete_yn]").is(":checked") == true) {
+              //작업
+            }
+            
         });
     	
 	</script>
