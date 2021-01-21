@@ -34,9 +34,11 @@ body {
 .join-select-text>p:first-child {
 	font-size: 30px;
 }
-
+.join-select>div{
+	transition-duration: 0.3s;
+}
 .join-select>div:hover {
-	box-shadow: 1px 1px 3px 1px lightgrey;
+	box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.2);
 }
 
 .join-select>div>a {
@@ -47,10 +49,10 @@ body {
 	background-color: #405944;
 	width: 150px;
 	height: 50px;
+	transition-duration: 0.3s;
 }
 
 .join-select>div>a:hover {
-	color: #405944;
-	background-color: #fff;
-	border: 1px solid #405944;
+	color: #fff;
+	background-color: #5A7356;
 }

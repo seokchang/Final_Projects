@@ -39,5 +39,6 @@
 
 	<hr>
 	<a href="/main.do">메인페이지</a>
+	<a href="/index22.html">index</a>
 </body>
 </html>

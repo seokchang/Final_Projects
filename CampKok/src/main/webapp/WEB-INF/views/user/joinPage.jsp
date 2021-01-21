@@ -17,7 +17,7 @@
 	<div class="join-content">
 		<div class="join-select">
 			<div>
-				<img src="#">
+				<img src="/resources/img/member/user.png">
 				<div class="join-select-text">
 					<p class="join-select-title">일반회원가입</p>
 					<p>
@@ -27,7 +27,7 @@
 				<a href="/joinFrm.do">가입하기</a>
 			</div>
 			<div>
-				<img src="#">
+				<img src="/resources/img/member/camp.png">
 				<div class="join-select-text">
 					<p class="join-select-title">캠핑장회원가입</p>
 					<p>

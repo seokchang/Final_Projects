@@ -1,73 +1,79 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <!-- 다음 주소찾기 API -->
-<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-	
+<script
+	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
 <link rel="stylesheet" href="/resources/css/user/joinFrm.css">
 </head>
 <body>
-<jsp:include page="/WEB-INF/views/common/header.jsp" />
-<div class="header-img">
-        <div>
-            <p>일반회원가입</p>
-            <p>캠콕의 다양한 서비스를 편리하게 이용하실 수 있습니다.</p>
-        </div>
-    </div>
-    <div class="join-content">
-        <div class="page-title">
-            | SIGN UP
-        </div>
-        <div class="join-naeyong">
-            <form action="/customerJoin.do" method="post">
-                <table class="jointbl">
-                    <tr>
-                        <td><label>아이디</label></td>
-                        <td><input type="text" name="userId" placeholder="5~20자의 영문 소문자, 숫자와 특수기호'_','-'만 사용 가능합니다."></td>
-                    </tr>
-                    <tr style="display: none;" id="chkId">
-                        <td></td>
-                        <td style="padding: 0px; padding-left: 10px; padding-bottom: 5px;"><span id="chkIdMsg"></span></td>
-                    </tr>
-                    <tr>
-                        <td>비밀번호</td>
-                        <td><input type="password" name="userPw" placeholder="8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요."></td>
-                    </tr>
-                    <tr style="display: none;" id="chkPw">
-                        <td></td>
-                        <td style="padding: 0px; padding-left: 10px; padding-bottom: 5px;"><span id="chkPwMsg"></span></td>
-                    </tr>
-                    <tr>
-                        <td>비밀번호확인</td>
-                        <td><input type="password" name="userPwChk"><span>
-                                <!--8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요.-->
-                            </span></td>
-                    </tr>
-                    <tr style="display: none;" id="chkchkPw">
-                        <td></td>
-                        <td style="padding: 0px; padding-left: 10px; padding-bottom: 5px;"><span id="chkchkPwMsg"></span></td>
-                    </tr>
-                    <tr>
-                        <td>이름</td>
-                        <td><input type="text" name="userName"></td>
-                    </tr>
-                    <tr>
-                        <td>전화번호</td>
-                        <td><input type="text" name="userPhone" placeholder="ex) 010-0000-0000"></td>
-                    </tr>
-                    <tr style="display: none">
-                        <td>회원레벨</td>
-                        <td><input type="text" name="userLevel" value="1"></td>
-                    </tr>
-                    <tr>
-                        <td>생년월일</td>
-                        <td><input type="text" name="userBirth" placeholder="ex) 1994-12-08"></td>
-                        
-                        <!-- 
+	<jsp:include page="/WEB-INF/views/common/header.jsp" />
+	<div class="header-img">
+		<div>
+			<p>일반회원가입</p>
+			<p>캠콕의 다양한 서비스를 편리하게 이용하실 수 있습니다.</p>
+		</div>
+	</div>
+	<div class="join-content">
+		<div class="page-title">| SIGN UP</div>
+		<div class="join-naeyong">
+			<form action="/customerJoin.do" method="post">
+				<table class="jointbl">
+					<tr>
+						<td><label>아이디</label></td>
+						<td><input type="text" name="userId"
+							placeholder="5~20자의 영문 소문자, 숫자와 특수기호'_','-'만 사용 가능합니다."></td>
+					</tr>
+					<tr style="display: none;" id="chkId">
+						<td></td>
+						<td style="padding: 0px; padding-left: 10px; padding-bottom: 5px;"><span
+							id="chkIdMsg"></span></td>
+					</tr>
+					<tr>
+						<td>비밀번호</td>
+						<td><input type="password" name="userPw"
+							placeholder="8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요."></td>
+					</tr>
+					<tr style="display: none;" id="chkPw">
+						<td></td>
+						<td style="padding: 0px; padding-left: 10px; padding-bottom: 5px;"><span
+							id="chkPwMsg"></span></td>
+					</tr>
+					<tr>
+						<td>비밀번호확인</td>
+						<td><input type="password" name="userPwChk"><span>
+								<!--8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요.-->
+						</span></td>
+					</tr>
+					<tr style="display: none;" id="chkchkPw">
+						<td></td>
+						<td style="padding: 0px; padding-left: 10px; padding-bottom: 5px;"><span
+							id="chkchkPwMsg"></span></td>
+					</tr>
+					<tr>
+						<td>이름</td>
+						<td><input type="text" name="userName"></td>
+					</tr>
+					<tr>
+						<td>전화번호</td>
+						<td><input type="text" name="userPhone"
+							placeholder="ex) 010-0000-0000"></td>
+					</tr>
+					<tr style="display: none">
+						<td>회원레벨</td>
+						<td><input type="text" name="userLevel" value="1"></td>
+					</tr>
+					<tr>
+						<td>생년월일</td>
+						<td><input type="text" name="userBirth"
+							placeholder="ex) 1994-12-08"></td>
+
+						<!-- 
                         <td>
                             <select>
                                 <option selected>년도</option>
@@ -210,48 +216,54 @@
                             </select>
                         </td>
                          -->
-                    </tr>
-                    <tr>
-                        <td>성별</td>
-                        <td>
-                            <input type="radio" class="gender-radio" name="userGender" value="남" id="m"><label for="m">남자</label>
-                            <input type="radio" class="gender-radio" name="userGender" value="여" id="f"><label for="f">여자</label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>주소</td>
-						<td>
-							<input id="postCode" style="width: 150px;" type="text" placeholder="우편번호" readonly>
-							<button id="addrSearchBtn" type="button" onclick="addrSearch();" class="joinfrm-btn">주소검색</button>
-						</td>
-                    </tr>
-                    <tr>
-                    	<td></td>
-						<td>
-							<input type="text" id="roadAddr" placeholder="도로명주소" readonly>
-						</td>
-                    </tr>
-                    <tr>
-                    	<td></td>
-						<td>
-							<input id="detailAddr" placeholder="상세주소">
-							<input type="hidden" name="userAddr" id="userAddr">
-						</td>
-                    </tr>
-                </table>
+					</tr>
+					<tr>
+						<td>성별</td>
+						<td><input type="radio" class="gender-radio"
+							name="userGender" value="남" id="m"><label for="m">남자</label>
+							<input type="radio" class="gender-radio" name="userGender"
+							value="여" id="f"><label for="f">여자</label></td>
+					</tr>
+					<tr>
+						<td>주소</td>
+						<td><input id="postCode" style="width: 150px;" type="text"
+							placeholder="우편번호" readonly>
+							<button id="addrSearchBtn" type="button" onclick="addrSearch();"
+								class="joinfrm-btn">주소검색</button></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td><input type="text" id="roadAddr" placeholder="도로명주소"
+							readonly></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td><input id="detailAddr" placeholder="상세주소"> <input
+							type="hidden" name="userAddr" id="userAddr"></td>
+					</tr>
+				</table>
 
-                <div>
-                    <p><input type="checkbox" class="chk" id="chk_all"><b> 약관전체동의</b></p>
-                    <p><input type="checkbox" class="chk" name="chk" id="chk1"> 이용약관에 동의합니다. (필수)</p>
-                    <p><input type="checkbox" class="chk" name="chk" id="chk2"> 개인정보 처리방침에 동의합니다. (필수)</p>
-                </div>
+				<div>
+					<p>
+						<input type="checkbox" class="chk" id="chk_all"><b>
+							약관전체동의</b>
+					</p>
+					<p>
+						<input type="checkbox" class="chk" name="chk" id="chk1">
+						이용약관에 동의합니다. (필수)
+					</p>
+					<p>
+						<input type="checkbox" class="chk" name="chk" id="chk2">
+						개인정보 처리방침에 동의합니다. (필수)
+					</p>
+				</div>
 
-                <button type="submit">가입하기</button>
-            </form>
-        </div>
-    </div>
-    
-    <script>
+				<button type="submit">가입하기</button>
+			</form>
+		</div>
+	</div>
+
+	<script>
 		
 		// 주소 API
 		function addrSearch() {
@@ -266,24 +278,16 @@
 	    		 } 
 	    	  }).open();
 	      }
-		
-		$(function(){
-			if($("input:checkbox[id='chk_all']").is(":checked")){
-			     $("input:checkbox[id='chk1']").attr("checked", true);
-			     $("input:checkbox[id='chk2']").attr("checked", true);
-	
-			}else{
-			     $("input:checkbox[id='chk1']").attr("checked", false);
-			     $("input:checkbox[id='chk2']").attr("checked", false);
-			}
-			
-			if($("input:checkbox[name='chk']").is(":checked") == true){
-			    console.log('체크된 상태');
-			}
-			if($("input:checkbox[name='chk']").is(":checked") == false ){
-			    console.log('체크x');
-			}
+		$(document).ready(function() {
+			$("#chk_all").click(function(){
+				var ra = $( '#roadAddr' ).val();
+				var da = $( '#detailAddr' ).val();
+				const str = ra +' '+ da;
+				$("#userAddr").val(str);
+			});
 		});
+    	
+		
 
         $(document).ready(function() {
             // 배열로 처리
@@ -295,40 +299,40 @@
             
     	
              $('[name=userId]').keyup(function() {
+                 $("#chkId").css('display','none');
  				$("#chkIdMsg").html("");
-                $("#chkId").css('display','none');
+            	 
+            	 /* 아이디 중복체크 */
+            	 var userId = $(this).val();
+     			$.ajax({
+     				url : "/checkId.do",
+     				data : {userId:userId},
+     				success : function(data){
+     					if(userId != "" && data == 0){
+     						$("#chkId").css('display','');
+     						$("#chkIdMsg").html("멋진 아이디네요!");
+     					}else if(userId == ""){
+     	                    $("#chkId").css('display','');
+     						$("#chkIdMsg").html("아이디를 입력해주세요.");
+     	                } else if(userId != "" && data == 1){
+     						$("#chkId").css('display','');
+     						$("#chkIdMsg").html("이미 사용중인 아이디 입니다.");
+     					}
+     				}
+     			});
+            	 
+            	 
                 var reg = /^[a-z][a-z0-9_-]{4,19}$/;
                 if (reg.test($(this).val())) {
-                    //check[0] = true;
-                	var userId = $(this).val();
-        			 $.ajax({
-        				url : "/checkId.do",
-        				data : {userId:userId},
-        				success : function(data){
-        					if($(this).val() != "" && data == 0){
-        						$("#chkId").css('display','');
-        						$("#chkIdMsg").html("멋진 아이디네요!");
-        						check[0] = true;
-        					}else if($(this).val() == ""){
-        	                    $("#chkId").css('display','');
-        						$("#chkIdMsg").html("아이디를 입력해주세요.");
-        						check[0] = false;
-        	                } else if($(this).val() != "" && data == 1){
-        						$("#chkId").css('display','');
-        						$("#chkIdMsg").html("이미 사용중인 아이디 입니다.");
-        						check[0] = false;
-        					}
-        				}
-        			}); 
+                    check[0] = true;
                 } else {
                     check[0] = false;
                     $("#chkId").css('display','');
 					$("#chkIdMsg").html("5~20자의 영문 소문자, 숫자와 특수기호'_','-'만 사용 가능합니다.");
                 }
             }); 
-            
             $('[name=userName]').keyup(function() {
-            	$("#chkNameMsg").html("");
+                $(this).prevAll().last().children().html("");
                 var reg = /^[가-힣]{2,4}$/;
                 if (reg.test($(this).val())) {
                     check[1] = true;
@@ -339,7 +343,6 @@
 					$("#chkNameMsg").html("한글 2~4글자만 사용 가능합니다.");
                 }
             });
-            
             $('[name=userPw]').change(function() {
                 $(this).prevAll().last().children().html("");
                 var reg = /^[A-Za-z0-9_-]{6,18}$/;
@@ -352,7 +355,6 @@
 					$("#chkPwMsg").html("영문대소문자+숫자 6~18자리만 사용 가능합니다.");
                 }
             });
-            
             $('[name=userPwChk]').change(function() {
                 $(this).prevAll().last().children().html("");
                 console.log($('[name=userPw]').val());
@@ -365,16 +367,28 @@
 					$("#chkchkPwMsg").html("비밀번호가 일치하지 않습니다.");
                 }
             });
+            /*$('[name=userAddr]').change(function() {
+                if ((this).val() != null) {
+                    check[4] = true;
+                    $("#chkAddr").css('display','none');
+                } else {
+                    check[4] = false;
+                    $("#chkAddr").css('display','');
+					$("#chkAddrMsg").html("주소를 입력해 주세요.");
+                }
+            });*/
             
             
-            $(".chk").click(function(){
-				var ra = $( '#roadAddr' ).val();
-				var da = $( '#detailAddr' ).val();
-				const str = ra +' '+ da;
-				$("#userAddr").val(str);
-				check[4] = true;
-				console.log(check);
-			});
+            $('[name=userAddr]').change(function() {
+                if ((this).val() != null) {
+                    check[4] = true;
+                    $("#chkAddr").css('display','none');
+                } else {
+                    check[4] = false;
+                    $("#chkAddr").css('display','');
+					$("#chkAddrMsg").html("주소를 입력해 주세요.");
+                }
+            });
             
             
             $('[name=userPhone]').change(function() {
@@ -389,7 +403,6 @@
 					$("#chkPhoneMsg").html("입력형식'010-0000-0000'에 맞춰 입력해주세요.");
                 }
             });
-            
             
             $('[name=userBirth]').change(function() {
                 $(this).prevAll().last().children().html("");
@@ -426,7 +439,7 @@
                     }
                 }
                 if (count < 7) {
-                	alert('입력값을 확인해 주세요');
+                	alert('입력값을 확인 해 주세요');
                     return false;
                 }
             });
@@ -435,9 +448,10 @@
                 $('.info').children().filter('input').val('');
                 $('.info').children().filter('input').focusout();
             });
-        }); 
+        });
+    	
 	</script>
-    
-    <jsp:include page="/WEB-INF/views/common/footer.jsp" />
+
+	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 </body>
 </html>

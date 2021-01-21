@@ -140,7 +140,7 @@ select {
 	background-color: gray;
 	border: 1px solid gray;
 	color: #fff;
-	transition-duration: 0.5s;
+	transition-duration: 0.3s;
 }
 
 .joinfrm-btn:hover{

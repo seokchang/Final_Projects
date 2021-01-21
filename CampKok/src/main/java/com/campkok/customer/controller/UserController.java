@@ -71,8 +71,15 @@ public class UserController {
 	@RequestMapping("/findId.do")
 	public String findId(UserVO u, Model model) {
 		UserVO user = service.findUserId(u);
-		model.addAttribute("user",user);
-		return "user/findIdResult";
+		System.out.println(u);
+		if(user.getUserId() != null) {
+			model.addAttribute("user",user);
+			return "user/findIdResult";
+		}else {
+			model.addAttribute("msg","회원정보가 존재하지 않습니다.");
+			model.addAttribute("loc","/findIdPage.do");
+			return "common/msg";
+		}
 	}
 	
 	// 비밀번호 찾기로 이동
@@ -85,8 +92,16 @@ public class UserController {
 	@RequestMapping("/findPw.do")
 	public String findPw(UserVO u, Model model) {
 		UserVO user = service.findUserPw(u);
-		model.addAttribute("user",user);
-		return "user/findPwResult";
+		System.out.println(u);
+		if(user.getUserPw() != null) {
+			model.addAttribute("user",user);
+			return "user/findPwResult";
+		}else {
+			model.addAttribute("msg","회원정보가 존재하지 않습니다.");
+			model.addAttribute("loc","/findPwPage.do");
+			return "common/msg";
+		}
+		
 	}
 
 	// 로그인 페이지로 이동
