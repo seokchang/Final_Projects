@@ -56,12 +56,14 @@
             left: 10px;
             font-size: 18px;
             font-weight: bold;
+            line-height : 60px;
         }
         #checkbox2{
             width: 475px;
             border: 1px solid #848484;
             background-color: white;
             height: 60px;
+            line-height : 45px;
         }
         input[type="checkbox"]{
             left: 20px;
@@ -96,7 +98,9 @@
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
 <div class="wrapper">
+	<br>
     <h1>캠핑장 등록</h1>
+    <br>
     <div id="step"><img src="/resources/img/camp/step1.png"></div>
     <hr style="border:2px solid black">
 	<div id="wrapper-1">

@@ -11,6 +11,7 @@
 .wrapper {
 	width: 60%;
 	margin: 0 auto;
+	background-color : white;
 }
 
 h1 {
@@ -78,7 +79,8 @@ h1 {
 		<h1>마이페이지</h1>
 		<hr style="border: 2px solid black">
 		<div class="join">
-			<form action="mypageupdate.do" method="post" class="jointable">
+			<form action="campmypageupdate.do" method="post" class="jointable">
+			<input type="hidden" id="campNo" name="campNo" value="${c.campNo }" />
 				<table>
 					<tr>
 						<td style="width: 300px"><label for="ceoId">*아이디</label></td>

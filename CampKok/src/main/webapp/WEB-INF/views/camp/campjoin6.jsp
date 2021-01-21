@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>캠핑장등록</title>
 <style>
-        body{
+        .wrapper{
             width: 60%;
             margin: 0 auto;
         }
@@ -31,6 +31,9 @@
     </style>
 </head>
 <body>
+<jsp:include page="/WEB-INF/views/common/header.jsp" />
+<div id="wrapper">
+<br>
 <h1>등록신청완료</h1>
     <div id="step"><img src="step3.png"></div>
     <hr style="border:2px solid black">
@@ -43,5 +46,6 @@
             <button type="button" style="text-align: center; width: 300px; height: 30px; font-size: 18px;" onclick="location.href='/'">메인으로</button>
         </div>
     </div>
+</div>
 </body>
 </html>

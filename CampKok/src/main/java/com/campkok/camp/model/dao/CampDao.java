@@ -140,5 +140,15 @@ public class CampDao {
 		return sqlSession.insert("camp.insertFileTBL",ft);
 	}
 
+	public int update(CampVO c) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("camp.updateCamp",c);
+	}
+
+	public CampEnv selectCampEnv(int campNo) {
+		
+		return sqlSession.selectOne("camp.selectCampEnv",campNo);
+	}
+
 
 }

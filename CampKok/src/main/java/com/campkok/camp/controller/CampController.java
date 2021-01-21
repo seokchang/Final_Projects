@@ -297,4 +297,25 @@ public class CampController {
 		model.addAttribute("c",c);
 		return "camp/campmypage";
 	}
+	@RequestMapping("campmypageupdate.do")
+	public String campmypageupdate(HttpServletRequest request, Model model,String theme, String fac, String ctg, int campNo) {
+		CampVO c = new CampVO();
+		c.setCeoId(request.getParameter("ceoId"));
+		c.setCampAddr(request.getParameter("campaddr2")+request.getParameter("campaddr3"));
+		c.setCampName(request.getParameter("campname"));
+		c.setCampSite(request.getParameter("campsite"));
+		c.setCampTel(request.getParameter("camptel"));
+		c.setCampTheme(theme);
+		c.setCampFac(fac);
+		c.setCampCtg(ctg);
+		int result = service.updateCamp(c);
+		CampEnv ce = service.selectOneCampEnv(campNo);
+		model.addAttribute("ce",ce);
+		model.addAttribute("campNo",c.getCampNo());
+		if(result>0) {
+			return "camp/campmypage2";
+		}else {
+			return "/main.do";
+		}
+	}
 }

@@ -191,6 +191,16 @@ public class CampService {
 		return dao.insertFileTBL(ft);
 	}
 
+	public int updateCamp(CampVO c) {
+		// TODO Auto-generated method stub
+		return dao.update(c);
+	}
+
+	public CampEnv selectOneCampEnv(int campNo) {
+		
+		return dao.selectCampEnv(campNo);
+	}
+
 
 
 }
