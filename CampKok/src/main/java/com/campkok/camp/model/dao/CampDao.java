@@ -103,7 +103,8 @@ public class CampDao {
 	public int updateUserPoint(int userNo) {
 		// TODO Auto-generated method stub
 		return sqlSession.update("camp.updateUserPoint2",userNo);
-		
+	}
+	
 	public UserVO selectOneUser(int userNo) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("camp.selectOneUser", userNo);

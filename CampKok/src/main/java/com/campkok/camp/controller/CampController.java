@@ -42,6 +42,7 @@ public class CampController {
 		return "camp/test";
 	}
 	@RequestMapping("campReservation.do")
+
 	public String campReservation(Model model,int roomNo) {
 		//1. ����� ���� ���� ��������
 		//2. �ش��������� ����Ʈ�� �ѷ��ְ�
@@ -54,18 +55,6 @@ public class CampController {
 		 * service.selectUserPoint(userNo);
 		 */
 		//ķ����� ���� ��������
-=======
-	public String campReservation(Model model) {
-		//1. ����� ���� ���� ��������
-		//2. �ش��������� ����Ʈ�� �ѷ��ְ�
-		//3. �޷¿��� �迭ó���� ��¥���� ��ü �������� �ֱ�(null���� �ƴ�����? -> Ķ����jsp �ٽ� ���)
-		//4. ���� ���������� �α��μ������� ��񿡼� �ֱٰ� ������ �������°ɷ� �ؾ��ҵ�?(�̰͵� jsp���� �ٽ� ���)
-		
-		//user_tbl���� ����Ʈ ��������
-		int userNo = 2; //���������� �޾Ƽ� ��ü�ҿ���
-		UserVO userInfo = service.selectUserPoint(userNo);
-		//ķ����� ���� ��������
-		int roomNo = 24; //�信�� �Ѱ��ٶ� roomNo=? �������� �޾ƿ� ����
 		CampRoomVO campRoomInfo = service.selectRoomInfo(roomNo);
 		//ķ���忹�ฮ��Ʈ ��������
 		ArrayList<CampResVO> campResList = service.selectCampResList(roomNo);
@@ -75,10 +64,6 @@ public class CampController {
 		model.addAttribute("campRoomInfo",campRoomInfo); //ķ���� ��
 		model.addAttribute("campInfo",campInfo); //ķ����
 		/* model.addAttribute("userInfo",userInfo); */
-		model.addAttribute("campResList",campResList); //���� ����Ʈ 
-		model.addAttribute("campRoomInfo",campRoomInfo); //ķ���� ��
-		model.addAttribute("campInfo",campInfo); //ķ����
-		model.addAttribute("userInfo",userInfo);
 		model.addAttribute("campResList",campResList); //���� ����Ʈ 
 		return "camp/campReservation2";
 	}
@@ -108,12 +93,6 @@ public class CampController {
 		model.addAttribute("userInfo",userInfo);
 		//review���̺� ��������
 		ArrayList<ReviewVO> commentList = service.selectAllComment(campNo);
-	public String commentFrm(Model model) {
-		int userNo = 2; //���������� �޾Ƽ� ��ü�� ����
-		UserVO userInfo = service.selectUserPoint(userNo);
-		model.addAttribute("userInfo",userInfo);
-		//review���̺� ��������
-		ArrayList<ReviewVO> commentList = service.selectAllComment();
 		model.addAttribute("commentList",commentList);
 		model.addAttribute("campNo",campNo);
 		return "camp/commentFrm";
@@ -129,13 +108,10 @@ public class CampController {
 		//user_tbl ��Ż����Ʈ ������Ʈ
 		int result3 = service.updateUserPoint(userNo);
 		//review���̺� �μ�Ʈ
-		//review���̺� �μ�Ʈ
 		int result = service.insertComment(userId,campNo,revContents);
 		if(result>0) {
 			model.addAttribute("msg","��� ����� �Ϸ�Ǿ����ϴ�.");
 			model.addAttribute("loc","/campView.do?campNo="+campNo);
-			model.addAttribute("msg","��� ����� �Ϸ�Ǿ����ϴ�.");
-			model.addAttribute("loc","/camp/commentFrm.do");
 		}else {
 			model.addAttribute("msg","��۵���� ������ �߻��߽��ϴ�. �ٽ� �ۼ����ּ���.");
 			model.addAttribute("loc","/camp/commentFrm.do");
@@ -164,8 +140,6 @@ public class CampController {
 		if(result>0) {
 			model.addAttribute("msg","����� �����Ǿ����ϴ�.");
 			model.addAttribute("loc","/campView.do?campNo="+campNo);
-			model.addAttribute("msg","����� �����Ǿ����ϴ�.");
-			model.addAttribute("loc","/camp/commentFrm.do");
 		}else {
 			model.addAttribute("msg","��ۻ����� ������ �߻��߽��ϴ�. �ٽ� �������ּ���.");
 			model.addAttribute("loc","/camp/commentFrm.do");

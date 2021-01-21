@@ -139,7 +139,6 @@ public class CampService {
 		return dao.commentUpdate(revNo);
 	}
 
-<<<<<<< HEAD
 	public UserVO selectUser(String userId) {
 		// TODO Auto-generated method stub
 		return dao.selectUserPoint(userId);
@@ -155,7 +154,8 @@ public class CampService {
 	public int updateUserPoint(int userNo) {
 		// TODO Auto-generated method stub
 		return dao.updateUserPoint(userNo);
-=======
+	}
+		
 	public UserVO selectOneUser(int userNo) {
 		
 		return dao.selectOneUser(userNo);
@@ -189,7 +189,6 @@ public class CampService {
 	public int insertFileTBL(FileTBL ft) {
 		// TODO Auto-generated method stub
 		return dao.insertFileTBL(ft);
->>>>>>> jinwoo
 	}
 
 
