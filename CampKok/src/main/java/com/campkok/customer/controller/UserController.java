@@ -81,11 +81,11 @@ public class UserController {
 	
 	// 아이디 찾기
 	@RequestMapping("/findId.do")
-	public String findId(UserVO u, Model model) {
-		UserVO user = service.findUserId(u);
-		System.out.println(u);
-		if(user.getUserId() != null) {
-			model.addAttribute("user",user);
+	public String findId(String userName, String userPhone, Model model) {
+		String userId = service.findUserId(userName,userPhone);
+		System.out.println(userId);
+		if(userId != null) {
+			model.addAttribute("userId",userId);
 			return "user/findIdResult";
 		}else {
 			model.addAttribute("msg","회원정보가 존재하지 않습니다.");

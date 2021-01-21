@@ -26,7 +26,7 @@
                     </tr>
                     <tr>
                         <td>전화번호</td>
-                        <td><input type="text" class="login-input" name="userPhone"></td>
+                        <td><input type="text" class="login-input" name="userPhone" placeholder="ex) 010-0000-0000"></td>
                     </tr>
                 </table>
                 <button type="submit" class="login-btn">찾기</button>
