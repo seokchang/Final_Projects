@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>자유 게시판</title>
 <link rel="stylesheet" href="/resources/css/customer/noticeList.css">
 </head>
 <style>
@@ -91,6 +91,7 @@
 	vertical-align: middle;
 	outline: none;
 	background-color: #f2f2f2;
+	transition-duration: 0.3s;
 }
 
 .search-text:focus {

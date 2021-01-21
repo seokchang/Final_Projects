@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>자유 게시판</title>
 <link rel="stylesheet" href="/resources/css/customer/noticeView.css">
 <!-- 	<link rel="stylesheet" href="/resources/css/camp/comment.css"> -->
 </head>

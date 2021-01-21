@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>자유 게시판 수정</title>
 <script type="text/javascript" src="/nse_files/js/HuskyEZCreator.js" charset="utf-8"></script>
     <link rel="stylesheet" href="/resources/css/customer/noticeView.css">
     <style>
