@@ -155,9 +155,9 @@
 					</c:forEach>
 				</form>
 			</div>
-			<div class="write">
+			<!-- <div class="write">
 				<a href="#" class="write-btn">쪽지보내기</a>
-			</div>
+			</div> -->
 		</div>
 		<br>
 		<div class="notice-naeyong">
