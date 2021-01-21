@@ -47,7 +47,9 @@ public class AdminNoticeController {
 
 	@RequestMapping(value = "/insertNotice.do", method = RequestMethod.POST)
 	public String insertNotice(Notice notice, MultipartFile noticeFile, Model model) {
-		String path = "/Users/seohong/Desktop/HSC/Projects/02_Final_Project/02_uploadFiles/";
+		//		String path = "/Users/seohong/Desktop/HSC/Projects/02_Final_Project/02_uploadFiles/";
+		String path = "/resources/upload/";
+
 		// 파일 업로드
 		if (noticeFile != null) {
 			String fileName = noticeFile.getOriginalFilename();
