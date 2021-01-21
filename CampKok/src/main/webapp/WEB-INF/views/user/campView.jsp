@@ -22,7 +22,8 @@
         <div class="swiper-wrapper">
         	<c:forEach items="${cl.campFiles }" var="campFile">
 	            <div class="swiper-slide">
-	                <img src="/resources/img/camp/${campFile.campFilePath }">
+	            	<!-- 이미지 파일 경로 확인 -->
+	                <img src="/resources/upload/camp/${campFile.campFilePath }">
 	            </div>
         	</c:forEach>
         </div>
@@ -51,6 +52,7 @@
                 <p>${cl.campName }</p>
                 <p><span>★ ${cl.campStar }&nbsp;&nbsp;</span>&nbsp;${cl.campAddr }</p>
             </div>
+            <!-- 기현쓰가 예약버튼 링크 추가 -->
             <a href="#">예약하기</a>
         </div>
         <div class="camp-naeyong">

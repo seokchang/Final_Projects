@@ -11,10 +11,26 @@
 	align-items: center;
 }
 
+.searchbar>form>select {
+    border: 1px solid lightgray;
+    border-right: none;
+    width: 130px;
+    height: 60px;
+    padding: 0;
+    padding-left: 25px;
+    outline: none;
+    margin: 0;
+    font-size: inherit;
+    line-height: inherit;
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+}
+
 .searchbar>form>input {
 	border: 1px solid lightgray;
 	border-right: none;
-	width: 200px;
+	border-left: none;
+	width: 500px;
 	height: 60px;
 	padding: 0;
 	padding-left: 25px;

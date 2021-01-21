@@ -35,11 +35,12 @@
 		<div class="header-logo">
 			<a href="/"></a><img src="resources/img/main/logo-w.png">
 			<p>
-				<a href="/">Campkok</a>
+				<a href="/main.do">Campkok</a>
 			</p>
 		</div>
 		<nav>
 			<ul>
+				<li><a href="/index2.do">작업페이지</a></li>
 				<li><a href="/campList.do?reqPage=1">캠핑장</a></li>
 				<li><a href="/boardList.do?reqPage=1">게시판</a></li>
 				<li><a href="#">쇼핑몰</a></li>
@@ -52,9 +53,7 @@
 						<li><a href="/faqList.do?reqPage=1&faqUser=ceo">FAQ</a></li>
 						<li><a href="/mainCeoNoticeList.do?reqPage=1">공지사항</a></li>
 						<li><a href="#">광고</a></li>
-					</c:when>
-					<c:when test="${sessionScope.user.userLevel == 0 }">
-						<li><a href="/pageAdmin.do?reqPage=1">관리자</a></li>
+						<li><a href="#">캠핑장 등록</a></li>
 					</c:when>
 				</c:choose>
 			</ul>
@@ -70,13 +69,18 @@
 							<li><a href="joinPage.do">회원가입</a></li>
 							<li><a href="loginFrm.do">로그인</a></li>
 						</c:when>
-						<c:otherwise>
+						<c:when test="${sessionScope.user.userLevel != 2 }">
 							<li><a href="/mypage.do?userNo=${sessionScope.user.userNo }">마이페이지</a></li>
-							<li><a href="#">1:1 채팅</a></li>
-							<li><a href="#">쪽지</a></li>
+							<li><a href="/dmList.do?userId=${sessionScope.user.userId }">쪽지</a></li>
 							<hr>
 							<li><a href="logout.do">로그아웃</a></li>
-						</c:otherwise>
+						</c:when>
+						<c:when test="${sessionScope.user.userLevel == 2 }">
+							<li><a href="#">마이페이지</a></li>
+							<li><a href="#">캠핑장 등록</a></li>
+							<hr>
+							<li><a href="logout.do">로그아웃</a></li>
+						</c:when>
 					</c:choose>
 				</ul>
 			</div>

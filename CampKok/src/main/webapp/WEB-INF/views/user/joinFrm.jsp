@@ -59,10 +59,20 @@
 						<td>이름</td>
 						<td><input type="text" name="userName"></td>
 					</tr>
+					<tr style="display: none;" id="chkName">
+						<td></td>
+						<td style="padding: 0px; padding-left: 10px; padding-bottom: 5px;"><span
+							id="chkNameMsg"></span></td>
+					</tr>
 					<tr>
 						<td>전화번호</td>
 						<td><input type="text" name="userPhone"
 							placeholder="ex) 010-0000-0000"></td>
+					</tr>
+					<tr style="display: none;" id="chkPhone">
+						<td></td>
+						<td style="padding: 0px; padding-left: 10px; padding-bottom: 5px;"><span
+							id="chkPhoneMsg"></span></td>
 					</tr>
 					<tr style="display: none">
 						<td>회원레벨</td>
@@ -217,6 +227,11 @@
                         </td>
                          -->
 					</tr>
+					<tr style="display: none;" id="chkBirth">
+						<td></td>
+						<td style="padding: 0px; padding-left: 10px; padding-bottom: 5px;"><span
+							id="chkBirthMsg"></span></td>
+					</tr>
 					<tr>
 						<td>성별</td>
 						<td><input type="radio" class="gender-radio"
@@ -240,6 +255,11 @@
 						<td></td>
 						<td><input id="detailAddr" placeholder="상세주소"> <input
 							type="hidden" name="userAddr" id="userAddr"></td>
+					</tr>
+					<tr style="display: none;" id="chkAddr">
+						<td></td>
+						<td style="padding: 0px; padding-left: 10px; padding-bottom: 5px;"><span
+							id="chkAddrMsg"></span></td>
 					</tr>
 				</table>
 
@@ -378,9 +398,14 @@
                 }
             });*/
             
-            
-            $('[name=userAddr]').change(function() {
-                if ((this).val() != null) {
+
+    		
+    		$("#chk_all").click(function(){
+    			var ra = $( '#roadAddr' ).val();
+    			var da = $( '#detailAddr' ).val();
+    			const str = ra +' '+ da;
+    			$("#userAddr").val(str);
+    			if ($("#userAddr").val() != null) {
                     check[4] = true;
                     $("#chkAddr").css('display','none');
                 } else {
@@ -388,7 +413,7 @@
                     $("#chkAddr").css('display','');
 					$("#chkAddrMsg").html("주소를 입력해 주세요.");
                 }
-            });
+    		});
             
             
             $('[name=userPhone]').change(function() {

@@ -22,6 +22,12 @@ public class UserController {
 	@Autowired
 	private VisitController visitCtrl;
 
+	// 작업페이지로 이동(추후 삭제)
+	@RequestMapping("/index2.do")
+	public String index2() {
+		return "index2";
+	}
+
 	// 회원가입 선택 페이지로 이동
 	@RequestMapping("/joinPage.do")
 	public String join() {
@@ -44,7 +50,7 @@ public class UserController {
 		} else {
 			model.addAttribute("msg", "회원가입에 실패하였습니다. 관리자에게 문의하세요.");
 		}
-		model.addAttribute("loc", "/");
+		model.addAttribute("loc", "/main.do");
 		return "common/msg";
 	}
 
@@ -122,7 +128,7 @@ public class UserController {
 			model.addAttribute("msg", user.getUserName() + "님 환영합니다");
 
 			if (user.getUserLevel() != 0)
-				model.addAttribute("loc", "/");
+				model.addAttribute("loc", "/main.do");
 			else {
 				Visit visit = new Visit();
 
@@ -135,7 +141,7 @@ public class UserController {
 			}
 		} else {
 			model.addAttribute("msg", "아이디 또는 비밀번호를 확인해주세요.");
-			model.addAttribute("loc", "/");
+			model.addAttribute("loc", "/loginFrm.do");
 		}
 		return "/common/msg";
 	}
@@ -149,7 +155,7 @@ public class UserController {
 		} else {
 			model.addAttribute("msg", "로그인되어있지 않습니다.");
 		}
-		model.addAttribute("loc", "/");
+		model.addAttribute("loc", "/main.do");
 		return "common/msg";
 	}
 }

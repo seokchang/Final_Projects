@@ -40,7 +40,7 @@
 	                <%-- 번호 출력하고 싶을 때 ${status.count } --%>
 	                    <div class="camp-item-img">
 	                    	<!-- 캠핑장 이미지 경로 설정 -->
-	                        <img src="/resources/img/camp/${cl.imgpath }">
+	                        <img src="/resources/upload/camp/${cl.imgpath }">
 	                    </div>
 	                    <ul>
 	                        <li style="display: none">${cl.campNo }</li>

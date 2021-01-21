@@ -109,6 +109,7 @@ nav>ul>li>a:hover{
 	border-radius: 20px;
 	box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.5);
 	margin: -10px;
+    z-index: 1000;
 }
 
 .user-box>ul {

@@ -1,44 +1,44 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>CampKok</title>
+
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link
+	href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap"
+	rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap"
+	rel="stylesheet">
+
+<link rel="stylesheet" href="/resources/css/main/index.css">
+
 </head>
 <body>
-	<h1>CampKok Main</h1>
-	<hr>
-	<h3>
-		<a href="/pageAdmin.do?reqPage=1">Admin Page</a>
-	</h3>
-	<hr>
-	<h3>고객_은영</h3>
-	<h2>[${sessionScope.user.userName }] [${sessionScope.user.userLevel }]</h2>
-	<a href="/joinPage.do">회원가입</a>
-	<a href="/loginFrm.do">로그인</a>
-	<a href="/logout.do">로그아웃</a>
-	<a href="/customerNoticeList.do?reqPage=1">공지사항</a>
-	<a href="/mainCeoNoticeList.do?reqPage=1">사장님공지사항</a>
-	<a href="/campList.do?reqPage=1">캠핑장리스트</a>
-	<a href="/faqList.do?reqPage=1&faqUser=client">client FAQ</a>
-	<a href="/faqList.do?reqPage=1&faqUser=ceo">ceo FAQ</a>
-	<hr>
-	<h3>고객</h3>
-	<a href="/mypage.do?userNo=${sessionScope.user.userNo }">마이페이지</a>
-	<a href="/allMemberChat.do">채팅</a>
-	<a href="/boardList.do?reqPage=1">자유 게시판</a>
-	<a href="/dmList.do?userId=${sessionScope.user.userId }">쪽지 ㄱ</a>
-	<hr>
-	<h3>사업자</h3>
-	<a href="/camp/campNotice2.do?reqPage=1">캠핑장 공지사항</a>
-	<a href="/camp/campReservation.do">캠핑장 예약하기</a>
-	<a href="/camp/commentFrm.do">댓글달기</a>
-	<a href="/mypage.do?userNo=2">마이페이지</a>
-	<a href="/camp/jinwoo.do">진우 작업페이지</a>
+	<section>
+		<div class="side-comm">
+			<p>WITH CAMPKOK</p>
+			<p>VOL________01</p>
+		</div>
+		<div class="main">
+			<video muted autoplay loop>
+				<source src="/resources/img/main/Outdoors-728.mp4" type="video/mp4">
+				<strong>Your browser does not support the video tag.</strong>
+			</video>
+		</div>
+		<div class="wrap">
+			<p class="title">I Just</p>
+			<p class="title">Need to Go</p>
+			<p class="title" style="font-size: 220px">Camping!</p>
+			<div class="comm-wrap">
+				<p class="coment">이제 캠콕에서 당신이 원하는 캠핑을 찾아보세요.</p>
+			</div>
 
-	<hr>
-	<a href="/main.do">메인페이지</a>
-	<a href="/index22.html">index</a>
+			<a href="/main.do" class="start-btn">캠핑장 둘러보기</a>
+		</div>
+	</section>
 </body>
 </html>
