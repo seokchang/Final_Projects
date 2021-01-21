@@ -60,7 +60,7 @@
 								<td colspan="3">
 									<c:if test="${not empty ceoNotice.ceoNoticeFilePath }">
 										<div style="text-align: left;">
-											<img id="img-view" src="/imgPreview.do?filePath=${ceoNotice.ceoNoticeFilePath }" style="width: 20%;">
+											<img id="img-view" src="/resources/upload/notice/${ceoNotice.ceoNoticeFilePath }" style="width: 20%;">
 										</div>
 									</c:if>
 								</td>

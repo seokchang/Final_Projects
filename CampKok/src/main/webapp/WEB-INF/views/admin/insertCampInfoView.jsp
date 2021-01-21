@@ -59,7 +59,7 @@
 							<tr>
 								<th>주소</th>
 								<td colspan="3">
-									<input class="read-only" type="text" name="campAddr" value="${campInfo.campAddr }" readonly="readonly">
+									<input class="read-only" type="text" name="campAddr" value="${campInfo.campAddr }" readonly="readonly" style="width: 100%;">
 								</td>
 							</tr>
 							<tr>
@@ -113,7 +113,7 @@
 							<tr>
 								<th>주소</th>
 								<td colspan="3">
-									<input class="read-only" type="text" name="envAddr" value="${campInfo.campEnv.envAddr }" readonly="readonly">
+									<input class="read-only" type="text" name="envAddr" value="${campInfo.campEnv.envAddr }" readonly="readonly" style="width: 100%;">
 								</td>
 							</tr>
 							<tr>

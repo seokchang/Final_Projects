@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -46,9 +48,9 @@ public class AdminNoticeController {
 	}
 
 	@RequestMapping(value = "/insertNotice.do", method = RequestMethod.POST)
-	public String insertNotice(Notice notice, MultipartFile noticeFile, Model model) {
-		//		String path = "/Users/seohong/Desktop/HSC/Projects/02_Final_Project/02_uploadFiles/";
-		String path = "/resources/upload/";
+	public String insertNotice(Notice notice, MultipartFile noticeFile, HttpServletRequest request, Model model) {
+		String root = request.getSession().getServletContext().getRealPath("/");
+		String path = root + "resources/upload/notice/";
 
 		// 파일 업로드
 		if (noticeFile != null) {
@@ -102,9 +104,11 @@ public class AdminNoticeController {
 	}
 
 	@RequestMapping(value = "/updateCeoNotice.do", method = RequestMethod.POST)
-	public String updateCeoNotice(CeoNotice ceoNotice, MultipartFile ceoNoticeFile, String oldFile, Model model) {
+	public String updateCeoNotice(CeoNotice ceoNotice, MultipartFile ceoNoticeFile, HttpServletRequest request,
+			String oldFile, Model model) {
 		if (ceoNoticeFile != null) {
-			String path = "/Users/seohong/Desktop/HSC/Projects/02_Final_Project/02_uploadFiles/";
+			String root = request.getSession().getServletContext().getRealPath("/");
+			String path = root + "resources/upload/notice/";
 			String fileName = ceoNoticeFile.getOriginalFilename();
 			String filePath = new FileNameOverlap().reName(path, fileName);
 
@@ -148,9 +152,10 @@ public class AdminNoticeController {
 	}
 
 	@RequestMapping("/deleteCeoNotice.do")
-	public String deleteCeoNotice(int ceoNoticeNo, String ceoNoticeFilePath, Model model) {
+	public String deleteCeoNotice(int ceoNoticeNo, String ceoNoticeFilePath, HttpServletRequest request, Model model) {
 		if (ceoNoticeFilePath != null) {
-			String path = "/Users/seohong/Desktop/HSC/Projects/02_Final_Project/02_uploadFiles/";
+			String root = request.getSession().getServletContext().getRealPath("/");
+			String path = root + "resources/upload/notice/";
 			String filePath = ceoNoticeFilePath;
 			File deleteFile = new File(path + filePath);
 
@@ -203,10 +208,11 @@ public class AdminNoticeController {
 	}
 
 	@RequestMapping(value = "/updateClientNotice.do", method = RequestMethod.POST)
-	public String updateClientNotice(ClientNotice clientNotice, MultipartFile clientNoticeFile, String oldFile,
-			Model model) {
+	public String updateClientNotice(ClientNotice clientNotice, MultipartFile clientNoticeFile,
+			HttpServletRequest request, String oldFile, Model model) {
 		if (clientNoticeFile != null) {
-			String path = "/Users/seohong/Desktop/HSC/Projects/02_Final_Project/02_uploadFiles/";
+			String root = request.getSession().getServletContext().getRealPath("/");
+			String path = root + "resources/upload/notice/";
 			String fileName = clientNoticeFile.getOriginalFilename();
 			String filePath = new FileNameOverlap().reName(path, fileName);
 
@@ -246,9 +252,11 @@ public class AdminNoticeController {
 	}
 
 	@RequestMapping("/deleteClientNotice.do")
-	public String deleteClientNotice(int clientNoticeNo, String clientNoticeFilePath, Model model) {
+	public String deleteClientNotice(int clientNoticeNo, String clientNoticeFilePath, HttpServletRequest request,
+			Model model) {
 		if (clientNoticeFilePath != null) {
-			String path = "/Users/seohong/Desktop/HSC/Projects/02_Final_Project/02_uploadFiles/";
+			String root = request.getSession().getServletContext().getRealPath("/");
+			String path = root + "resources/upload/notice/";
 			String fileName = clientNoticeFilePath;
 			File deleteFile = new File(path + fileName);
 
