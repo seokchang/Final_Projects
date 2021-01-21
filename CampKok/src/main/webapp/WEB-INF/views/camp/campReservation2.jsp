@@ -14,10 +14,11 @@
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
 <br>
 	<c:forEach items="${campResList }" var="campResList" varStatus="index">
-		<input type="hidden" id="calSdate" value="${campResList.resInDate }">
+		<input type="text" name="calSdate" id="calSdate" value="${campResList.resInDate }">
 	</c:forEach>
+	<hr>
 	<c:forEach items="${campResList }" var="campResList" varStatus="index">
-		<input type="hidden" id="calEdate" value="${campResList.resOutDate }">
+		<input type="text" name="calEdate" id="calEdate" value="${campResList.resOutDate }">
 	</c:forEach>
 	
 	<div class="cal_top">
@@ -142,7 +143,7 @@
     });
     
     //calendar 그리기
-    function drawCalendar(){
+    function drawCalendar(){	
         var setTableHTML = "";
         setTableHTML+='<table class="calendar">';
         setTableHTML+='<tr><th>SUN</th><th>MON</th><th>TUE</th><th>WED</th><th>THU</th><th>FRI</th><th>SAT</th></tr>';
@@ -153,7 +154,7 @@
             	if(i==4 && j==5){
             		 setTableHTML+='<td style="text-overflow:ellipsis;overflow:hidden;white-space:nowrap; border:1px solid #d9bd6a;">';
                      setTableHTML+='    <div class="cal-day"></div>';
-                     setTableHTML+='    <div class="cal-schedule"><span id="test">room1예약완료</span><br><span id="test">room3예약대기</span></div>';
+                     setTableHTML+='    <div class="cal-schedule"><span style="color:red;"id="test">예약완료</span></div>';
                      setTableHTML+='</td>';
             	}else{
             		 setTableHTML+='<td style="text-overflow:ellipsis;overflow:hidden;white-space:nowrap; border:1px solid #d9bd6a;">';
@@ -185,8 +186,15 @@
     function drawDays(){
         $("#cal_top_year").text(year);
         $("#cal_top_month").text(month);
-        for(var i=firstDay.getDay();i<firstDay.getDay()+lastDay.getDate();i++){
-            $tdDay.eq(i).text(++dayCount);
+        
+        
+        for(var i=firstDay.getDay(); i<firstDay.getDay()+lastDay.getDate(); i++){
+        	if(i==3){
+        		$tdDay.eq(i).text(++dayCount+"예약완료").css("color","red");
+        	}else{
+        		$tdDay.eq(i).text(++dayCount);
+        	}
+            
         }
         for(var i=0;i<42;i+=7){
             $tdDay.eq(i).css("color","red");
@@ -265,7 +273,7 @@
 			$('#price2').val("");
 			$('#price').text(roomPrice*dateResult);
 		}else{
-			$('#dateresult').html("날짜 형식이 올바르지 않습니다.");
+			$('#dateresult').html("날짜를 확인해주세요.");
 		}
 	});   
     $('#sdate').focusout(function() {
@@ -281,7 +289,7 @@
 			$('#dateresult').html("");
 			console.log(roomPrice*dateResult);
 		}else{
-			$('#dateresult').html("날짜 형식이 올바르지 않습니다.");
+			$('#dateresult').html("날짜를 확인해주세요.");
 		}
 	});
     
@@ -304,25 +312,6 @@
     
     //결제금액에 포인트 적용
     $('#point').click(function name() {
-    	var calSdate = $('#calSdate').html().get();
-    	for(var i=0; i<calSdate.length; i++){
-    		console.log(calSdate[i]);
-    	}
-    	
-    	
-    	
-    	
-    	
-    	
-    	
-    	
-    	
-    	
-    	
-    	
-    	
-    	
-    	
     	var price = Number($('#price').text());
     	var resMember = Number($('#resMember').val());
     	var constPrice2 = price+(5000*(resMember-2));
@@ -358,7 +347,7 @@
 		var dateResult = numberSplitEdate-numberSplitSdate;
 		
 		if(sdate=="" || edate==""){
-			$('#dateresult').html("날짜를 선택해주세요.");
+			$('#dateresult').html("날짜를 선택해주세요.").css("font-size","9px").css("color","red");
 		}else{
 			$('#dateresult').html("");
 			if(dateResult>0){
@@ -387,13 +376,13 @@
 					}
 				})
 			}else{
-				$('#dateresult').html("날짜 형식이 올바르지 않습니다.");
+				$('#dateresult').html("날짜를 확인해주세요.");
 			}
 		}
 	});
     
 </script>
-<link rel="stylesheet" href="/resources/css/camp/test.css">
+<link rel="stylesheet" href="/resources/css/camp/reservation.css">
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />
 
 </body>

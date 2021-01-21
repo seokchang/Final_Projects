@@ -1,4 +1,5 @@
 @charset "UTF-8";
+
 .re-wrap{
 	border :1px solid red;
 	width : 100%;
@@ -50,12 +51,6 @@ body{
 	color: #405944;
 }
 .reser{
-	width:650px;
+	width:680px;
 	margin: auto;
 }
-
-
-
-
-
-
