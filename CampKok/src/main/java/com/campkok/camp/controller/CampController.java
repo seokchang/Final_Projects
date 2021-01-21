@@ -37,18 +37,12 @@ public class CampController {
 	/***********************************************
 	 *                     ���� 
 	 ***********************************************/
-	@RequestMapping("test.do")
-	public String test() {
-		return "camp/test";
-	}
+	/*
+	 * @RequestMapping("test.do") public String test() { return "camp/test"; }
+	 */
 	@RequestMapping("campReservation.do")
 
 	public String campReservation(Model model,int roomNo) {
-		//1. ����� ���� ���� ��������
-		//2. �ش��������� ����Ʈ�� �ѷ��ְ�
-		//3. �޷¿��� �迭ó���� ��¥���� ��ü �������� �ֱ�(null���� �ƴ�����? -> Ķ����jsp �ٽ� ���)
-		//4. ���� ���������� �α��μ������� ��񿡼� �ֱٰ� ������ �������°ɷ� �ؾ��ҵ�?(�̰͵� jsp���� �ٽ� ���)
-		
 		//user_tbl���� ����Ʈ ��������
 		/*
 		 * int userNo = 2; //���������� �޾Ƽ� ��ü�ҿ��� UserVO userInfo =
@@ -78,10 +72,10 @@ public class CampController {
 		//���� ���̺� �μ�Ʈ
 		int resResult = service.campRes(userNo,campNo,campRoomNo,resInDate,resOutDate,resMember,resPrice,resMemo); //�����ѹ� ���������� ��������
 		if(resResult >0) {
-			model.addAttribute("msg","������ �Ϸ�Ǿ����ϴ�.");
+			model.addAttribute("msg","예약이 완료되었습니다.");
 		}else {
-			model.addAttribute("msg","������ ������ �߻��߽��ϴ�. �ٽ� �������ּ���.");
-			model.addAttribute("loc","/camp/campReservation2");
+			model.addAttribute("msg","예약등록중 오류가 발생했습니다.");
+			model.addAttribute("loc","/");
 		}
 		model.addAttribute("loc","/");
 		return "common/msg";
@@ -95,7 +89,7 @@ public class CampController {
 		ArrayList<ReviewVO> commentList = service.selectAllComment(campNo);
 		model.addAttribute("commentList",commentList);
 		model.addAttribute("campNo",campNo);
-		return "camp/commentFrm";
+		return "camp/test";
 	}
 	
 	@RequestMapping("insertComment.do")
@@ -110,10 +104,10 @@ public class CampController {
 		//review���̺� �μ�Ʈ
 		int result = service.insertComment(userId,campNo,revContents);
 		if(result>0) {
-			model.addAttribute("msg","��� ����� �Ϸ�Ǿ����ϴ�.");
+			model.addAttribute("msg","후기가 등록되었습니다.");
 			model.addAttribute("loc","/campView.do?campNo="+campNo);
 		}else {
-			model.addAttribute("msg","��۵���� ������ �߻��߽��ϴ�. �ٽ� �ۼ����ּ���.");
+			model.addAttribute("msg","후기등록중 오류가 발생했습니다.");
 			model.addAttribute("loc","/camp/commentFrm.do");
 		}
 		return "common/msg";
@@ -138,10 +132,10 @@ public class CampController {
 	public String commentDelete(int revNo,Model model,int campNo) {
 		int result = service.commentDelete(revNo);
 		if(result>0) {
-			model.addAttribute("msg","����� �����Ǿ����ϴ�.");
+			model.addAttribute("msg","후기가 삭제되었습니다.");
 			model.addAttribute("loc","/campView.do?campNo="+campNo);
 		}else {
-			model.addAttribute("msg","��ۻ����� ������ �߻��߽��ϴ�. �ٽ� �������ּ���.");
+			model.addAttribute("msg","후기 삭제중 오류가 발생했습니다.");
 			model.addAttribute("loc","/camp/commentFrm.do");
 		}
 		return "common/msg";
@@ -151,10 +145,10 @@ public class CampController {
 	public String commentUpdate(int revNo,Model model) {
 		int result = service.commentUpdate(revNo);
 		if(result>0) {
-			model.addAttribute("msg","����� �����Ǿ����ϴ�.");
+			model.addAttribute("msg","후기 수정이 완료되었습니다.");
 			model.addAttribute("loc","/camp/commentFrm.do");
 		}else {
-			model.addAttribute("msg","��ۼ����� ������ �߻��߽��ϴ�. �ٽ� �������ּ���.");
+			model.addAttribute("msg","후기 수정중 오류가 발생했습니다.");
 			model.addAttribute("loc","/camp/commentFrm.do");
 		}
 		return "common/msg";

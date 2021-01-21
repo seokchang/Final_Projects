@@ -113,7 +113,9 @@
     			<th><input type="hidden" id="constPrice" name="constPrice" value="${campRoomInfo.roomPrice }"></th>   			
     		</tr>    		    		
     		<tr>
-    			<th><br><input type="button" id="payment" value="결제하기" style="background-color:#405944; color:#f3d479;"><br><p id="paymentResult">*결제후 예약이 가능합니다.</p></th>
+    			<th><br><input type="button" id="payment" value="결제하기" style="background-color:#405944; color:#f3d479;">
+    			        <input type="button" value="뒤로가기" style="background-color:#405944; color:#f3d479;" onclick="history.back(-1);">
+    			    <br><p id="paymentResult">*결제후 예약이 가능합니다.</p></th>
     			
     		</tr>   		
     	</table>
@@ -123,7 +125,7 @@
    	</div>
     	
     </div>
- <link rel="stylesheet" href="/resources/css/camp/reservation.css">
+ <link rel="stylesheet" href="/resources/css/camp/reservation2.css">
 <script type="text/javascript">
     
     var today = null;
