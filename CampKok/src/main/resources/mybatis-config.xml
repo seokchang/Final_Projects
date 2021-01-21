@@ -21,6 +21,9 @@
 		<!-- Camp -->
 		<typeAlias type="com.campkok.camp.notice.model.vo.CampNoticeVO" alias="cn" />
 		<typeAlias type="com.campkok.camp.model.vo.CampVO" alias="c" />
+		<typeAlias type="com.campkok.camp.model.vo.CampEnv" alias="ce" />
+		<typeAlias type="com.campkok.camp.model.vo.Rent" alias="rent" />
+		<typeAlias type="com.campkok.camp.model.vo.FileTBL" alias="ft" />
 		<typeAlias type="com.campkok.camp.model.vo.CampRoomVO" alias="cr" />
 		<typeAlias type="com.campkok.camp.model.vo.UserVO" alias="cu" />
 		<typeAlias type="com.campkok.camp.model.vo.ReviewVO" alias="rvo" />

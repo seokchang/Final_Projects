@@ -137,7 +137,82 @@
 		where user_no = #{userNo}
 		update rev_contents set  
 	</update>
+	<select id="selectOneUser" parameterType="u" resultType="u">
+		select
+			user_no as userNo,
+			user_id as userId,
+			user_pw as userPw,
+			user_name as userName,
+			user_phone as userPhone,
+			user_level as userLevel,
+			user_birth as userBirth,
+			user_date as userDate,
+			user_gender as userGender,
+			user_addr as userAddr,
+			user_point as userPoint
+		from user_tbl where user_id=#{userId} and user_pw=#{userPw}
+	</select>
 	
+	<select id="insertCampSeq" resultType="_int">
+		SELECT temp_camp_seq.nextval from DUAL
+	</select>
+	
+	<insert id="insertCampVO" parameterType="c">
+		insert into temp_camp values(
+			#{campNo},
+	  		#{ceoId},
+	  		#{campAddr},
+	  		#{campName},
+	  		#{campSite},
+	  		#{campTel},
+	  		#{campTheme},
+	  		#{campFac},
+	  		#{campCtg}
+		)
+	</insert>
+	<select id="selectOneCamp" parameterType="c" resultType="c">
+		select
+			camp_no as campNo,
+			ceo_id as ceoId,
+			camp_addr as campAddr,
+			camp_name as campName,
+			camp_site as campSite,
+			camp_tel as campTel,
+			camp_theme as campTheme,
+			camp_fac as campFac,
+			camp_ctg as campCtg
+		from camp where ceo_id=#{userId}
+	</select>
+	<insert id="insertCampEnv" parameterType="ce">
+		insert into temp_camp_env values(
+			temp_camp_env_seq.nextval,
+			#{campNo},
+			#{envName},
+			#{envAddr},
+			#{envTel},
+			#{envFilename},
+			#{envFilepath}
+		)
+	</insert>
+	<insert id="insertRent" parameterType="rent">
+		insert into rent values(
+			rent_seq.nextval,
+			#{campNo},
+			#{rentName},
+			#{rentFilename},
+			#{rentFilepath},
+			#{rentPrice},
+			#{rentContents}
+		)
+	</insert>
+	<insert id="insertFileTBL" parameterType="ft">
+		insert into temp_file_tbl values(
+			temp_camp_env_seq.nextval,
+			#{campNo},
+			#{campFileName},
+			#{campFilePath}
+		)
+	</insert>
 	
 	
 	

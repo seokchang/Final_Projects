@@ -1,20 +1,32 @@
 package com.campkok.camp.controller;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.campkok.camp.model.service.CampService;
+import com.campkok.camp.model.vo.CampEnv;
 import com.campkok.camp.model.vo.CampNoticePageData;
 import com.campkok.camp.model.vo.CampNoticeVO;
 import com.campkok.camp.model.vo.CampResVO;
 import com.campkok.camp.model.vo.CampRoomVO;
 import com.campkok.camp.model.vo.CampVO;
+import com.campkok.camp.model.vo.FileTBL;
+import com.campkok.camp.model.vo.Rent;
 import com.campkok.camp.model.vo.ReviewVO;
 import com.campkok.camp.model.vo.UserVO;
+import com.campkok.hik.common.FileNameOverlap;
 
 @Controller
 @RequestMapping("/camp")
@@ -23,46 +35,46 @@ public class CampController {
 	private CampService service;
 	
 	/***********************************************
-	 *                     ±âÇö 
+	 *                     ï¿½ï¿½ï¿½ï¿½ 
 	 ***********************************************/
 	@RequestMapping("campReservation.do")
 	public String campReservation(Model model) {
-		//1. ¿¹¾àµÈ Á¤º¸ ÀüºÎ °¡Á®¿À±â
-		//2. ÇØ´çÆäÀÌÁö¿¡ ¸®½ºÆ®·Î »Ñ·ÁÁÖ°í
-		//3. ´Ş·Â¿¡´Â ¹è¿­Ã³¸®·Î ³¯Â¥º°·Î ÀüÃ¼ ¿¹¾àÁ¤º¸ ³Ö±â(nullÀÎÁö ¾Æ´ÑÁö·Î? -> Ä¶¸°´õjsp ´Ù½Ã °í¹Î)
-		//4. °³º° ¿¹¾àÁ¤º¸´Â ·Î±×ÀÎ¼¼¼ÇÀ¸·Î µğºñ¿¡¼­ ÃÖ±Ù°ª Á¤·ÄÈÄ °¡Á®¿À´Â°É·Î ÇØ¾ßÇÒµí?(ÀÌ°Íµµ jsp¿¡¼­ ´Ù½Ã °í¹Î)
+		//1. ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		//2. ï¿½Ø´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Ñ·ï¿½ï¿½Ö°ï¿½
+		//3. ï¿½Ş·Â¿ï¿½ï¿½ï¿½ ï¿½è¿­Ã³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Â¥ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö±ï¿½(nullï¿½ï¿½ï¿½ï¿½ ï¿½Æ´ï¿½ï¿½ï¿½ï¿½ï¿½? -> Ä¶ï¿½ï¿½ï¿½ï¿½jsp ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½)
+		//4. ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Î±ï¿½ï¿½Î¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ñ¿¡¼ï¿½ ï¿½Ö±Ù°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â°É·ï¿½ ï¿½Ø¾ï¿½ï¿½Òµï¿½?(ï¿½Ì°Íµï¿½ jspï¿½ï¿½ï¿½ï¿½ ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½)
 		
-		//user_tbl¿¡¼­ Æ÷ÀÎÆ® °¡Á®¿À±â
-		int userNo = 2; //¼¼¼ÇÁ¤º¸·Î ¹Ş¾Æ¼­ ´ëÃ¼ÇÒ¿¹Á¤
+		//user_tblï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		int userNo = 2; //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ş¾Æ¼ï¿½ ï¿½ï¿½Ã¼ï¿½Ò¿ï¿½ï¿½ï¿½
 		UserVO userInfo = service.selectUserPoint(userNo);
-		//Ä·ÇÎÀå·ë Á¤º¸ °¡Á®¿À±â
-		int roomNo = 24; //ºä¿¡¼­ ³Ñ°ÜÁÙ¶§ roomNo=? Çü½ÄÀ¸·Î ¹Ş¾Æ¿Ã ¿¹Á¤
+		//Ä·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		int roomNo = 24; //ï¿½ä¿¡ï¿½ï¿½ ï¿½Ñ°ï¿½ï¿½Ù¶ï¿½ roomNo=? ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ş¾Æ¿ï¿½ ï¿½ï¿½ï¿½ï¿½
 		CampRoomVO campRoomInfo = service.selectRoomInfo(roomNo);
-		//Ä·ÇÎÀå¿¹¾à¸®½ºÆ® °¡Á®¿À±â
+		//Ä·ï¿½ï¿½ï¿½å¿¹ï¿½à¸®ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		ArrayList<CampResVO> campResList = service.selectCampResList(roomNo);
-		//Ä·ÇÎÀå Á¤º¸ °¡Á®¿À±â
+		//Ä·ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		int campNo = campRoomInfo.getCampNo();
 		CampVO campInfo = service.selectCampInfo(campNo);
-		model.addAttribute("campRoomInfo",campRoomInfo); //Ä·ÇÎÀå ·ë
-		model.addAttribute("campInfo",campInfo); //Ä·ÇÎÀå
+		model.addAttribute("campRoomInfo",campRoomInfo); //Ä·ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+		model.addAttribute("campInfo",campInfo); //Ä·ï¿½ï¿½ï¿½ï¿½
 		model.addAttribute("userInfo",userInfo);
-		model.addAttribute("campResList",campResList); //¿¹¾à ¸®½ºÆ® 
+		model.addAttribute("campResList",campResList); //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® 
 		return "camp/campReservation2";
 	}
 	
 	@RequestMapping("campRes.do")
 	public String campRes(Integer userNo, Integer campNo, Integer campRoomNo, String resInDate, String resOutDate, Integer resMember, String resMemo, Integer resPrice,Integer userUsePoint, Model model) {				
-		//user_tbl Æ÷ÀÎÆ® ¾÷µ¥ÀÌÆ®
+		//user_tbl ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
 		int result = service.userPointUpdate(userNo,userUsePoint);
-		//Æ÷ÀÎÆ® Å×ÀÌºí ÀÎ¼­Æ®
-		int totalPoint = service.totalPoint(userNo); //ÅäÅ»Æ÷ÀÎÆ® °¡Á®¿À±â
+		//ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½Ìºï¿½ ï¿½Î¼ï¿½Æ®
+		int totalPoint = service.totalPoint(userNo); //ï¿½ï¿½Å»ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		int result2 = service.pointUpdate(userNo,totalPoint,userUsePoint);
-		//¿¹¾à Å×ÀÌºí ÀÎ¼­Æ®
-		int resResult = service.campRes(userNo,campNo,campRoomNo,resInDate,resOutDate,resMember,resPrice,resMemo); //À¯Àú³Ñ¹ö ¼¼¼ÇÁ¤º¸·Î ¹ŞÀ»¿¹Á¤
+		//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìºï¿½ ï¿½Î¼ï¿½Æ®
+		int resResult = service.campRes(userNo,campNo,campRoomNo,resInDate,resOutDate,resMember,resPrice,resMemo); //ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¹ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		if(resResult >0) {
-			model.addAttribute("msg","¿¹¾àÀÌ ¿Ï·áµÇ¾ú½À´Ï´Ù.");
+			model.addAttribute("msg","ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï·ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
 		}else {
-			model.addAttribute("msg","¿¹¾àÁß ¿À·ù°¡ ¹ß»ıÇß½À´Ï´Ù. ´Ù½Ã ¿¹¾àÇØÁÖ¼¼¿ä.");
+			model.addAttribute("msg","ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½. ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¼ï¿½ï¿½ï¿½.");
 			model.addAttribute("loc","/camp/campReservation2");
 		}
 		model.addAttribute("loc","/");
@@ -71,10 +83,10 @@ public class CampController {
 	
 	@RequestMapping("commentFrm.do")
 	public String commentFrm(Model model) {
-		int userNo = 2; //¼¼¼ÇÁ¤º¸·Î ¹Ş¾Æ¼­ ±³Ã¼ÇÒ ¿¹Á¤
+		int userNo = 2; //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ş¾Æ¼ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		UserVO userInfo = service.selectUserPoint(userNo);
 		model.addAttribute("userInfo",userInfo);
-		//reviewÅ×ÀÌºí °¡Á®¿À±â
+		//reviewï¿½ï¿½ï¿½Ìºï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		ArrayList<ReviewVO> commentList = service.selectAllComment();
 		model.addAttribute("commentList",commentList);
 		return "camp/commentFrm";
@@ -82,14 +94,14 @@ public class CampController {
 	
 	@RequestMapping("insertComment.do")
 	public String insertComment(String userId, int campNo,String revContents,Model model) {
-		//reviewÅ×ÀÌºí ÀÎ¼­Æ®
+		//reviewï¿½ï¿½ï¿½Ìºï¿½ ï¿½Î¼ï¿½Æ®
 		int result = service.insertComment(userId,campNo,revContents);
 		
 		if(result>0) {
-			model.addAttribute("msg","´ñ±Û µî·ÏÀÌ ¿Ï·áµÇ¾ú½À´Ï´Ù.");
+			model.addAttribute("msg","ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï·ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
 			model.addAttribute("loc","/camp/commentFrm.do");
 		}else {
-			model.addAttribute("msg","´ñ±Ûµî·ÏÁß ¿À·ù°¡ ¹ß»ıÇß½À´Ï´Ù. ´Ù½Ã ÀÛ¼ºÇØÁÖ¼¼¿ä.");
+			model.addAttribute("msg","ï¿½ï¿½Ûµï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½. ï¿½Ù½ï¿½ ï¿½Û¼ï¿½ï¿½ï¿½ï¿½Ö¼ï¿½ï¿½ï¿½.");
 			model.addAttribute("loc","/camp/commentFrm.do");
 		}
 		return "common/msg";
@@ -114,10 +126,10 @@ public class CampController {
 	public String commentDelete(int revNo,Model model) {
 		int result = service.commentDelete(revNo);
 		if(result>0) {
-			model.addAttribute("msg","´ñ±ÛÀÌ »èÁ¦µÇ¾ú½À´Ï´Ù.");
+			model.addAttribute("msg","ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
 			model.addAttribute("loc","/camp/commentFrm.do");
 		}else {
-			model.addAttribute("msg","´ñ±Û»èÁ¦Áß ¿À·ù°¡ ¹ß»ıÇß½À´Ï´Ù. ´Ù½Ã »èÁ¦ÇØÁÖ¼¼¿ä.");
+			model.addAttribute("msg","ï¿½ï¿½Û»ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½. ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¼ï¿½ï¿½ï¿½.");
 			model.addAttribute("loc","/camp/commentFrm.do");
 		}
 		return "common/msg";
@@ -127,10 +139,10 @@ public class CampController {
 	public String commentUpdate(int revNo,Model model) {
 		int result = service.commentUpdate(revNo);
 		if(result>0) {
-			model.addAttribute("msg","´ñ±ÛÀÌ ¼öÁ¤µÇ¾ú½À´Ï´Ù.");
+			model.addAttribute("msg","ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
 			model.addAttribute("loc","/camp/commentFrm.do");
 		}else {
-			model.addAttribute("msg","´ñ±Û¼öÁ¤Áß ¿À·ù°¡ ¹ß»ıÇß½À´Ï´Ù. ´Ù½Ã ¼öÁ¤ÇØÁÖ¼¼¿ä.");
+			model.addAttribute("msg","ï¿½ï¿½Û¼ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½. ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¼ï¿½ï¿½ï¿½.");
 			model.addAttribute("loc","/camp/commentFrm.do");
 		}
 		return "common/msg";
@@ -141,7 +153,7 @@ public class CampController {
 	
 	
 	/***********************************************
-	 *                     Áø¿ì 
+	 *                     ï¿½ï¿½ï¿½ï¿½ 
 	 ***********************************************/
 	@RequestMapping("jinwoo.do")
 	public String start() {
@@ -152,20 +164,131 @@ public class CampController {
 	public String campBoard(Model model) {
 		return null;
 	}
-	@RequestMapping("/joinFrm.do")
-	public String joinFrm() {
+	//íšŒì›ê°€ì… í˜ì´ì§€ ì´ë™
+	@RequestMapping("/campjoinFrm.do")
+	public String campjoinFrm() {
 		return "camp/campjoin";
 	}
+	
 	@RequestMapping("/campjoin.do")
-	public String campjoin() {
+	public String campjoin(Model model) {
 		return "camp/campjoin2";
 	}
 	@RequestMapping("/campjoin2.do")
-	public String campjoin2() {
-		return "camp/campjoin3";
+	public String campjoin2(HttpServletRequest request,Model model,String theme, String fac, String ctg) {
+		
+		int campNo = service.insertCampSeq();
+		CampVO c = new CampVO();
+		c.setCeoId(request.getParameter("ceoId"));
+		c.setCampNo(campNo);
+		c.setCampAddr(request.getParameter("campaddr2")+request.getParameter("campaddr3"));
+		c.setCampName(request.getParameter("campname"));
+		c.setCampSite(request.getParameter("campsite"));
+		c.setCampTel(request.getParameter("camptel"));
+		c.setCampTheme(theme);
+		c.setCampFac(fac);
+		c.setCampCtg(ctg);
+		int result = service.insertCamp(c);
+		model.addAttribute("campNo",campNo);
+		if(result>0) {
+			return "camp/campjoin3";
+		}else {
+			return "camp/campjoin2";
+		}
+		
 	}
 	@RequestMapping("/campjoin3.do")
-	public String campjoin3() {
-		return "camp/campjoin4";
+	public String campjoin3(CampEnv ce, MultipartFile envimage, HttpServletRequest request, Model model) {
+		String root = request.getSession().getServletContext().getRealPath("/");
+		String path = root + "resources/upload/camp/";
+			if(!envimage.isEmpty()) {
+				String filename = envimage.getOriginalFilename();
+				String filepath = new FileNameOverlap().reName(path, filename);
+				try {
+					byte[]bytes = envimage.getBytes();
+					File upFile = new File(path+filepath);                                                                                                   
+					FileOutputStream fos = new FileOutputStream(upFile);
+					BufferedOutputStream bos = new BufferedOutputStream(fos);
+					bos.write(bytes);
+					bos.close();
+					ce.setEnvFilename(filename);
+					ce.setEnvFilepath(filepath);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		int result = service.insertCampEnv(ce);
+		model.addAttribute("campNo",ce.getCampNo());
+		if(result>0) {
+			return "camp/campjoin4";
+		}else {
+			return "camp/campjoin3";
+		}
+	}
+	@RequestMapping("/campjoin4.do")
+	public String campjoin4(Rent r, MultipartFile rentimage, HttpServletRequest request, Model model) {
+		String root = request.getSession().getServletContext().getRealPath("/");
+		String path = root + "resources/upload/camp/";
+			if(!rentimage.isEmpty()) {
+				String filename = rentimage.getOriginalFilename();
+				String filepath = new FileNameOverlap().reName(path, filename);
+				try {
+					byte[]bytes = rentimage.getBytes();
+					File upFile = new File(path+filepath);                                                                                                   
+					FileOutputStream fos = new FileOutputStream(upFile);
+					BufferedOutputStream bos = new BufferedOutputStream(fos);
+					bos.write(bytes);
+					bos.close();
+					r.setRentFilename(filename);
+					r.setRentFilepath(filepath);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		int result = service.insertRent(r);
+		model.addAttribute("campNo",r.getCampNo());
+		if(result>0) {
+			return "camp/campjoin5";
+		}else {
+			return "camp/campjoin4";
+		}
+	}
+	@RequestMapping("/campjoin5.do")
+	public String campjoin5(FileTBL ft, MultipartFile campimage, HttpServletRequest request, Model model) {
+		String root = request.getSession().getServletContext().getRealPath("/");
+		String path = root + "resources/upload/camp/";
+			if(!campimage.isEmpty()) {
+				String filename = campimage.getOriginalFilename();
+				String filepath = new FileNameOverlap().reName(path, filename);
+				try {
+					byte[]bytes = campimage.getBytes();
+					File upFile = new File(path+filepath);                                                                                                   
+					FileOutputStream fos = new FileOutputStream(upFile);
+					BufferedOutputStream bos = new BufferedOutputStream(fos);
+					bos.write(bytes);
+					bos.close();
+					ft.setCampFileName(filename);
+					ft.setCampFilePath(filepath);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		int result = service.insertFileTBL(ft);
+		model.addAttribute("campNo",ft.getCampNo());
+		if(result>0) {
+			return "camp/campjoin6";
+		}else {
+			return "camp/campjoin5";
+		}
+	}
+	//ë§ˆì´í˜ì´ì§€ ì´ë™
+	@RequestMapping("/campmypage.do")
+	public String campmypage(Model model, String userId) {
+		CampVO c = service.selectOneCamp(userId);
+		model.addAttribute("c",c);
+		return "camp/campmypage";
 	}
 }
