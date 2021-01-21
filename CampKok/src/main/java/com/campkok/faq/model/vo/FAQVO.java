@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Data
 public class FAQVO {
+	private int rNum;
 	private int faqNo;
 	private String userId;
 	private String faqUser;

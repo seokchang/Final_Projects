@@ -41,6 +41,7 @@
 		<typeAlias type="com.campkok.camplist.model.vo.CampList" alias="camplist" />
 		<typeAlias type="com.campkok.camplist.model.vo.CampRoomList" alias="campRoomList" />
 		<typeAlias type="com.campkok.faq.model.vo.FAQVO" alias="mainFaq" />
+		<typeAlias type="com.campkok.shop.model.vo.Shop" alias="shop" />
 
 	</typeAliases>
 </configuration>
