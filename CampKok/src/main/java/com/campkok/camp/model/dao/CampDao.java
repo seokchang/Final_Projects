@@ -53,8 +53,8 @@ public class CampDao {
 		return sqlSession.insert("camp.insertComment",map);
 	}
 
-	public ArrayList<ReviewVO> selectAllComment() {
-		List<ReviewVO> commentList = sqlSession.selectList("camp.selectAllComment"); 
+	public ArrayList<ReviewVO> selectAllComment(int campNo) {
+		List<ReviewVO> commentList = sqlSession.selectList("camp.selectAllComment",campNo); 
 		return (ArrayList<ReviewVO>)commentList;
 	}
 
@@ -85,6 +85,21 @@ public class CampDao {
 
 	public int commentUpdate(int revNo) {
 		return sqlSession.update("camp.commentUpdate",revNo);
+	}
+
+	public UserVO selectUserPoint(String userId) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("camp.selectUser",userId);
+	}
+
+	public int insertPoint(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("camp.insertPointReview",map);
+	}
+
+	public int updateUserPoint(int userNo) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("camp.updateUserPoint2",userNo);
 	}
 
 

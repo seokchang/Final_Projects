@@ -12,6 +12,7 @@ import com.campkok.camp.notice.model.vo.CampNoticeVO;
 import com.campkok.camplist.model.service.CampListService;
 import com.campkok.camplist.model.vo.CampList;
 import com.campkok.camplist.model.vo.CampListPageData;
+import com.campkok.camplist.model.vo.CampRoomList;
 
 @Controller
 public class CampListController {
@@ -19,19 +20,19 @@ public class CampListController {
 	@Autowired
 	private CampListService service;
 	
-	// 메인 페이지 로드할 때 캠핑장 광고, 새로운 캠핑장 리스트 
+	// 硫붿씤 �럹�씠吏� 濡쒕뱶�븷 �븣 罹좏븨�옣 愿묎퀬, �깉濡쒖슫 罹좏븨�옣 由ъ뒪�듃 
 	@RequestMapping("/main.do")
 	public String main(Model model) {
-		// ArrayList<CampList> adCampList = service.mainAdCampList();	// main 캠핑장 광고 리스트
-		ArrayList<CampList> newCampList = service.mainNewCampList();	// main 새로운 캠핑장 리스트
-		ArrayList<CampList> campRanking = service.mainCampRanking();	// main 캠핑장 랭킹
+		// ArrayList<CampList> adCampList = service.mainAdCampList();	// main 罹좏븨�옣 愿묎퀬 由ъ뒪�듃
+		ArrayList<CampList> newCampList = service.mainNewCampList();	// main �깉濡쒖슫 罹좏븨�옣 由ъ뒪�듃
+		ArrayList<CampList> campRanking = service.mainCampRanking();	// main 罹좏븨�옣 �옲�궧
 		// model.addAttribute("adCampList",adCampList);
 		model.addAttribute("newCampList",newCampList);
 		model.addAttribute("campRanking",campRanking);
 		return "main";
 	}
 
-	// 캠핑장 리스트
+	// 罹좏븨�옣 由ъ뒪�듃
 	@RequestMapping("/campList.do")
 	public String campList(int reqPage, Model model) {
 		CampListPageData clpd = service.campList(reqPage);
@@ -40,19 +41,22 @@ public class CampListController {
 		return "user/campList";
 	}
 	
-	// 캠핑장 상세페이지
+	// 罹좏븨�옣 �긽�꽭�럹�씠吏�
 	@RequestMapping("/campView.do")
 	public String selectOneCamp(int campNo, Model model) {
 		CampList cl = service.selectOneCamp(campNo);
+		ArrayList<CampRoomList> roomList = service.campRoomList(campNo);
 		ArrayList<CampNoticeVO> cnList = service.selectCampNoticeList(campNo);
 		ArrayList<ReviewVO> crList = service.selectCampReviewList(campNo);
 		model.addAttribute("cl",cl);
 		model.addAttribute("cnList", cnList);
 		model.addAttribute("crList", crList);
+		model.addAttribute("campRoomList",roomList);
+		model.addAttribute("campNo",campNo);
 		return "user/campView";
 	}
 	
-	// 캠핑장 검색
+	// 罹좏븨�옣 寃��깋
 	@RequestMapping("/searchCampList.do")
 	public String searchCampList(int reqPage, String searchSelect, String keyword, Model model) {
 		CampListPageData clpd = service.searchCampList(reqPage, searchSelect, keyword);

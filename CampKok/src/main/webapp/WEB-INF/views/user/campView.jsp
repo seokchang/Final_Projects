@@ -53,7 +53,9 @@
                 <p><span>★ ${cl.campStar }&nbsp;&nbsp;</span>&nbsp;${cl.campAddr }</p>
             </div>
             <!-- 기현쓰가 예약버튼 링크 추가 -->
-            <a href="#">예약하기</a>
+            <c:forEach items="${campRoomList }" var="campRoomList" varStatus="index">
+            <a href="/camp/campReservation.do?roomNo=${campRoomList.roomNo }">${campRoomList.roomName }</a>
+            </c:forEach>           
         </div>
         <div class="camp-naeyong">
             <div class="hr-sect">캠핑장 정보</div>
@@ -85,7 +87,16 @@
 
             <div class="camp-re-no">
                 <div>
-                    <p>REVIEW <a href="#">more</a></p>
+                    <p>REVIEW 
+                    <c:choose>
+                    	<c:when test="${sessionScope.user == null }">
+                    		<a href="#" id="blank">more</a>
+                    	</c:when>
+                    	<c:otherwise>
+                    		<a href="/camp/commentFrm.do?userNo=${sessionScope.user.userNo }&campNo=${campNo }">more</a>
+                    	</c:otherwise>
+                    </c:choose>             
+                    </p>
                     <ul>
                     <c:forEach items="${crList }" var="cr" begin="0" end="4" step="1">
                     	<li><a href="#">${cr.revContents }</a></li>
@@ -107,6 +118,7 @@
                 <p id="address">${cl.campAddr }</p>
                 <div id="map" style="width: 1140px; height: 400px;border: 1px solid"></div>
             </div>
+            
         </div>
 
     </div>
@@ -178,6 +190,10 @@
         	
 
         }
+        
+        $('#blank').click(function() {
+			alert("더보기는 로그인후 이용가능합니다.");
+		});
     </script>
     
     <jsp:include page="/WEB-INF/views/common/footer.jsp" />

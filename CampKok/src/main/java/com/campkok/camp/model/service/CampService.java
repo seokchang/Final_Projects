@@ -78,8 +78,8 @@ public class CampService {
 		return dao.insertComment(map);
 	}
 
-	public ArrayList<ReviewVO> selectAllComment() {
-		return dao.selectAllComment();
+	public ArrayList<ReviewVO> selectAllComment(int campNo) {
+		return dao.selectAllComment(campNo);
 	}
 
 	public CampNoticePageData selectCampNoticeList(int reqPage) {
@@ -134,6 +134,23 @@ public class CampService {
 
 	public int commentUpdate(int revNo) {
 		return dao.commentUpdate(revNo);
+	}
+
+	public UserVO selectUser(String userId) {
+		// TODO Auto-generated method stub
+		return dao.selectUserPoint(userId);
+	}
+
+	public int insertPoint(int userNo, int pointTotal) {
+		HashMap<String, Object> map = new HashMap<String,Object>();
+		map.put("userNo",userNo);
+		map.put("pointTotal",pointTotal);
+		return dao.insertPoint(map);
+	}
+
+	public int updateUserPoint(int userNo) {
+		// TODO Auto-generated method stub
+		return dao.updateUserPoint(userNo);
 	}
 
 
