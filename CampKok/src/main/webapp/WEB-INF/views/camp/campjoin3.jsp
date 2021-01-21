@@ -4,11 +4,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>캠핑장등록</title>
+<script type="text/javascript"
+	src="http://code.jquery.com/jquery-3.3.1.js"></script>
 <style>
         .wrapper{
             width: 60%;
             margin: 0 auto;
+            background-color : white;
         }
         h1{
             text-align: center;
@@ -48,9 +51,12 @@
     </style>
 </head>
 <body>
+<jsp:include page="/WEB-INF/views/common/header.jsp" />
 <br><br>
-<div class="wrapper">
+<div class="wrapper" >
+<br>
 <h1>캠핑장 등록</h1>
+<br>
     <div id="step"><img src="/resources/img/camp/step3.png"></div>
     <hr style="border:2px solid black">
     <div class="join">
@@ -61,11 +67,11 @@
             <br>
             <table>
             	<tr>
-                    <td style="width: 200px" name="campenvimg">주변관광지</td>
+                    <td style="width: 200px" id="campenvimg">주변관광지</td>
                     <td>
                         <table>
                             <tr>
-                                <td class="campenvimage">주변관광지 이미지</td>
+                                <td class="campenvimage" id="image_container">주변관광지 이미지</td>
                             </tr>
                             <tr>
                                 <td><input type="file" name="envimage" accept="image/*" onchange="setThumbnail(event);" multiple></td>
@@ -74,7 +80,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td style="width: 200px" name="envname">관광지 이름</td>
+                    <td style="width: 200px" id="envname">관광지 이름</td>
                     <td>
                         <table>
                             <tr>
@@ -84,7 +90,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td style="width: 200px" name="envaddr">관광지 주소</td>
+                    <td style="width: 200px" id="envaddr">관광지 주소</td>
                     <td>
                         <table>
                             <tr>
@@ -94,7 +100,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td style="width: 200px" name="envtel">관광지 전화번호</td>
+                    <td style="width: 200px" id="envtel">관광지 전화번호</td>
                     <td>
                         <table>
                             <tr>
@@ -113,4 +119,16 @@
     </div>
 </div>
 </body>
+<script> 
+	function setThumbnail(event) { 
+		var reader = new FileReader(); 
+		reader.onload = function(event) { 
+			var img = document.createElement("img"); 
+			img.setAttribute("src", event.target.result); 
+			document.querySelector("td#image_container").append(img); 
+		}; 
+		reader.readAsDataURL(event.target.files[0]);
+	} 
+</script>
+
 </html>

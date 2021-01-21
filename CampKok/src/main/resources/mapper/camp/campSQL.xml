@@ -231,7 +231,26 @@
 			user_point = (user_point+500)
 		where user_no = #{userNo}
 	</update>
-	
+	<update id="updateCamp" parameterType="c">
+		update camp set
+			camp_addr = #{campAddr},
+			camp_name = #{campName},
+			camp_site = #{campSite},
+			camp_tel = #{campTel},
+			camp_theme = #{campTheme},
+			camp_fac = #{campFac},
+			camp_ctg = #{campCtg}
+		where ceo_id = #{ceoId}
+	</update>
+	<select id="selectCampEnv" parameterType="ce" resultType="ce">
+		select
+			env_no as envNo,
+			camp_no as campNo,
+			env_name as envName,
+			env_addr as envAddr,
+			env_tel as envTel
+		from campenv where camp_no=#{campNo}
+	</select>
 	
 	
 	

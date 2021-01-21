@@ -11,6 +11,7 @@
 .wrapper {
 	width: 60%;
 	margin: 0 auto;
+	background-color : white;
 }
 
 h1 {
@@ -75,6 +76,7 @@ h1 {
 	<jsp:include page="/WEB-INF/views/common/header.jsp" />
 	<br><br>
 	<div class="wrapper">
+		<br><br>
 		<h1>캠핑장 등록</h1>
 		<br><br>
 		<div id="step">
@@ -85,7 +87,7 @@ h1 {
 			<form action="campjoin2.do" method="post" class="jointable">
 				<table>
 					<tr>
-						<td style="width: 300px"><label for="ceoId">*아이디</label></td>
+						<td style="width: 300px;"><label for="ceoId">*아이디</label></td>
 						<td><input type="text" id="ceoid" name="ceoId" value="${sessionScope.user.userId }" readonly></td>
 					</tr>
 					<tr>
