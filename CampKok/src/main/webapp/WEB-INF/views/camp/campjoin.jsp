@@ -7,7 +7,7 @@
 <title>캠핑장 등록</title>
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.js"></script>
 	<style>
-        body{
+        .wrapper{
             width: 60%;
             margin: 0 auto;
         }
@@ -18,11 +18,11 @@
             height: 200px;
             text-align: center;
         }
-        #wrapper{
+        #wrapper-1{
             background-color: #ccc;
             border: 1px solid black;
         }
-        #wrapper>*{
+        #wrapper-1>*{
             width: 80%;
             margin: 0 auto;
         }
@@ -94,12 +94,12 @@
     </style>
 </head>
 <body>
-	<body>
-	<jsp:include page="/WEB-INF/views/common/header.jsp" />
+<jsp:include page="/WEB-INF/views/common/header.jsp" />
+<div class="wrapper">
     <h1>캠핑장 등록</h1>
     <div id="step"><img src="/resources/img/camp/step1.png"></div>
     <hr style="border:2px solid black">
-	<div id="wrapper">
+	<div id="wrapper-1">
        <form action="campjoin.do" method="post">
             <div id="selectbox">
                 <p>서비스 이용약관(필수)</p>
@@ -346,6 +346,7 @@
             <br><br><br>
 	    </form>
 	</div>
+</div>
 <script>
 	jQuery(document).ready(function(){
 	    $('input[type="checkbox"][name="check"]').click(function(){          

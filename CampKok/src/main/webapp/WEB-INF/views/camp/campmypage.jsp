@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>캠핑장 등록</title>
+<title>마이페이지</title>
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-3.3.1.js"></script>
 <style>
@@ -73,25 +73,17 @@ h1 {
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp" />
-	<br><br>
 	<div class="wrapper">
-		<h1>캠핑장 등록</h1>
 		<br><br>
-		<div id="step">
-			<img src="/resources/img/camp/step2.png">
-		</div>
+		<h1>마이페이지</h1>
 		<hr style="border: 2px solid black">
 		<div class="join">
-			<form action="campjoin2.do" method="post" class="jointable">
+			<form action="mypageupdate.do" method="post" class="jointable">
 				<table>
 					<tr>
 						<td style="width: 300px"><label for="ceoId">*아이디</label></td>
-						<td><input type="text" id="ceoid" name="ceoId" value="${sessionScope.user.userId }" readonly></td>
-					</tr>
-					<tr>
-						<td style="width: 300px">*캠핑장 이름<label for="campname"></label></td>
-						<td><input type="text" id="campname" name="campname" required></td>
-						<td></td>
+						<td><input type="text" id="ceoid" name="ceoId" value="${c.ceoId }" readonly>
+						<td><span id="chkId"></span></td>
 					</tr>
 					<tr>
 						<td style="width: 300px"><label for="campaddr">*캠핑장
@@ -112,13 +104,18 @@ h1 {
 						<td></td>
 					</tr>
 					<tr>
+						<td style="width: 300px">*캠핑장 이름<label for="campname"></label></td>
+						<td><input type="text" id="campname" name="campname" value="${c.campName }"  required></td>
+						<td></td>
+					</tr>
+					<tr>
 						<td style="width: 300px">웹사이트<label for="campsite"></label></td>
-						<td><input type="text" id="campsite" name="campsite"></td>
+						<td><input type="text" id="campsite" name="campsite" value="${c.campSite }" ></td>
 						<td></td>
 					</tr>
 					<tr>
 						<td style="width: 300px">*전화번호<label for="camptel"></label></td>
-						<td><input type="text" id="camptel" name="camptel"></td>
+						<td><input type="text" id="camptel" name="camptel" value="${c.campTel }" ></td>
 						<td></td>
 					</tr>
 					<tr>
@@ -229,13 +226,40 @@ h1 {
 					<input type="reset" value="취소" style="font-size: 18px;">
 				</div>
 				<br> <br>
-				<input type="hidden" name="theme">
-				<input type="hidden" name="fac">
-				<input type="hidden" name="ctg">
+				<input type="hidden" id="theme" name="theme" value="${c.campTheme }">
+				<input type="hidden" id="fac" name="fac" value="${c.campFac }">
+				<input type="hidden" id="ctg" name="ctg" value="${c.campCtg }">
 			</form>
 		</div>
 	</div>
 	<script>
+		$( document ).ready(function() {
+			$("input[name=themecheck]").each(function(){
+				var theme = $("#theme").val().split(",");
+				for(var i = 0 ; i < theme.length ;i++){					
+					if($(this).val() == theme[i].trim()){
+						$(this).attr("checked","checked");
+					}
+				}
+			})
+			$("input[name=faccheck]").each(function(){
+				var fac = $("#fac").val().split(",");
+				for(var i = 0 ; i < fac.length ;i++){					
+					if($(this).val() == fac[i].trim()){
+						$(this).attr("checked","checked");
+					}
+				}
+			})
+			$("input[name=ctgcheck]").each(function(){
+				var ctg = $("#ctg").val().split(",");
+				for(var i = 0 ; i < ctg.length ;i++){					
+					if($(this).val() == ctg[i].trim()){
+						$(this).attr("checked","checked");
+					}
+				}
+			})
+		});
+	
 		$("#camptel").focusout(function() {
 			var regExp = /^[0-9]{3}-[0-9]{4}-[0-9]{4}$/;
 			if (!regExp.test($("#camptel").val())) {
@@ -348,6 +372,7 @@ h1 {
 						}
 					}).open();
 		}
+		
 	</script>
 </body>
 </html>

@@ -9,10 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.campkok.admin.notice.model.vo.ClientNotice;
+import com.campkok.camp.model.vo.CampEnv;
 import com.campkok.camp.model.vo.CampNoticeVO;
 import com.campkok.camp.model.vo.CampResVO;
 import com.campkok.camp.model.vo.CampRoomVO;
 import com.campkok.camp.model.vo.CampVO;
+import com.campkok.camp.model.vo.FileTBL;
+import com.campkok.camp.model.vo.Rent;
 import com.campkok.camp.model.vo.ReviewVO;
 import com.campkok.camp.model.vo.UserVO;
 
@@ -100,6 +103,40 @@ public class CampDao {
 	public int updateUserPoint(int userNo) {
 		// TODO Auto-generated method stub
 		return sqlSession.update("camp.updateUserPoint2",userNo);
+		
+	public UserVO selectOneUser(int userNo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("camp.selectOneUser", userNo);
+	}
+
+	public int insertCamp(CampVO c) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("camp.insertCampVO",c);
+	}
+
+	public CampVO selectOneCamp(String userId) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("camp.selectOneCamp", userId);
+	}
+
+	public int insertCampEnv(CampEnv ce) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("camp.insertCampEnv",ce);
+	}
+
+	public int insertCampSeq() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("camp.insertCampSeq");
+	}
+
+	public int insertRent(Rent r) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("camp.insertRent",r);
+	}
+
+	public int insertFileTBL(FileTBL ft) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("camp.insertFileTBL",ft);
 	}
 
 
