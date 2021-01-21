@@ -33,13 +33,19 @@ public class UserController {
 	public String join() {
 		return "user/joinPage";
 	}
-
-	// 회원가입 페이지로 이동
+	
+	// 일반회원가입 페이지로 이동
 	@RequestMapping("/joinFrm.do")
 	public String joinFrm() {
 		return "user/joinFrm";
 	}
 
+	// 캠핑장 회원가입 페이지로 이동
+	@RequestMapping("/ceoJoinFrm.do")
+	public String ceoJoinFrm() {
+		return "user/ceoJoinFrm";
+	}
+	
 	// 회원가입
 	@RequestMapping("/customerJoin.do")
 	public String customerJoin(UserVO u, Model model) {

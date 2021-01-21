@@ -23,7 +23,6 @@ body {
 .join-naeyong {
 	background-color: #fff;
 	width: 840px;
-	height: 900px;
 	padding: 80px;
 	padding-top: 50px;
 	padding-bottom: 50px;
@@ -101,7 +100,7 @@ select {
 	font-family: inherit;
 	/* 폰트 상속 */
 	background:
-		url('/src/main/webapp/resources/img/member/downarrow_87468.png')
+		url('/resources/img/member/downarrow_87468.png')
 		no-repeat 95% 50%;
 	background-size: 10%;
 	/* 네이티브 화살표를 커스텀 화살표로 대체 */

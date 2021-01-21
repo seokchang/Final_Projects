@@ -20,19 +20,19 @@ public class CampListController {
 	@Autowired
 	private CampListService service;
 	
-	// 硫붿씤 �럹�씠吏� 濡쒕뱶�븷 �븣 罹좏븨�옣 愿묎퀬, �깉濡쒖슫 罹좏븨�옣 由ъ뒪�듃 
+	// 메인페이지 로드할 때 캠핑장 광고, 새로운 캠핑장, 캠핑장 랭킹
 	@RequestMapping("/main.do")
 	public String main(Model model) {
-		// ArrayList<CampList> adCampList = service.mainAdCampList();	// main 罹좏븨�옣 愿묎퀬 由ъ뒪�듃
-		ArrayList<CampList> newCampList = service.mainNewCampList();	// main �깉濡쒖슫 罹좏븨�옣 由ъ뒪�듃
-		ArrayList<CampList> campRanking = service.mainCampRanking();	// main 罹좏븨�옣 �옲�궧
+		// ArrayList<CampList> adCampList = service.mainAdCampList();	// main 캠핑장 광고
+		ArrayList<CampList> newCampList = service.mainNewCampList();	// main 새로운 캠핑장
+		ArrayList<CampList> campRanking = service.mainCampRanking();	// main 예약순 캠핑장 랭킹
 		// model.addAttribute("adCampList",adCampList);
 		model.addAttribute("newCampList",newCampList);
 		model.addAttribute("campRanking",campRanking);
 		return "main";
 	}
 
-	// 罹좏븨�옣 由ъ뒪�듃
+	// 캠핑장 리스트
 	@RequestMapping("/campList.do")
 	public String campList(int reqPage, Model model) {
 		CampListPageData clpd = service.campList(reqPage);
@@ -41,7 +41,7 @@ public class CampListController {
 		return "user/campList";
 	}
 	
-	// 罹좏븨�옣 �긽�꽭�럹�씠吏�
+	// 캠핑장 상세 페이지
 	@RequestMapping("/campView.do")
 	public String selectOneCamp(int campNo, Model model) {
 		CampList cl = service.selectOneCamp(campNo);
@@ -56,7 +56,7 @@ public class CampListController {
 		return "user/campView";
 	}
 	
-	// 罹좏븨�옣 寃��깋
+	// 캠핑장 검색
 	@RequestMapping("/searchCampList.do")
 	public String searchCampList(int reqPage, String searchSelect, String keyword, Model model) {
 		CampListPageData clpd = service.searchCampList(reqPage, searchSelect, keyword);

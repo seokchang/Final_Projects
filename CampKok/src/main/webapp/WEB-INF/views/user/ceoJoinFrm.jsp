@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>일반회원가입</title>
+<title>캠핑장회원가입</title>
 <!-- 다음 주소찾기 API -->
 <script
 	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -15,8 +15,8 @@
 	<jsp:include page="/WEB-INF/views/common/header.jsp" />
 	<div class="header-img">
 		<div>
-			<p>일반회원가입</p>
-			<p>캠콕의 다양한 서비스를 편리하게 이용하실 수 있습니다.</p>
+			<p>캠핑장회원가입</p>
+			<p>캠콕에 사업장을 등록하실 수 있습니다.</p>
 		</div>
 	</div>
 	<div class="join-content">
@@ -82,7 +82,7 @@
 					</tr>
 					<tr style="display: none">
 						<td>회원레벨</td>
-						<td><input type="text" name="userLevel" value="1"></td>
+						<td><input type="text" name="userLevel" value="2"></td>
 					</tr>
 					<tr>
 						<td>생년월일</td>
