@@ -66,7 +66,7 @@
 		insert into review values(review_seq.nextval,#{userId},#{campNo},#{revContents},1,to_char(sysdate,'yyyy-mm-dd'),null,0)
 	</insert>
 	
-	<select id="selectAllComment" resultType="rvo">
+	<select id="selectAllComment" parameterType="_int" resultType="rvo">
 	SELECT A.* FROM (
 	SELECT rev_no as revNo, 
 			user_id as userId, 
@@ -75,7 +75,7 @@
 			rev_star as revStar,
 			rev_date as revDate, 
 			rev_image as revImage, 
-			rev_heart as revHeart FROM review ORDER BY rev_no desc) A
+			rev_heart as revHeart FROM review where camp_no=#{_parameter} ORDER BY rev_no desc) A
 	</select>
 	
 	<select id="getCampNoticeCount" resultType="_int">
@@ -138,8 +138,25 @@
 		update rev_contents set  
 	</update>
 	
+	<select id="selectUser" parameterType="string" resultType="cu">
+		select 
+			user_no as userNo,
+			user_name as userName,
+			user_point as userPoint,
+			user_level as userLevel,
+			user_id as userId
+		from user_tbl where user_id=#{_parameter}
+	</select>
 	
+	<insert id="insertPointReview" parameterType="map">
+		insert into point values(point_seq.nextval,#{userNo},'리뷰작성 포인트 적립',to_char(sysdate,'yyyy-mm-dd'),500,#{pointTotal},null,null,null)
+	</insert>
 	
+	<update id="updateUserPoint2" parameterType="_int">
+		update user_tbl set
+			user_point = (user_point+500)
+		where user_no = #{userNo}
+	</update>
 	
 	
 	

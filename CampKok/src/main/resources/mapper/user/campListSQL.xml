@@ -164,4 +164,14 @@
 		rev_heart as revHeart
   	from review where camp_no=#{campNo} order by rev_no desc
   </select>
+  
+  <select id="selectCampRoomList" parameterType="_int" resultType="campRoomList">
+  	select
+  		room_no as roomNo,
+  		camp_no as campNo,
+  		room_member as roomMember,
+  		room_name as roomName,
+  		room_price as roomPrice
+  	from camproom where camp_no=#{_parameter}
+  </select>
 </mapper>

@@ -12,6 +12,7 @@ import com.campkok.admin.camp.model.vo.CampFile;
 import com.campkok.camp.model.vo.ReviewVO;
 import com.campkok.camp.notice.model.vo.CampNoticeVO;
 import com.campkok.camplist.model.vo.CampList;
+import com.campkok.camplist.model.vo.CampRoomList;
 
 @Repository
 public class CampListDao {
@@ -80,6 +81,11 @@ public class CampListDao {
 	public ArrayList<ReviewVO> selectCampReviewList(int campNo) {
 		List<ReviewVO> crList = session.selectList("camplist.selectCampReviewList", campNo);
 		return (ArrayList<ReviewVO>) crList;
+	}
+
+	public ArrayList<CampRoomList> campRoomList(int campNo) {
+		List<CampRoomList> campRoomList = session.selectList("camplist.selectCampRoomList",campNo);
+		return (ArrayList<CampRoomList>)campRoomList;
 	}
 
 }

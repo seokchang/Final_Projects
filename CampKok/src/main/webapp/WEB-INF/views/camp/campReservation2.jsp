@@ -14,11 +14,11 @@
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
 <br>
 	<c:forEach items="${campResList }" var="campResList" varStatus="index">
-		<input type="text" name="calSdate" id="calSdate" value="${campResList.resInDate }">
+		<input type="hidden" name="calSdate" id="calSdate" value="${campResList.resInDate }">
 	</c:forEach>
 	<hr>
 	<c:forEach items="${campResList }" var="campResList" varStatus="index">
-		<input type="text" name="calEdate" id="calEdate" value="${campResList.resOutDate }">
+		<input type="hidden" name="calEdate" id="calEdate" value="${campResList.resOutDate }">
 	</c:forEach>
 	
 	<div class="cal_top">
@@ -42,10 +42,10 @@
    	유저 테이블 : userInfo -->
    	<div class="reser">
    	<h4>캠핑장 정보</h4>
-    	<table>
+    	<table>	
     		<tr>
     			<th>회원명</th>
-    			<th>${userInfo.userName }</th>
+    			<th>${sessionScope.user.userName }</th>
     		</tr>
     		<tr>
     			<th>캠핑장명</th>
@@ -71,20 +71,20 @@
     	<hr>
 		<h4>예약 정보</h4>
 		<form action="/camp/campRes.do" method="post" accept-charset="utf-8">  			
-			<input type="hidden" name="userNo" value="2"> <!-- 로그인세션정보담기 -->			
+			<input type="hidden" name="userNo" value=${sessionScope.user.userNo }> <!-- 로그인세션정보담기 -->			
 			<input type="hidden" name="campNo" value=${campInfo.campNo }>
 			<input type="hidden" name="campRoomNo" value=${campRoomInfo.roomNo }>
 			<table>			
 				<tr>
 					<th>날짜선택</th>
 					<th>입실 : <input type="date" name="resInDate" id="sdate" min="" required></th>
-					<th>퇴실 : <input type="date" name="resOutDate" id="edate" min="" required><span id="dateresult"></span></th>
+					<th>퇴실 : <input type="date" name="resOutDate" id="edate" min="" required><span id="dateresult" style="color:red; font-size:9px;"></span></th>
 				</tr>
 				<tr>
 					<th>인원수</th>
 					<th><input type=text size="2" id="resMember" name=resMember value=2>
-						<input type=button value="+" id="countPlus" onClick="javascript:this.form.resMember.value++;">
-						<input type=button value="-" id="countMinus"onClick="javascript:this.form.resMember.value--;">
+						<input type=button value="+" id="countPlus" onClick="javascript:this.form.resMember.value++;" style="background-color:#405944; color:#f3d479;">
+						<input type=button value="-" id="countMinus"onClick="javascript:this.form.resMember.value--;" style="background-color:#405944; color:#f3d479;">
 						<br><span style="font-size:10px;">*기준인원 초가시 1인당 5,000원의 추가요금이 발생합니다.</span>
 					</th>
 				</tr>
@@ -100,11 +100,11 @@
     	<table>
     		<tr>
     			<th>보유 포인트</th>
-    			<th id="userTotalPoint">${userInfo.userPoint }</th>
+    			<th id="userTotalPoint">${sessionScope.user.userPoint }</th>
     		</tr>
     		<tr>
     			<th><input type="text" size="8" id="userUsePoint" name="userUsePoint" value=0></th>
-    			<th><input type="button" id="point" value="포인트 사용하기"></th>
+    			<th><input type="button" id="point" value="포인트 사용하기" style="background-color:#405944; color:#f3d479;"></th>
     		</tr>
     		<tr>
     			<th>결제금액</th>
@@ -113,17 +113,17 @@
     			<th><input type="hidden" id="constPrice" name="constPrice" value="${campRoomInfo.roomPrice }"></th>   			
     		</tr>    		    		
     		<tr>
-    			<th><br><input type="button" id="payment" value="결제하기"><br><p id="paymentResult">*결제후 예약이 가능합니다.</p></th>
+    			<th><br><input type="button" id="payment" value="결제하기" style="background-color:#405944; color:#f3d479;"><br><p id="paymentResult">*결제후 예약이 가능합니다.</p></th>
     			
     		</tr>   		
     	</table>
-    	<input type="submit" id="res" value="예약하기" style="display:none;"> 
+    	<input type="submit" id="res" value="예약하기" style="display:none; background-color:#405944; color:#f3d479;"> 
     	<input type="hidden" id="payresult" value="0">
     	</form>
    	</div>
     	
     </div>
- 
+ <link rel="stylesheet" href="/resources/css/camp/reservation.css">
 <script type="text/javascript">
     
     var today = null;
@@ -382,7 +382,7 @@
 	});
     
 </script>
-<link rel="stylesheet" href="/resources/css/camp/reservation.css">
+
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />
 
 </body>

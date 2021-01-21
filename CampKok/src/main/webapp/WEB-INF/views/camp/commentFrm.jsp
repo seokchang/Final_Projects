@@ -19,8 +19,8 @@
 		<form action="/camp/insertComment.do" method="post" accept-charset="utf-8">
 			<ul>
 				<li>
-					<input type="hidden" name="userId" value="${userInfo.userId }">
-					<input type="hidden" name="campNo" value="26">
+					<input type="hidden" name="userId" value="${sessionScope.user.userId }">
+					<input type="hidden" name="campNo" value="${campNo }">
 					<textarea name="revContents"></textarea>
 				</li>
 				<c:if test="${userInfo.userLevel eq '1'}">
@@ -43,8 +43,8 @@
 					<p class="linkbox">
 						<textarea name="noticeCommentContet">${commentList.revContents }</textarea>
 						<!-- user01부분 세션아이디로 바꿔야함 -->
-						<c:if test="${commentList.userId eq 'user01'}">
-							<a href="/camp/commentDelete.do?revNo=${commentList.revNo }" style="color:#f3d479;">삭제</a>
+						<c:if test="${commentList.userId eq sessionScope.user.userId }">
+							<a href="/camp/commentDelete.do?revNo=${commentList.revNo }&campNo=${campNo }" style="color:#f3d479;">삭제</a>
 							<%-- <a class="recShow" href="/camp/commentUpdate.do?revNo=${commentList.revNo }" >수정</a> --%>
 						</c:if>
 						<!-- 1(고객)부분 2(사업자)로바꿔야함 -->
