@@ -63,7 +63,7 @@
 								<c:if test="${not empty campFile.campFilePath }">
 									<div style="text-align: left;">
 										<c:forEach items="${campInfo.campFiles }" var="campFile">
-											<img id="img-view" src="/imgPreview.do?filePath=${campFile.campFilePath }" style="width: 20%;">
+											<img id="img-view" src="/resources/upload/camp/${campFile.campFilePath }" style="width: 20%;">
 										</c:forEach>
 									</div>
 								</c:if>
@@ -90,7 +90,7 @@
 							<td colspan="3">
 								<c:if test="${not empty campInfo.campEnv.envFilePath }">
 									<div style="text-align: left;">
-										<img id="img-view" src="/imgPreview.do?filePath=${campInfo.campEnv.envFilePath }" style="width: 20%;">
+										<img id="img-view" src="/resources/upload/campenv/${campInfo.campEnv.envFilePath }" style="width: 20%;">
 									</div>
 								</c:if>
 							</td>
