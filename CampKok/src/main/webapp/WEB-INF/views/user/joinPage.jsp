@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>회원가입</title>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp" />
@@ -34,7 +34,7 @@
 						캠콕에 사업장을<br>등록하실 수 있습니다.
 					</p>
 				</div>
-				<a href="#">가입하기</a>
+				<a href="/ceoJoinFrm.do">가입하기</a>
 			</div>
 		</div>
 	</div>

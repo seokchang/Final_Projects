@@ -43,7 +43,7 @@
 				<li><a href="/index2.do">작업페이지</a></li>
 				<li><a href="/campList.do?reqPage=1">캠핑장</a></li>
 				<li><a href="/boardList.do?reqPage=1">게시판</a></li>
-				<li><a href="#">쇼핑몰</a></li>
+				<li><a href="/shopList.do?reqPage=1">쇼핑몰</a></li>
 				<c:choose>
 					<c:when test="${sessionScope.user.userLevel != 2 }">
 						<li><a href="/faqList.do?reqPage=1&faqUser=client">FAQ</a></li>

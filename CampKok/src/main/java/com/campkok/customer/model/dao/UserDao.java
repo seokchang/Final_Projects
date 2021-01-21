@@ -1,5 +1,7 @@
 package com.campkok.customer.model.dao;
 
+import java.util.HashMap;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -35,5 +37,12 @@ public class UserDao {
 	// 비번 찾기
 	public UserVO findUserPw(UserVO u) {
 		return sqlSession.selectOne("user.findUserPw",u);
+	}
+
+	public String findUserId(String userName, String userPhone) {
+		HashMap<String,String> map = new HashMap<String,String>();
+		map.put("userName", userName);
+		map.put("userPhone", userPhone);
+		return sqlSession.selectOne("user.findUserId",map);
 	}
 }

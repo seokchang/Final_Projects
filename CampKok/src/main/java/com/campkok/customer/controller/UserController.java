@@ -33,13 +33,19 @@ public class UserController {
 	public String join() {
 		return "user/joinPage";
 	}
-
-	// 회원가입 페이지로 이동
+	
+	// 일반회원가입 페이지로 이동
 	@RequestMapping("/joinFrm.do")
 	public String joinFrm() {
 		return "user/joinFrm";
 	}
 
+	// 캠핑장 회원가입 페이지로 이동
+	@RequestMapping("/ceoJoinFrm.do")
+	public String ceoJoinFrm() {
+		return "user/ceoJoinFrm";
+	}
+	
 	// 회원가입
 	@RequestMapping("/customerJoin.do")
 	public String customerJoin(UserVO u, Model model) {
@@ -75,11 +81,11 @@ public class UserController {
 	
 	// 아이디 찾기
 	@RequestMapping("/findId.do")
-	public String findId(UserVO u, Model model) {
-		UserVO user = service.findUserId(u);
-		System.out.println(u);
-		if(user.getUserId() != null) {
-			model.addAttribute("user",user);
+	public String findId(String userName, String userPhone, Model model) {
+		String userId = service.findUserId(userName,userPhone);
+		System.out.println(userId);
+		if(userId != null) {
+			model.addAttribute("userId",userId);
 			return "user/findIdResult";
 		}else {
 			model.addAttribute("msg","회원정보가 존재하지 않습니다.");

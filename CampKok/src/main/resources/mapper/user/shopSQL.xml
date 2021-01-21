@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="shop">
+  <select id="selectShopList" parameterType="map" resultType="shop">
+  	select * from (select rownum as rnum, c.* from(
+  		select
+  			shop_no as shopNo,
+            (select user_name from user_tbl where user_no = shop.user_no) as userName,
+  			product_name as productName,
+  			shop_filename as shopFilename,
+  			shop_filepath as shopFilepath,
+  			product_contents as productContents,
+  			product_price as productPrice
+  		from shop
+  	)c)
+  	where rnum between ${start} and ${end}
+  </select>
+  
+  <select id="totalCount" resultType="_int">
+  		select count(*) from shop
+  </select>
+</mapper>

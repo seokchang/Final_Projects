@@ -17,7 +17,7 @@
     </div>
     <div class="login-content">
         <div class="login-box">
-           <p>회원님의 아이디는 '${u.userId }'입니다.</p>
+           <p>회원님의 아이디는 '${userId }'입니다.</p>
            <a href="/">메인으로</a>
         </div>
     </div>

@@ -7,19 +7,22 @@ body {
 .join-select {
 	display: flex;
 	justify-content: center;
-	margin-top: 100px;
+	margin-top: 70px;
 }
 
 .join-select>div {
 	background-color:#fff;
 	border: 1px solid #ccc;
 	width: 300px;
-	height: 280px;
 	text-align: center;
 	padding: 25px;
 	padding-bottom: 50px;
 	padding-top: 50px;
 	margin: 10px;
+}
+.join-select>div>img{
+	width: 100px;
+	margin-bottom: -30px;
 }
 
 .join-select-text {
@@ -28,7 +31,7 @@ body {
 }
 
 .join-select-text>p {
-	margin: 20px;
+	/* margin: 20px; */
 }
 
 .join-select-text>p:first-child {

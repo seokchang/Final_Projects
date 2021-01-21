@@ -43,7 +43,7 @@
 	</select>
 	
 	<!-- 아이디 찾기 -->
-	<select id="findUserId" parameterType="u" resultType="u">
+	<select id="findUserId" parameterType="map" resultType="string">
 		select
 			user_id as userId
 		from user_tbl where user_name=#{userName} and user_phone=#{userPhone}

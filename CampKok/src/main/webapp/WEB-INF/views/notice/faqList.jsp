@@ -170,7 +170,7 @@
 				</tr>
 				<c:forEach items="${list }" var="mainFaq">
 					<tr>
-						<td style="text-align: center">${mainFaq.faqNo }</td>
+						<td style="text-align: center">${mainFaq.rNum }</td>
 						<td><a href="/faqView.do?faqNo=${mainFaq.faqNo }">${mainFaq.faqTitle }</a></td>
 						<td style="text-align: center">${mainFaq.userId }</td>
 						<td style="text-align: center">${mainFaq.faqDate }</td>
