@@ -36,6 +36,8 @@
 	<a href="/camp/commentFrm.do">댓글달기</a>
 	<a href="/mypage.do?userNo=2">마이페이지</a>
 	<a href="/camp/jinwoo.do">진우 작업페이지</a>
+	<a href="/camp/test.do">테스트</a>
+	
 
 	<hr>
 	<a href="/main.do">메인페이지</a>

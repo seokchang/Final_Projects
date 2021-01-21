@@ -25,6 +25,10 @@ public class CampController {
 	/***********************************************
 	 *                     기현 
 	 ***********************************************/
+	@RequestMapping("test.do")
+	public String test() {
+		return "camp/test";
+	}
 	@RequestMapping("campReservation.do")
 	public String campReservation(Model model,int roomNo) {
 		//1. 예약된 정보 전부 가져오기
