@@ -58,11 +58,11 @@
 							<tr>
 								<th>이미지</th>
 								<td colspan="3">
-									<c:if test="${not empty ceoNotice.ceoNoticeFilePath }">
+									<%-- <c:if test="${not empty ceoNotice.ceoNoticeFilePath }"> --%>
 										<div style="text-align: left;">
 											<img id="img-view" src="/resources/upload/notice/${ceoNotice.ceoNoticeFilePath }" style="width: 20%;">
 										</div>
-									</c:if>
+									<%-- </c:if> --%>
 								</td>
 							</tr>
 							<tr>
