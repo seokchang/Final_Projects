@@ -4,7 +4,7 @@
 	<!-- 회원가입 -->
 	<insert id="insertUser" parameterType="u">
 		insert into user_tbl values(
-			user_seq.nextval,
+			user_tbl_seq.nextval,
 			#{userId},
 			#{userPw},
 			#{userName},
