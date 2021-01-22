@@ -72,14 +72,19 @@
 }
 
 .camp-item-img {
-	width: 280px;
-	height: 200px;
+	width: 260px;
+	height: 260px;
 	overflow: hidden;
 	border: 1px solid #ccc;
 	border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
 }
 
-.camp-item-img>img {
+.camp-item-img img{
+	width: auto;
 	height: 100%;
 }
 
@@ -108,7 +113,6 @@
 	margin: 0;
 	display: inline-block;
 	padding-right: 10px;
-	font-weight: bold;
 	font-size: 18px;
 }
 
