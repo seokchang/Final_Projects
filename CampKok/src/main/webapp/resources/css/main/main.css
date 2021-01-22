@@ -331,7 +331,12 @@ h3 {
 	font-size: 21px;
 }
 
-.rank-content>ul>li>p {
+.rank-star {
+	margin: 0;
+	color: #BF372B;
+}
+
+.rank-num {
 	font-size: 35px;
 	margin: 0;
 	display: inline-block;
