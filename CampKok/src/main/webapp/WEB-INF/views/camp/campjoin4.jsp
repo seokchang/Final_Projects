@@ -114,6 +114,7 @@
                     <button type="submit" style="font-size: 18px;">다음페이지</button>
                     <button type="reset" style="font-size: 18px;">취소</button>
             </div>
+            <br><br>
         </form>
     </div>
 </div>
