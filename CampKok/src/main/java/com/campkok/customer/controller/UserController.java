@@ -33,7 +33,7 @@ public class UserController {
 	public String join() {
 		return "user/joinPage";
 	}
-	
+
 	// 일반회원가입 페이지로 이동
 	@RequestMapping("/joinFrm.do")
 	public String joinFrm() {
@@ -45,7 +45,7 @@ public class UserController {
 	public String ceoJoinFrm() {
 		return "user/ceoJoinFrm";
 	}
-	
+
 	// 회원가입
 	@RequestMapping("/customerJoin.do")
 	public String customerJoin(UserVO u, Model model) {
@@ -72,48 +72,48 @@ public class UserController {
 			return "1";
 		}
 	}
-	
+
 	// 아이디 찾기로 이동
 	@RequestMapping("/findIdPage.do")
 	public String findIdPage() {
 		return "user/findId";
 	}
-	
+
 	// 아이디 찾기
 	@RequestMapping("/findId.do")
 	public String findId(String userName, String userPhone, Model model) {
-		String userId = service.findUserId(userName,userPhone);
+		String userId = service.findUserId(userName, userPhone);
 		System.out.println(userId);
-		if(userId != null) {
-			model.addAttribute("userId",userId);
+		if (userId != null) {
+			model.addAttribute("userId", userId);
 			return "user/findIdResult";
-		}else {
-			model.addAttribute("msg","회원정보가 존재하지 않습니다.");
-			model.addAttribute("loc","/findIdPage.do");
+		} else {
+			model.addAttribute("msg", "회원정보가 존재하지 않습니다.");
+			model.addAttribute("loc", "/findIdPage.do");
 			return "common/msg";
 		}
 	}
-	
+
 	// 비밀번호 찾기로 이동
 	@RequestMapping("/findPwPage.do")
 	public String findPwPage() {
 		return "user/findPw";
 	}
-	
+
 	// 비밀번호 찾기
 	@RequestMapping("/findPw.do")
 	public String findPw(UserVO u, Model model) {
 		UserVO user = service.findUserPw(u);
 		System.out.println(u);
-		if(user.getUserPw() != null) {
-			model.addAttribute("user",user);
+		if (user.getUserPw() != null) {
+			model.addAttribute("user", user);
 			return "user/findPwResult";
-		}else {
-			model.addAttribute("msg","회원정보가 존재하지 않습니다.");
-			model.addAttribute("loc","/findPwPage.do");
+		} else {
+			model.addAttribute("msg", "회원정보가 존재하지 않습니다.");
+			model.addAttribute("loc", "/findPwPage.do");
 			return "common/msg";
 		}
-		
+
 	}
 
 	// 로그인 페이지로 이동
@@ -133,16 +133,17 @@ public class UserController {
 			session.setAttribute("user", user);
 			model.addAttribute("msg", user.getUserName() + "님 환영합니다");
 
+			Visit visit = new Visit();
+
+			visit.setVisitId((String) user.getUserId());
+			visit.setVisitIp((req.getRemoteAddr()));
+			visit.setVisitRefer(req.getHeader("referer"));
+			visit.setVisitAgent(req.getHeader("User-Agent"));
+			visitCtrl.insertVisitInfo(visit);
+
 			if (user.getUserLevel() != 0)
 				model.addAttribute("loc", "/main.do");
 			else {
-				Visit visit = new Visit();
-
-				visit.setVisitId((String) user.getUserId());
-				visit.setVisitIp((req.getRemoteAddr()));
-				visit.setVisitRefer(req.getHeader("referer"));
-				visit.setVisitAgent(req.getHeader("User-Agent"));
-				visitCtrl.insertVisitInfo(visit);
 				model.addAttribute("loc", "/pageAdmin.do?reqPage=1");
 			}
 		} else {

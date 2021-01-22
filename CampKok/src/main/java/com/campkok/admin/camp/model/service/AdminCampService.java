@@ -227,7 +227,8 @@ public class AdminCampService {
 			if (reqPage == pageNo) {
 				pageNavi += "<span class='selectPage'>" + pageNo + "</span>";
 			} else {
-				pageNavi += "<a class='btn' href='/selectTempCampInfoList.do?reqPage=" + pageNo + "'>" + pageNo + "</a>";
+				pageNavi += "<a class='btn' href='/selectTempCampInfoList.do?reqPage=" + pageNo + "'>" + pageNo
+						+ "</a>";
 			}
 			pageNo++;
 			if (pageNo > totalPage)

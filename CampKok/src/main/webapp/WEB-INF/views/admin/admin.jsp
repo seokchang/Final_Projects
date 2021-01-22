@@ -160,9 +160,7 @@
 							<c:forEach items="${campInfoList }" var="campInfo" begin="0" end="4" step="1">
 								<tr>
 									<td>${campInfo.rNum }</td>
-									<td>
-										<a href="/selectCeoInfo.do?userNo=${campInfo.ceoInfo.userNo }"><strong>${campInfo.ceoId }</strong></a>
-									</td>
+									<td>${campInfo.ceoId }</td>
 									<td>
 										<a href="/selectCampInfo.do?campNo=${campInfo.campNo }"><strong>${campInfo.campName }</strong></a>
 									</td>

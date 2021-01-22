@@ -55,7 +55,7 @@ public class AdminPageController {
 
 		return "/admin/admin";
 	}
-	
+
 	@RequestMapping("/pageMain.do")
 	public String pageMain() {
 		return "/main";
