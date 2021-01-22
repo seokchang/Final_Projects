@@ -150,5 +150,10 @@ public class CampDao {
 		return sqlSession.selectOne("camp.selectCampEnv",campNo);
 	}
 
+	public int insertCampRoom(CampRoomVO cr) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("camp.insertCampRoom",cr);
+	}
+
 
 }
