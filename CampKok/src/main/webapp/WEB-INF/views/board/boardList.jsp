@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,6 +9,8 @@
 <title>자유 게시판</title>
 <link rel="stylesheet" href="/resources/css/customer/noticeList.css">
 </head>
+<c:set var="today" value="<%=new java.util.Date()%>" />
+<c:set var="date"><fmt:formatDate value="${today}" pattern="yyyy-MM-dd" /></c:set>
 <style>
 .board-top {
 	width: 1200px;
@@ -160,7 +163,17 @@
 				<c:forEach items="${list }" var="b">
 					<tr>
 						<td style="text-align: center">${b.rnum }</td>
-						<td><a href="/boardView.do?boardNo=${b.boardNo }">${b.boardTitle }</a></td>
+						<td>
+							<a href="/boardView.do?boardNo=${b.boardNo }">
+								${b.boardTitle }
+								<c:if test="${b.boardDate.equals(date) }">
+								<img src="/resources/img/customer/new.png" width="20px" height="20px">
+								</c:if>
+								<c:if test="${b.boardCommentCount!=0 }">
+									[${b.boardCommentCount }]
+								</c:if>
+							</a>
+						</td>
 						<td style="text-align: center">${b.userId }</td>
 						<td style="text-align: center">${b.boardDate }</td>
 					</tr>

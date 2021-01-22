@@ -78,30 +78,21 @@
                     <%-- <td colspan="3">${b.boardFilepath }</td> --%>
                 </tr>
                 <tr>
-                    <td colspan="4" style="height: 400px;"><textarea rows="3" cols="40" name="boardContents" id="boardContents"></textarea></td>
+                    <td colspan="4" style="height: 400px;"><textarea rows="3" cols="40" name="boardContents" id="boardContents"></textarea>
                 </tr>
                 <tr>
                 	<td colspan="4" style="text-align: center;height: 55px;">
-                    	<input type="submit" class="notice-btn" value="등록">
+                    	<input type="submit" class="notice-btn"  onclick="submitContents(this)" value="등록">
                     	<a href="javascript:history.go(-1)" class="notice-btn">취소</a>
                     </td>
                 </tr>
             </table>
             	</form>
-            <table class="notice-tbl2">
-                <tr>
-                    <th style="width: 200px;">다음글</th>
-                    <td><a href="#">공지사항입니다</a></td>
-                </tr>
-                <tr>
-                    <th>이전글</th>
-                    <td><a href="#">공지사항입니다</a></td>
-                </tr>
-            </table>
+
         </div>
     </div>
     <jsp:include page="/WEB-INF/views/common/footer.jsp" />
-<!-- 			<script>
+ 			<script>
 			var oEditors = [];
 			nhn.husky.EZCreator.createInIFrame({
 				oAppRef : oEditors,
@@ -119,6 +110,6 @@
 				} catch (e) {
 				}
 			}
-		</script> -->
+		</script> 
 </body>
 </html>

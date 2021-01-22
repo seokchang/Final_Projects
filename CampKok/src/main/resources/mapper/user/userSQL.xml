@@ -55,4 +55,5 @@
 			user_pw as userPw
 		from user_tbl where user_name=#{userName} and user_id=#{userId} and user_phone=#{userPhone}
 	</select>
+
 </mapper>
