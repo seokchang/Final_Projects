@@ -203,8 +203,8 @@
 		)
 	</insert>
 	<insert id="insertRent" parameterType="rent">
-		insert into rent values(
-			rent_seq.nextval,
+		insert into temp_rent values(
+			temp_rent_seq.nextval,
 			#{campNo},
 			#{rentName},
 			#{rentFilename},
@@ -251,7 +251,15 @@
 			env_tel as envTel
 		from campenv where camp_no=#{campNo}
 	</select>
-	
+	<insert id="insertCampRoom">
+		insert into temp_camproom values(
+			temp_camproom_seq.nextval,
+			#{campNo},
+			#{roomMember},
+			#{roomName},
+			#{roomPrice}
+		)
+	</insert>
 	
 	
 	

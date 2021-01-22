@@ -201,6 +201,11 @@ public class CampService {
 		return dao.selectCampEnv(campNo);
 	}
 
+	public int insertCampRoom(CampRoomVO cr) {
+		
+		return dao.insertCampRoom(cr);
+	}
+
 
 
 }

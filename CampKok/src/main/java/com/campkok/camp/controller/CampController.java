@@ -290,12 +290,47 @@ public class CampController {
 			return "camp/campjoin5";
 		}
 	}
+	@RequestMapping("/campjoin6.do")
+	public String campjoin6(CampRoomVO cr, FileTBL ft, MultipartFile roomimage, HttpServletRequest request, Model model) {
+		String root = request.getSession().getServletContext().getRealPath("/");
+		String path = root + "resources/upload/camp/";
+			if(!roomimage.isEmpty()) {
+				String filename = roomimage.getOriginalFilename();
+				String filepath = new FileNameOverlap().reName(path, filename);
+				try {
+					byte[]bytes = roomimage.getBytes();
+					File upFile = new File(path+filepath);                                                                                                   
+					FileOutputStream fos = new FileOutputStream(upFile);
+					BufferedOutputStream bos = new BufferedOutputStream(fos);
+					bos.write(bytes);
+					bos.close();
+					ft.setCampFileName(filename);
+					ft.setCampFilePath(filepath);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		int result = service.insertCampRoom(cr);
+		model.addAttribute("campNo",cr.getCampNo());
+		if(result>0) {
+			return "camp/campjoin7";
+		}else {
+			return "camp/campjoin6";
+		}
+	}
 	//마이페이지 이동
 	@RequestMapping("/campmypage.do")
 	public String campmypage(Model model, String userId) {
 		CampVO c = service.selectOneCamp(userId);
 		model.addAttribute("c",c);
 		return "camp/campmypage";
+	}
+	@RequestMapping("/nextpage.do")
+	public String nextpage(Model model, int campNo) {
+		CampEnv ce = service.selectOneCampEnv(campNo);
+		model.addAttribute("ce",ce);
+		return "camp/campmypage2";
 	}
 	@RequestMapping("campmypageupdate.do")
 	public String campmypageupdate(HttpServletRequest request, Model model,String theme, String fac, String ctg, int campNo) {
@@ -309,13 +344,11 @@ public class CampController {
 		c.setCampFac(fac);
 		c.setCampCtg(ctg);
 		int result = service.updateCamp(c);
-		CampEnv ce = service.selectOneCampEnv(campNo);
-		model.addAttribute("ce",ce);
 		model.addAttribute("campNo",c.getCampNo());
 		if(result>0) {
-			return "camp/campmypage2";
+			return "nextpage.do";
 		}else {
-			return "/main.do";
+			return "main.do";
 		}
 	}
 }
