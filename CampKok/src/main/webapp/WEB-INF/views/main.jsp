@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+<!-- 글자 수 자르기 -->
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -159,9 +162,19 @@
 				<div class="new-camping-content">
 					<a href="/campView.do?campNo=${newCamp.campNo }">
 						<div>
-							<img src="/resources/img/camp/${newCamp.imgpath }">
+							<img src="/resources/upload/camp/${newCamp.imgpath }">
 						</div>
-						<p>[ 지역 ] ${newCamp.campName }</p>
+						<p>[ 
+							<c:choose>
+								<c:when test="${fn:length(newCamp.campAddr) gt 2}">
+								    <c:out value="${fn:substring(newCamp.campAddr, 0, 2)}"/>
+							    </c:when>
+							    <c:otherwise>
+							    	<c:out value="${newCamp.campAddr}"/>
+							    </c:otherwise>
+							</c:choose>
+							] ${newCamp.campName }
+						</p>
 					</a>
 				</div>
 			</c:forEach>
@@ -174,15 +187,24 @@
 					begin="0" end="9" step="1">
 					<div class="rank-content">
 						<div>
-							<img src="/resources/img/camp/${rank.imgpath }">
+							<img src="/resources/upload/camp/${rank.imgpath }">
 						</div>
 						<ul>
 							<li>
-								<p>${vs.count }&nbsp;</p>${rank.campName }
+								<p class="rank-num">${vs.count }&nbsp;</p><a href="/campView.do?campNo=${rank.campNo }" style="text-decoration: none; color: #232323;">${rank.campName }</a>
 							</li>
-							<li>${rank.campAddr }</li>
-							<li>★ ${rank.campStar }</li>
-							<li>${rank.campMinPrice }원~</li>
+							<li>
+								<c:choose>
+									<c:when test="${fn:length(rank.campAddr) gt 16}">
+									    <c:out value="${fn:substring(rank.campAddr, 0, 16)}"/>...
+								    </c:when>
+								    <c:otherwise>
+								    	<c:out value="${rank.campAddr}"/>
+								    </c:otherwise>
+								</c:choose>
+							</li>
+							<li><p class="rank-star">★ ${rank.campStar }</p></li>
+							<li>${rank.campMinPrice }원 ~</li>
 						</ul>
 					</div>
 				</c:forEach>
