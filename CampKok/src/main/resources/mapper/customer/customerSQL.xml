@@ -146,7 +146,8 @@
 			board_filepath as boardFilepath,
 			board_contents as boardContents,
 			board_date as boardDate,
-			board_title as boardTitle
+			board_title as boardTitle,
+			board_comment_count as boardCommentCount
 		from (select rownum as rnum, n. * from (select * from board order by 1 desc)n) 
 	 	where rnum between #{start} and #{end}
 	</select>

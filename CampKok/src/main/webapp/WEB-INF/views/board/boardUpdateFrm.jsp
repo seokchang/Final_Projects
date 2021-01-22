@@ -99,7 +99,7 @@
                 </tr>
                 <tr>
                 	<td colspan="4" style="text-align: center;height: 55px;">
-						<input type="submit" class="notice-btn" value="수정">
+						<input type="submit" class="notice-btn" onclick="submitContents(this)" value="수정">
                     	<a href="javascript:history.go(-1)" class="notice-btn">취소</a>
                     </td>
                 </tr>
@@ -120,7 +120,7 @@
 		}
 	});
 	</script>
-<!-- 			<script>
+ 			<script>
 			var oEditors = [];
 			nhn.husky.EZCreator.createInIFrame({
 				oAppRef : oEditors,
@@ -138,6 +138,6 @@
 				} catch (e) {
 				}
 			}
-		</script> -->
+		</script>
 </body>
 </html>

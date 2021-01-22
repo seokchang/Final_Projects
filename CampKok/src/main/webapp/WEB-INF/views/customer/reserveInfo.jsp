@@ -38,11 +38,11 @@
         </div>
         <div class="mypage-form">
                
-                     <c:if test="${list==null }">
+                     <c:if test="${list.isEmpty() }">
                      <br>
                      	<p>최근 예약하신 내역이 없습니다.</p>
                      </c:if>
-                     <c:if test="${list!=null }">
+                     <c:if test="${!list.isEmpty() }">
                      
                     <c:forEach items="${list }" var="r">
                     <table class="mypage-tbl">

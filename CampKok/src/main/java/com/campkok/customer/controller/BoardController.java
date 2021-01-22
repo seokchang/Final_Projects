@@ -245,12 +245,17 @@ public class BoardController {
 	@RequestMapping("/insertBoardComment.do")
 	public String insertBoardComment(BoardCommentVO bc, Model model) {
 		System.out.println(bc.getBoardCommentContent());
-		int result = service.insertBoardComment(bc);
-		if (result > 0) {
-			model.addAttribute("msg", "댓글 작성이 완료되었습니다.");
-		} else {
-			model.addAttribute("msg", "댓글 작성이 실패하였습니다.");
+		if(bc.getBoardCommentContent().equals("")) {
+			model.addAttribute("msg", "내용을 입력해주세요.");
+		}else {
+			int result = service.insertBoardComment(bc);
+			if (result > 0) {
+				model.addAttribute("msg", "댓글 작성이 완료되었습니다.");
+			} else {
+				model.addAttribute("msg", "댓글 작성이 실패하였습니다.");
+			}
 		}
+
 		model.addAttribute("loc", "/boardView.do?boardNo="+bc.getBoardRef());
 		return "common/msg";
 	}

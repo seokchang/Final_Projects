@@ -76,6 +76,9 @@ public class CustomerController {
 	public String resurve(int userNo, Model model) {
 //		ReservationVO r = service.selectOneReserve(userNo);
 		ArrayList<ReservationVO> list = service.selectOneReserve(userNo);
+		if(list.isEmpty()) {
+			System.out.println("DD");
+		}
 		model.addAttribute("list", list);
 		return "customer/reserveInfo";
 	}

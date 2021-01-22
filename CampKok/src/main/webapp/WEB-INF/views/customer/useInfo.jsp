@@ -44,11 +44,11 @@
             </ul>
         </div>
         <div class="mypage-form">
-                   <c:if test="${list==null }">
+                   <c:if test="${list.isEmpty() }">
                      <br>
                      	<p>캠핑장을 이용하신 내역이 없습니다.</p>
                      </c:if>
-                     <c:if test="${list!=null }">
+                     <c:if test="${!list.isEmpty()  }">
                     <table class="mypage-tbl">
                            <tr>
                                <th width="20%">캠핑장 명</th>
