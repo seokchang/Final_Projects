@@ -39,7 +39,7 @@
 	<div class="header">
 		<div id="header-scroll"></div>
 		<div class="header-logo">
-			<a href="/"></a><img src="resources/img/main/logo-w.png">
+			<a href="/"></a><img src="/resources/img/main/logo-w.png">
 			<p>
 				<a href="/main.do">Campkok</a>
 			</p>

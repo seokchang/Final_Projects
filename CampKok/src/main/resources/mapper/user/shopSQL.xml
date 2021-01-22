@@ -11,7 +11,7 @@
   			shop_filepath as shopFilepath,
   			product_contents as productContents,
   			product_price as productPrice
-  		from shop
+  		from shop order by 1 desc
   	)c)
   	where rnum between ${start} and ${end}
   </select>
