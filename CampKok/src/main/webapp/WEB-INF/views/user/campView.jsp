@@ -82,6 +82,12 @@
                             </div>
                         </td>
                     </tr>
+                    <tr>
+                        <th>전화번호</th>
+                        <td>${cl.campTel }</td>
+                        <th>홈페이지</th>
+                        <td><a href="${cl.campSite }">${cl.campSite }</a></td>
+                    </tr>
                 </table>
             </div>
 
@@ -99,7 +105,7 @@
                     </p>
                     <ul>
                     <c:forEach items="${crList }" var="cr" begin="0" end="4" step="1">
-                    	<li><a href="#">${cr.revContents }</a></li>
+                    	<li>${cr.revContents }</li>
                     </c:forEach>
                     </ul>
                 </div>
@@ -107,7 +113,7 @@
                     <p>NOTICE <a href="#">more</a></p>
                     <ul>
                     <c:forEach items="${cnList }" var="cn" begin="0" end="4" step="1">
-                        <li><a href="#">${cn.campNoticeTitle }</a></li>
+                        <li>${cn.campNoticeTitle }</li>
                     </c:forEach>
                     </ul>
                 </div>
