@@ -59,7 +59,7 @@
 					<c:when test="${sessionScope.user.userLevel == 2 }">
 						<li><a href="/faqList.do?reqPage=1&faqUser=ceo">FAQ</a></li>
 						<li><a href="/mainCeoNoticeList.do?reqPage=1">공지사항</a></li>
-						<li><a href="#">광고</a></li>
+						<!-- <li><a href="#">광고</a></li> -->
 					</c:when>
 				</c:choose>
 			</ul>
@@ -82,8 +82,9 @@
 							<li><a href="logout.do">로그아웃</a></li>
 						</c:when>
 						<c:when test="${sessionScope.user.userLevel == 2 }">
-							<li><a href="#">마이페이지</a></li>
-							<li><a href="#">캠핑장 등록</a></li>
+							<li><a href="/mypage.do?userNo=${sessionScope.user.userNo }">마이페이지</a></li>
+							<li><a href="/camp/campmypage.do?userId=${sessionScope.user.userId }">내 캠핑장</a></li>
+							<li><a href="/camp/campjoinFrm.do?userId=${sessionScope.user.userId }">캠핑장 등록</a></li>
 							<hr>
 							<li><a href="logout.do">로그아웃</a></li>
 						</c:when>

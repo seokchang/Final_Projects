@@ -5,8 +5,53 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
+    <title>공지사항</title>
     <link rel="stylesheet" href="/resources/css/customer/noticeList.css">
+
+<style>
+.selectPage {
+	color: #f2f2f2;
+	display: inline-block;
+	width: 30px;
+	height: 30px;
+	border: none;
+	text-align: center;
+	line-height: 30px;
+	border-radius: 5px;
+	background-color: #405944;
+	margin: 5px;
+	font-weight: bold;
+	font-size: 15px;
+}
+
+.pageNavi {
+	width: 100%;
+	display: block;
+	text-align: center;
+	margin-top: 10px;
+	font-size: 14px;
+}
+
+.pageNavi a {
+	text-decoration-line: none;
+	color: #405944;
+	display: inline-block;
+	width: 30px;
+	height: 30px;
+	border: none;
+	text-align: center;
+	line-height: 30px;
+	border-radius: 5px;
+	background-color: white;
+	margin: 5px;
+}
+
+.pageNavi a:hover {
+	text-decoration-line: none;
+	color: #F2542F;
+}
+</style>
+
 </head>
 
 <body>
@@ -40,7 +85,7 @@
             </table>
         </div>
 
-        <div class="paging">
+        <div class=".pageNavi">
             ${pageNavi }
         </div>
     </div>

@@ -34,7 +34,7 @@
 	float: right;
 }
 
-.selectedPage {
+.selectPage {
 	color: #f2f2f2;
 	display: inline-block;
 	width: 30px;
@@ -42,7 +42,8 @@
 	border: none;
 	text-align: center;
 	line-height: 30px;
-	background-color: #f3d479;
+	border-radius: 5px;
+	background-color: #405944;
 	margin: 5px;
 	font-weight: bold;
 	font-size: 15px;
@@ -68,6 +69,11 @@
 	border-radius: 5px;
 	background-color: white;
 	margin: 5px;
+}
+
+.pageNavi a:hover {
+	text-decoration-line: none;
+	color: #F2542F;
 }
 
 .post {

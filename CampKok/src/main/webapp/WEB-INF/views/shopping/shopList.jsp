@@ -83,7 +83,7 @@
                         <li><b>${s.productName }</b></li>
                         <!-- <li>2021-01-22</li> -->
                         <li>
-	                        <p style="font-size: 15px;">${s.userName }</p>
+	                        <p style="font-size: 15px;color:gray;">${s.userName }</p>
 	                        <p>
 	                        	<fmt:formatNumber value="${s.productPrice }" pattern="#,###"/>원
 	                        </p>

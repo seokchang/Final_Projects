@@ -5,7 +5,7 @@
   	select * from (select rownum as rnum, c.* from(
   		select
   			shop_no as shopNo,
-            (select user_name from user_tbl where user_no = shop.user_no) as userName,
+            (select user_id from user_tbl where user_no = shop.user_no) as userName,
   			product_name as productName,
   			shop_filename as shopFilename,
   			shop_filepath as shopFilepath,

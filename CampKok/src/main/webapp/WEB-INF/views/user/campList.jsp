@@ -6,6 +6,51 @@
 <head>
 <meta charset="UTF-8">
 <title>캠핑장</title>
+
+<style>
+.selectedPage {
+	color: #f2f2f2;
+	display: inline-block;
+	width: 30px;
+	height: 30px;
+	border: none;
+	text-align: center;
+	line-height: 30px;
+	border-radius: 5px;
+	background-color: #405944;
+	margin: 5px;
+	font-weight: bold;
+	font-size: 15px;
+}
+
+.pageNavi {
+	width: 100%;
+	display: block;
+	text-align: center;
+	margin-top: 10px;
+	font-size: 14px;
+}
+
+.pageNavi a {
+	text-decoration-line: none;
+	color: #405944;
+	display: inline-block;
+	width: 30px;
+	height: 30px;
+	border: none;
+	text-align: center;
+	line-height: 30px;
+	border-radius: 5px;
+	background-color: white;
+	margin: 5px;
+}
+
+.pageNavi a:hover {
+	text-decoration-line: none;
+	color: #F2542F;
+}
+</style>
+
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp" />
@@ -44,7 +89,7 @@
 	                    </div>
 	                    <ul>
 	                        <li style="display: none">${cl.campNo }</li>
-	                        <li>${cl.campAddr }</li>
+	                        <li style="font-size: 14px; color:gray;">${cl.campAddr }</li>
 	                        <li>${cl.campName }</li>
 	                        <li><p>★ ${cl.campStar }</p><p>${cl.campMinPrice }원 ~</p></li>
 	                    </ul>
@@ -53,7 +98,7 @@
             </c:forEach>
         </div>
 
-        <div class="paging">
+        <div class="pageNavi">
             ${pageNavi }
         </div>
 
