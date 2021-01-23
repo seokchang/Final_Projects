@@ -21,7 +21,7 @@
 
 			<!-- Main -->
 			<div class="content-main">
-				<h1>공지사항</h1>
+				<h1>사업자 공지사항</h1>
 				<hr>
 				<div class="table-wrap" style="margin-top: 30px;">
 					<form action="/updateCeoNotice.do" method="POST" enctype="multipart/form-data">
@@ -59,7 +59,12 @@
 								<th>이미지</th>
 								<td colspan="3">
 									<div style="text-align: left;">
-										<img id="img-view" src="/resources/upload/notice/${ceoNotice.ceoNoticeFilePath }" style="width: 20%;">
+										<c:if test="${not empty ceoNotice.ceoNoticeFilePath}">
+											<img id="img-view" src="/imgPreview.do?filePath=${ceoNotice.ceoNoticeFilePath }" style="width: 50%;">
+										</c:if>
+										<c:if test="${empty ceoNotice.ceoNoticeFilePath}">
+											<img id="img-view" style="width: 50%;">
+										</c:if>
 									</div>
 								</td>
 							</tr>

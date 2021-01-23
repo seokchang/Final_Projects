@@ -90,7 +90,7 @@
 								<td colspan="3">
 									<div style="text-align: left;">
 										<c:forEach items="${campInfo.campFiles }" var="campFile">
-											<img id="img-view" src="/imgPreview.do?filePath=${campFile.campFilePath }" style="width: 20%;">
+											<img id="img-view" src="/resources/upload/camp/${campFile.campFilePath }" style="width: 50%;">
 										</c:forEach>
 									</div>
 								</td>
@@ -128,7 +128,7 @@
 								<td colspan="3">
 									<c:if test="${not empty campInfo.campEnv.envFilePath }">
 										<div style="text-align: left;">
-											<img id="img-view" src="/imgPreview.do?filePath=${campInfo.campEnv.envFilePath }" style="width: 20%">
+											<img id="img-view" src="/resources/upload/camp/${campInfo.campEnv.envFilePath }" style="width: 50%">
 										</div>
 									</c:if>
 								</td>

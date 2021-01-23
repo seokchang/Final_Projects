@@ -47,7 +47,7 @@
 						</tr>
 						<tr>
 							<th>주소</th>
-							<td colspan="3">${campInfo.campAddr }</td>
+							<td colspan="3" style="width: 100%">${campInfo.campAddr }</td>
 						</tr>
 						<tr>
 							<th>테마</th>
@@ -83,7 +83,7 @@
 						</tr>
 						<tr>
 							<th>주소</th>
-							<td colspan="3">${campInfo.campEnv.envAddr }</td>
+							<td colspan="3" style="width: 100%">${campInfo.campEnv.envAddr }</td>
 						</tr>
 						<tr>
 							<th>이미지</th>
