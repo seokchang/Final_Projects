@@ -42,4 +42,9 @@ public class UserService {
 	public String findUserId(String userName, String userPhone) {
 		return dao.findUserId(userName,userPhone);
 	}
+
+	public int dmCount(String userId) {
+		// TODO Auto-generated method stub
+		return dao.dmCount(userId);
+	}
 }
