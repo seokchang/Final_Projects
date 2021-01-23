@@ -138,6 +138,7 @@ a:hover{
 }
 
 .camp-re-no>div {
+	width: 480px;
 	border: 1px solid #ccc;
 	padding: 25px 40px 20px;
 	flex-grow: 1;

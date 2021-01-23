@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    
+    <!-- 글자 수 자르기 -->
+	<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -62,6 +65,12 @@
             <div>
                 <table class="camp-tbl">
                     <tr>
+                        <th>전화번호</th>
+                        <td>${cl.campTel }</td>
+                        <th>홈페이지</th>
+                        <td><a href="http://${cl.campSite }">${cl.campSite }</a></td>
+                    </tr>
+                    <tr>
                         <th>테마</th>
                         <td>${cl.campTheme }</td>
                         <th>카테고리</th>
@@ -82,12 +91,6 @@
                             </div>
                         </td>
                     </tr>
-                    <tr>
-                        <th>전화번호</th>
-                        <td>${cl.campTel }</td>
-                        <th>홈페이지</th>
-                        <td><a href="${cl.campSite }">${cl.campSite }</a></td>
-                    </tr>
                 </table>
             </div>
 
@@ -105,15 +108,33 @@
                     </p>
                     <ul>
                     <c:forEach items="${crList }" var="cr" begin="0" end="4" step="1">
-                    	<li>${cr.revContents }</li>
+                    	<li>
+                    		<c:choose>
+								<c:when test="${fn:length(cr.revContents) gt 35}">
+								    <c:out value="${fn:substring(cr.revContents, 0, 35)}"/>...
+							    </c:when>
+							    <c:otherwise>
+							    	<c:out value="${cr.revContents }"/>
+							    </c:otherwise>
+							</c:choose>
+						</li>
                     </c:forEach>
                     </ul>
                 </div>
                 <div>
-                    <p>NOTICE <a href="#">more</a></p>
+                    <p>NOTICE <a href="/camp/campNotice2.do?reqPage=1">more</a></p>
                     <ul>
                     <c:forEach items="${cnList }" var="cn" begin="0" end="4" step="1">
-                        <li>${cn.campNoticeTitle }</li>
+                        <li>
+                        	<c:choose>
+								<c:when test="${fn:length(cn.campNoticeTitle) gt 35}">
+								    <c:out value="${fn:substring(cn.campNoticeTitle, 0, 35)}"/>...
+							    </c:when>
+							    <c:otherwise>
+							    	<c:out value="${cn.campNoticeTitle }"/>
+							    </c:otherwise>
+							</c:choose>
+                        </li>
                     </c:forEach>
                     </ul>
                 </div>

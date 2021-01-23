@@ -19,7 +19,6 @@
             <p></p>
         </div>
     </div>
-	<hr>
 	
 	<div class="notice-content">
 		<div class="page-title">

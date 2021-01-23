@@ -5,7 +5,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
+    <title>공지사항</title>
     <link rel="stylesheet" href="/resources/css/customer/noticeList.css">
 
 <style>

@@ -55,8 +55,8 @@
 					<c:when test="${sessionScope.user.userLevel == 2 }">
 						<li><a href="/faqList.do?reqPage=1&faqUser=ceo">FAQ</a></li>
 						<li><a href="/mainCeoNoticeList.do?reqPage=1">공지사항</a></li>
-						<li><a href="#">광고</a></li>
-						<li><a href="/camp/campjoinFrm.do">캠핑장 등록</a></li>
+						<!-- <li><a href="#">광고</a></li> -->
+						<!-- <li><a href="/camp/campjoinFrm.do">캠핑장 등록</a></li> -->
 					</c:when>
 				</c:choose>
 			</ul>
