@@ -55,5 +55,15 @@
 			user_pw as userPw
 		from user_tbl where user_name=#{userName} and user_id=#{userId} and user_phone=#{userPhone}
 	</select>
-
+	
+	<select id="dmList" parameterType="string" resultType="d">
+		select
+			dm_no as dmNo,
+			dm_sender as dmSender,
+			dm_receiver as dmReceiver,
+			dm_contents as dmContents,
+			dm_date as dmDate,
+			dm_check as dmCheck
+		from dm where dm_receiver=#{parameter} and dm_check='읽지않음'
+	</select>
 </mapper>
