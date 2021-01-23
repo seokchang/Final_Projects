@@ -61,6 +61,10 @@ public class CeoNotice {
 	public String getCeoNoticeContents() {
 		return ceoNoticeContents;
 	}
+	
+	public String getCeoNoticeContentsBr() {
+		return ceoNoticeContents.replace("\r\n", "<br>");
+	}
 
 	public void setCeoNoticeContents(String ceoNoticeContents) {
 		this.ceoNoticeContents = ceoNoticeContents;
