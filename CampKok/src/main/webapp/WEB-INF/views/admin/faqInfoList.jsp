@@ -55,6 +55,7 @@
 						<tbody>
 							<tr>
 								<th>번호</th>
+								<th>분류</th>
 								<th>제목</th>
 								<th>작성자</th>
 								<th>등록일</th>
@@ -63,6 +64,16 @@
 							<c:forEach items="${list }" var="faqInfo">
 								<tr>
 									<td>${faqInfo.rNum }</td>
+									<td>
+										<c:choose>
+											<c:when test="${faqInfo.faqUser eq 'client' }">
+												<span>고객</span>
+											</c:when>
+											<c:otherwise>
+												<span>사업자</span>
+											</c:otherwise>
+										</c:choose>
+									</td>
 									<td>
 										<a href="/selectFAQInfo.do?faqNo=${faqInfo.faqNo }"><strong>${faqInfo.faqTitle }</strong></a>
 									</td>
