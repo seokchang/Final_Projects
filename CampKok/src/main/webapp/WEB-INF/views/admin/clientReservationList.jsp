@@ -40,7 +40,9 @@
 									<td>${reservationInfo.rNum }</td>
 									<td>${reservationInfo.clientInfo.userId }</td>
 									<td>${reservationInfo.clientInfo.userName }</td>
-									<td>${reservationInfo.campInfo.campName }</td>
+									<td>
+										<a href="/selectCampInfo.do?campNo=${reservationInfo.campInfo.campNo }"><strong>${reservationInfo.campInfo.campName }</strong></a>
+									</td>
 									<td>${reservationInfo.resInDate }</td>
 									<td>${reservationInfo.resMember }</td>
 									<td>${reservationInfo.resPrice }</td>
