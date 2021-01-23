@@ -61,6 +61,10 @@ public class ClientNotice {
 	public String getClientNoticeContents() {
 		return clientNoticeContents;
 	}
+	
+	public String getClientNoticeContentsBr() {
+		return clientNoticeContents.replace("\r\n", "<br>");
+	}
 
 	public void setClientNoticeContents(String clientNoticeContents) {
 		this.clientNoticeContents = clientNoticeContents;

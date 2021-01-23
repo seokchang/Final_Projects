@@ -34,13 +34,13 @@
                     <td>${faqInfo.faqDate }</td>
                 </tr>
                 <tr>
-                    <td colspan="4" style="height: 400px;">${faqInfo.faqContents }</td>
+                    <td colspan="4" style="height: 400px;">${faqInfo.faqContentsBr }</td>
                 </tr>
                 <tr>
                     <td colspan="4" style="text-align: center;height: 55px;"><a href="/faqList.do?reqPage=1&faqUser=client" class="notice-btn">목록</a></td>
                 </tr>
             </table>
-            <table class="notice-tbl2">
+            <!-- <table class="notice-tbl2">
                 <tr>
                     <th style="width: 200px;">다음글</th>
                     <td><a href="#">공지사항입니다</a></td>
@@ -49,7 +49,7 @@
                     <th>이전글</th>
                     <td><a href="#">공지사항입니다</a></td>
                 </tr>
-            </table>
+            </table> -->
         </div>
     </div>
     <jsp:include page="/WEB-INF/views/common/footer.jsp" />
