@@ -55,7 +55,7 @@ public class CustomerController {
 		} else {
 			model.addAttribute("msg", "수정 실패하였습니다.");
 		}
-		model.addAttribute("loc", "/");
+		model.addAttribute("loc", "/mypage.do?userNo"+u.getUserNo());
 		return "common/msg";
 	}
 
@@ -76,9 +76,6 @@ public class CustomerController {
 	public String resurve(int userNo, Model model) {
 //		ReservationVO r = service.selectOneReserve(userNo);
 		ArrayList<ReservationVO> list = service.selectOneReserve(userNo);
-		if(list.isEmpty()) {
-			System.out.println("DD");
-		}
 		model.addAttribute("list", list);
 		return "customer/reserveInfo";
 	}
@@ -99,6 +96,17 @@ public class CustomerController {
 		return "customer/reviewInfo";
 	}
 
+	@RequestMapping("/reviewDelete.do")
+	public String reviewDelete(int revNo, String userId, Model model) {
+		int result = service.reviewDelete(revNo);
+		if(result>0) {
+			model.addAttribute("msg", "삭제가 성공적으로 되었습니다.");
+		} else {
+			model.addAttribute("msg", "삭제를 실패하였습니다.");
+		}
+		model.addAttribute("loc", "/review.do?reqPage=1&userId="+userId);
+		return "common/msg";
+	}
 	@RequestMapping("/point.do")
 	public String point(int userNo, Model model) {
 		ArrayList<PointVO> list = service.pointList(userNo);
@@ -124,9 +132,6 @@ public class CustomerController {
 	@ResponseBody
 	@RequestMapping("/dmInsert.do")
 	public int dmInsert(DmVO dm) {
-		System.out.println(dm.getDmContents());
-		System.out.println(dm.getDmSender());
-		System.out.println(dm.getDmReceiver());
 		return service.insertDM(dm);
 	}
 	@ResponseBody

@@ -43,16 +43,9 @@ public class CampController {
 	@RequestMapping("campReservation.do")
 
 	public String campReservation(Model model,int roomNo) {
-		//user_tbl���� ����Ʈ ��������
-		/*
-		 * int userNo = 2; //���������� �޾Ƽ� ��ü�ҿ��� UserVO userInfo =
-		 * service.selectUserPoint(userNo);
-		 */
-		//ķ����� ���� ��������
+
 		CampRoomVO campRoomInfo = service.selectRoomInfo(roomNo);
-		//ķ���忹�ฮ��Ʈ ��������
 		ArrayList<CampResVO> campResList = service.selectCampResList(roomNo);
-		//ķ���� ���� ��������
 		int campNo = campRoomInfo.getCampNo();
 		CampVO campInfo = service.selectCampInfo(campNo);
 		model.addAttribute("campRoomInfo",campRoomInfo); //ķ���� ��
@@ -93,23 +86,36 @@ public class CampController {
 	}
 	
 	@RequestMapping("insertComment.do")
-	public String insertComment(String userId, int campNo,String revContents,Model model) {
+	public String insertComment(String userId, int campNo,String revStar,String revContents,Model model) {
 		//�����ۼ��� ����Ʈ �μ�Ʈ
 		UserVO userInfo = service.selectUser(userId);
+		System.out.println(revStar);
+		userInfo.setUserPoint(1000);
 		int userNo = userInfo.getUserNo();
 		int pointTotal =userInfo.getUserPoint();
-		int result2 = service.insertPoint(userNo,pointTotal);
-		//user_tbl ��Ż����Ʈ ������Ʈ
-		int result3 = service.updateUserPoint(userNo);
+		System.out.println(pointTotal);
+
 		//review���̺� �μ�Ʈ
-		int result = service.insertComment(userId,campNo,revContents);
-		if(result>0) {
-			model.addAttribute("msg","후기가 등록되었습니다.");
-			model.addAttribute("loc","/campView.do?campNo="+campNo);
+		
+		
+		if(revStar.equals("")) {
+			model.addAttribute("msg","별점을 찍어주세요!");
+			model.addAttribute("loc","/camp/commentFrm.do?userNo="+userNo+"&campNo="+campNo);
 		}else {
-			model.addAttribute("msg","후기등록중 오류가 발생했습니다.");
-			model.addAttribute("loc","/camp/commentFrm.do");
+			
+			int star = Integer.parseInt(revStar);
+			int result2 = service.insertPoint(userNo,pointTotal);
+//			int result3 = service.updateUserPoint(userNo);
+			int result = service.insertComment(userId,campNo,revContents,star);
+			if(result>0) {
+				model.addAttribute("msg","후기가 등록되었습니다.");
+				model.addAttribute("loc","/campView.do?campNo="+campNo);
+			}else {
+				model.addAttribute("msg","후기등록중 오류가 발생했습니다.");
+				model.addAttribute("loc","/camp/commentFrm.do");
+			}
 		}
+
 		return "common/msg";
 	}
 	

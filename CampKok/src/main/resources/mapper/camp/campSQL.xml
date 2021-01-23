@@ -63,7 +63,7 @@
 	</insert>
 	
 	<insert id="insertComment" parameterType="map">
-		insert into review values(review_seq.nextval,#{userId},#{campNo},#{revContents},1,to_char(sysdate,'yyyy-mm-dd'),null,0)
+		insert into review values(review_seq.nextval,#{userId},#{campNo},#{revContents},#{revStar},to_char(sysdate,'yyyy-mm-dd'),null,0)
 	</insert>
 	
 	<select id="selectAllComment" parameterType="_int" resultType="rvo">
@@ -223,7 +223,7 @@
 	</insert>
 	
 	<insert id="insertPointReview" parameterType="map">
-		insert into point values(point_seq.nextval,#{userNo},'리뷰작성 포인트 적립',to_char(sysdate,'yyyy-mm-dd'),500,#{pointTotal},null,null,null)
+		insert into point values(point_seq.nextval,#{userNo},'리뷰작성 포인트 적립',to_char(sysdate,'yyyy-mm-dd'),50,#{pointTotal},null,null,null)
 	</insert>
 	
 	<update id="updateUserPoint2" parameterType="_int">

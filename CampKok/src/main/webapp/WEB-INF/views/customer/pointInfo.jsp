@@ -47,29 +47,28 @@
         <div class="mypage-form">
           
            <br>
-					<c:forEach items="${list }" var="p" varStatus="status">
+ 					<c:forEach items="${list }" var="p" varStatus="status">
 					<c:if test="${status.last }">
+                    <%-- <h5>가용 마일리지는 ${sessionScope.user.userPoint } 마일리지 입니다.</h5> --%>
                     <h5>가용 마일리지는 ${p.pointTotal } 마일리지 입니다.</h5>
                     </c:if>
-  					</c:forEach>
+  					</c:forEach> 
   					<br>
                     <h4>적립 내역</h4>
                     <div style="width: 100%;height: 300px; overflow: auto;">
                      <table class="mypage-tbl">
                     
                            <tr>
-                               <th width="35%">적립 내역</th>
-                               <th width="15%">적립 날짜</th>
+                               <th width="40%">적립 내역</th>
+                               <th width="25%">적립 날짜</th>
                                <th width="15%">적립 마일리지</th>
-                               <th width="15%">총 마일리지</th>
                            </tr>
                             <c:forEach items="${list }" var="p">
                            <c:if test="${p.pointSaveContents!=null }">
                            <tr>
-                           		<td width="35%">${p.pointSaveContents }</td>
-                           		<td width="15%">${p.pointSaveDate }</td>
+                           		<td width="40%">${p.pointSaveContents }</td>
+                           		<td width="25%">${p.pointSaveDate }</td>
                            		<td width="15%">${p.pointSave }</td>
-                           		<td width="15%">${p.pointTotal }</td>
                            </tr>
                            </c:if>
                            
@@ -82,18 +81,16 @@
                     <table class="mypage-tbl">
                     
                            <tr>
-                               <th width="35%">사용 내역</th>
-                               <th width="15%">사용 날짜</th>
+                               <th width="40%">사용 내역</th>
+                               <th width="25%">사용 날짜</th>
                                <th width="15%">사용 마일리지</th>
-                               <th width="15%">총 마일리지</th>
                            </tr>
                            <c:forEach items="${list }" var="p">
                            <c:if test="${p.pointUseContents!=null }">
                            <tr>
-                           		<td width="35%">${p.pointUseContents }</td>
-                           		<td width="15%">${p.pointUseDate }</td>
+                           		<td width="45%">${p.pointUseContents }</td>
+                           		<td width="25%">${p.pointUseDate }</td>
                            		<td width="15%">${p.pointUse }</td>
-                           		<td width="15%">${p.pointTotal }</td>
                            </tr>
                            </c:if>
                            

@@ -162,4 +162,9 @@ public class CustomerService {
 		return dao.deleteCustomer(userNo);
 	}
 
+	public int reviewDelete(int revNo) {
+		// TODO Auto-generated method stub
+		return dao.reviewDelete(revNo);
+	}
+
 }

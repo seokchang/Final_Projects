@@ -11,7 +11,6 @@
 .whole{
 	width:1500px;
 	height:100%;
-	border:1px solid black;
 	margin:0 auto;
 }
 	.wrap{
@@ -104,7 +103,7 @@
 		color: #f3d479;
 	}
 	#btn{
-		margin-top:30px;
+		margin-top:60px;
 		width:100px;
 		height:50px;
 		font-weight: bold;
@@ -136,6 +135,11 @@
 		outline:0;
 		cursor:pointer;
 	}
+	.star-wrap{
+		margin-left: 100px;
+		margin-bottom: 5px;
+	}
+	
 </style>
 </head>
 <body>
@@ -150,6 +154,15 @@
 				<li>
 					<input type="hidden" name="userId" value="${sessionScope.user.userId }">
 					<input type="hidden" id="campNo" name="campNo" value="${campNo }">
+										<div class="star-wrap">
+						 <img class="star" src="/resources/img/camp/star-off2.png" style="width: 30px; height: 30px;"> 
+						 <img class="star" src="/resources/img/camp/star-off2.png" style="width: 30px; height: 30px;"> 
+						 <img class="star" src="/resources/img/camp/star-off2.png" style="width: 30px; height: 30px;"> 
+						 <img class="star" src="/resources/img/camp/star-off2.png" style="width: 30px; height: 30px;"> 
+						 <img class="star" src="/resources/img/camp/star-off2.png" style="width: 30px; height: 30px;"> 
+						<!--  <span id="result"></span>  -->
+						 <input type="hidden" name="revStar">
+					</div>
 					<textarea name="revContents"></textarea>
 				</li>
 				<%-- <c:if test="${userInfo.userLevel eq '1'}"> --%>
@@ -170,12 +183,15 @@
 	<div class="wrap">
 		<div class="head">
 			<div class="headL">
-				<img src="/resources/img/camp/people.jpg" style="width:90%; height:90%;" align="right">
+				<img src="/resources/img/camp/people.png" style="width:90%; height:90%;" align="right">
 			</div>
 			<div class="headR">
 				<ul>
 					<li style="font-size:40px; color:#405944">${commentList.userId }</li>
 					<li style="color:#405944">${commentList.revDate }</li>
+					<c:forEach begin="1" end="${commentList.revStar }">
+									<img src="/resources/img/customer/star-on.png">
+								</c:forEach>
 					<c:if test="${commentList.userId eq sessionScope.user.userId }">
 							<li><a href="/camp/commentDelete.do?revNo=${commentList.revNo }&campNo=${campNo }" style="font-weight:1000; color:#f2542f">삭제</a></li>
 					</c:if>
@@ -197,6 +213,28 @@
 
 
 
+<script>
+        $(function() {
+            $(".star").mouseover(function() {
+                var over = $(".star").index(this);
+                $(".star").each(function(idx, item){
+                   if(idx<=over)
+                        $(item).attr("src","/resources/img/customer/star-on2.png");
+
+                    else
+                        $(item).attr("src","/resources/img/camp/star-off2.png"); 
+                });
+
+            });
+
+
+            $(".star").click(function() {
+                var click = $(".star").index(this);
+                $("#result").html((click+1));
+                $("[name=revStar]").val((click+1));
+            });
+        });
+    </script>
 
 
 
