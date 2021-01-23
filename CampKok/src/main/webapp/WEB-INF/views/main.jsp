@@ -222,11 +222,11 @@
 				if ($(document).scrollTop() > hdOffset.top) {
 					$('#header-scroll').stop(true).animate({
 						'opacity' : 1
-					}, 200);
+					}, 150);
 				} else {
 					$('#header-scroll').stop(true).animate({
 						'opacity' : 0
-					}, 200);
+					}, 150);
 				}
 			});
 

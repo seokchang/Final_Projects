@@ -91,6 +91,10 @@
 	overflow: hidden;
 	border: 1px solid #ccc;
 	border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
 }
 
 .camp-item-img>img {
