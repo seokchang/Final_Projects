@@ -53,7 +53,7 @@
 								</td>
 								<th>웹사이트</th>
 								<td>
-									<input class="read-only" type="text" name="campSite" value="${campInfo.campSite }" readonly="readonly">
+									<input class="read-only" type="text" name="campSite" value="${campInfo.campSite }" readonly="readonly" style="width: 100%;">
 								</td>
 							</tr>
 							<tr>
