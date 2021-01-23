@@ -37,7 +37,7 @@
                     <td colspan="4" style="height: 400px;">${faqInfo.faqContentsBr }</td>
                 </tr>
                 <tr>
-                    <td colspan="4" style="text-align: center;height: 55px;"><a href="/faqList.do?reqPage=1&faqUser=client" class="notice-btn">목록</a></td>
+                    <td colspan="4" style="text-align: center;height: 55px;"><a href="javascript:history.go(-1)" class="notice-btn">목록</a></td>
                 </tr>
             </table>
             <!-- <table class="notice-tbl2">
