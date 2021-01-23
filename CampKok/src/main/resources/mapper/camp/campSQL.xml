@@ -10,7 +10,7 @@
   		select count(*) from camp_notice
     </select>
 
-	<select id="selectRoomInfo" parameterType="_int" resultType="cr">
+<!-- 	<select id="selectRoomInfo" parameterType="_int" resultType="cr">
 		select 
 			room_no as roomNo,
 			camp_no as campNo,
@@ -18,6 +18,17 @@
 			room_name as roomName,
 			room_price roomPrice
 		from camproom where room_no=#{_parameter}
+	</select> -->
+	
+		<select id="selectRoomInfo" parameterType="_int" resultType="cr">
+        select
+			CR.camp_no as campNo,
+			C.camp_name as campName,
+            CR.room_no as roomNo,
+			CR.room_member as roomMember,
+			CR.room_name as roomName,
+			CR.room_price as roomPrice
+		from camp C inner join camproom CR on C.camp_no=CR.camp_no where CR.room_no=#{_parameter}
 	</select>
 	
 	<select id="selectCampInfo" parameterType="_int" resultType="c">

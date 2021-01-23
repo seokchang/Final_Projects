@@ -52,7 +52,8 @@
 						<tr>
 							<th>내용</th>
 							<td colspan="3">
-								<textarea class="read-only" readonly="readonly" style="width: 100%">${boardInfo.boardContents }</textarea>
+								<%-- <textarea class="read-only" readonly="readonly" style="width: 100%">${boardInfo.boardContents }</textarea> --%>
+								${boardInfo.boardContents }
 							</td>
 						</tr>
 					</table>
