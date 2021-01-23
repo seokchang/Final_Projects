@@ -141,8 +141,9 @@ public class UserController {
 			visit.setVisitAgent(req.getHeader("User-Agent"));
 			visitCtrl.insertVisitInfo(visit);
 
-			if (user.getUserLevel() != 0)
+			if (user.getUserLevel() != 0) 
 				model.addAttribute("loc", "/main.do");
+				
 			else {
 				model.addAttribute("loc", "/pageAdmin.do?reqPage=1");
 			}

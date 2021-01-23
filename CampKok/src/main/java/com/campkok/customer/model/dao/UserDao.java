@@ -1,11 +1,13 @@
 package com.campkok.customer.model.dao;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.campkok.customer.model.vo.DmVO;
 import com.campkok.customer.model.vo.UserVO;
 
 @Repository
@@ -44,5 +46,11 @@ public class UserDao {
 		map.put("userName", userName);
 		map.put("userPhone", userPhone);
 		return sqlSession.selectOne("user.findUserId",map);
+	}
+
+	public int dmCount(String userId) {
+		// TODO Auto-generated method stub
+		List<DmVO> list = sqlSession.selectList("user.dmList", userId);
+		return list.size();
 	}
 }

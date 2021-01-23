@@ -159,7 +159,8 @@
 			board_filepath as boardFilepath,
 			board_contents as boardContents,
 			board_date as boardDate,
-			board_title as boardTitle
+			board_title as boardTitle,
+			board_comment_count as boardCommentCount
 		from board
 	</select>
 	<select id="boardView" parameterType="_int" resultType="b">
@@ -170,7 +171,8 @@
 			board_filepath as boardFilepath,
 			board_contents as boardContents,
 			board_date as boardDate,
-			board_title as boardTitle
+			board_title as boardTitle,
+			board_comment_count as boardCommentCount
 		from board where board_no=#{parameter}
 	</select>
 	<select id="boardCommentList" parameterType="_int" resultType="bc">
@@ -184,7 +186,7 @@
 			
 	</select>
 	<insert id="boardInsert" parameterType="b">
-		insert into board values(board_seq.nextval,#{userId},#{boardFilename},#{boardFilepath},#{boardContents},to_char(sysdate, 'yyyy-mm-dd'),#{boardTitle})
+		insert into board values(board_seq.nextval,#{userId},#{boardFilename},#{boardFilepath},#{boardContents},to_char(sysdate, 'yyyy-mm-dd'),#{boardTitle},0)
 	</insert>
 	
 	<delete id="boardDelete" parameterType="_int">
@@ -218,7 +220,8 @@
 			board_filepath as boardFilepath,
 			board_contents as boardContents,
 			board_date as boardDate,
-			board_title as boardTitle
+			board_title as boardTitle,
+			board_comment_count as boardCommentCount
 		from (select rownum as rnum, n.* from (select * from board order by 1 desc)n) 
 	 	where rnum between #{start} and #{end} and board_title like ('%'||#{keyword}||'%') 
 	</select>
@@ -230,7 +233,8 @@
 			board_filepath as boardFilepath,
 			board_contents as boardContents,
 			board_date as boardDate,
-			board_title as boardTitle
+			board_title as boardTitle,
+			board_comment_count as boardCommentCount
 		from board where board_title like ('%'||#{parameter}||'%')
 	</select>
 	
