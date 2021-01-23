@@ -52,7 +52,7 @@
 						<tr>
 							<th>내용</th>
 							<td colspan="3">
-								<div>${boardInfo.boardContents }</div>
+								<textarea class="read-only" readonly="readonly" style="width: 100%">${boardInfo.boardContents }</textarea>
 							</td>
 						</tr>
 					</table>

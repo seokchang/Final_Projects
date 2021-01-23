@@ -13,14 +13,17 @@
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
 <br>
-	<c:forEach items="${campResList }" var="campResList" varStatus="index">
+<%-- 	<c:forEach items="${campResList }" var="campResList" varStatus="index">
 		<input type="hidden" name="calSdate" id="calSdate" value="${campResList.resInDate }">
 	</c:forEach>
 	<hr>
 	<c:forEach items="${campResList }" var="campResList" varStatus="index">
 		<input type="hidden" name="calEdate" id="calEdate" value="${campResList.resOutDate }">
-	</c:forEach>
-	
+	</c:forEach> --%>
+		<c:forEach items="${campResList }" var="campResList" varStatus="index">
+			<input type="hidden" name="reservationDate${index.count }" value="${campResList.resInDate }">
+	</c:forEach> 
+
 	<div class="cal_top">
         <a href="#" id="movePrevMonth"><span id="prevMonth" class="cal_tit">&lt;</span></a>
         <span id="cal_top_year"></span>
@@ -28,7 +31,7 @@
         <a href="#" id="moveNextMonth"><span id="nextMonth" class="cal_tit">&gt;</span></a>
     </div>
     <div id="cal_tab" class="cal">
-    	ㅁ
+    	
     </div>
     <div class="page-title2">
     <div class="page-title">
@@ -49,7 +52,7 @@
     		</tr>
     		<tr>
     			<th>캠핑장명</th>
-    			<th>${campInfo.campName }</th>
+    			<th>${campRoomInfo.campName }</th>
     		</tr>
     		<tr>
     			<th>방이름</th>
@@ -72,8 +75,9 @@
 		<h4>예약 정보</h4>
 		<form action="/camp/campRes.do" method="post" accept-charset="utf-8">  			
 			<input type="hidden" name="userNo" value=${sessionScope.user.userNo }> <!-- 로그인세션정보담기 -->			
-			<input type="hidden" name="campNo" value=${campInfo.campNo }>
+			<input type="hidden" name="campNo" value=${campRoomInfo.campNo }>
 			<input type="hidden" name="campRoomNo" value=${campRoomInfo.roomNo }>
+			
 			<table>			
 				<tr>
 					<th>날짜선택</th>
@@ -153,18 +157,11 @@
             setTableHTML+='<tr height="100">';
             for(var j=0;j<7;j++){
             	//예약된 room 캘린더 표시
-            	if(i==4 && j==5){
-            		 setTableHTML+='<td style="text-overflow:ellipsis;overflow:hidden;white-space:nowrap; border:1px solid #d9bd6a;">';
-                     setTableHTML+='    <div class="cal-day"></div>';
-                     setTableHTML+='    <div class="cal-schedule"><span style="color:red;"id="test">예약완료</span></div>';
-                     setTableHTML+='</td>';
-            	}else{
-            		 setTableHTML+='<td style="text-overflow:ellipsis;overflow:hidden;white-space:nowrap; border:1px solid #d9bd6a;">';
-                     setTableHTML+='    <div class="cal-day"></div>';
-                     setTableHTML+='    <div class="cal-schedule"></div>';
-                     setTableHTML+='</td>';
-            	}
-               
+
+       		 setTableHTML+='<td style="text-overflow:ellipsis;overflow:hidden;white-space:nowrap; border:1px solid #d9bd6a;">';
+             setTableHTML+='    <div class="cal-day"></div>';
+             setTableHTML+='    <div class="cal-schedule"></div>';
+             setTableHTML+='</td>';
             }
             setTableHTML+='</tr>';
         }
@@ -179,25 +176,38 @@
         dayCount = 0;
         today = new Date();
         year = today.getFullYear();
-        month = today.getMonth()+1;
+        month = "0"+String(today.getMonth()+1);
         firstDay = new Date(year,month-1,1);
         lastDay = new Date(year,month,0);
     }
     
     //calendar 날짜표시
     function drawDays(){
+
         $("#cal_top_year").text(year);
         $("#cal_top_month").text(month);
         
-        
-        for(var i=firstDay.getDay(); i<firstDay.getDay()+lastDay.getDate(); i++){
-        	if(i==3){
-        		$tdDay.eq(i).text(++dayCount+"예약완료").css("color","red");
-        	}else{
-        		$tdDay.eq(i).text(++dayCount);
-        	}
-            
-        }
+    	  var j=String(1); 
+
+            for(var i=firstDay.getDay(); i<firstDay.getDay()+lastDay.getDate(); i++){
+              
+             	var reDate = $("[name=reservationDate"+j+"]").val();
+              	if(reDate!=null){
+                 	var reYear = reDate.substring(0,4);
+                	var reMon = reDate.substring(5,7); 
+                	var reDay =  parseInt(reDate.substring(8,10)); 
+              	}
+              	 if(reYear==($("#cal_top_year").text()) && reMon==($("#cal_top_month").text())&&(reDay+firstDay.getDay())-1==i) {
+             		$tdDay.eq(i).text(++dayCount+"예약완료").css("color","red");
+             		
+             		j++;
+             	}
+               	
+               	else{
+               		$tdDay.eq(i).text(++dayCount);
+               	}
+       }
+
         for(var i=0;i<42;i+=7){
             $tdDay.eq(i).css("color","red");
         }

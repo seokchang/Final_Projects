@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.campkok.camp.model.service.CampService;
@@ -40,18 +41,36 @@ public class CampController {
 	/*
 	 * @RequestMapping("test.do") public String test() { return "camp/test"; }
 	 */
+//	@ResponseBody
+//	@RequestMapping("campReservation.do")
+//
+//	public String campReservation(Model model,int roomNo) {
+//
+//		CampRoomVO campRoomInfo = service.selectRoomInfo(roomNo);
+//		ArrayList<CampResVO> campResList = service.selectCampResList(roomNo);
+//		int campNo = campRoomInfo.getCampNo();
+//		CampVO campInfo = service.selectCampInfo(campNo);
+//		model.addAttribute("campRoomInfo",campRoomInfo); //ķ���� ��
+//		model.addAttribute("campInfo",campInfo); //ķ����
+//		/* model.addAttribute("userInfo",userInfo); */
+//		model.addAttribute("campResList",campResList); //���� ����Ʈ 
+//		return "camp/campReservation2";
+//	}
+	@ResponseBody
 	@RequestMapping("campReservation.do")
 
-	public String campReservation(Model model,int roomNo) {
-
-		CampRoomVO campRoomInfo = service.selectRoomInfo(roomNo);
+	public CampRoomVO campReservation(Model model, int roomNo) {
+		return service.selectRoomInfo(roomNo);
+	}
+	@RequestMapping("reservationPage.do")
+	public String reservationPage(int roomNo,Model model) {
+		CampRoomVO campRoom = service.selectRoomInfo(roomNo);
 		ArrayList<CampResVO> campResList = service.selectCampResList(roomNo);
-		int campNo = campRoomInfo.getCampNo();
-		CampVO campInfo = service.selectCampInfo(campNo);
-		model.addAttribute("campRoomInfo",campRoomInfo); //ķ���� ��
-		model.addAttribute("campInfo",campInfo); //ķ����
-		/* model.addAttribute("userInfo",userInfo); */
-		model.addAttribute("campResList",campResList); //���� ����Ʈ 
+		if(campResList.isEmpty()) {
+			System.out.println("Dd");
+		}
+		model.addAttribute("campRoomInfo",campRoom);
+		model.addAttribute("campResList",campResList);
 		return "camp/campReservation2";
 	}
 	
