@@ -54,13 +54,13 @@
 								<tr>
 									<th>내용</th>
 									<td colspan="3">
-										<textarea class="form-control" name="faqContents">${faqInfo.faqContents }</textarea>
+										<textarea rows="20" class="form-control" name="faqContents" id="faqContents">${faqInfo.faqContents }</textarea>
 									</td>
 								</tr>
 
 								<tr>
 									<td colspan="4" style="text-align: center;">
-										<input class="btn btn-warning btn-lg" type="submit" value="수정하기">
+										<input class="btn btn-warning btn-lg" type="submit" onclick="submitContents(this)" value="수정하기">
 										<button class="btn btn-warning btn-lg" type="button" onclick="location.href='/deleteFAQInfo.do?faqNo=${faqInfo.faqNo}'">삭제하기</button>
 									</td>
 								</tr>
@@ -82,5 +82,24 @@
 	text-align: left;
 }
 </style>
+	<script type="text/javascript">
+		var oEditors = [];
+		nhn.husky.EZCreator.createInIFrame({
+			oAppRef : oEditors,
+			elPlaceHolder : "faqContents",
+			sSkinURI : "/nse_files/SmartEditor2Skin2.html",
+			fCreator : "createSEditor2"
+		});
+		function submitContents(elClickedObj) {
+			console.log(document.getElementById("faqContents").value);
+			oEditors.getById["faqContents"].exec("UPDATE_CONTENTS_FIELD", []); // 에디터의 내용이 textarea에 적용됩니다. 
+			// 에디터의 내용에 대한 값 검증은 이곳에서 document.getElementById("ir1").value를 이용해서 처리하면 됩니다.
+
+			try {
+				elClickedObj.form.submit();
+			} catch (e) {
+			}
+		}
+	</script>
 </body>
 </html>

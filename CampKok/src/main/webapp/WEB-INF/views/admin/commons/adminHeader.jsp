@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="/resources/css/admin/adminHeader.css">
 
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.5.1.js"></script>
+<script type="text/javascript" src="/nse_files/js/HuskyEZCreator.js" charset="utf-8"></script>
 </head>
 
 <body>

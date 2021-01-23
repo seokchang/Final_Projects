@@ -19,6 +19,7 @@ hr {
 }
 
 textarea {
+	width: 95%;
 	resize: none;
 	float: left;
 }

@@ -62,12 +62,12 @@
 							<tr>
 								<th>내용</th>
 								<td colspan="3">
-									<textarea rows="10" class="form-control" name="noticeContents"></textarea>
+									<textarea rows="20" class="form-control" name="noticeContents" id="noticeContents"></textarea>
 								</td>
 							</tr>
 							<tr>
 								<td colspan="4">
-									<input class="btn btn-warning btn-lg" name="submit" type="submit" value="등록하기">
+									<input class="btn btn-warning btn-lg" name="submit" type="submit" onclick="submitContents(this)" value="등록하기">
 								</td>
 							</tr>
 						</table>
@@ -84,6 +84,25 @@
 	<link rel="stylesheet" href="/resources/css/admin/adminDesignCommon.css">
 	<script type="text/javascript" src="/resources/js/admin/imgPreView.js"></script>
 	<script type="text/javascript">
+		var oEditors = [];
+		nhn.husky.EZCreator.createInIFrame({
+			oAppRef : oEditors,
+			elPlaceHolder : "noticeContents",
+			sSkinURI : "/nse_files/SmartEditor2Skin2.html",
+			fCreator : "createSEditor2"
+		});
+		function submitContents(elClickedObj) {
+			console.log(document.getElementById("noticeContents").value);
+			oEditors.getById["noticeContents"]
+					.exec("UPDATE_CONTENTS_FIELD", []); // 에디터의 내용이 textarea에 적용됩니다. 
+			// 에디터의 내용에 대한 값 검증은 이곳에서 document.getElementById("ir1").value를 이용해서 처리하면 됩니다.
+
+			try {
+				elClickedObj.form.submit();
+			} catch (e) {
+			}
+		}
+
 		$(function() {
 			$("input[name='submit']")
 					.click(
