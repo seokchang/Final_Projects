@@ -58,17 +58,15 @@
 							<tr>
 								<th>이미지</th>
 								<td colspan="3">
-									<%-- <c:if test="${not empty ceoNotice.ceoNoticeFilePath }"> --%>
-										<div style="text-align: left;">
-											<img id="img-view" src="/resources/upload/notice/${ceoNotice.ceoNoticeFilePath }" style="width: 20%;">
-										</div>
-									<%-- </c:if> --%>
+									<div style="text-align: left;">
+										<img id="img-view" src="/resources/upload/notice/${ceoNotice.ceoNoticeFilePath }" style="width: 20%;">
+									</div>
 								</td>
 							</tr>
 							<tr>
 								<th>내용</th>
 								<td colspan="3">
-									<textarea class="form-control" name="ceoNoticeContents">${ceoNotice.ceoNoticeContents }</textarea>
+									<textarea rows="10" class="form-control" name="ceoNoticeContents">${ceoNotice.ceoNoticeContents }</textarea>
 								</td>
 							</tr>
 							<tr>

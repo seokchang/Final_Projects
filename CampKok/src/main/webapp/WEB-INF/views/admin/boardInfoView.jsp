@@ -44,7 +44,7 @@
 							<td colspan="3">
 								<c:if test="${not empty boardInfo.boardFilePath }">
 									<div style="text-align: left;">
-										<img id="img-view" src="/resources/upload/board/${boardInfo.boardFilePath }" style="width: 20%;">
+										<img id="img-view" src="/resources/upload/board/${boardInfo.boardFilePath }" style="width: 50%;">
 									</div>
 								</c:if>
 							</td>

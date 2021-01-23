@@ -89,21 +89,13 @@
 						<table class='table table-striped'>
 							<tbody>
 								<tr>
-									<th>번호</th>
 									<th>제목</th>
-									<th>첨부파일</th>
 									<th>등록일</th>
 								</tr>
 								<c:forEach items="${clientNoticeList }" var="clientNotice" begin="0" end="4" step="1">
 									<tr>
-										<td>${clientNotice.rNum }</td>
 										<td>
 											<a href="/selectClientNotice.do?clientNoticeNo=${clientNotice.clientNoticeNo }"><strong>${clientNotice.clientNoticeTitle }</strong></a>
-										</td>
-										<td>
-											<c:if test="${not empty clientNotice.clientNoticeFilePath }">
-												<img class="img-file" src="/resources/img/admin/free-icon-attached-file-1209914.png">
-											</c:if>
 										</td>
 										<td>${clientNotice.clientNoticeDate }</td>
 									</tr>
@@ -121,21 +113,13 @@
 						<table class="table table-striped">
 							<tbody>
 								<tr>
-									<th>번호</th>
 									<th>제목</th>
-									<th>첨부파일</th>
 									<th>등록일</th>
 								</tr>
 								<c:forEach items="${ceoNoticeList }" var="ceoNotice" begin="0" end="4" step="1">
 									<tr>
-										<td>${ceoNotice.rNum }</td>
 										<td>
 											<a href="/selectCeoNotice.do?ceoNoticeNo=${ceoNotice.ceoNoticeNo }"><strong>${ceoNotice.ceoNoticeTitle }</strong></a>
-										</td>
-										<td>
-											<c:if test="${not empty ceoNotice.ceoNoticeFilePath }">
-												<img class="img-file" src="/resources/img/admin/free-icon-attached-file-1209914.png">
-											</c:if>
 										</td>
 										<td>${ceoNotice.ceoNoticeDate }</td>
 									</tr>

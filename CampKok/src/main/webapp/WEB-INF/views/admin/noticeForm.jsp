@@ -62,12 +62,12 @@
 							<tr>
 								<th>내용</th>
 								<td colspan="3">
-									<textarea class="form-control" name="noticeContents"></textarea>
+									<textarea rows="10" class="form-control" name="noticeContents"></textarea>
 								</td>
 							</tr>
 							<tr>
 								<td colspan="4">
-									<input class="btn btn-warning btn-lg" type="submit" value="등록하기">
+									<input class="btn btn-warning btn-lg" name="submit" type="submit" value="등록하기">
 								</td>
 							</tr>
 						</table>
@@ -83,5 +83,22 @@
 
 	<link rel="stylesheet" href="/resources/css/admin/adminDesignCommon.css">
 	<script type="text/javascript" src="/resources/js/admin/imgPreView.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			$("input[name='submit']")
+					.click(
+							function() {
+								var checkNoticeTitle = $("input[name='noticeTitle']");
+								var checkNoticeContents = $("input[name='noticeContents']");
+
+								if (checkNoticeTitle.val() == ""
+										|| checkNoticeContents.val() == "") {
+									alert("제목과 내용을 모두 작성해 주세요");
+									return false;
+								}
+								return true;
+							});
+		});
+	</script>
 </body>
 </html>

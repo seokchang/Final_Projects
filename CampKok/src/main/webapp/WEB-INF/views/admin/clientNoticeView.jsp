@@ -59,14 +59,14 @@
 								<th>이미지</th>
 								<td colspan="3">
 									<div style="text-align: left;">
-										<img id="img-view" src="/resources/upload/notice/${clientNotice.clientNoticeFilePath }" style="width: 20%;">
+										<img id="img-view" src="/resources/upload/notice/${clientNotice.clientNoticeFilePath }">
 									</div>
 								</td>
 							</tr>
 							<tr>
 								<th>내용</th>
 								<td colspan="3">
-									<textarea class="form-control" name="clientNoticeContents">${clientNotice.clientNoticeContents }</textarea>
+									<textarea rows="10" class="form-control" name="clientNoticeContents">${clientNotice.clientNoticeContents }</textarea>
 								</td>
 							</tr>
 							<tr>

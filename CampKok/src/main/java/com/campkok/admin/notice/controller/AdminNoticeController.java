@@ -47,13 +47,12 @@ public class AdminNoticeController {
 		return "/admin/ceoNoticeList";
 	}
 
-	@RequestMapping(value = "/insertNotice.do", method = RequestMethod.POST)
+	@RequestMapping("/insertNotice.do")
 	public String insertNotice(Notice notice, MultipartFile noticeFile, HttpServletRequest request, Model model) {
-		String root = request.getSession().getServletContext().getRealPath("/");
-		String path = root + "resources/upload/notice/";
-
 		// 파일 업로드
-		if (noticeFile != null) {
+		if (!noticeFile.isEmpty()) {
+			String root = request.getSession().getServletContext().getRealPath("/");
+			String path = root + "resources/upload/notice/";
 			String fileName = noticeFile.getOriginalFilename();
 			String filePath = new FileNameOverlap().reName(path, fileName);
 
@@ -106,7 +105,7 @@ public class AdminNoticeController {
 	@RequestMapping(value = "/updateCeoNotice.do", method = RequestMethod.POST)
 	public String updateCeoNotice(CeoNotice ceoNotice, MultipartFile ceoNoticeFile, HttpServletRequest request,
 			String oldFile, Model model) {
-		if (ceoNoticeFile != null) {
+		if (!ceoNoticeFile.isEmpty()) {
 			String root = request.getSession().getServletContext().getRealPath("/");
 			String path = root + "resources/upload/notice/";
 			String fileName = ceoNoticeFile.getOriginalFilename();
@@ -210,7 +209,7 @@ public class AdminNoticeController {
 	@RequestMapping(value = "/updateClientNotice.do", method = RequestMethod.POST)
 	public String updateClientNotice(ClientNotice clientNotice, MultipartFile clientNoticeFile,
 			HttpServletRequest request, String oldFile, Model model) {
-		if (clientNoticeFile != null) {
+		if (!clientNoticeFile.isEmpty()) {
 			String root = request.getSession().getServletContext().getRealPath("/");
 			String path = root + "resources/upload/notice/";
 			String fileName = clientNoticeFile.getOriginalFilename();
