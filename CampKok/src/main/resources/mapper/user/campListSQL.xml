@@ -18,7 +18,7 @@
 		    (select min(room_price) from camproom where camp_no = camp.camp_no) as campMinPrice,
 		    (select round(avg(rev_star),1) from review where camp_no = camp.camp_no) as campStar,
 		    (select camp_filepath from file_tbl where file_no = (select min(file_no) from file_tbl where camp_no = camp.camp_no)) as imgpath
-		from camp full join campenv on (camp.camp_no = campenv.camp_no)
+		from camp full join campenv on (camp.camp_no = campenv.camp_no) order by 1 desc
 	)c)
 	where rnum between ${start} and ${end}
   </select>
