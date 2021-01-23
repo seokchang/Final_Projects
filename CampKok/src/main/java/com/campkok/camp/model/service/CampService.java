@@ -73,11 +73,12 @@ public class CampService {
 		return dao.pointUpdate(map);
 	}
 
-	public int insertComment(String userId, int campNo, String revContents) {
+	public int insertComment(String userId, int campNo, String revContents, int star) {
 		HashMap<String,Object> map = new HashMap<String,Object>();
 		map.put("userId",userId);
 		map.put("campNo",campNo);
 		map.put("revContents", revContents);
+		map.put("revStar",star);
 		return dao.insertComment(map);
 	}
 

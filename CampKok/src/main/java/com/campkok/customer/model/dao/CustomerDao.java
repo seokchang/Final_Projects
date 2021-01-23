@@ -97,4 +97,9 @@ public class CustomerDao {
 		return sqlSession.delete("customer.deleteCustomer", userNo);
 	}
 
+	public int reviewDelete(int revNo) {
+		// TODO Auto-generated method stub
+		return sqlSession.delete("customer.reviweDelete", revNo);
+	}
+
 }

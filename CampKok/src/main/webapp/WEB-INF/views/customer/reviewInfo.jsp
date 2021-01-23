@@ -20,6 +20,13 @@ td {
 	text-decoration-line: none;
 	color: #f3d479;
 }
+#delBtn{
+color: #bf372b;
+}
+	#delBtn:hover{
+	text-decoration-line: none;
+	font-weight: bold;
+	}
 </style>
 </head>
 
@@ -42,24 +49,24 @@ td {
 						내역</a></li>
 				<li style="background-color: #405944;"><a
 					style="font-size: 14px; font-weight: bold; color: #f3d479;"
-					href="/review.do?reqPage=1&userId=user01"> <b>리뷰 내역</b>
+					href="/review.do?reqPage=1&userId=${user.userId }"> <b>리뷰 내역</b>
 				</a></li>
 				<li><a href="/point.do?userNo=2">포인트 내역</a></li>
 			</ul>
 		</div>
 		<div class="mypage-form">
-			<c:if test="${rv==null }">
+			<c:if test="${list.isEmpty() }">
 				<br>
 				<p>리뷰를 작성하신 내역이 없습니다.</p>
 			</c:if>
-			<c:if test="${rv!=null }">
+			<c:if test="${!list.isEmpty() }">
 				<table class="mypage-tbl">
 
 					<tr>
 						<th width="15%">캠핑장 명</th>
 						<th width="45%">리뷰 내용</th>
 						<th width="13%">별점</th>
-						<th width="7%">좋아요</th>
+						<th width="7%"></th>
 					</tr>
 					<c:forEach items="${list }" var="rv">
 						<tr>
@@ -68,7 +75,7 @@ td {
 							<td width="13%"><c:forEach begin="1" end="${rv.revStar }">
 									<img class="star" src="/resources/img/customer/star-on.png">
 								</c:forEach></td>
-							<td width="7%">${rv.revHeart }</td>
+							<td width="7%"><a href="/reviewDelete.do?revNo=${rv.revNo }&userNo=${user.userId }" id="delBtn">삭제</a></td>
 						</tr>
 					</c:forEach>
 				</table>
