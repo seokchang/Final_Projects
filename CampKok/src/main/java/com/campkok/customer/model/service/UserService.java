@@ -28,17 +28,12 @@ public class UserService {
 		return dao.checkId(u);
 	}
 
-	// 아이디 찾기
-	/*
-	public UserVO findUserId(UserVO u) {
-		return dao.findUserId(u);
-	}*/
-	
 	// 비밀번호 찾기
 	public UserVO findUserPw(UserVO u) {
 		return dao.findUserPw(u);
 	}
-
+	
+	// 아이디 찾기
 	public String findUserId(String userName, String userPhone) {
 		return dao.findUserId(userName,userPhone);
 	}

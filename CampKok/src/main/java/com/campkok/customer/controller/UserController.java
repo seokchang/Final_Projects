@@ -125,8 +125,6 @@ public class UserController {
 	// 로그인
 	@RequestMapping("/login.do")
 	public String login(UserVO u, HttpSession session, Model model, HttpServletRequest req) {
-		System.out.println(u.getUserId());
-		System.out.println(u.getUserPw());
 		UserVO user = service.selectOneUser(u);
 
 		if (user != null) {
