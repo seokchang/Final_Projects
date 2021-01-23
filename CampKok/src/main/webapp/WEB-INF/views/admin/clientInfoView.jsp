@@ -68,7 +68,7 @@
 								<tr>
 									<th>주소</th>
 									<td colspan="3">
-										<input class="read-only" type="text" name="userAddr" value="${clientInfo.userAddr }" readonly="readonly"  style="width: 100%">
+										<input class="read-only" type="text" name="userAddr" value="${clientInfo.userAddr }" readonly="readonly" style="width: 100%">
 									</td>
 								</tr>
 								<tr>
@@ -96,7 +96,8 @@
 				<hr>
 				<div>
 					<button class="btn btn-warning btn-md btn-list" onclick="location.href='/selectClientInfoList.do?reqPage=1'">목록</button>
-					<button class="btn btn-warning btn-md btn-list" onclick="location.href='#'" style="margin-right: 10px;">이용내역 보기</button>
+					<button class="btn btn-warning btn-md btn-list" onclick="location.href='/selectReservationInfoList.do?reqPage=1&userNo=${clientInfo.userNo }'"
+						style="margin-right: 10px;">이용내역 보기</button>
 				</div>
 			</div>
 		</div>

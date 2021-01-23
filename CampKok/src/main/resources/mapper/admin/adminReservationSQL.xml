@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="adminReservation">
+	<select id="getCampRoomInfo" parameterType="_int" resultType="campRoom">
+		SELECT
+		room_no AS roomNo,
+		camp_no AS campNo,
+		room_member AS roomMember,
+		room_name AS
+		roomName,
+		room_price AS roomPrice
+		FROM camproom WHERE camp_no = #{_parameter}
+	</select>
+
+	<select id="getTotalReservationCount" parameterType="_int" resultType="_int">
+		SELECT count(*) FROM reservation WHERE user_no = #{_parameter}
+	</select>
+
+	<select id="selectReservationInfo" parameterType="_int" resultType="reservation">
+		SELECT
+		res_no AS resNo,
+		user_no AS userNo,
+		camp_no AS campNo,
+		camp_room AS
+		campRoom,
+		res_in_time AS resInTime,
+		res_out_time AS resOutTime,
+		res_in_date AS resInDate,
+		res_out_date AS resOutDate,
+		res_member AS resMember,
+		res_price
+		AS resPrice,
+		res_memo AS resMemo,
+		res_count AS resCount
+		FROM reservation
+		WHERE res_no = #{_parameter}
+	</select>
+
+	<select id="selectReservationInfoList" parameterType="HashMap" resultType="reservation">
+		SELECT * FROM (SELECT ROWNUM as rNum, r.* FROM(
+		SELECT
+		res_no AS
+		resNo,
+		user_no AS userNo,
+		camp_no AS campNo,
+		camp_room AS campRoom,
+		res_in_time AS resInTime,
+		res_out_time AS resOutTime,
+		res_in_date AS resInDate,
+		res_out_date AS resOutDate,
+		res_member AS resMember,
+		res_price AS resPrice,
+		res_memo AS resMemo,
+		res_count AS resCount
+		FROM reservation
+		WHERE user_no =
+		${userNo} ORDER BY 1 DESC
+		)r)
+		WHERE rNum BETWEEN ${start} AND ${end}
+	</select>
+</mapper>
