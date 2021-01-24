@@ -43,7 +43,7 @@
 		</div>
 		<nav>
 			<ul>
-				<li><a href="/index2.do">작업페이지</a></li>
+				<!-- <li><a href="/index2.do">작업페이지</a></li> -->
 				<li><a href="/campList.do?reqPage=1">캠핑장</a></li>
 				<li><a href="/boardList.do?reqPage=1">게시판</a></li>
 				<li><a href="/shopList.do?reqPage=1">쇼핑몰</a></li>
@@ -110,48 +110,43 @@
 		<div class="hr-sect">이런 캠핑장은 어떠세요?</div>
 		<div class="new-camping">
 			<div class="new-camping-content">
-				<a href="#">
+				<a href="/campView.do?campNo=3">
 					<div>
-						<img
-							src="/resources/img/main/3e35dcbb689fea33c2ed122a2b05c07f.jpg">
+						<img src="/resources/upload/camp/d5d4b9e2d61a3.jpg">
 					</div>
-					<p>[ 지역 ] 캠핑장이름</p>
+					<p>[ 경기 ] 글램비글램핑</p>
 				</a>
 			</div>
 			<div class="new-camping-content">
-				<a href="#">
+				<a href="/campView.do?campNo=5">
 					<div>
-						<img
-							src="/resources/img/main/3e35dcbb689fea33c2ed122a2b05c07f.jpg">
+						<img src="/resources/upload/camp/mosadvshqj.jpeg">
 					</div>
-					<p>[ 지역 ] 캠핑장이름</p>
+					<p>[ 경기 ] 산중호걸 글램핑</p>
 				</a>
 			</div>
 			<div class="new-camping-content">
-				<a href="#">
+				<a href="/campView.do?campNo=7">
 					<div>
-						<img
-							src="/resources/img/main/3e35dcbb689fea33c2ed122a2b05c07f.jpg">
+						<img src="/resources/upload/camp/다운로드.jpg">
 					</div>
-					<p>[ 지역 ] 캠핑장이름</p>
+					<p>[ 경기 ] 포시즌오토캠핑장</p>
 				</a>
 			</div>
 			<div class="new-camping-content">
-				<a href="#">
+				<a href="/campView.do?campNo=1">
 					<div>
-						<img
-							src="/resources/img/main/3e35dcbb689fea33c2ed122a2b05c07f.jpg">
+						<img src="/resources/upload/camp/대표이미지1(2).png">
 					</div>
-					<p>[ 지역 ] 캠핑장이름</p>
+					<p>[ 강원 ] 캠누리오토캠핑장</p>
 				</a>
 			</div>
 			<div class="new-camping-content">
-				<a href="#">
+				<a href="/campView.do?campNo=45">
 					<div>
-						<img
-							src="/resources/img/main/3e35dcbb689fea33c2ed122a2b05c07f.jpg">
+						<img src="/resources/upload/camp/mosa9WNVWh.jpeg">
 					</div>
-					<p>[ 지역 ] 캠핑장이름</p>
+					<p>[ 인천 ] 마리원캠핑장</p>
 				</a>
 			</div>
 		</div>

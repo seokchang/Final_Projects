@@ -35,6 +35,7 @@
                 </table>
                 <button type="submit" class="login-btn">찾기</button>
             </form>
+            <p>아이디가 기억나지 않으신다면 <a href="/findIdPage.do">아이디 찾기</a></p>
         </div>
     </div>
 	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
