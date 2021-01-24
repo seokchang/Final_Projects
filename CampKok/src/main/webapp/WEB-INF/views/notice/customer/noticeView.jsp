@@ -38,7 +38,14 @@
                     <td colspan="3"><a href="javascript:fileDownload('${clientNotice.clientNoticeFileName }', '${clientNotice.clientNoticeFilePath }')">${clientNotice.clientNoticeFileName }</a></td>
                 </tr>
                 <tr>
-                    <td colspan="4" style="height: 400px;">${clientNotice.clientNoticeContentsBr }</td>
+                    <td colspan="4" style="height: 400px;">
+	                	<c:if test="${not empty clientNotice.clientNoticeFilePath }">
+							<div style="text-align: left;">
+								<img id="img-view" src="/resources/upload/notice/${clientNotice.clientNoticeFilePath }" style="width: 50%;">
+							</div>
+						</c:if>
+	                    ${clientNotice.clientNoticeContentsBr }
+                    </td>
                 </tr>
                 <tr>
                     <td colspan="4" style="text-align: center;height: 55px;"><a href="/customerNoticeList.do?reqPage=1" class="notice-btn">목록</a></td>

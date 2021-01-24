@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    
+    <!-- 숫자 포맷을 사용하기 위한 라이브러리 -->
+	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -91,7 +94,12 @@
 	                        <li style="display: none">${cl.campNo }</li>
 	                        <li style="font-size: 14px; color:gray;">${cl.campAddr }</li>
 	                        <li>${cl.campName }</li>
-	                        <li><p>★ ${cl.campStar }</p><p>${cl.campMinPrice }원 ~</p></li>
+	                        <li>
+	                        	<p>★ ${cl.campStar }</p>
+	                        	<p>
+	                        		<fmt:formatNumber value="${cl.campMinPrice }" pattern="#,###"/>원 ~
+	                        	</p>
+	                        </li>
 	                    </ul>
 	                </a>
 	            </div>

@@ -38,7 +38,14 @@
                     <td colspan="3"><a href="javascript:fileDownload('${ceoNotice.ceoNoticeFileName }', '${ceoNotice.ceoNoticeFilePath }')">${ceoNotice.ceoNoticeFileName }</a></td>
                 </tr>
                 <tr>
-                    <td colspan="4" style="height: 400px;">${ceoNotice.ceoNoticeContentsBr }</td>
+                    <td colspan="4" style="height: 400px;">
+	                    <c:if test="${not empty ceoNotice.ceoNoticeFilePath }">
+							<div style="text-align: left;">
+								<img id="img-view" src="/resources/upload/notice/${ceoNotice.ceoNoticeFilePath }" style="width: 50%;">
+							</div>
+						</c:if>
+                 	   ${ceoNotice.ceoNoticeContentsBr }
+                    </td>
                 </tr>
                 <tr>
                     <td colspan="4" style="text-align: center;height: 55px;"><a href="/mainCeoNoticeList.do?reqPage=1" class="notice-btn">목록</a></td>

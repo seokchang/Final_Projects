@@ -4,6 +4,9 @@
 
 <!-- 글자 수 자르기 -->
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
+<!-- 숫자 포맷을 사용하기 위한 라이브러리 -->
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -112,7 +115,7 @@
 			<div class="new-camping-content">
 				<a href="/campView.do?campNo=3">
 					<div>
-						<img src="/resources/upload/camp/d5d4b9e2d61a3.jpg">
+						<img src="/resources/upload/camp/89beada650250.jpg">
 					</div>
 					<p>[ 경기 ] 글램비글램핑</p>
 				</a>
@@ -200,7 +203,9 @@
 								</c:choose>
 							</li>
 							<li><p class="rank-star">★ ${rank.campStar }</p></li>
-							<li>${rank.campMinPrice }원 ~</li>
+							<li>
+								<fmt:formatNumber value="${rank.campMinPrice }" pattern="#,###"/>원 ~
+							</li>
 						</ul>
 					</div>
 				</c:forEach>
