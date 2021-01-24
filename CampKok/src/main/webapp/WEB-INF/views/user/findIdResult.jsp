@@ -18,7 +18,7 @@
     <div class="login-content">
         <div class="login-box">
            <p>회원님의 아이디는 '${userId }'입니다.</p>
-           <a href="/">메인으로</a>
+           <a href="/loginFrm.do">로그인 하러 가기</a>
         </div>
     </div>
 	<jsp:include page="/WEB-INF/views/common/footer.jsp" />

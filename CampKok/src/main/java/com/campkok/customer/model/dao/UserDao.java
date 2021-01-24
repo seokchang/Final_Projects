@@ -31,11 +31,6 @@ public class UserDao {
 		return sqlSession.selectOne("user.checkId",u);
 	}
 
-	// 비번 찾기
-	public UserVO findUserPw(UserVO u) {
-		return sqlSession.selectOne("user.findUserPw",u);
-	}
-
 	// 아이디 찾기
 	public String findUserId(String userName, String userPhone) {
 		HashMap<String,String> map = new HashMap<String,String>();
@@ -48,5 +43,14 @@ public class UserDao {
 		// TODO Auto-generated method stub
 		List<DmVO> list = sqlSession.selectList("user.dmList", userId);
 		return list.size();
+	}
+
+	// 비밀번호 찾기
+	public String findUserPw(String userName, String userPhone, String userId) {
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("userName", userName);
+		map.put("userPhone", userPhone);
+		map.put("userId", userId);
+		return sqlSession.selectOne("user.findUserPw",map);
 	}
 }

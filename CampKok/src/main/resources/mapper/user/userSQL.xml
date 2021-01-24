@@ -50,7 +50,7 @@
 	</select>
 	
 	<!-- 비번 찾기 -->
-	<select id="findUserPw" parameterType="u" resultType="u">
+	<select id="findUserPw" parameterType="map" resultType="string">
 		select
 			user_pw as userPw
 		from user_tbl where user_name=#{userName} and user_id=#{userId} and user_phone=#{userPhone}

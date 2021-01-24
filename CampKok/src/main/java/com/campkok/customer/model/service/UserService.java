@@ -27,11 +27,6 @@ public class UserService {
 	public UserVO checkId(UserVO u) {
 		return dao.checkId(u);
 	}
-
-	// 비밀번호 찾기
-	public UserVO findUserPw(UserVO u) {
-		return dao.findUserPw(u);
-	}
 	
 	// 아이디 찾기
 	public String findUserId(String userName, String userPhone) {
@@ -41,5 +36,10 @@ public class UserService {
 	public int dmCount(String userId) {
 		// TODO Auto-generated method stub
 		return dao.dmCount(userId);
+	}
+
+	// 비밀번호 찾기
+	public String findUserPw(String userId, String userName, String userPhone) {
+		return dao.findUserPw(userName, userPhone, userId);
 	}
 }

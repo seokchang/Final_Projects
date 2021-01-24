@@ -102,11 +102,10 @@ public class UserController {
 
 	// 비밀번호 찾기
 	@RequestMapping("/findPw.do")
-	public String findPw(UserVO u, Model model) {
-		UserVO user = service.findUserPw(u);
-		System.out.println(u);
-		if (user.getUserPw() != null) {
-			model.addAttribute("user", user);
+	public String findPw(String userId, String userName, String userPhone, Model model) {
+		String userPw = service.findUserPw(userId,userName,userPhone);
+		if (userPw != null) {
+			model.addAttribute("userPw", userPw);
 			return "user/findPwResult";
 		} else {
 			model.addAttribute("msg", "회원정보가 존재하지 않습니다.");

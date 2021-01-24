@@ -72,21 +72,21 @@
 				<ul>
 					<c:choose>
 						<c:when test="${sessionScope.user == null }">
-							<li><a href="joinPage.do">회원가입</a></li>
-							<li><a href="loginFrm.do">로그인</a></li>
+							<li><a href="/joinPage.do">회원가입</a></li>
+							<li><a href="/loginFrm.do">로그인</a></li>
 						</c:when>
 						<c:when test="${sessionScope.user.userLevel != 2 }">
 							<li><a href="/mypage.do?userNo=${sessionScope.user.userNo }">마이페이지</a></li>
 							<li><a href="/dmList.do?userId=${sessionScope.user.userId }">쪽지</a></li>
 							<hr>
-							<li><a href="logout.do">로그아웃</a></li>
+							<li><a href="/logout.do">로그아웃</a></li>
 						</c:when>
 						<c:when test="${sessionScope.user.userLevel == 2 }">
 							<li><a href="/mypage.do?userNo=${sessionScope.user.userNo }">마이페이지</a></li>
 							<li><a href="/camp/campmypage.do?userId=${sessionScope.user.userId }">내 캠핑장</a></li>
 							<li><a href="/camp/campjoinFrm.do?userId=${sessionScope.user.userId }">캠핑장 등록</a></li>
 							<hr>
-							<li><a href="logout.do">로그아웃</a></li>
+							<li><a href="/logout.do">로그아웃</a></li>
 						</c:when>
 					</c:choose>
 				</ul>
