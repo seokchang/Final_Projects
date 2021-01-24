@@ -32,10 +32,10 @@
 	</select>
 
 	<select id="getCeoCount" resultType="_int">
-		SELECT count(*) FROM user_tbl WHERE user_level = 1
+		SELECT count(*) FROM user_tbl WHERE user_level = 2
 	</select>
 
 	<select id="getClientCount" resultType="_int">
-		SELECT count(*) FROM user_tbl WHERE user_level = 2
+		SELECT count(*) FROM user_tbl WHERE user_level = 1
 	</select>
 </mapper>
