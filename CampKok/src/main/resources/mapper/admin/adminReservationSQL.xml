@@ -9,7 +9,7 @@
 		room_name AS
 		roomName,
 		room_price AS roomPrice
-		FROM camproom WHERE camp_no = #{_parameter}
+		FROM camproom WHERE room_no = #{_parameter}
 	</select>
 
 	<select id="getTotalReservationCount" parameterType="_int" resultType="_int">

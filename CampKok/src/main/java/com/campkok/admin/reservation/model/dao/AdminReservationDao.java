@@ -17,8 +17,8 @@ public class AdminReservationDao {
 	@Autowired
 	private SqlSessionTemplate session;
 
-	public CampRoom selectCampRoomInfo(int campNo) {
-		return session.selectOne("adminReservation.getCampRoomInfo", campNo);
+	public CampRoom selectCampRoomInfo(int campRoom) {
+		return session.selectOne("adminReservation.getCampRoomInfo", campRoom);
 	}
 
 	public int getTotalReservationCount(int userNo) {

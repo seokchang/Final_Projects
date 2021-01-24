@@ -29,7 +29,7 @@ public class AdminReservationService {
 		if (reservationInfo != null) {
 			User clientInfo = uDao.selectCeoInfo(reservationInfo.getUserNo());
 			Camp campInfo = cDao.selectCampInfo(reservationInfo.getCampNo());
-			CampRoom campRoomInfo = dao.selectCampRoomInfo(reservationInfo.getCampNo());
+			CampRoom campRoomInfo = dao.selectCampRoomInfo(reservationInfo.getCampRoom());
 
 			reservationInfo.setClientInfo(clientInfo);
 			reservationInfo.setCampInfo(campInfo);
