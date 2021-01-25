@@ -51,7 +51,7 @@
 	color: #fff;
 	border-top-right-radius: 50px;
 	border-bottom-right-radius: 50px;
-	transition-duration: 0.5s;
+	transition-duration: 0.3s;
 }
 
 .searchbar>form>button:hover {
@@ -100,6 +100,11 @@
 
 .camp-item-img>img {
 	height: 100%;
+	transition-duration: 0.3s;
+}
+
+.camp-item-img>img:hover {
+	height: 103%;
 }
 
 .camp-item>a {
