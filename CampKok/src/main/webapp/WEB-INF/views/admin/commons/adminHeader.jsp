@@ -21,7 +21,7 @@
 		<li>
 			<div class="header-menu">
 				<a href="/selectTempCampInfoList.do?reqPage=1">신규등록 신청 관리</a> <a href="/selectFAQInfoList.do?reqPage=1">FAQ</a>
-				<button class="btnExit" onclick="location.href='/pageMain.do'">Main Page</button>
+				<button class="btnExit" onclick="location.href='/main.do'">Main Page</button>
 			</div>
 		</li>
 	</ul>

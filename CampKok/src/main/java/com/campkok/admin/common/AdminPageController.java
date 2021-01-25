@@ -63,10 +63,10 @@ public class AdminPageController {
 		return "/admin/admin";
 	}
 
-	@RequestMapping("/pageMain.do")
-	public String pageMain() {
-		return "/main";
-	}
+	//	@RequestMapping("/pageMain.do")
+	//	public String pageMain() {
+	//		return "/main";
+	//	}
 
 	public int getTempCampCount() {
 		int insertTempCampCount = cService.getTempCampCount();
