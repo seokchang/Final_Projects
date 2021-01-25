@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link href="resources/img/main/tent.png" rel="shortcut icon" type="image/x-icon">
 <title>마이페이지</title>
     <link rel="stylesheet" href="/resources/css/customer/mypage.css">
 <style>

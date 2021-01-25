@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link href="resources/img/main/tent.png" rel="shortcut icon" type="image/x-icon">
 <title>비밀번호찾기</title>
 <link rel="stylesheet" href="/resources/css/user/findPage.css">
 </head>

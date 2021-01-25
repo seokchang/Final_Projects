@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link href="resources/img/main/tent.png" rel="shortcut icon" type="image/x-icon">
 <title>캠핑장회원가입</title>
 <!-- 다음 주소찾기 API -->
 <script

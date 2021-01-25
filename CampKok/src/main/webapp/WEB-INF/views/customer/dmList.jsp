@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link href="resources/img/main/tent.png" rel="shortcut icon" type="image/x-icon">
 <title>DM</title>
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <link rel="stylesheet" href="/resources/css/customer/mypage.css">

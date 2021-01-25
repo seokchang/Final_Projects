@@ -7,6 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link href="resources/img/main/tent.png" rel="shortcut icon" type="image/x-icon">
 <title>자유 게시판 작성</title>
 <script type="text/javascript" src="/nse_files/js/HuskyEZCreator.js" charset="utf-8"></script>
     <link rel="stylesheet" href="/resources/css/customer/noticeView.css">

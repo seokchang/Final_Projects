@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link href="resources/img/main/tent.png" rel="shortcut icon" type="image/x-icon">
 <title>Insert title here</title>
 <!-- <link rel="stylesheet" href="/resources/css/camp/comment3.css"> -->
 <style>

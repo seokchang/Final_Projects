@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta charset="EUC-KR">
+<link href="resources/img/main/tent.png" rel="shortcut icon" type="image/x-icon">
 <title>Insert title here</title>
 
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>

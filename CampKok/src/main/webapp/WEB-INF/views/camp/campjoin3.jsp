@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link href="resources/img/main/tent.png" rel="shortcut icon" type="image/x-icon">
 <title>캠핑장등록</title>
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-3.3.1.js"></script>
