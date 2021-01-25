@@ -84,7 +84,15 @@
 			<!-- 기현쓰가 예약버튼 링크 추가 -->
 
 			<c:if test="${!campRoomList.isEmpty() }">
-				<a href="#" data-toggle="modal" data-target="#myModal">예약하기</a>
+				<c:choose>
+					<c:when test="${sessionScope.user.userLevel == 1 }">
+						<a href="#" data-toggle="modal" data-target="#myModal">예약하기</a>
+					</c:when>
+					<c:otherwise>
+						<a href="/loginFrm.do" id="rev-no">예약하기</a>
+					</c:otherwise>
+				</c:choose>
+				
 				<!--  방 선택 보내기 모달 -->
 				<div class="modal" id="myModal">
 					<div class="modal-dialog">
@@ -161,7 +169,7 @@
 						REVIEW
 						<c:choose>
 							<c:when test="${sessionScope.user == null }">
-								<a href="#" id="blank">more</a>
+								<a href="loginFrm.do" id="blank">more</a>
 							</c:when>
 							<c:otherwise>
 								<a href="/camp/commentFrm.do?userNo=${sessionScope.user.userNo }&campNo=${campNo }">more</a>
@@ -305,8 +313,13 @@
         }
         
         $('#blank').click(function() {
-			alert("더보기는 로그인후 이용가능합니다.");
+			alert("리뷰조회는 로그인 후 이용가능합니다.");
 		});
+        
+        $('#rev-no').click(function() {
+			alert("로그인 후 예약이 가능합니다.");
+		});
+        
     </script>
 
 	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
