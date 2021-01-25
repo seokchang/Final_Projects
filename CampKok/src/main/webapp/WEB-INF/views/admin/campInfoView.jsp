@@ -60,13 +60,11 @@
 						<tr>
 							<th>이미지</th>
 							<td colspan="3">
-								<c:if test="${not empty campFile.campFilePath }">
-									<div style="text-align: left;">
-										<c:forEach items="${campInfo.campFiles }" var="campFile">
-											<img id="img-view" src="/resources/upload/camp/${campFile.campFilePath }" style="width: 20%;">
-										</c:forEach>
-									</div>
-								</c:if>
+								<div style="text-align: left;">
+									<c:forEach items="${campInfo.campFiles }" var="campFile">
+										<img id="img-view" src="/resources/upload/camp/${campFile.campFilePath }" style="width: 50%;">
+									</c:forEach>
+								</div>
 							</td>
 						</tr>
 					</table>
