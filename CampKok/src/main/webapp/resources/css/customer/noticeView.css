@@ -47,6 +47,7 @@ body {
 }
 
 .notice-tbl2>tbody>tr>th {
+	text-align: center;
 	background-color: #fcfcfc;
 }
 
@@ -75,6 +76,7 @@ body {
 }
 
 .notice-tbl>tbody>tr>th {
+	text-align: center;
 	background-color: #fcfcfc;
 }
 
@@ -93,11 +95,11 @@ body {
 	text-align: center;
 	height: 50px;
 	line-height: 50px;
+	transition-duration: 0.3s;
 }
 
 .notice-btn:hover {
-	color: #405944;
+	color: #fff;
 	text-decoration: none;
-	background-color: #fff;
-	border: 1px solid #405944;
+	background-color: #5A7356;
 }
